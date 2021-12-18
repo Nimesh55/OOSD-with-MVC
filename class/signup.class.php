@@ -4,21 +4,21 @@
 class Signup extends Dbh{
 
     protected function checkUser($uid){
-        $query = 'SELECT * FROM users WHERE user_id= ? ';
+        
+        $query = "SELECT * FROM users WHERE user_id = ?";
         $stmt = $this->connect()->prepare($query);
 
-        if (!$stmt->execute(array($uid))) {
+        if (!$stmt->execute([$uid])) {
             $stmt = null;
-            //header("")
             exit();
         }
 
         $resultCheck = null;
         if ($stmt->rowCount()>0) {
-            $resultCheck = false;
+            $resultCheck = true;
         }
         else{
-            $resultCheck = true;
+            $resultCheck = false;
         }
         return $resultCheck;
     }
@@ -36,12 +36,10 @@ class Signup extends Dbh{
         
         if (!$stmt->execute(array($uid, $val1, $val2, $hashedpwd))) {
             $stmt = null;
-            //header("")
             exit();
         }
 
         $stmt = null;
-        header("location: ../test.php?error=end");
 
     }
 }

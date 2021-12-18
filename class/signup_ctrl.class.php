@@ -25,30 +25,31 @@ class Signup_Controller extends Signup{
         $this->company_name = $company_name;
         $this->company_Id = $company_Id;
 
-        header("location: ../test.php?error=crtlcreated");
+        // header("location: ../test.php?error=crtlcreated");
 
     }
 
     public function signupUser(){
+        
         // check for all the errors using the helper functions
         if ($this->emptyField() == false) {
             // error msg here
             header("location: ../test.php?error=emptyfield");
             exit();
         }
-
+        
         if ($this->password_match() == false) {
             // error msg here
             header("location: ../test.php?error=passwordmismatch");
             exit();
         }
-
-        if ($this->user_exist() == false) {
+        
+        if ($this->user_exist()) {
             // error msg here
-            header("location: ../test.php?error=end");
+            header("location: ../test.php?error=user_exist");
             exit();
         }
-
+        
         // if ($this->emptyField() == false) {
         //     // error msg here
         //     //header()
@@ -61,10 +62,8 @@ class Signup_Controller extends Signup{
         //     exit();
         // }
         
-        header("location: ../test.php?error=addtouserawulsago");
         $this->addToUser( $this->uid , $this->password);
 
-        header("location: ../passenger_signup.php?error=none");
     }
 
 
@@ -94,11 +93,11 @@ class Signup_Controller extends Signup{
     }
     // user already exist
     private function user_exist(){
-        if( !$this->checkUser( $this->uid)){
-            return false;
+        if( $this->checkUser( $this->uid)){
+            return true;
         }
         else{
-            return true;
+            return false;
         }
     }
 }

@@ -17,7 +17,6 @@ if(isset($_POST['submit'])){
     include "../class/signup.class.php";
     include "../class/signup_ctrl.class.php";
     
-    header("location: ../test.php?error=start");
 
     $signupctrlobj = new Signup_Controller($firstname, $lastname, $uid, $address, $email, $telephone, $password, $passwordrepeat, NULL,NULL);
 
@@ -26,5 +25,4 @@ if(isset($_POST['submit'])){
     // Run add user 
     $signupctrlobj->signupUser();
 
-    header("location: ../test.php?error=alldone");
 }
