@@ -62,7 +62,7 @@ class Signup_Controller extends Signup{
         //     exit();
         // }
         
-        $this->addToUser( $this->uid , $this->password);
+        $this->addToUser( $this->uid , $this->password, $this->firstname, $this->lastname, $this->address, $this->telephone, $this->email);
 
     }
 
