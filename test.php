@@ -1,2 +1,2 @@
 <?php
-//echo $_GET['r'];
+echo "r";

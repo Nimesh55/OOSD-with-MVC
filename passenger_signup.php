@@ -19,7 +19,7 @@
 					<input class="text" type="text" name="Lastname" placeholder="Last name">
                     <input class="text" type="text" name="ID" placeholder="NIC" >
                     <input class="text" type="text" name="Address" placeholder="Address">
-					<input class="text email" type="email" name="email" placeholder="Email">
+					<input class="text email" type="text" name="email" placeholder="Email">
                     <input class="text" type="text" name="Telephone" placeholder="Telephone number">
 					<input class="text" type="password" name="password" placeholder="Password">
 					<input class="text w3lpass" type="password" name="passwordrepeat" placeholder="Confirm Password">

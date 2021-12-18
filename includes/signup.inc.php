@@ -20,9 +20,6 @@ if(isset($_POST['submit'])){
 
     $signupctrlobj = new Signup_Controller($firstname, $lastname, $uid, $address, $email, $telephone, $password, $passwordrepeat, NULL,NULL);
 
-    
-
     // Run add user 
     $signupctrlobj->signupUser();
-
 }

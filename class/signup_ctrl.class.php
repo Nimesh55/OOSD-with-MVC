@@ -24,13 +24,9 @@ class Signup_Controller extends Signup{
         $this->passwordrepeat = $passwordrepeat;
         $this->company_name = $company_name;
         $this->company_Id = $company_Id;
-
-        // header("location: ../test.php?error=crtlcreated");
-
     }
 
     public function signupUser(){
-        
         // check for all the errors using the helper functions
         if ($this->emptyField() == false) {
             // error msg here
@@ -50,30 +46,24 @@ class Signup_Controller extends Signup{
             exit();
         }
         
-        // if ($this->emptyField() == false) {
-        //     // error msg here
-        //     //header()
-        //     exit();
-        // }
+        if (!$this->isValidEmail()) {
+            // error msg here
+            header("location: ../test.php?error=emailWrong");
+            exit();
+        }
 
-        // if ($this->emptyField() == false) {
-        //     // error msg here
-        //     //header(with ?=errortype in url)
-        //     exit();
-        // }
-        
+        if ($this->isUserValidInput() == false) {
+            // error msg here
+            header("location: ../test.php?error=invalidusername");
+            exit();
+        }
+
         $this->addToUser( $this->uid , $this->password, $this->firstname, $this->lastname, $this->address, $this->telephone, $this->email);
-
     }
 
-
     // Error handling methods
-
-        //preg_match() - check for char s
-        //filter_var(this->email, FILTER_VALIDATE_EMAIL)
     private function emptyField(){
         // for executive handle company_id and company_name seperately by getting the user type       
-        
         if (empty($this->firstname)||empty($this->lastname)||empty($this->uid)||empty($this->address)||empty($this->email)||empty($this->telephone)||empty($this->password)||empty($this->passwordrepeat)) {
             $result = false;
         }
@@ -99,5 +89,16 @@ class Signup_Controller extends Signup{
         else{
             return false;
         }
+    }
+
+    private function isValidEmail(){
+        return filter_var($this->email, FILTER_VALIDATE_EMAIL);
+    }
+
+    private function isUserValidInput(){
+        if (!preg_match("/^[a-zA-Z0-9]*$/", $this->uid)) {
+            return false;
+        }
+        return true;
     }
 }

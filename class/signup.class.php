@@ -2,7 +2,6 @@
 // model in MVC
 
 class Signup extends Dbh{
-
     protected function checkUser($uid){
         
         $query = "SELECT * FROM users WHERE user_id = ?";
@@ -47,16 +46,11 @@ class Signup extends Dbh{
         $stmt2 = $this->connect()->prepare($query2);
 
         $hashedpwd = password_hash($password, PASSWORD_DEFAULT);
-
-
-
-        
+ 
         if (!$stmt2->execute(array($uid, $account_type, $account_no, $hashedpwd))) {
             $stmt2 = null;
             exit();
         }
-
         $stmt2 = null;
-
     }
 }
