@@ -36,7 +36,7 @@ class Signup extends Dbh{
 
         //Get last passenger no(added one) from passenger table
         $stmt = $this->connect()->query("SELECT * FROM passenger ORDER BY passenger_no DESC LIMIT 1");
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $row = $stmt->fetch();
 
         $account_type = 0;      //for passengers
         $account_no = $row['passenger_no'];

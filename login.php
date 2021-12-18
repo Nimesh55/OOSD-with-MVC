@@ -17,7 +17,7 @@
     <div class="login-dark">
     <div class="background-image"></div>
     <h1>SAFE TRANSIT</h1>
-        <form method="post">            
+        <form action="includes/login.inc.php" method="post">            
             <div class="illustration"><img src="https://img.icons8.com/external-kiranshastry-gradient-kiranshastry/64/000000/external-bus-automobile-kiranshastry-gradient-kiranshastry.png"/></div>
             <div class="form-group"><input class="form-control" type="text" name="id" placeholder="ID" required=""></div>
             <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password" required=""></div>

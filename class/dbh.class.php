@@ -1,6 +1,6 @@
 <?php
 
-// Extend this class whenever wer need a database Connection
+// Extend this class whenever we need a database Connection
 class Dbh{
     private $host = "localhost";
     private $user = "root";

@@ -58,6 +58,12 @@ class Signup_Controller extends Signup{
             exit();
         }
 
+        if ($this->isTelephoneValidInput() == false) {
+            // error msg here
+            header("location: ../test.php?error=invalidtelephone");
+            exit();
+        }
+
         $this->addToUser( $this->uid , $this->password, $this->firstname, $this->lastname, $this->address, $this->telephone, $this->email);
     }
 
@@ -97,6 +103,13 @@ class Signup_Controller extends Signup{
 
     private function isUserValidInput(){
         if (!preg_match("/^[a-zA-Z0-9]*$/", $this->uid)) {
+            return false;
+        }
+        return true;
+    }
+
+    private function isTelephoneValidInput(){
+        if (!preg_match("/^[0-9]/", $this->telephone)) {
             return false;
         }
         return true;
