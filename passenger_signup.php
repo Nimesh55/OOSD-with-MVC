@@ -15,14 +15,14 @@
 		<div class="main-agileinfo">
 			<div class="agileits-top">
 				<form action="includes/signup.inc.php" method="post">
-                    <input class="text" type="text" name="Firstname" placeholder="First name" required>
-					<input class="text" type="text" name="Lastname" placeholder="Last name" required>
-                    <input class="text" type="text" name="ID" placeholder="NIC" required>
-                    <input class="text" type="text" name="Address" placeholder="Address" required>
-					<input class="text email" type="email" name="email" placeholder="Email" required>
-                    <input class="text" type="text" name="Telephone" placeholder="Telephone number" required>
-					<input class="text" type="password" name="password" placeholder="Password" required>
-					<input class="text w3lpass" type="password" name="passwordrepeat" placeholder="Confirm Password" required>
+                    <input class="text" type="text" name="Firstname" placeholder="First name">
+					<input class="text" type="text" name="Lastname" placeholder="Last name">
+                    <input class="text" type="text" name="ID" placeholder="NIC" >
+                    <input class="text" type="text" name="Address" placeholder="Address">
+					<input class="text email" type="email" name="email" placeholder="Email">
+                    <input class="text" type="text" name="Telephone" placeholder="Telephone number">
+					<input class="text" type="password" name="password" placeholder="Password">
+					<input class="text w3lpass" type="password" name="passwordrepeat" placeholder="Confirm Password">
 
 					<input type="submit" name= "submit" value="SIGNUP">
 				</form>
