@@ -22,7 +22,7 @@
             <div class="form-group"><input class="form-control" type="text" name="id" placeholder="ID" required=""></div>
             <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password" required=""></div>
 
-            <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Log In</button></div><div class="sign_up">Don't have account? <a href="account_type.php" class="signup"> Sign up here</a></div></form>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="submit">Log In</button></div><div class="sign_up">Don't have account? <a href="account_type.php" class="signup"> Sign up here</a></div></form>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>

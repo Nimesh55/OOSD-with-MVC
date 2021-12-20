@@ -11,8 +11,9 @@ if(isset($_POST['submit'])){
     include "../class/login.class.php";
     include "../class/login_ctrl.class.php";
     
+    header("location: ../test.php?error=logunenaanemahaththaya");
+    $loginctrlobj = new Login_Controller($uid, $password);
 
-    //$loginctrlobj = new Login_Controller($uid, $password);
     // Run add user 
-    //$loginctrlobj->loginUser();
+    $loginctrlobj->loginUser();
 }
