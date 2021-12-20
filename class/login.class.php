@@ -3,19 +3,18 @@
 
 class Login extends Dbh{
     protected function getUser($uid, $password){
-        // need to change ########
         $query = "SELECT password FROM users WHERE user_Id=?";
         $stmt = $this->connect()->prepare($query);
 
         if (!$stmt->execute([$uid])) {
             $stmt = null;
-            header("location: ../test.php?error=stmtfail");
+            header("location: ../login.php?error=stmtfail");
             exit();
         }
 
         if ($stmt->rowCount() == 0) {
             $stmt = null;
-            header("location: ../test.php?error=NoSuchUser");
+            header("location: ../login.php?error=NoSuchUser");
             exit();
         }
 
@@ -24,7 +23,7 @@ class Login extends Dbh{
 
         if ($checkPwd == false) {
             $stmt = null;
-            header("location: ../test.php?error=wrongPwd");
+            header("location: ../login.php?error=wrongPwd");
             exit();
         }
         elseif ($checkPwd == true) {  
@@ -34,13 +33,13 @@ class Login extends Dbh{
 
             if (!$stmt->execute([$uid])) {
                 $stmt = null;
-                header("location: ../test.php?error=stmtfail");
+                header("location: ../login.php?error=stmtfail");
                 exit();
             }
 
             if ($stmt->rowCount() == 0) {
                 $stmt = null;
-                header("location: ../test.php?error=NoSuchUser");
+                header("location: ../login.php?error=NoSuchUser");
                 exit();
             }
 
@@ -50,7 +49,7 @@ class Login extends Dbh{
             session_start();
             $_SESSION["user_Id"] = $user["user_id"];
 
-            header("location: ../test.php?error=logged&user=$uidtest");// for testing
+            header("location: ../test.php?error=logged&user=$uidtest");// for testing. Redirect to Homepage of user
         }
     }
 }

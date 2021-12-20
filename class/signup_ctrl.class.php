@@ -30,37 +30,37 @@ class Signup_Controller extends Signup{
         // check for all the errors using the helper functions
         if ($this->emptyField() == false) {
             // error msg here
-            header("location: ../test.php?error=emptyfield");
+            header("location: ../passenger_signup.php?error=emptyfield"); // Fix: Redirect depending on the user type.vv.
             exit();
         }
         
         if ($this->password_match() == false) {
             // error msg here
-            header("location: ../test.php?error=passwordmismatch");
+            header("location: ../passenger_signup.php?error=passwordmismatch");
             exit();
         }
         
         if ($this->user_exist()) {
             // error msg here
-            header("location: ../test.php?error=user_exist");
+            header("location: ../passenger_signup.php?error=user_exist");
             exit();
         }
         
         if (!$this->isValidEmail()) {
             // error msg here
-            header("location: ../test.php?error=emailWrong");
+            header("location: ../passenger_signup.php?error=emailWrong");
             exit();
         }
 
         if ($this->isUserValidInput() == false) {
             // error msg here
-            header("location: ../test.php?error=invalidusername");
+            header("location: ../passenger_signup.php?error=invalidusername");
             exit();
         }
 
         if ($this->isTelephoneValidInput() == false) {
             // error msg here
-            header("location: ../test.php?error=invalidtelephone");
+            header("location: ../passenger_signup.php?error=invalidtelephone");
             exit();
         }
 
