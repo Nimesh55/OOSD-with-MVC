@@ -65,6 +65,7 @@ class Signup_Controller extends Signup{
         }
 
         $this->addToUser( $this->uid , $this->password, $this->firstname, $this->lastname, $this->address, $this->telephone, $this->email);
+        header("location: ../login.php?error=none");
     }
 
     // Error handling methods
@@ -109,7 +110,7 @@ class Signup_Controller extends Signup{
     }
 
     private function isTelephoneValidInput(){
-        if (!preg_match("/^[0-9]/", $this->telephone)) {
+        if (!is_numeric($this->telephone)) {
             return false;
         }
         return true;
