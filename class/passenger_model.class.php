@@ -1,8 +1,9 @@
-+<?php
+<?php
 
 	/**
 	 *
 	 */
+  require_once "dbh.class.php";
 	class Passenger_Model extends Passenger
 	{
 		private $record;

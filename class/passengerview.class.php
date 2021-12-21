@@ -1,6 +1,6 @@
 
 <?php
-  require_once "../includes/autoloader.inc.php";
+  require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/OOSD-with-MVC/includes/autoloader.inc.php";
   class PassengerView extends Passenger{
     private $passenger;
 
@@ -9,17 +9,18 @@
     }
     public function getDetails()
     {
-      $details=array($this->passenger->getfirst_name(),
-                $this->passenger->getpassenger_no(),
-                $this->passenger->getfirst_name(),
-                $this->passenger->getlast_name(),
-                $this->passenger->getaddress(),
-                $this->passenger->gettelephone(),
-                $this->passenger->getservice_no(),
-                $this->passenger->getstaff_id(),
-                $this->passenger->getemail(),
-                $this->passenger->getstate());
-      echo $this->passenger->getfirst_name();
+      $details=array(
+                "first_name"=> $this->passenger->getfirst_name(),
+                "passenger_no"=> $this->passenger->getpassenger_no(),
+                "first_name"=> $this->passenger->getfirst_name(),
+                "last_name"=> $this->passenger->getlast_name(),
+                "address"=> $this->passenger->getaddress(),
+                "telephone"=> $this->passenger->gettelephone(),
+                "service_no"=> $this->passenger->getservice_no(),
+                "staff_id"=> $this->passenger->getstaff_id(),
+                "email"=> $this->passenger->getemail(),
+                "state"=> $this->passenger->getstate());
+      // echo $this->passenger->getfirst_name();
       return $details;
 
     }
