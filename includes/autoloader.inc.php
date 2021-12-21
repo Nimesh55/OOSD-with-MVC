@@ -2,7 +2,8 @@
 
   function autoloader($className)
   {
-    $path="../class";
+    // chdir($_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/OOSD-with-MVC");
+    $path=$_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/OOSD-with-MVC/class";
     $extension = ".class.php";
     $fullPath = $path."/".strtolower($className).$extension;
     // echo "$fullPath";
@@ -15,6 +16,7 @@
     }
   }
   spl_autoload_register('autoloader');
+
 
 
  ?>
