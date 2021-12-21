@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/OOSD-with-MVC/includes/autoloader.inc.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
 if(!isset($_SESSION['account_no'])){
@@ -9,7 +9,7 @@ if(!isset($_SESSION['account_no'])){
 
 
 
-  $passengerview = new PassengerView($_SESSION['account_no']);
+  $passengerview = new Passenger_View($_SESSION['account_no']);
   $row = $passengerview->getDetails();
   $row['user_id']=$_SESSION['user_Id'];
   $username = $row['first_name']." ".$row['last_name'];

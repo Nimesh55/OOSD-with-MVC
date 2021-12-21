@@ -1,7 +1,7 @@
 
 <?php
-  require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/OOSD-with-MVC/includes/autoloader.inc.php";
-  class PassengerView extends Passenger{
+  require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
+  class Passenger_View extends Passenger_Model{
     private $passenger;
 
     public function __construct($passenger_no){

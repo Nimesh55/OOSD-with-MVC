@@ -3,8 +3,8 @@
 
 
   // include "../includes/autoloader.inc.php";
-  require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/OOSD-with-MVC/includes/autoloader.inc.php";
-  class Passenger extends Dbh
+  require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
+  class Passenger
   {
     private $passenger_no;
     private $first_name;

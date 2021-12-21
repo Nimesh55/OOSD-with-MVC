@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/OOSD-with-MVC/includes/autoloader.inc.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
 if(!isset($_SESSION['account_no'])){
@@ -8,14 +8,37 @@ if(!isset($_SESSION['account_no'])){
     return;
 }
 
-  $passengerview = new PassengerView($_SESSION['account_no']);
+if(isset($_POST['save'])){
+    header("Location: passenger_home.php");
+    return;
+}
+if(isset($_POST['cpwd'])){
+    header("Location: passenger_home.php");
+    return;
+}
+if(isset($_POST['cancel'])){
+    header("Location: passenger_home.php");
+    return;
+}
+
+  $passengerview = new Passenger_View($_SESSION['account_no']);
   $row = $passengerview->getDetails();
   $row['user_id']=$_SESSION['user_Id'];
   $username = $row['first_name']." ".$row['last_name'];
 
-	// echo "<pre>";
-	// print_r($row);
-	// echo "</pre>";
+	$state_str='';
+	if ($row['state']==0) {
+	    $state_str='Non-Essential';
+	}
+	elseif ($row['state']==1) {
+	    $state_str = 'Pending';
+	}
+	elseif ($row['state']==2) {
+	    $state_str = 'Essential';
+	}
+	echo "<pre>";
+	print_r($_POST);
+	echo "</pre>";
 
 
 
@@ -56,7 +79,7 @@ if(!isset($_SESSION['account_no'])){
 			<div class="col-lg-3 cyan"></div>
 			<div class="col-lg-6 pink wrapper">
 
-				<form class="form-horizontal" role="form">
+				<form class="form-horizontal" role="form" action="passenger_edit_profile.php" method="post">
 					<div class="form-group">
 						<label for="fname" class="col-sm-3 control-label">First Name:</label>
 						<div class="col-sm-9">
@@ -88,10 +111,10 @@ if(!isset($_SESSION['account_no'])){
 					</div>
           <br>
           <div class="btn-group btn-group-lg">
-      			<button type="button" class="btn btn-primary">Change Password</button>
-      			<button type="button" class="btn btn-primary">Save</button>
-      			<button type="button" class="btn btn-primary">Cancel</button>
-		    </div>
+      			<input type="submit" class="btn btn-primary ctrlbutton" name="cpwd" value="Change Password">
+      			<input type="submit" class="btn btn-primary ctrlbutton" name="save" value="Save">
+      			<input type="submit" class="btn btn-primary ctrlbutton" name="cancel" value="Cancel">
+		    	</div>
 
 				</form>
 

@@ -26,8 +26,8 @@ class Login extends Dbh{
             header("location: ../login.php?error=wrongPwd");
             exit();
         }
-        elseif ($checkPwd == true) {  
-            // When Password is verified 
+        elseif ($checkPwd == true) {
+            // When Password is verified
             $query2 = "SELECT * FROM users WHERE user_Id=?";
             $stmt = $this->connect()->prepare($query2);
 
@@ -53,7 +53,7 @@ class Login extends Dbh{
                 $_SESSION["account_no"] = $user["account_no"];
             }
 
-            header("location: ../test.php?error=logged&user=$uidtest");// for testing. Redirect to Homepage of user
+            header("location: ../passenger_home.php");// for testing. Redirect to Homepage of user
         }
     }
 }
