@@ -1,8 +1,7 @@
 <?php
 
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
-
-include "class/board_manager_controller.class.php";
 
 class ViewHome extends Board_Manager{
 
