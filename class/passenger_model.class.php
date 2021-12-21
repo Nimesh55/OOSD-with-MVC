@@ -21,13 +21,13 @@
     {
       $sql = "UPDATE Passenger SET first_name = :fn, last_name = :ln, address = :addr,
                        email = :em, telephone = :tel WHERE passenger_no = :pas_no";
-      $stmt = $pdo->prepare($sql);
+      $stmt = $this->connect()->prepare($sql);
       $stmt->execute(array(
-          ':fn' => htmlentities($details['Firstname']),
-          ':ln' => htmlentities($details['Lastname']),
-          ':addr' => htmlentities($details['Address']),
-          ':em' => htmlentities($details['Email']),
-          ':tel' => htmlentities($details['Telephone']),
+          ':fn' => htmlentities($details['fname']),
+          ':ln' => htmlentities($details['lname']),
+          ':addr' => htmlentities($details['address']),
+          ':em' => htmlentities($details['email']),
+          ':tel' => htmlentities($details['telephone']),
           ':pas_no' => htmlentities($details['passenger_no'])));
     }
 	}
