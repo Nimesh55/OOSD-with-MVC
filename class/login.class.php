@@ -44,10 +44,14 @@ class Login extends Dbh{
             }
 
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
-            $uidtest = $user["user_id"]; //for testing
+            $userType = $user["account_type"];
 
             session_start();
             $_SESSION["user_Id"] = $user["user_id"];
+
+            if($userType<3){
+                $_SESSION["account_no"] = $user["account_no"];
+            }
 
             header("location: ../test.php?error=logged&user=$uidtest");// for testing. Redirect to Homepage of user
         }
