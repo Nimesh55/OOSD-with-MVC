@@ -35,9 +35,9 @@
     // echo "</pre>";
     if(empty($errors)){
       $this->changeDetails($details);
-      return true;
+      return $errors;
     }else{
-      return false;
+      return $errors;
     }
 
 
