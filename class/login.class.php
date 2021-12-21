@@ -55,8 +55,7 @@ class Login extends Dbh{
             else {
                 $_SESSION["account_no"] = "x"; //for testing
             }
-
-            //header("location: ../passenger_home.php");// for testing. Redirect to Homepage of user type
+            //Direct to Homepage of user type
             return $userType;
         }
         return -1;
