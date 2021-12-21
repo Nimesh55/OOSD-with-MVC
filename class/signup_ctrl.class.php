@@ -11,8 +11,10 @@ class Signup_Controller extends Signup{
     private $passwordrepeat ;
     private $company_name;
     private $company_Id;
+    private $account_type;
+    private $page_name;
 
-    public function __construct($firstname, $lastname, $uid, $address, $email, $telephone, $password, $passwordrepeat, $company_name, $company_Id)
+    public function __construct($firstname, $lastname, $uid, $address, $email, $telephone, $password, $passwordrepeat, $company_name, $company_Id, $account_type)
     {
         $this->firstname = $firstname;
         $this->lastname = $lastname;
@@ -24,57 +26,66 @@ class Signup_Controller extends Signup{
         $this->passwordrepeat = $passwordrepeat;
         $this->company_name = $company_name;
         $this->company_Id = $company_Id;
+        $this->account_type = $account_type;
+        if($account_type==0){
+          $this->page_name="passenger";
+        }elseif ($account_type==1) {
+          $this->page_name="conductor";
+        }else{
+          $this->page_name="executive";
+        }
     }
 
     public function signupUser(){
         // check for all the errors using the helper functions
         if ($this->emptyField() == false) {
             // error msg here
-            header("location: ../passenger_signup.php?error=emptyfield"); // Fix: Redirect depending on the user type.vv.
+            header("location: ../".$this->page_name."_signup.php?error=emptyfield"); // Fix: Redirect depending on the user type.vv.
             exit();
         }
-        
+
         if ($this->password_match() == false) {
             // error msg here
-            header("location: ../passenger_signup.php?error=passwordmismatch");
+            header("location: ../".$this->page_name."_signup.php?error=passwordmismatch");
             exit();
         }
-        
+
         if ($this->user_exist()) {
             // error msg here
-            header("location: ../passenger_signup.php?error=user_exist");
+            header("location: ../".$this->page_name."_signup.php?error=user_exist");
             exit();
         }
-        
+
         if (!$this->isValidEmail()) {
             // error msg here
-            header("location: ../passenger_signup.php?error=emailWrong");
+            header("location: ../".$this->page_name."_signup.php?error=emailWrong");
             exit();
         }
 
         if ($this->isUserValidInput() == false) {
             // error msg here
-            header("location: ../passenger_signup.php?error=invalidusername");
+            header("location: ../".$this->page_name."_signup.php?error=invalidusername");
             exit();
         }
 
         if ($this->isTelephoneValidInput() == false) {
             // error msg here
-            header("location: ../passenger_signup.php?error=invalidtelephone");
+            header("location: ../".$this->page_name."_signup.php?error=invalidtelephone");
             exit();
         }
 
-        $this->addToUser( $this->uid , $this->password, $this->firstname, $this->lastname, $this->address, $this->telephone, $this->email);
+        $this->addToUser( $this->uid , $this->password, $this->firstname, $this->lastname, $this->address, $this->telephone, $this->email, $this->company_name, $this->company_Id, $this->account_type);
         header("location: ../login.php?error=none");
     }
 
     // Error handling methods
     private function emptyField(){
-        // for executive handle company_id and company_name seperately by getting the user type       
-        if (empty($this->firstname)||empty($this->lastname)||empty($this->uid)||empty($this->address)||empty($this->email)||empty($this->telephone)||empty($this->password)||empty($this->passwordrepeat)) {
+        // for executive handle company_id and company_name seperately by getting the user type
+        if (($this->account_type==0)&&(empty($this->firstname)||empty($this->lastname)||empty($this->uid)||empty($this->address)||empty($this->email)||empty($this->telephone)||empty($this->password)||empty($this->passwordrepeat))) {
             $result = false;
-        }
-        else{
+        }elseif (($this->account_type==2)&&(empty($this->firstname)||empty($this->lastname)||empty($this->uid)||empty($this->address)||empty($this->company_name)||empty($this->company_Id)||empty($this->email)||empty($this->telephone)||empty($this->password)||empty($this->passwordrepeat))) {
+            $result = false;
+        }else{
             $result = true;
         }
         return $result;

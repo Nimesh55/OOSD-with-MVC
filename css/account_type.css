@@ -1,0 +1,40 @@
+body {
+    background: url(../img/login2.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    text-align: center;
+  }
+
+.main-win form{
+    background-color: rgba(24, 24, 102, 0.918);
+    width: 40%;
+    display: inline-block;
+    margin-top: 10%;
+    padding: 50px;
+    border-radius: 1cm;
+
+}
+
+.button01, .button02{
+    height: 180px;
+    width: 180px;
+    background-color: blue;
+    margin: 20px;
+    color: white;
+    font-size: medium;
+    border-color: rgb(13, 13, 71);
+}
+
+.button01:hover, .button02:hover{
+    background-color: rgb(0, 0, 156);
+}
+
+a{
+    color: rgb(100, 131, 226);
+}
+
+a:hover{
+    color: royalblue;
+}

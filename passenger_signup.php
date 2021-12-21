@@ -14,7 +14,7 @@
 		<h1>Passenger SignUp Form</h1>
 		<div class="main-agileinfo">
 			<div class="agileits-top">
-				<form action="includes/signup.inc.php" method="post">
+				<form action="includes/signup.inc.php?account_type=0" method="post">
                     <input class="text" type="text" name="Firstname" placeholder="First name" >
 					<input class="text" type="text" name="Lastname" placeholder="Last name">
                     <input class="text" type="text" name="ID" placeholder="NIC" >
