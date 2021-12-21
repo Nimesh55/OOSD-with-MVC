@@ -9,7 +9,18 @@ if(!isset($_SESSION['account_no'])){
 }
 
 if(isset($_POST['save'])){
-    header("Location: passenger_home.php");
+
+    $passenger_controller=new Passenger_Controller($_SESSION['account_no']);
+    $details=array(
+        'passenger_no'=>$_SESSION['passenger_no'],
+        'fname'=>$_POST['fname'],
+        'lname'=>$_POST['lname'],
+        'address'=>$_POST['address'],
+        'email'=>$_POST['email'],
+        'telephone'=>$_POST['telephone'],
+    );
+    $passenger_controller->validatedetails($details);
+    // header("Location: passenger_home.php");
     return;
 }
 if(isset($_POST['cpwd'])){
@@ -83,13 +94,13 @@ if(isset($_POST['cancel'])){
 					<div class="form-group">
 						<label for="fname" class="col-sm-3 control-label">First Name:</label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" id="fname" value=<?php echo $row['first_name'];?>>
+							<input name="fname" type="text" class="form-control" id="fname" value=<?php echo $row['first_name'];?>>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="lname" class="col-sm-3 control-label">Last Name:</label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" id="lname" value=<?php echo $row['last_name']; ?>>
+							<input name="lname" type="text" class="form-control" id="lname" value=<?php echo $row['last_name']; ?>>
 						</div>
 					</div>
 
@@ -103,11 +114,11 @@ if(isset($_POST['cancel'])){
 
           <div class="form-group">
 						<label for="email" class="col-sm-3 control-label">Email:</label>
-						<div class="col-sm-9"><input type="text" class="form-control" id="email" value=<?php echo $row['email']; ?>></div>
+						<div  class="col-sm-9"><input name="email" type="text" class="form-control" id="email" value=<?php echo $row['email']; ?>></div>
 					</div>
 					<div class="form-group">
 						<label for="telephone" class="col-sm-3 control-label">Telephone:</label>
-					<div class="col-sm-9"><input type="telephone" class="form-control" id="telephone" value=<?php echo $row['telephone']; ?>></div>
+					<div class="col-sm-9"><input name="telephone" type="telephone" class="form-control" id="telephone" value=<?php echo $row['telephone']; ?>></div>
 					</div>
           <br>
           <div class="btn-group btn-group-lg">
