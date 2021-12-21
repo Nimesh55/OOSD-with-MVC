@@ -1,9 +1,8 @@
 <?php
-require 'pdo.php';
-require 'includes/dbh.inc.php';
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['user_Id'])) {
     header("Location: login.php");
     return;
 }
@@ -11,7 +10,7 @@ if (!isset($_SESSION['username'])) {
 if (isset($_GET['view'])) {
     $id = $_GET['view'];
     $query = "SELECT * FROM service WHERE service_no= $id  LIMIT 1;";
-
+    //###fix
     $cur_service = $pdo->query($query);
 
     $rows = $cur_service->fetch(PDO::FETCH_ASSOC);

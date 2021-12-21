@@ -8,6 +8,8 @@ if (!isset($_SESSION['user_Id'])) {
 }
 
 $view = new Administrator_view(); // view class
+//Service class object
+$rows = $view->getPendingRows()// getpending rows
 
 ?>
 
@@ -44,10 +46,10 @@ $view = new Administrator_view(); // view class
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['username'] ?> <span class="caret"></span></a>
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['user_Id'] ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="change_password.php">Change Password</a></li>
-                                    <li><a href="logout.php">Log out</a></li>
+                                    <li><a href="includes/logout.inc.php">Log out</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -60,8 +62,6 @@ $view = new Administrator_view(); // view class
     <!-- List Viw with two buttons -->
     <ul class="list-group action-list-group">
         <form action="administrator_pending_essential_services_view.php" method="POST">
-            <?php $data = $pdo->query("SELECT * FROM service WHERE state = 1 ORDER BY service_no;"); ?>
-
             <table class="table">
                 <thead>
                     <tr>
@@ -75,16 +75,16 @@ $view = new Administrator_view(); // view class
                 <tbody>
                     <?php
                     $i = 0;
-                    while ($rows = $data->fetch(PDO::FETCH_ASSOC)) : $i++; ?>
+                    while ($i<count($rows)) :  ?>
                         <tr>
                             <th scope="row"><?php echo $i; ?></th>
-                            <td><?php echo $rows["id"]; ?></td>
-                            <td><?php echo $rows["name"]; ?></td>
+                            <td><?php echo $rows[$i]["id"];?></td>
+                            <td><?php echo $rows[$i]["name"]; ?></td>
 
                             <?php //$btn_name = "{$rows["service_no"]}"; 
                             ?>
 
-                            <td><a href="administrator_pending_essential_services_view.php?view=<?php echo $rows['service_no']; ?>" class="btn btn-info"> view </a>
+                            <td><a href="administrator_pending_essential_services_view.php?view=<?php echo $rows[$i]['service_no']; $i++;?>" class="btn btn-info"> view </a>
                             </td>
 
                         </tr>
