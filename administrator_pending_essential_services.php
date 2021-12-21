@@ -1,13 +1,13 @@
 <?php
-require_once "includes/dbh.inc.php";
-require 'pdo.php';
-
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['user_Id'])) {
     header("Location: login.php");
     return;
 }
+
+$view = new Administrator_view(); // view class
 
 ?>
 
