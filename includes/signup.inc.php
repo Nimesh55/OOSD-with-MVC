@@ -28,9 +28,7 @@ if(isset($_POST['submit'])){
       $company_Id = htmlentities($_POST["Companyid"]);
       $signupctrlobj = new Signup_Controller($firstname, $lastname, $uid, $address, $email, $telephone, $password, $passwordrepeat, $company_name,$company_Id,2);
     }
-
-
-
+    
     // Run add user
     $signupctrlobj->signupUser();
 }

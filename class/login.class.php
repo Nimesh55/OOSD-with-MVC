@@ -23,7 +23,7 @@ class Login extends Dbh{
 
         if ($checkPwd == false) {
             $stmt = null;
-            header("location: ../login.php?error=wrongPwd");
+            header("location: ../login.php?error=wrongPwd"); //return error -1 or something like that
             exit();
         }
         elseif ($checkPwd == true) {
@@ -52,8 +52,13 @@ class Login extends Dbh{
             if($userType<3){
                 $_SESSION["account_no"] = $user["account_no"];
             }
+            else {
+                $_SESSION["account_no"] = "x"; //for testing
+            }
 
-            header("location: ../passenger_home.php");// for testing. Redirect to Homepage of user
+            //header("location: ../passenger_home.php");// for testing. Redirect to Homepage of user type
+            return $userType;
         }
+        return -1;
     }
 }

@@ -72,7 +72,7 @@ if(!isset($_SESSION['account_no'])){
                               <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $username ?> <span class="caret"></span></a>
                                   <ul class="dropdown-menu">
                                       <li><a href="passenger_edit_profile.php">Edit profile</a></li>
-                                      <li><a href="logout.php">Log out</a></li>
+                                      <li><a href="includes/logout.inc.php">Log out</a></li>
                                   </ul>
                               </li>
                           </ul>

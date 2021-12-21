@@ -1,45 +1,18 @@
 <?php
-require_once "pdo.php";
-require_once "includes/dbh.inc.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
-if(!isset($_SESSION['username'])){
+if(!isset($_SESSION['account_no'])){
     header("Location: login.php");
     return;
 }
 
-$rowsql = "SELECT * FROM pass WHERE state = 2 OR state = 3 ;"; // get passenger_no in passenger table
 
-$numofIssuedPasses = 0;
-// Perform query
-if ($result = mysqli_query($conn, $rowsql)) {
-    while ($row = mysqli_fetch_row($result)) {
-        $numofIssuedPasses++;
-      }
-    mysqli_free_result($result);
-}
-
-$rowsql = "SELECT * FROM service WHERE state = 1 ;"; // get approved services in service table
-
-$numofServicesApproved = 0;
-// Perform query
-if ($result = mysqli_query($conn, $rowsql)) {
-    while ($row = mysqli_fetch_row($result)) {
-        $numofServicesApproved++;
-      }
-    mysqli_free_result($result);
-}
-
-$rowsql = "SELECT * FROM service WHERE state = 0 ;"; // get approved services in service table
-
-$numofpendingCompanies = 0;
-// Perform query
-if ($result = mysqli_query($conn, $rowsql)) {
-    while ($row = mysqli_fetch_row($result)) {
-        $numofpendingCompanies++;
-      }
-    mysqli_free_result($result);
-}
+$view = new Administrator_view();
+$viewArray = $view->getDetails();
+$numofpendingCompanies = $viewArray["pending"];
+$numofServicesApproved = $viewArray["approved"];
+$numofIssuedPasses = $viewArray["issued"];
 
 ?>
 
@@ -76,10 +49,10 @@ if ($result = mysqli_query($conn, $rowsql)) {
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['username'] ?> <span class="caret"></span></a>
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['user_Id'] ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="change_password.php">Change Password</a></li>
-                                    <li><a href="logout.php">Log out</a></li>
+                                    <li><a href="includes/logout.inc.php">Log out</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -90,7 +63,7 @@ if ($result = mysqli_query($conn, $rowsql)) {
     </div>
 
     <div class="container mt-3">
-        <h1> <?= $_SESSION['username'] ?> </h1>
+        <h1> <?= $_SESSION['user_Id'] ?> </h1>
         <div style="margin-top:100px;">
             <div class="row">
                 <div class="col-sm-3 p-3"></div>
