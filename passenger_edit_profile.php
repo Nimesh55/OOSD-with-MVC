@@ -1,40 +1,42 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
-session_start();
 
-if(!isset($_SESSION['account_no'])){
-    header("Location: login.php");
-    return;
-}
+  require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
+  session_start();
 
-if(isset($_POST['save'])){
+  if(!isset($_SESSION['account_no'])){
+      header("Location: login.php");
+      return;
+  }
 
-    $passenger_controller=new Passenger_Controller($_SESSION['account_no']);
-    $details=array(
-        'passenger_no'=>$_SESSION['passenger_no'],
-        'fname'=>$_POST['fname'],
-        'lname'=>$_POST['lname'],
-        'address'=>$_POST['address'],
-        'email'=>$_POST['email'],
-        'telephone'=>$_POST['telephone'],
-    );
-    $passenger_controller->validatedetails($details);
-    // header("Location: passenger_home.php");
-    return;
-}
-if(isset($_POST['cpwd'])){
-    header("Location: passenger_home.php");
-    return;
-}
-if(isset($_POST['cancel'])){
-    header("Location: passenger_home.php");
-    return;
-}
+  // echo "<pre>";
+	// print_r($_POST);
+	// echo "</pre>";
 
+  $error_str='';
   $passengerview = new Passenger_View($_SESSION['account_no']);
   $row = $passengerview->getDetails();
   $row['user_id']=$_SESSION['user_Id'];
+
+  if (isset($_POST['error_str']) && strcmp($_POST['error_str'],"Success")!=0) {
+    $row['first_name']=$_POST['fname'];
+    $row['last_name']=$_POST['lname'];
+    $row['address']=$_POST['address'];
+    $row['telephone']=$_POST['telephone'];
+    $row['email']=$_POST['email'];
+    $error_str=$_POST['error_str'];
+
+  }
+
+  // echo "<pre>";
+	// print_r($_POST);
+	// echo "</pre>";
+  // echo "<pre>";
+	// print_r($row);
+	// echo "</pre>";
+
+
+
   $username = $row['first_name']." ".$row['last_name'];
 
 	$state_str='';
@@ -47,11 +49,6 @@ if(isset($_POST['cancel'])){
 	elseif ($row['state']==2) {
 	    $state_str = 'Essential';
 	}
-	echo "<pre>";
-	print_r($_POST);
-	echo "</pre>";
-
-
 
  ?>
 <!DOCTYPE html>
@@ -90,41 +87,51 @@ if(isset($_POST['cancel'])){
 			<div class="col-lg-3 cyan"></div>
 			<div class="col-lg-6 pink wrapper">
 
-				<form class="form-horizontal" role="form" action="passenger_edit_profile.php" method="post">
+        <?php
+        if (isset($_POST['error_str']) && strcmp($_POST['error_str'],"Success")!=0) {
+
+          echo "<div class=\"alert alert-danger\"><strong>".$error_str."</strong></div>";
+        }
+        if(isset($_POST['error_str']) && strcmp($_POST['error_str'],"Success")==0){
+          echo "<div class=\"alert alert-success\"><strong>"."Successfully Updated!!!"."</strong></div>";
+        }
+        ?>
+
+				<form class="form-horizontal" role="form" action="includes/passenger_edit_profile.inc.php" method="post">
 					<div class="form-group">
 						<label for="fname" class="col-sm-3 control-label">First Name:</label>
 						<div class="col-sm-9">
-							<input name="fname" type="text" class="form-control" id="fname" value=<?php echo $row['first_name'];?>>
+							<input name="fname" type="text" class="form-control" id="fname" value="<?php echo $row['first_name'];?>">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="lname" class="col-sm-3 control-label">Last Name:</label>
 						<div class="col-sm-9">
-							<input name="lname" type="text" class="form-control" id="lname" value=<?php echo $row['last_name']; ?>>
+							<input name="lname" type="text" class="form-control" id="lname" value="<?php echo $row['last_name']; ?>">
 						</div>
 					</div>
 
           <div class="form-group">
 						<label for="address" class="col-sm-3 control-label">Address:</label>
 						<div class="col-sm-9">
-              <textarea class="form-control" name="address" rows="5" id="address" value=<?php echo $row['address']; ?>></textarea>
+              <textarea class="form-control" name="address" rows="5" id="address"><?php echo $row['address']; ?></textarea>
             </div>
 					</div>
 
 
           <div class="form-group">
 						<label for="email" class="col-sm-3 control-label">Email:</label>
-						<div  class="col-sm-9"><input name="email" type="text" class="form-control" id="email" value=<?php echo $row['email']; ?>></div>
+						<div  class="col-sm-9"><input name="email" type="text" class="form-control" id="email" value="<?php echo $row['email']; ?>"></div>
 					</div>
 					<div class="form-group">
 						<label for="telephone" class="col-sm-3 control-label">Telephone:</label>
-					<div class="col-sm-9"><input name="telephone" type="telephone" class="form-control" id="telephone" value=<?php echo $row['telephone']; ?>></div>
+					<div class="col-sm-9"><input name="telephone" type="telephone" class="form-control" id="telephone" value="<?php echo $row['telephone']; ?>"></div>
 					</div>
           <br>
           <div class="btn-group btn-group-lg">
       			<input type="submit" class="btn btn-primary ctrlbutton" name="cpwd" value="Change Password">
       			<input type="submit" class="btn btn-primary ctrlbutton" name="save" value="Save">
-      			<input type="submit" class="btn btn-primary ctrlbutton" name="cancel" value="Cancel">
+      			<input type="submit" class="btn btn-primary ctrlbutton" name="back" value="Back">
 		    	</div>
 
 				</form>
