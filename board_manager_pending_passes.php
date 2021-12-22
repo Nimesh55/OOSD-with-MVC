@@ -10,8 +10,7 @@ if(!isset($_SESSION['user_Id'])){
 
 
 $board_manager_view = new Board_Manager_View();
-$row = $board_manager_view->getPendingPassesDetails();
-$name = $board_manager_view->getManagerName();
+$details = $board_manager_view->getPendingPassesDetails();
 
 
 ?>
@@ -52,7 +51,7 @@ $name = $board_manager_view->getManagerName();
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?= $name  ?> <span class="caret"></span></a>
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?= $details['name']  ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="change_password.php">Change Password</a></li>
                                     <li><a href="logout.php">Log out</a></li>
@@ -87,9 +86,9 @@ $name = $board_manager_view->getManagerName();
     <ul class="list-group action-list-group">
 
         <?php
-        $pendingPasses = $row['pendingPassesArray'];
+        $pendingPasses = $details['pendingPassesArray'];
 
-        for ($i = 0; $i < $row['pendingPassesCount']; $i++) {
+        for ($i = 0; $i < $details['pendingPassesCount']; $i++) {
             $name = $board_manager_view->getPassengerName($pendingPasses[$i]['passenger_no']);
             if($name){
                 echo "<li class=\"list-group-item\">";

@@ -10,8 +10,7 @@ if(!isset($_SESSION['user_Id'])){
 
 
 $board_manager_view = new Board_Manager_View();
-$row = $board_manager_view->getHomeDetails();
-$name = $board_manager_view->getManagerName();
+$details = $board_manager_view->getHomeDetails();
 
 
 
@@ -53,7 +52,7 @@ $name = $board_manager_view->getManagerName();
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?= $name  ?> <span class="caret"></span></a>
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?= $details['name']  ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="change_password.php">Change Password</a></li>
                                     <li><a href="logout.php">Log out</a></li>
@@ -67,7 +66,7 @@ $name = $board_manager_view->getManagerName();
     </div>
 
     <div class="container mt-3">
-        <h1> <?= $name  ?> </h1>
+        <h1> <?= $details['name']  ?> </h1>
         <div style="margin-top:100px;">
             <div class="row">
                 <div class="col-sm-3 p-3"></div>
@@ -75,7 +74,7 @@ $name = $board_manager_view->getManagerName();
                     <p>Number of Pending Passes</p>
                 </div>
                 <div class="col-sm-3 p-3 bg-primary text-white">
-                    <p>: <?=$row['pending_passes_cnt']?></p>
+                    <p>: <?=$details['pending_passes_cnt']?></p>
                 </div>
                 <div class="col-sm-3 p-3"></div>
             </div>
@@ -86,7 +85,7 @@ $name = $board_manager_view->getManagerName();
                     <p>Number of Approved Passes</p>
                 </div>
                 <div class="col-sm-3 p-3 bg-primary text-white">
-                    <p>: <?=$row['approved_passes_cnt']?></p>
+                    <p>: <?=$details['approved_passes_cnt']?></p>
                 </div>
                 <div class="col-sm-3 p-3"></div>
             </div>
@@ -97,7 +96,7 @@ $name = $board_manager_view->getManagerName();
                     <p>Number of Conductors</p>
                 </div>
                 <div class="col-sm-3 p-3 bg-primary text-white">
-                    <p>: <?=$row['total_conductor_cnt']?></p>
+                    <p>: <?=$details['total_conductor_cnt']?></p>
                 </div>
                 <div class="col-sm-3 p-3"></div>
             </div>
