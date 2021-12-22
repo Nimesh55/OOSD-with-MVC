@@ -3,33 +3,15 @@
 require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
-class ViewHome extends Board_Manager{
-
-    private $number_of_pending_passes;
-    private $number_of_approved_passes;
-    private $number_of_conductors;
-
-    public function __construct(){
-        $this->number_of_pending_passes = $this->getPendingPaasesCount();
-        $this->number_of_approved_passes = $this->getApprovedPaasesCount();
-        $this->number_of_conductors = $this->getConductorCount();
-    }
-    
-    public function getPendingPaasesCnt(){
-        return $this->number_of_pending_passes;
-    }
-
-    public function getApprovedPaasesCnt(){
-        return $this->number_of_approved_passes;
-    }
-
-    public function getConductorCnt(){
-        return $this->number_of_conductors;
-    }
-
+if(!isset($_SESSION['user_Id'])){
+    header("Location: login.php");
+    return;
 }
 
-$view = new ViewHome();
+
+$board_manager_view = new Board_Manager_View();
+$row = $board_manager_view->getHomeDetails();
+
 
 
 ?>
@@ -92,7 +74,7 @@ $view = new ViewHome();
                     <p>Number of Pending Passes</p>
                 </div>
                 <div class="col-sm-3 p-3 bg-primary text-white">
-                    <p>: <?php echo $view->getPendingPaasesCnt(); ?></p>
+                    <p>: <?=$row['pending_passes_cnt']?></p>
                 </div>
                 <div class="col-sm-3 p-3"></div>
             </div>
@@ -103,7 +85,7 @@ $view = new ViewHome();
                     <p>Number of Approved Passes</p>
                 </div>
                 <div class="col-sm-3 p-3 bg-primary text-white">
-                    <p>: <?php echo $view->getApprovedPaasesCnt(); ?></p>
+                    <p>: <?=$row['approved_passes_cnt']?></p>
                 </div>
                 <div class="col-sm-3 p-3"></div>
             </div>
@@ -114,7 +96,7 @@ $view = new ViewHome();
                     <p>Number of Conductors</p>
                 </div>
                 <div class="col-sm-3 p-3 bg-primary text-white">
-                    <p>: <?php echo $view->getConductorCnt(); ?></p>
+                    <p>: <?=$row['total_conductor_cnt']?></p>
                 </div>
                 <div class="col-sm-3 p-3"></div>
             </div>
