@@ -9,8 +9,6 @@ if(isset($_POST['submit'])){
     $address = htmlentities($_POST["Address"]);
     $email = htmlentities($_POST["email"]);
     $telephone = htmlentities($_POST["Telephone"]);
-    $password = htmlentities($_POST["password"]);
-    $passwordrepeat = htmlentities($_POST["passwordrepeat"]);
 
     // Instanciate Signup Controller in MVC
     include "../class/dbh.class.php";
@@ -19,14 +17,19 @@ if(isset($_POST['submit'])){
 
     //By throwing relevant values, make relevant signup class according to account type
     if($_GET['account_type']==0){
-      $signupctrlobj = new Signup_Controller($firstname, $lastname, $uid, $address, $email, $telephone, $password, $passwordrepeat, NULL,NULL,0);
+        $password = htmlentities($_POST["password"]);
+        $password_repeat = htmlentities($_POST["passwordrepeat"]);
+        $signupctrlobj = new Signup_Controller($firstname, $lastname, $uid, $address, $email, $telephone, $password, $password_repeat, NULL,NULL, NULL, NULL, 0);
     }elseif ($_GET['account_type']==1) {
-      // Create signup controller according to the conductor account type
-      exit();
+        $vehicle_no = htmlentities($_POST["vehicle_no"]);
+        $district = htmlentities($_POST["district"]);
+        $signupctrlobj = new Signup_Controller($firstname, $lastname, $uid, $address, $email, $telephone, "abcd", "abcd", NULL,NULL, $vehicle_no, $district,1);
     }else {
-      $company_name = htmlentities($_POST["Companyname"]);
-      $company_Id = htmlentities($_POST["Companyid"]);
-      $signupctrlobj = new Signup_Controller($firstname, $lastname, $uid, $address, $email, $telephone, $password, $passwordrepeat, $company_name,$company_Id,2);
+        $password = htmlentities($_POST["password"]);
+        $password_repeat = htmlentities($_POST["passwordrepeat"]);
+        $company_name = htmlentities($_POST["Companyname"]);
+        $company_Id = htmlentities($_POST["Companyid"]);
+        $signupctrlobj = new Signup_Controller($firstname, $lastname, $uid, $address, $email, $telephone, $password, $password_repeat, $company_name,$company_Id, NULL, NULL,2);
     }
     
     // Run add user

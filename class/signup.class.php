@@ -12,18 +12,14 @@ class Signup extends Dbh{
             exit();
         }
 
-        $resultCheck = null;
+        $resultCheck = false;
         if ($stmt->rowCount()>0) {
             $resultCheck = true;
-        }
-        else{
-            $resultCheck = false;
         }
         return $resultCheck;
     }
 
-    protected function addToUser($uid , $password, $firstname, $lastname, $address, $telephone, $email, $company_name, $company_Id, $account_type){
-
+    protected function addToUser($uid , $password, $firstname, $lastname, $address, $telephone, $email, $company_name, $company_Id, $vehicle_no, $district, $account_type){
         $query_error = false;
         if($account_type==0){
           //Add passenger to the passenger table
@@ -32,38 +28,42 @@ class Signup extends Dbh{
           if (!$stmt1->execute(array($firstname, $lastname, $address, $telephone, 0, 0, $email, 0))) {
             $query_error = true;
           }
-        }elseif ($account_type==0) {
-          // Query for insert conductor to the table
+          $stmt1 = null;
+        }elseif ($account_type==1) {
+            //Add passenger to the passenger table
+            $query1 = "INSERT INTO conductor (first_name, last_name, address, telephone, vehicle_no, district_no, email, state) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+            $stmt1 = $this->connect()->prepare($query1);
+            if (!$stmt1->execute(array($firstname, $lastname, $address, $telephone, $vehicle_no, $district, $email, 0))) {
+                $query_error = true;
+            }
+            $stmt1 = null;
         }else{
           // Add validation to the insertion service table
           //Add service to the service table
           $query0 = "INSERT INTO service (id, name, state) VALUES (?, ?, ?);";
           $stmt0 = $this->connect()->prepare($query0);
 
-          if (!$stmt0->execute(array($company_Id, $company_name, $address, 0))) {
+          if (!$stmt0->execute(array($company_Id, $company_name, 0))) {
               $stmt0 = null;
               header("location: ../test.php?error=query_error");
               exit();
           }
-          //Add executive to the passenger table
+          $stmt0 = null;
+          //Add executive to the executive table
+          $service_no = $this->getLastServiceNo();
           $query1 = "INSERT INTO executive (first_name, last_name, address, telephone, service_no, email, state) VALUES (?, ?, ?, ?, ?, ?, ?);";
           $stmt1 = $this->connect()->prepare($query1);
-          if (!$stmt1->execute(array($firstname, $lastname, $address, $telephone, 0, 0, $email, 0))) {
+          if (!$stmt1->execute(array($firstname, $lastname, $address, $telephone, $service_no, $email, 0))) {
             $query_error = true;
           }
+          $stmt1 = null;
         }
 
-        $stmt1 = $this->connect()->prepare($query1);
-
-        if (!$stmt1->execute(array($firstname, $lastname, $address, $telephone, 0, 0, $email, 0))) {
-            $stmt1 = null;
+        if ($query_error) {
             header("location: ../test.php?error=query_error");
             exit();
         }
 
-        //Get last passenger no(added one) from passenger table
-        // $stmt = $this->connect()->query("SELECT * FROM passenger ORDER BY passenger_no DESC LIMIT 1");
-        // $row = $stmt->fetch();
 
         // $account_type = 0;      //for passengers
         $account_no = $this->getLastAccountNo($account_type);
@@ -86,7 +86,7 @@ class Signup extends Dbh{
         $account_name="passenger";
         $stmt = $this->connect()->query("SELECT * FROM passenger ORDER BY passenger_no DESC LIMIT 1");
       }elseif ($account_type==1) {
-        $account_name="condcutor";
+        $account_name="conductor";
         $stmt = $this->connect()->query("SELECT * FROM conductor ORDER BY conductor_no DESC LIMIT 1");
       }else{
         $account_name="executive";
@@ -94,5 +94,11 @@ class Signup extends Dbh{
       }
       $row = $stmt->fetch();
       return $row[$account_name.'_no'];
+    }
+
+    private function getLastServiceNo(){
+        $stmt = $this->connect()->query("SELECT * FROM service ORDER BY service_no DESC LIMIT 1");
+        $row = $stmt->fetch();
+        return $row['service_no'];
     }
 }

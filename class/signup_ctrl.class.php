@@ -8,13 +8,15 @@ class Signup_Controller extends Signup{
     private $email;
     private $telephone ;
     private $password ;
-    private $passwordrepeat ;
+    private $password_repeat ;
     private $company_name;
     private $company_Id;
     private $account_type;
     private $page_name;
+    private $vehicle_no;
+    private $district;
 
-    public function __construct($firstname, $lastname, $uid, $address, $email, $telephone, $password, $passwordrepeat, $company_name, $company_Id, $account_type)
+    public function __construct($firstname, $lastname, $uid, $address, $email, $telephone, $password, $password_repeat, $company_name, $company_Id, $vehicle_no, $district, $account_type)
     {
         $this->firstname = $firstname;
         $this->lastname = $lastname;
@@ -23,10 +25,12 @@ class Signup_Controller extends Signup{
         $this->email = $email;
         $this->telephone = $telephone;
         $this->password = $password;
-        $this->passwordrepeat = $passwordrepeat;
+        $this->password_repeat = $password_repeat;
         $this->company_name = $company_name;
         $this->company_Id = $company_Id;
         $this->account_type = $account_type;
+        $this->vehicle_no = $vehicle_no;
+        $this->district = $district;
         if($account_type==0){
           $this->page_name="passenger";
         }elseif ($account_type==1) {
@@ -40,7 +44,7 @@ class Signup_Controller extends Signup{
         // check for all the errors using the helper functions
         if ($this->emptyField() == false) {
             // error msg here
-            header("location: ../".$this->page_name."_signup.php?error=emptyfield"); // Fix: Redirect depending on the user type.vv.
+            header("location: ../".$this->page_name."_signup.php?error=emptyfield");
             exit();
         }
 
@@ -74,25 +78,29 @@ class Signup_Controller extends Signup{
             exit();
         }
 
-        $this->addToUser( $this->uid , $this->password, $this->firstname, $this->lastname, $this->address, $this->telephone, $this->email, $this->company_name, $this->company_Id, $this->account_type);
-        header("location: ../login.php?error=none");
+        $this->addToUser( $this->uid , $this->password, $this->firstname, $this->lastname, $this->address, $this->telephone, $this->email, $this->company_name, $this->company_Id, $this->vehicle_no, $this->district, $this->account_type);
+        if($this->account_type==1){
+            header("location: ../board_manager_create_conductor.php?error=none");
+        }else{
+            header("location: ../login.php?error=none");
+        }
     }
 
     // Error handling methods
     private function emptyField(){
-        // for executive handle company_id and company_name seperately by getting the user type
-        if (($this->account_type==0)&&(empty($this->firstname)||empty($this->lastname)||empty($this->uid)||empty($this->address)||empty($this->email)||empty($this->telephone)||empty($this->password)||empty($this->passwordrepeat))) {
+        $result = true;
+        if (($this->account_type==0)&&(empty($this->firstname)||empty($this->lastname)||empty($this->uid)||empty($this->address)||empty($this->email)||empty($this->telephone)||empty($this->password)||empty($this->password_repeat))) {
             $result = false;
-        }elseif (($this->account_type==2)&&(empty($this->firstname)||empty($this->lastname)||empty($this->uid)||empty($this->address)||empty($this->company_name)||empty($this->company_Id)||empty($this->email)||empty($this->telephone)||empty($this->password)||empty($this->passwordrepeat))) {
+        }elseif (($this->account_type==1)&&(empty($this->firstname)||empty($this->lastname)||empty($this->uid)||empty($this->address)||empty($this->vehicle_no)||empty($this->district)||empty($this->email)||empty($this->telephone))) {
             $result = false;
-        }else{
-            $result = true;
+        }elseif (($this->account_type==2)&&(empty($this->firstname)||empty($this->lastname)||empty($this->uid)||empty($this->address)||empty($this->company_name)||empty($this->company_Id)||empty($this->email)||empty($this->telephone)||empty($this->password)||empty($this->password_repeat))) {
+            $result = false;
         }
         return $result;
     }
 
     private function password_match(){
-        if($this->password !== $this->passwordrepeat){
+        if($this->password !== $this->password_repeat){
             return false;
         }
         else{
