@@ -12,17 +12,22 @@ class Pass extends Dbh{
     private $bus_route;
     private $reason;
 
-    function __construct($pass_no, $passenger_no, $service_no, $start_date, $end_date, $state, $bus_route, $reason){
-        $this->pass_no = $pass_no;
-        $this->passenger_no = $passenger_no;
-        $this->service_no = $service_no;
-        $this->start_date = $start_date;
-        $this->end_date = $end_date;
-        $this->state = $state;
-        $this->bus_route = $bus_route;
-        $this->reason = $reason;
+    function __construct($pass_no){
 
+        $this->pass_no=$pass_no;
+        $pass_model = new Pass_Model($pass_no);
+        $row = $pass_model->getRecord();
+
+        $this->pass_no = $row['pass_no'];
+        $this->passenger_no = $row['passenger_no'];
+        $this->service_no = $row['service_no'];
+        $this->start_date = $row['start_date'];
+        $this->end_date = $row['end_date'];
+        $this->state = $row['state'];
+        $this->bus_route = $row['bus_route'];
+        $this->reason = $row['reason'];
     }
+
 
     protected function getPassengerNo(){
         return $this->passenger_no;
@@ -55,7 +60,6 @@ class Pass extends Dbh{
     public function getReason(){
         return $this->reason;
     }
-
 
 
 }
