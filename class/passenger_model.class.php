@@ -1,8 +1,5 @@
 <?php
 
-	/**
-	 *
-	 */
   require_once "dbh.class.php";
 	class Passenger_Model extends Dbh
 	{

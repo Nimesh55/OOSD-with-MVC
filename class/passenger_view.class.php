@@ -20,12 +20,9 @@
                 "staff_id"=> $this->passenger->getstaff_id(),
                 "email"=> $this->passenger->getemail(),
                 "state"=> $this->passenger->getstate());
-      // echo $this->passenger->getfirst_name();
       return $details;
 
     }
   }
 
-  // $p = new PassengerView(2);
-  // print_r($p->getDetails());
  ?>
