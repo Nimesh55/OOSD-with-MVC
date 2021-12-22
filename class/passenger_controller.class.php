@@ -1,14 +1,12 @@
 <?php
-  /**
-   *
-   */
+
   require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
   class Passenger_Controller extends Passenger_Model
   {
 
-  function __construct($passenger_no){}
-  public function validatedetails($details)
-  {
+    function __construct($passenger_no){}
+      public function validatedetails($details)
+    {
     //validate details and give feedback
     $errors=array();
     if (empty($details['fname']) && empty($details['lname'])) {
