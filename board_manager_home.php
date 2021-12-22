@@ -11,6 +11,7 @@ if(!isset($_SESSION['user_Id'])){
 
 $board_manager_view = new Board_Manager_View();
 $row = $board_manager_view->getHomeDetails();
+$name = $board_manager_view->getManagerName();
 
 
 
@@ -52,7 +53,7 @@ $row = $board_manager_view->getHomeDetails();
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['user_Id'] ?> <span class="caret"></span></a>
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?= $name  ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="change_password.php">Change Password</a></li>
                                     <li><a href="logout.php">Log out</a></li>
@@ -66,7 +67,7 @@ $row = $board_manager_view->getHomeDetails();
     </div>
 
     <div class="container mt-3">
-        <h1> <?= $_SESSION['user_Id'] ?> </h1>
+        <h1> <?= $name  ?> </h1>
         <div style="margin-top:100px;">
             <div class="row">
                 <div class="col-sm-3 p-3"></div>

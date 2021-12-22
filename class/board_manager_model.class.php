@@ -3,14 +3,14 @@
 require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/class/dbh.class.php";
 class Board_Manager_Model extends Dbh
 {
-    protected function getApprovedPaasesCount(){
+    protected function getApprovedPassesCount(){
         $stmt = $this->connect()->prepare("SELECT count(*) FROM pass WHERE state=2");
         $stmt->execute();
         $count1 = $stmt->fetchColumn();
         return $count1;
     }
 
-    protected function getPendingPaasesCount(){
+    protected function getPendingPassesCount(){
         $stmt = $this->connect()->prepare("SELECT count(*) FROM pass WHERE state=0 OR state=1");
         $stmt->execute();
         $count2 = $stmt->fetchColumn();
@@ -50,7 +50,7 @@ class Board_Manager_Model extends Dbh
         return null;
     }
 
-    protected function getPendingPasses(){
+    protected function getPendingPassesArray(){
         $query = $this->getPendingPassesQuery();
 
         if(!$query){

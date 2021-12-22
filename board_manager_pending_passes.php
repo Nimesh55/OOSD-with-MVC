@@ -3,27 +3,16 @@
 require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
-class ViewPendingPasses extends Board_Manager{
-    private $pendingPasses;
-    private $pendingPassesCount;
-
-    public function __construct(){
-        $this->pendingPasses = $this->getPendingPasses();
-        $this->pendingPassesCount = count($this->pendingPasses);
-    }
-
-    public function getPendingPassesCnt(){
-        return $this->pendingPassesCount;
-    }
-
-    public function getPendingPassesArray(){
-        return $this->pendingPasses;
-    }
-
+if(!isset($_SESSION['user_Id'])){
+    header("Location: login.php");
+    return;
 }
 
 
-$view = new ViewPendingPasses();
+$board_manager_view = new Board_Manager_View();
+$row = $board_manager_view->getPendingPassesDetails();
+$name = $board_manager_view->getManagerName();
+
 
 ?>
 
@@ -63,7 +52,7 @@ $view = new ViewPendingPasses();
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['username'] ?> <span class="caret"></span></a>
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?= $name  ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="change_password.php">Change Password</a></li>
                                     <li><a href="logout.php">Log out</a></li>
@@ -98,10 +87,10 @@ $view = new ViewPendingPasses();
     <ul class="list-group action-list-group">
 
         <?php
-        $pendingPasses = $view->getPendingPassesArray();
+        $pendingPasses = $row['pendingPassesArray'];
 
-        for ($i = 0; $i < $view->getPendingPassesCnt(); $i++) {
-            $name = $view->getPassengerName($pendingPasses[$i]['passenger_no']);
+        for ($i = 0; $i < $row['pendingPassesCount']; $i++) {
+            $name = $board_manager_view->getPassengerName($pendingPasses[$i]['passenger_no']);
             if($name){
                 echo "<li class=\"list-group-item\">";
                 echo "{$name} ";
