@@ -5,8 +5,6 @@ class Board_Manager_View extends Board_Manager_Model{
 
     public function __construct(){
         $this->board_manager = new Board_Manager();
-
-        echo "Board Manager view object crated";
     }
     public function getHomeDetails()
     {
@@ -14,7 +12,6 @@ class Board_Manager_View extends Board_Manager_Model{
             "pending_passes_cnt"=> $this->getPendingPaasesCount(),
             "approved_passes_cnt"=> $this->getApprovedPaasesCount(),
             "total_conductor_cnt"=> $this->getConductorCount());
-        echo "Board Manager view function called";
         return $details;
     }
 
