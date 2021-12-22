@@ -54,7 +54,7 @@ $details = $board_manager_view->getPendingPassesDetails();
                             <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?= $details['name']  ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="change_password.php">Change Password</a></li>
-                                    <li><a href="logout.php">Log out</a></li>
+                                    <li><a href="includes/logout.inc.php">Log out</a></li>
                                 </ul>
                             </li>
                         </ul>

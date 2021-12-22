@@ -3,10 +3,10 @@
 require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
-//if(!isset($_SESSION['user_Id'])){
-//    header("Location: login.php");
-//    return;
-//}
+if(!isset($_SESSION['user_Id'])){
+    header("Location: login.php");
+    return;
+}
 
 $board_manager_view = new Board_Manager_View();
 $details = $board_manager_view->getCreateConductorDetails();
@@ -49,10 +49,10 @@ $details = $board_manager_view->getCreateConductorDetails();
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['user_Id'] ?> <span class="caret"></span></a>
+                        <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $details['name'] ?> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="change_password.php">Change Password</a></li>
-                                <li><a href="logout.php">Log out</a></li>
+                                <li><a href="includes/logout.inc.php">Log out</a></li>
                             </ul>
                         </li>
                     </ul>
