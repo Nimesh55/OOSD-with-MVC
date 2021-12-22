@@ -9,6 +9,7 @@ class Board_Manager_View extends Board_Manager_Model{
     public function getHomeDetails()
     {
         $details=array(
+            "name" => $this->board_manager->getName(),
             "pending_passes_cnt"=> $this->getPendingPassesCount(),
             "approved_passes_cnt"=> $this->getApprovedPassesCount(),
             "total_conductor_cnt"=> $this->getConductorCount());
@@ -18,14 +19,19 @@ class Board_Manager_View extends Board_Manager_Model{
     public function getPendingPassesDetails()
     {
         $details=array(
+            "name" => $this->board_manager->getName(),
             "pendingPassesArray"=> $this->getPendingPassesArray(),
             "pendingPassesCount"=> count($this->getPendingPassesArray()));
         return $details;
     }
 
-    public function getManagerName()
-    {
-        return $this->board_manager->getName();
+
+    public function getCreateConductorDetails(){
+        $details=array(
+            "name" => $this->board_manager->getName(),
+            "districtArray"=> $this->getDistrictArray(),
+            "districtArrayCount"=> count($this->getDistrictArray()));
+        return $details;
     }
 
 }

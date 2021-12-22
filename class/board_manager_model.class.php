@@ -58,7 +58,7 @@ class Board_Manager_Model extends Dbh
         }
         $stmt = $this->connect()->prepare($query);
         $stmt->execute();
-        $pending_passes = $stmt->fetchAll();
+        $pending_passes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         return $pending_passes;
     }
@@ -77,6 +77,15 @@ class Board_Manager_Model extends Dbh
             $name = $passengerDetails['first_name'] . " " . $passengerDetails['last_name'];
         }
         return $name;
+    }
+
+    public function getDistrictArray(){
+        $query = "SELECT * FROM district";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute();
+        $district_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $district_list;
     }
 
 
