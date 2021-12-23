@@ -10,16 +10,15 @@
     public function getDetails()
     {
       $details=array(
-                "first_name"=> $this->passenger->getfirst_name(),
-                "passenger_no"=> $this->passenger->getpassenger_no(),
-                "first_name"=> $this->passenger->getfirst_name(),
-                "last_name"=> $this->passenger->getlast_name(),
-                "address"=> $this->passenger->getaddress(),
-                "telephone"=> $this->passenger->gettelephone(),
-                "service_no"=> $this->passenger->getservice_no(),
-                "staff_id"=> $this->passenger->getstaff_id(),
-                "email"=> $this->passenger->getemail(),
-                "state"=> $this->passenger->getstate());
+          "passenger_no"=> $this->passenger->getPassengerNo(),
+          "first_name"=> $this->passenger->getFirstName(),
+          "last_name"=> $this->passenger->getLastName(),
+          "address"=> $this->passenger->getAddress(),
+          "telephone"=> $this->passenger->getTelephone(),
+          "service_no"=> $this->passenger->getServiceNo(),
+          "staff_id"=> $this->passenger->getStaffId(),
+          "email"=> $this->passenger->getEmail(),
+          "state"=> $this->passenger->getState());
       return $details;
 
     }

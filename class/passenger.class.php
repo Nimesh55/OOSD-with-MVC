@@ -10,7 +10,83 @@
     private $service_no;
     private $staff_id;
     private $email;
+
+    /**
+     * @return mixed
+     */
+    public function getPassengerNo()
+    {
+      return $this->passenger_no;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFirstName()
+    {
+      return $this->first_name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastName()
+    {
+      return $this->last_name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAddress()
+    {
+      return $this->address;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTelephone()
+    {
+      return $this->telephone;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getServiceNo()
+    {
+      return $this->service_no;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStaffId()
+    {
+      return $this->staff_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+      return $this->email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getState()
+    {
+      return $this->state;
+    }
     private $state;
+
+    /**
+     * @return mixed
+     */
 
     function __construct($passenger_no)
     {
@@ -30,15 +106,15 @@
 
 
     }
-    public function getpassenger_no(){return $this->passenger_no;}
-    public function getfirst_name(){return $this->first_name;}
-    public function getlast_name(){return $this->last_name;}
-    public function getaddress(){return $this->address;}
-    public function gettelephone(){return $this->telephone;}
-    public function getservice_no(){return $this->service_no;}
-    public function getstaff_id(){return $this->staff_id;}
-    public function getemail(){return $this->email;}
-    public function getstate(){return $this->state;}
+//    public function getpassenger_no(){return $this->passenger_no;}
+//    public function getfirst_name(){return $this->first_name;}
+//    public function getlast_name(){return $this->last_name;}
+//    public function getaddress(){return $this->address;}
+//    public function gettelephone(){return $this->telephone;}
+//    public function getservice_no(){return $this->service_no;}
+//    public function getstaff_id(){return $this->staff_id;}
+//    public function getemail(){return $this->email;}
+//    public function getstate(){return $this->state;}
 
 
 
