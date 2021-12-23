@@ -8,11 +8,6 @@
       header("Location: login.php");
       return;
   }
-
-  // echo "<pre>";
-	// print_r($_POST);
-	// echo "</pre>";
-
   $error_str='';
   $passengerview = new Passenger_View($_SESSION['account_no']);
   $row = $passengerview->getDetails();
@@ -27,16 +22,6 @@
     $error_str=$_POST['error_str'];
 
   }
-
-  // echo "<pre>";
-	// print_r($_POST);
-	// echo "</pre>";
-  // echo "<pre>";
-	// print_r($row);
-	// echo "</pre>";
-
-
-
   $username = $row['first_name']." ".$row['last_name'];
 
 	$state_str='';

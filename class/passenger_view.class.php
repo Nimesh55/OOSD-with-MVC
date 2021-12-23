@@ -5,7 +5,7 @@
     private $passenger;
 
     public function __construct($passenger_no){
-      $this->passenger = new Passenger($passenger_no);
+      $this->passenger = Passenger::getPassengerInstance($passenger_no);
     }
     public function getDetails()
     {
@@ -20,6 +20,15 @@
           "email"=> $this->passenger->getEmail(),
           "state"=> $this->passenger->getState());
       return $details;
+
+    }
+
+    public function getPassState(){
+      return $this->passenger->getState();
+    }
+    public function getUserName($passenger_no){
+      $passenger_controller = new Passenger_Controller($passenger_no);
+      return $passenger_controller->createUsername($this->passenger);
 
     }
   }

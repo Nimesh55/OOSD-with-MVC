@@ -10,6 +10,18 @@
     private $service_no;
     private $staff_id;
     private $email;
+    private static $passengerInstance;
+
+    /**
+     * @return mixed
+     */
+    public static function getPassengerInstance($passenger_no)
+    {
+      if(isset(self::$passengerInstance) && self::$passengerInstance->$passenger_no==$passenger_no){
+        return self::$passengerInstance;
+      }
+      return new Passenger($passenger_no);
+    }
 
     /**
      * @return mixed
@@ -88,7 +100,7 @@
      * @return mixed
      */
 
-    function __construct($passenger_no)
+    private function __construct($passenger_no)
     {
       $this->passenger_no=$passenger_no;
       $passenger_model = new Passenger_Model($passenger_no);
@@ -106,15 +118,8 @@
 
 
     }
-//    public function getpassenger_no(){return $this->passenger_no;}
-//    public function getfirst_name(){return $this->first_name;}
-//    public function getlast_name(){return $this->last_name;}
-//    public function getaddress(){return $this->address;}
-//    public function gettelephone(){return $this->telephone;}
-//    public function getservice_no(){return $this->service_no;}
-//    public function getstaff_id(){return $this->staff_id;}
-//    public function getemail(){return $this->email;}
-//    public function getstate(){return $this->state;}
+
+
 
 
 

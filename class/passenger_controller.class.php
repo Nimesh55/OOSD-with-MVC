@@ -24,8 +24,9 @@
     }else{
       return $errors;
     }
-
-
+  }
+  public function createUsername($passenger){
+    return $passenger->getFirstName()." ".$passenger->getLastName();
   }
 
 
