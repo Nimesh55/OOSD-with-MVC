@@ -11,115 +11,20 @@
     private $service_no;
     private $staff_id;
     private $email;
-    private static array $passengerInstances=array();
-
-    public static function getPassengerInstance($user_id)
-    {
-
-      if(!array_key_exists($user_id, self::$passengerInstances)) {
-        self::$passengerInstances[$user_id] = new self($user_id);
-      }
-//      echo "<pre>";
-//      print_r(self::$passengerInstances);
-//      echo "</pre>";
-
-      return self::$passengerInstances[$user_id];
-    }
-
-    public static function clearPassengerInsatances(){
-      self::$passegerInstances = array();
-    }
-    public static function printins(){
-      echo "Hii";
-      echo "<pre>";
-      print_r(self::$passengerInstances);
-      echo "</pre>";
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUserId()
-    {
-      return $this->user_id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPassengerNo()
-    {
-      return $this->passenger_no;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFirstName()
-    {
-      return $this->first_name;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLastName()
-    {
-      return $this->last_name;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAddress()
-    {
-      return $this->address;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTelephone()
-    {
-      return $this->telephone;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getServiceNo()
-    {
-      return $this->service_no;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getStaffId()
-    {
-      return $this->staff_id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEmail()
-    {
-      return $this->email;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getState()
-    {
-      return $this->state;
-    }
     private $state;
 
-    /**
-     * @return mixed
-     */
+
+    //getters
+    public function getUserId(){return $this->user_id;}
+    public function getPassengerNo(){return $this->passenger_no;}
+    public function getFirstName(){return $this->first_name;}
+    public function getLastName(){return $this->last_name;}
+    public function getAddress(){return $this->address;}
+    public function getTelephone(){return $this->telephone;}
+    public function getServiceNo(){return $this->service_no;}
+    public function getStaffId(){return $this->staff_id;}
+    public function getEmail(){return $this->email;}
+    public function getState(){return $this->state;}
 
     private function __construct($user_id)
     {
@@ -137,9 +42,21 @@
       $this->staff_id=$row['staff_id'];
       $this->email=$row['email'];
       $this->state=$row['state'];
-
+      $_SESSION['instance']=$this;
 
     }
+
+    public static function getInstance($user_id)
+    {
+      if(!isset($_SESSION['instance'])){
+        $_SESSION['instance'] = new Passenger($user_id);
+      }
+      return $_SESSION['instance'];
+    }
+
+
+
+
 
 
 
