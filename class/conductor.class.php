@@ -2,10 +2,10 @@
 
 include "dbh.class.php";
 
-class Conductor extends Dbh
+class Conductor
 {
 
-    private $conductor_no;
+    private $conductor_id;
     private $first_name;
     private $last_name;
     private $address;
