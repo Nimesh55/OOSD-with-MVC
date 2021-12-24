@@ -37,8 +37,12 @@
       return $passenger_controller->createUsername($this->passenger);
     }
     public function getServiceName($service_no){
-      $service = new Service($service_no);
+      $essential_service_tracker = EssentialServiceTracker::getInstance();
+      $service = $essential_service_tracker->createService($service_no);
       return $service->getName();
+    }
+    public function getPassengerStaffId(){
+      return $this->passenger->getStaffId();
     }
   }
 

@@ -52,5 +52,11 @@ class Service_Model extends Dbh
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$service_no]);
     }
+    public function getServiceNames(){
+        $sql="SELECT * FROM service";
+        $stmt = $this->connect()->query($sql);
+        $services = $stmt->fetchAll();
+        return $services;
+    }
 }
 ?>

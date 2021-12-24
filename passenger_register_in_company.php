@@ -11,8 +11,17 @@
     $pass_state = $passengerview->getPassState();
     $username = $passengerview->getUserName();
     $service_no=$passengerview->getPassengerServiceNo();
+    $staff_id = $passengerview->getPassengerStaffId();
+    $service_name = $passengerview->getServiceName($service_no);
     $state=0;
     $state_name ='';
+
+    $service_model = Service_Model::getInstance();
+    $services=$service_model->getServiceNames();
+//    echo "<pre>";
+//    print_r($services);
+//    echo "</pre>";
+
     if($pass_state == '0'){
         $state = 0;
     }elseif($pass_state == '1'){
@@ -86,35 +95,52 @@
 <div class="container heading">
     <h1>Register In Company</h1>
 </div>
+
+<?php
+    if ($state>1){
+        require_once "includes/passenger_register_in_company_1.inc.php";
+    }
+    else{
+        require_once "includes/passenger_register_in_company_2.inc.php";
+    }
+
+?>
+
 <div class="container">
     <div class="row">
         <div class="col-lg-3 cyan"></div>
-        <div class="col-lg-6 pink wrapper">
+        <div class="col-lg-6 wrapper">
             <form class="form-horizontal" role="form" action="includes/passenger_edit_profile.inc.php" method="post">
-                <div class="form-group">
-                    <label for="pass_status" class="col-sm-3 control-label">Passenger Status:</label>
-                    <div class="col-sm-9">
-                        <input name="pass_status" type="text" class="form-control" id="pass_status" readonly value="<?php echo $state_name; ?>
-                        ">
-                    </div>
-                </div>
-
                 <div class="form-group">
                     <label for="company" class="col-sm-3 control-label">Company:</label>
                     <div class="col-sm-9">
-                        <input name="company" type="text" class="form-control" id="company" readonly >
+                        <select name="service_no" id="service" class="form-control">
+
+                            <?php
+                            foreach ($services as $service){
+
+                                    echo "<option>{$service['name']}</option>";
+                                }
+
+
+                            ?>
+
+                        </select>
+
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="staff_id" class="col-sm-3 control-label">Staff ID:</label>
+                    <label for="staff_id" class="col-sm-3 control-label">staff ID:</label>
                     <div class="col-sm-9">
-                        <input name="staff_id" type="text" class="form-control" id="staff_id" readonly >
+                        <input name="staff_id" type="text" class="form-control" id="staff_id">
                     </div>
                 </div>
+
+
                 <br>
 
-                <input type="button" class="btn btn-default btn-lg" value="Remove">
+                <input type="button" class="btn btn-default btn-lg" value="Request">
 
             </form>
 
@@ -122,6 +148,7 @@
         <div class="col-lg-3 orange"></div>
     </div>
 </div>
+
 
 </body>
 </html>
