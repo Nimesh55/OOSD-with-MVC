@@ -23,4 +23,13 @@
     public function getPendingRows(){
       return $this->getPendingEssentialServices();
     }
+
+    public function fetchDetails($service_no){
+      $row = $this->adminctrl->formatForView($service_no);
+      $details=array(
+        "id"=> $row['id'],
+        "name"=> $row['name'],
+        "state"=> $row['state']);
+      return $details;
+    }
   }

@@ -9,11 +9,8 @@ if (!isset($_SESSION['user_Id'])) {
 
 if (isset($_GET['view'])) {
     $id = $_GET['view'];
-    $query = "SELECT * FROM service WHERE service_no= $id  LIMIT 1;";
-    //###fix
-    $cur_service = $pdo->query($query);
-
-    $rows = $cur_service->fetch(PDO::FETCH_ASSOC);
+    $view = new Administrator_view();
+    $rows = $view->fetchDetails($id);
     $service_id = $rows['id'];
     $service_name = $rows['name'];
     $status = $rows['state'];
@@ -53,7 +50,7 @@ if (isset($_GET['view'])) {
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['username'] ?> <span class="caret"></span></a>
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['user_Id'] ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="change_password.php">Change Password</a></li>
                                     <li><a href="logout.php">Log out</a></li>

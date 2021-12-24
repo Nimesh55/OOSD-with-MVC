@@ -80,13 +80,9 @@ $rows = $view->getPendingRows()// getpending rows
                             <th scope="row"><?php echo $i; ?></th>
                             <td><?php echo $rows[$i]["id"];?></td>
                             <td><?php echo $rows[$i]["name"]; ?></td>
-
-                            <?php //$btn_name = "{$rows["service_no"]}"; 
-                            ?>
-
+                            
                             <td><a href="administrator_pending_essential_services_view.php?view=<?php echo $rows[$i]['service_no']; $i++;?>" class="btn btn-info"> view </a>
                             </td>
-
                         </tr>
                     <?php endwhile; ?>
 

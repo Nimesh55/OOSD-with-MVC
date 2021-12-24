@@ -1,8 +1,8 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/OOSD-with-MVC/includes/autoloader.inc.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
 
-class Service{
+class EssentialService{
     private $service_no;
     private $id;
     private $name;
@@ -11,13 +11,6 @@ class Service{
     function __construct($service_no){
 
         $this->service_no=$service_no;
-        $service_model = new Service_Model($service_no);
-        $row = $service_model->getRecord();
-
-        $this->service_no = $row['service_no'];
-        $this->id = $row['id'];
-        $this->name = $row['name'];
-        $this->state = $row['state'];
     }
 
     public function getServiceNo()
@@ -40,6 +33,12 @@ class Service{
         return $this->state;
     }
 
+    public function setValues($service_no, $id, $name, $state){
+        $this->service_no = $service_no;
+        $this->id = $id;
+        $this->name = $name;
+        $this->state = $state;
+    }
 
 
 }
