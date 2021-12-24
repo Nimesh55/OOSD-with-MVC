@@ -19,17 +19,4 @@ class Board_Manager_Controller extends Board_Manager_Model{
 
     }
   }
-
-
-
-
 }
-
-?>
-
-  
-  
-
-}
-
-?>
