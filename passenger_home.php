@@ -2,15 +2,15 @@
     require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
     session_start();
 
-    if(!isset($_SESSION['account_no'])){
+    if(!isset($_SESSION['user_Id'])){
         header("Location: login.php");
         return;
     }
 
-    $passengerview = new Passenger_View($_SESSION['account_no']);
+    $passengerview = new Passenger_View($_SESSION['user_Id']);
     $row = $passengerview->getDetails();
     $row['user_id']=$_SESSION['user_Id'];
-    $username = $row['first_name']." ".$row['last_name'];
+    $username = $passengerview->getUserName();
     $state=0;
 
     if($row['state'] == '0'){

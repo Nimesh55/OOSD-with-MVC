@@ -4,8 +4,8 @@
   class Passenger_View extends Passenger_Model{
     private $passenger;
 
-    public function __construct($passenger_no){
-      $this->passenger = Passenger::getPassengerInstance($passenger_no);
+    public function __construct($user_id){
+      $this->passenger = Passenger::getPassengerInstance($user_id);
     }
     public function getDetails()
     {
@@ -26,10 +26,16 @@
     public function getPassState(){
       return $this->passenger->getState();
     }
-    public function getUserName($passenger_no){
-      $passenger_controller = new Passenger_Controller($passenger_no);
+    public function getPassengerServiceNo(){
+      return $this->passenger->getServiceNo();
+    }
+    public function getUserName(){
+      $passenger_controller = new Passenger_Controller();
       return $passenger_controller->createUsername($this->passenger);
-
+    }
+    public function getServiceName($service_no){
+      $service = new Service($service_no);
+      return $service->getName();
     }
   }
 

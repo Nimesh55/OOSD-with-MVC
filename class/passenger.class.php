@@ -2,6 +2,7 @@
   require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
   class Passenger
   {
+    private $user_id;
     private $passenger_no;
     private $first_name;
     private $last_name;
@@ -10,17 +11,37 @@
     private $service_no;
     private $staff_id;
     private $email;
-    private static $passengerInstance;
+    private static array $passengerInstances=array();
+
+    public static function getPassengerInstance($user_id)
+    {
+
+      if(!array_key_exists($user_id, self::$passengerInstances)) {
+        self::$passengerInstances[$user_id] = new self($user_id);
+      }
+//      echo "<pre>";
+//      print_r(self::$passengerInstances);
+//      echo "</pre>";
+
+      return self::$passengerInstances[$user_id];
+    }
+
+    public static function clearPassengerInsatances(){
+      self::$passegerInstances = array();
+    }
+    public static function printins(){
+      echo "Hii";
+      echo "<pre>";
+      print_r(self::$passengerInstances);
+      echo "</pre>";
+    }
 
     /**
      * @return mixed
      */
-    public static function getPassengerInstance($passenger_no)
+    public function getUserId()
     {
-      if(isset(self::$passengerInstance) && self::$passengerInstance->$passenger_no==$passenger_no){
-        return self::$passengerInstance;
-      }
-      return new Passenger($passenger_no);
+      return $this->user_id;
     }
 
     /**
@@ -100,10 +121,11 @@
      * @return mixed
      */
 
-    private function __construct($passenger_no)
+    private function __construct($user_id)
     {
-      $this->passenger_no=$passenger_no;
-      $passenger_model = new Passenger_Model($passenger_no);
+      $this->user_id=$user_id;
+      $passenger_model = new Passenger_Model();
+      $passenger_model->setRecord($user_id);
       $row = $passenger_model->getRecord();
 
       $this->passenger_no=$row['passenger_no'];

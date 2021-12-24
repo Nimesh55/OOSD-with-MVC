@@ -4,7 +4,7 @@
   class Passenger_Controller extends Passenger_Model
   {
 
-    function __construct($passenger_no){}
+    function __construct(){}
       public function validatedetails($details)
     {
     //validate details and give feedback

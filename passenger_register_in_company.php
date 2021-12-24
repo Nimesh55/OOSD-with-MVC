@@ -9,15 +9,18 @@
 
     $passengerview = new Passenger_View($_SESSION['account_no']);
     $pass_state = $passengerview->getPassState();
-    $username = $passengerview->getUserName($_SESSION['account_no']);
+    $username = $passengerview->getUserName();
+    $service_no=$passengerview->getPassengerServiceNo();
     $state=0;
-
+    $state_name ='';
     if($pass_state == '0'){
         $state = 0;
     }elseif($pass_state == '1'){
         $state = 1;
+        $state_name = "Pending";
     }else{
         $state = 2;
+        $state_name = "Accepted";
     }
 
 ?>
@@ -70,7 +73,7 @@
                         <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $username ?> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="passenger_edit_profile.php">Edit profile</a></li>
-                                <li><a href="../includes/logout.inc.php">Log out</a></li>
+                                <li><a href="includes/logout.inc.php">Log out</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -87,19 +90,19 @@
     <div class="row">
         <div class="col-lg-3 cyan"></div>
         <div class="col-lg-6 pink wrapper">
-
             <form class="form-horizontal" role="form" action="includes/passenger_edit_profile.inc.php" method="post">
                 <div class="form-group">
-                    <label for="pass_status" class="col-sm-3 control-label">Pass Status:</label>
+                    <label for="pass_status" class="col-sm-3 control-label">Passenger Status:</label>
                     <div class="col-sm-9">
-                        <input name="pass_status" type="text" class="form-control" id="pass_status" readonly>
+                        <input name="pass_status" type="text" class="form-control" id="pass_status" readonly value="<?php echo $state_name; ?>
+                        ">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="company" class="col-sm-3 control-label">Company:</label>
                     <div class="col-sm-9">
-                        <input name="company" type="text" class="form-control" id="company" >
+                        <input name="company" type="text" class="form-control" id="company" readonly >
                     </div>
                 </div>
 

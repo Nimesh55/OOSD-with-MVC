@@ -9,7 +9,7 @@
       return;
   }
   $error_str='';
-  $passengerview = new Passenger_View($_SESSION['account_no']);
+  $passengerview = new Passenger_View($_SESSION['user_Id']);
   $row = $passengerview->getDetails();
   $row['user_id']=$_SESSION['user_Id'];
 
