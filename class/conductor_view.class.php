@@ -12,7 +12,7 @@ class Conductor_View extends Conductor_Model{
     public function getDetails()
     {
       $details=array(
-                "conductor_no"=> $this->conductor->getconductor_no(),
+                
                 "first_name"=> $this->conductor->getfirst_name(),
                 "last_name"=> $this->conductor->getlast_name(),
                 "address"=> $this->conductor->getaddress(),
@@ -22,10 +22,11 @@ class Conductor_View extends Conductor_Model{
                 "email"=> $this->conductor->getemail(),
                 "state"=> $this->conductor->getstate(),
                 "district_name" => $this->conductor->getdistric_name()  );
-      // echo $this->passenger->getfirst_name();
+      
       return $details;
 
     }
+
 }
 
 ?>

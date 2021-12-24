@@ -1,6 +1,5 @@
 <?php
 
-include "dbh.class.php";
 
 class Conductor
 {
@@ -16,13 +15,14 @@ class Conductor
     private $state;
     private $district_name;
 
-    public function __construct($conductor_no)
+    public function __construct($conductor_id)
     {
-        $this->conductor_no = $conductor_no;
-        $conductor_model = new Conductor_Model($conductor_no);
+        $this->conductor_id = $conductor_id;
+        $conductor_model = new Conductor_Model();
+        $conductor_model->setRecord($conductor_id);
         $row = $conductor_model->getRecord();
 
-        $this->passenger_no = $row['conductor_no'];
+        
         $this->first_name = $row['first_name'];
         $this->last_name = $row['last_name'];
         $this->address = $row['address'];
@@ -34,7 +34,7 @@ class Conductor
         $this->district_name = $row['name'];
     }
 
-    public function getconductor_no(){return $this->conductor_no;}
+    
     public function getfirst_name(){return $this->first_name;}
     public function getlast_name(){return $this->last_name;}
     public function getaddress(){return $this->address;}
@@ -44,4 +44,6 @@ class Conductor
     public function getemail(){return $this->email;}
     public function getstate(){return $this->state;}
     public function getdistric_name(){return $this->district_name;}
+
+    
 }

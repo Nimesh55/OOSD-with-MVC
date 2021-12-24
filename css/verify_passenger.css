@@ -1,0 +1,29 @@
+body{
+    background-color: violet;
+    background: url("../img/login2.jpg") no-repeat center fixed;
+    background-size: cover;
+    font-size: 16px;
+}
+
+
+#contanier-data {
+    width: 50%;
+    background-color: rgb(44, 44, 37);
+    padding: 5%; 
+    
+    margin-top: 8%;
+    border-style: ridge;
+    border: 2px solid whitesmoke;
+    border-radius: 10px;
+    opacity: 0.95;
+    
+}
+
+.passenger_id{
+    width: 100%;
+}
+
+.row{
+    color: aliceblue;
+    word-spacing: 2x;
+}
