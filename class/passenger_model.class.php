@@ -15,19 +15,21 @@
 			return $this->record;
 		}
 
-    public function changeDetails($details)
-    {
-      $sql = "UPDATE Passenger SET first_name = :fn, last_name = :ln, address = :addr,
-                       email = :em, telephone = :tel WHERE passenger_no = :pas_no";
-      $stmt = $this->connect()->prepare($sql);
-      $stmt->execute(array(
-          ':fn' => htmlentities($details['fname']),
-          ':ln' => htmlentities($details['lname']),
-          ':addr' => htmlentities($details['address']),
-          ':em' => htmlentities($details['email']),
-          ':tel' => htmlentities($details['telephone']),
-          ':pas_no' => htmlentities($details['passenger_no'])));
-    }
+		public function changeDetails($details)
+		{
+		  $sql = "UPDATE Passenger SET first_name = :fn, last_name = :ln, address = :addr,
+						   email = :em, telephone = :tel WHERE passenger_no = :pas_no";
+		  $stmt = $this->connect()->prepare($sql);
+		  $stmt->execute(array(
+			  ':fn' => htmlentities($details['fname']),
+			  ':ln' => htmlentities($details['lname']),
+			  ':addr' => htmlentities($details['address']),
+			  ':em' => htmlentities($details['email']),
+			  ':tel' => htmlentities($details['telephone']),
+			  ':pas_no' => htmlentities($details['passenger_no'])));
+		  $this->setRecord($_SESSION['user_Id']);
+		  unset($_SESSION['instance']);
+		}
 
 	}
  ?>
