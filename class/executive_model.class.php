@@ -17,8 +17,8 @@ class Executive_Model extends Dbh
         $stmt = $this->connect()->prepare("UPDATE Executive SET first_name = :fn, last_name = :ln,
                      address = :addr, telephone = :tel, email = :em  WHERE executive_no = :exe_no");
         $stmt->execute(array(
-            ':fn' => htmlentities($details['first_name']),
-            ':ln' => htmlentities($details['last_name']),
+            ':fn' => htmlentities($details['fname']),
+            ':ln' => htmlentities($details['lname']),
             ':addr' => htmlentities($details['address']),
             ':em' => htmlentities($details['email']),
             ':tel' => htmlentities($details['telephone']),
@@ -28,7 +28,6 @@ class Executive_Model extends Dbh
     protected function getServiceName($service_no){
         $stmt = $this->connect()->prepare("SELECT * FROM service where service_no = ?");
         $stmt->execute(array($service_no));
-//        $stmt->execute();
         $service = $stmt->fetch(PDO::FETCH_ASSOC);
         return $service['name'];
     }
@@ -56,7 +55,6 @@ class Executive_Model extends Dbh
         $stmt->execute(array($service_no));
         $count = $stmt->fetchColumn();
         return $count;
-
     }
 }
 ?>

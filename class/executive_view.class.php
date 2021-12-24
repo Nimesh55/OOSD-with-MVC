@@ -24,6 +24,18 @@ class Executive_View extends Executive_Model{
         return $details;
 
     }
+
+    public function getDetails()
+    {
+        $details=array(
+            "first_name"=> $this->executiveobj->getFirstName(),
+            "last_name"=> $this->executiveobj->getLastName(),
+            "address"=> $this->executiveobj->getAddress(),
+            "email"=> $this->executiveobj->getEmail(),
+            "telephone"=> $this->executiveobj->getTelephone());
+        return $details;
+
+    }
 }
 
 ?>

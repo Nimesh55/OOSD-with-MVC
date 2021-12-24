@@ -15,7 +15,26 @@ class Executive_Controller extends Executive_Model
         return $this->executive;
     }
 
-
+    public function validatedetails($details)
+    {
+        //validate details and give feedback
+        $errors=array();
+        if (empty($details['fname']) && empty($details['lname'])) {
+            $errors[]='Please enter first name and last name!!!';
+        }elseif(empty($details['address'])){
+            $errors[]='Please enter address!!!';
+        }elseif(filter_var($details['email'], FILTER_VALIDATE_EMAIL) === false) {
+            $errors[]='Please insert valid email!!!';
+        }elseif (!is_numeric($details['telephone']) or strlen($details['telephone'])!=10) {
+            $errors[]="Enter correct telephone number!!!";
+        }
+        if(empty($errors)){
+            $this->changeDetails($details);
+            return $errors;
+        }else{
+            return $errors;
+        }
+    }
 
 }
 
