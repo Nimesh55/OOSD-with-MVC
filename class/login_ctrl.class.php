@@ -31,7 +31,7 @@ class Login_Controller extends Login
                 header("location: ../test.php?error=conductor");
                 break;
             case '2':
-                header("location: ../test.php?error=divexec");
+                header("location: ../executive_home.php");
                 break;
             case '3':
                 header("location: ../board_manager_home.php");
