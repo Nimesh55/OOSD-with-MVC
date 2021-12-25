@@ -19,7 +19,7 @@ if($_SESSION['account_type']==0){
     $row = $executive_view->getDetails();
 }
 
-if (isset($_POST['error_str']) && strcmp($_POST['error_str'],"Success")!=0) {
+if (isset($_SESSION["error"]) && strcmp($_SESSION["error"],"Success")!=0) {
     $row['first_name']=$_POST['fname'];
     $row['last_name']=$_POST['lname'];
     $row['address']=$_POST['address'];
