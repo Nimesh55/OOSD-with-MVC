@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 
 
 if (isset($_POST['submit'])) {
@@ -18,9 +18,7 @@ if (isset($_POST['submit'])) {
     $conductor_ctrl_obj->setPassengerId($passenger_id);
 
     $arrObj = $conductor_ctrl_obj->validateDetails($passenger_id);
-    if ($arrObj != 0) {
-        # code...
-    }
+    
     if(!isset($_SESSION["error"])){
         $_SESSION["error"] = "Success";
     }
