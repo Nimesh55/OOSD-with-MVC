@@ -45,7 +45,7 @@ if(isset($_POST['save'])){
 
 }
 if(isset($_POST['cpwd'])){
-    header("Location: ../".$account_name."_home.php");
+    header("Location: ../change_password.php?account_type=".$_GET['account_type']."");
     return;
 }
 if(isset($_POST['back'])){
