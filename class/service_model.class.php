@@ -35,21 +35,26 @@ class Service_Model extends Dbh
             ':stat' => htmlentities($details['state'])));
     }
 
+    public function setStateNonEssential($service_no){
+        $sql = "UPDATE service SET state=0 where id=?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$service_no]);
+    }
+
     public function setStatePending($service_no){
-        $sql = "UPDATE service SET state=1 where service_no=?";
+        $sql = "UPDATE service SET state=1 where id=?";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$service_no]);
     }
 
     public function setStateEssential($service_no){
-        $sql = "UPDATE service SET state= '2' where service_no= :id";
+        $sql = "UPDATE service SET state = 2 WHERE id= ?";
         $stmt = $this->connect()->prepare($sql);
-        $stmt->execute(array(
-            ':id' => $service_no));
+        $stmt->execute([$service_no]);
     }
 
     public function setStateRemoved($service_no){
-        $sql = "UPDATE service SET state=3 where service_no=?";
+        $sql = "UPDATE service SET state=3 where id=?";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$service_no]);
     }

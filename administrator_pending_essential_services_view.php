@@ -108,8 +108,8 @@ if (isset($_POST['view'])) {
                 <div class="row">
                     <div class="col-sm-3 p-3"></div>
                     <div class="col-sm-3 p-3">
-                        <a href="includes/serviceFunctions.inc.php" class="btn btn-info" onclick="<?php $_SESSION['decline'] = $service_id ?>"> Approve </a>
-                        <a href="includes/serviceFunctions.inc.php" class="btn btn-danger" onclick="<?php $_SESSION['decline'] = $service_id ?>"> Decline </a>
+                        <a href="includes/serviceFunction_Approve.inc.php" class="btn btn-info" onclick="<?php $_SESSION['approve'] = $service_id ?>"> Approve </a>
+                        <a href="includes/serviceFunction_Decline.inc.php?x=d" class="btn btn-danger" onclick="<?php $_SESSION['decline'] = $service_id ?>"> Decline </a>
                     </div>
 
                     <div class="col-sm-3 p-3"></div>

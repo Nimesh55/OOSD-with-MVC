@@ -109,7 +109,8 @@ if (isset($_POST['view'])) {
                 <div class="row">
                     <div class="col-sm-3 p-3"></div>
                     <div class="col-sm-3 p-3">
-                        <a href="includes/Servicefunctions.inc.php?id=<?php echo $id; ?>&type=2" class="btn btn-info"> Remove </a>
+                        <?php $_SESSION['decline'] = $service_id ?>
+                        <a href="includes/serviceFunction_Decline.inc.php?x=r" class="btn btn-info"> Remove </a>
                     </div>
 
                     <div class="col-sm-3 p-3"></div>

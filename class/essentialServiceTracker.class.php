@@ -5,7 +5,6 @@ class EssentialServiceTracker extends Tracker{
     private static  $instance = null;
 
     private function __construct(){
-
     }
     
     public static function getInstance(){
@@ -26,6 +25,11 @@ class EssentialServiceTracker extends Tracker{
     //Approve an Essential Service
     public function approveService($service_no){
         Service_Model::getInstance()->setStateEssential($service_no);
+    }
+
+    //Decline an Essential Service
+    public function declineService($service_no){
+        Service_Model::getInstance()->setStateNonEssential($service_no);
     }
 
 }
