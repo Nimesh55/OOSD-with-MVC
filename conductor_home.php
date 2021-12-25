@@ -22,7 +22,7 @@ $username = $row['first_name'] . " " . $row['last_name'];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/passenger_home.css">
+    <link rel="stylesheet" href="css/conductor_home.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Conductor Home</title>
@@ -61,94 +61,94 @@ $username = $row['first_name'] . " " . $row['last_name'];
         </div>
     </div>
 
-    <div class="container mt-3">
-        <h1> <?php echo "$username" ?> </h1>
-        <div style="margin-top:100px;">
+    <div class="container mt-3" id="contanier-data">
+        <!-- <h1> <?php echo "$username" ?> </h1> -->
+        <div >
             <div class="row">
-                <div class="col-sm-3 p-3"></div>
-                <div class="col-sm-3 p-3 bg-dark text-white">
+                <div class="col-sm-2 p-2"></div>
+                <div class="col-sm-4 p-3 bg-dark text-white">
                     <p>First Name</p>
                 </div>
-                <div class="col-sm-3 p-3 bg-primary text-white">
+                <div class="col-sm-4 p-4 bg-primary text-white">
                     <p>: <?= $row['first_name'] ?> </p>
                 </div>
-                <div class="col-sm-3 p-3"></div>
+                <div class="col-sm-2 p-3"></div>
             </div>
 
             <div class="row">
-                <div class="col-sm-3 p-3"></div>
-                <div class="col-sm-3 p-3 bg-dark text-white">
+                <div class="col-sm-2 p-2"></div>
+                <div class="col-sm-4 p-3 bg-dark text-white">
                     <p>Last Name</p>
                 </div>
-                <div class="col-sm-3 p-3 bg-primary text-white">
+                <div class="col-sm-4 p-4 bg-primary text-white">
                     <p>: <?= $row['last_name'] ?></p>
                 </div>
-                <div class="col-sm-3 p-3"></div>
+                <div class="col-sm-2 p-3"></div>
             </div>
 
             <div class="row">
-                <div class="col-sm-3 p-3"></div>
-                <div class="col-sm-3 p-3 bg-dark text-white">
+                <div class="col-sm-2 p-2"></div>
+                <div class="col-sm-4 p-3 bg-dark text-white">
                     <p>Address</p>
                 </div>
-                <div class="col-sm-3 p-3 bg-primary text-white">
+                <div class="col-sm-4 p-4 bg-primary text-white">
                     <p>: <?= $row['address'] ?> </p>
                 </div>
-                <div class="col-sm-3 p-3"></div>
+                <div class="col-sm-2 p-3"></div>
             </div>
 
             <div class="row">
-                <div class="col-sm-3 p-3"></div>
-                <div class="col-sm-3 p-3 bg-dark text-white">
+                <div class="col-sm-2 p-2"></div>
+                <div class="col-sm-4 p-3 bg-dark text-white">
                     <p>NIC</p>
                 </div>
-                <div class="col-sm-3 p-3 bg-primary text-white">
+                <div class="col-sm-4 p-4 bg-primary text-white">
                     <p>: <?= $row['user_id'] ?> </p>
                 </div>
-                <div class="col-sm-3 p-3"></div>
+                <div class="col-sm-2 p-3"></div>
             </div>
 
             <div class="row">
-                <div class="col-sm-3 p-3"></div>
-                <div class="col-sm-3 p-3 bg-dark text-white">
+                <div class="col-sm-2 p-2"></div>
+                <div class="col-sm-4 p-3 bg-dark text-white">
                     <p>Telephone NO</p>
                 </div>
-                <div class="col-sm-3 p-3 bg-primary text-white">
+                <div class="col-sm-4 p-4 bg-primary text-white">
                     <p>: <?= $row['telephone'] ?> </p>
                 </div>
-                <div class="col-sm-3 p-3"></div>
+                <div class="col-sm-2 p-3"></div>
             </div>
 
             <div class="row">
-                <div class="col-sm-3 p-3"></div>
-                <div class="col-sm-3 p-3 bg-dark text-white">
+                <div class="col-sm-2 p-2"></div>
+                <div class="col-sm-4 p-3 bg-dark text-white">
                     <p>Email</p>
                 </div>
-                <div class="col-sm-3 p-3 bg-primary text-white">
+                <div class="col-sm-4 p-4 bg-primary text-white">
                     <p>: <?= $row['email'] ?> </p>
                 </div>
-                <div class="col-sm-3 p-3"></div>
+                <div class="col-sm-2 p-3"></div>
             </div>
 
             <div class="row">
-                <div class="col-sm-3 p-3"></div>
-                <div class="col-sm-3 p-3 bg-dark text-white">
+                <div class="col-sm-2 p-2"></div>
+                <div class="col-sm-4 p-3 bg-dark text-white">
                     <p>District</p>
                 </div>
-                <div class="col-sm-3 p-3 bg-primary text-white">
+                <div class="col-sm-4 p-4 bg-primary text-white">
                     <p>: <?= $row['district_name'] ?> </p>
                 </div>
-                <div class="col-sm-3 p-3"></div>
+                <div class="col-sm-2 p-3"></div>
             </div>
             <div class="row">
-                <div class="col-sm-3 p-3"></div>
-                <div class="col-sm-3 p-3 bg-dark text-white">
+                <div class="col-sm-2 p-2"></div>
+                <div class="col-sm-4 p-3 bg-dark text-white">
                     <p>Bus No</p>
                 </div>
-                <div class="col-sm-3 p-3 bg-primary text-white">
+                <div class="col-sm-4 p-4 bg-primary text-white">
                     <p>: <?= $row['vehicle_no'] ?> </p>
                 </div>
-                <div class="col-sm-3 p-3"></div>
+                <div class="col-sm-2 p-3"></div>
             </div>
 
         </div>
