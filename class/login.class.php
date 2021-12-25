@@ -48,6 +48,7 @@ class Login extends Dbh{
 
             session_start();
             $_SESSION["user_Id"] = $user["user_id"];
+            $_SESSION["account_type"] = $user["account_type"];
 
             if($userType<3){
                 $_SESSION["account_no"] = $user["account_no"];
