@@ -34,7 +34,7 @@ if(isset($_POST['save'])){
     );
 
     $controller->validatedetails($details);
-    $errors_str='';
+
     if(!isset($_SESSION["error"])){
         $_SESSION["error"] = "Success";
     }
