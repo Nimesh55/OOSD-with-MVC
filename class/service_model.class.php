@@ -65,4 +65,3 @@ class Service_Model extends Dbh
         return $services;
     }
 }
-?>
