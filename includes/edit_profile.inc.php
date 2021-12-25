@@ -10,13 +10,13 @@ if(!isset($_SESSION['account_no'])){
 
 $errors_str = "";
 
-if($_GET['account_type']==0){
+if($_SESSION['account_type']==0){
     $account_name = "passenger";
     $controller = new Passenger_Controller();
-}elseif ($_GET['account_type']==1){
+}elseif ($_SESSION['account_type']==1){
     $account_name = "conductor";
     $controller = new Conductor_Controller();
-}elseif ($_GET['account_type']==2){
+}elseif ($_SESSION['account_type']==2){
     $account_name = "executive";
     $controller = new Executive_Controller();
 }
@@ -33,19 +33,15 @@ if(isset($_POST['save'])){
         'telephone'=>$_POST['telephone'],
     );
 
-    $errors=$controller->validatedetails($details);
+    $controller->validatedetails($details);
     $errors_str='';
-    if(!empty($errors)){
-        foreach ($errors as $error) {
-            $errors_str.="*".$error."<br>";
-        }
-    }else{
-        $errors_str="Success";
+    if(!isset($_SESSION["error"])){
+        $_SESSION["error"] = "Success";
     }
 
 }
 if(isset($_POST['cpwd'])){
-    header("Location: ../change_password.php?account_type=".$_GET['account_type']."");
+    header("Location: ../change_password.php");
     return;
 }
 if(isset($_POST['back'])){
@@ -61,13 +57,12 @@ if(isset($_POST['back'])){
     <title></title>
 </head>
 <body>
-<form id="returndata" action="../edit_profile.php?account_type=<?=$_GET['account_type']?>" method="post">
+<form id="returndata" action="../edit_profile.php" method="post">
     <input type="hidden" name="fname" value="<?php echo $_POST['fname']; ?>">
     <input type="hidden" name="lname" value="<?php echo $_POST['lname']; ?>">
     <input type="hidden" name="address" value="<?php echo $_POST['address']; ?>">
     <input type="hidden" name="email" value="<?php echo $_POST['email']; ?>">
     <input type="hidden" name="telephone" value="<?php echo $_POST['telephone']; ?>">
-    <input type="hidden" name="error_str" value="<?php echo $errors_str; ?>">
     <input type="hidden" name="sub" value="finish">
 
 </form>

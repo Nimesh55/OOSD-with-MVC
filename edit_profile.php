@@ -9,10 +9,10 @@ if(!isset($_SESSION['account_no'])){
 }
 
 $error_str='';
-if($_GET['account_type']==0){
+if($_SESSION['account_type']==0){
     $passenger_view = new Passenger_View($_SESSION['user_Id']);
     $row = $passenger_view->getDetails();
-}elseif ($_GET['account_type']==1){
+}elseif ($_SESSION['account_type']==1){
     // Add conductor view logic
 }else{
     $executive_view = new Executive_View();
@@ -25,7 +25,6 @@ if (isset($_POST['error_str']) && strcmp($_POST['error_str'],"Success")!=0) {
     $row['address']=$_POST['address'];
     $row['telephone']=$_POST['telephone'];
     $row['email']=$_POST['email'];
-    $error_str=$_POST['error_str'];
 
 }
 
@@ -67,16 +66,16 @@ if (isset($_POST['error_str']) && strcmp($_POST['error_str'],"Success")!=0) {
         <div class="col-lg-6 pink wrapper">
 
             <?php
-            if (isset($_POST['error_str']) && strcmp($_POST['error_str'],"Success")!=0) {
+            if (isset($_SESSION["error"]) && strcmp($_SESSION["error"],"Success")!=0) {
 
-                echo "<div class=\"alert alert-danger\"><strong>".$error_str."</strong></div>";
+                echo "<div class=\"alert alert-danger\"><strong>".$_SESSION["error"]."</strong></div>";
             }
-            if(isset($_POST['error_str']) && strcmp($_POST['error_str'],"Success")==0){
+            if(isset($_SESSION["error"]) && strcmp($_SESSION["error"],"Success")==0){
                 echo "<div class=\"alert alert-success\"><strong>"."Successfully Updated!!!"."</strong></div>";
             }
             ?>
 
-            <form class="form-horizontal" role="form" action="includes/edit_profile.inc.php?account_type=<?=$_GET['account_type']?>" method="post">
+            <form class="form-horizontal" role="form" action="includes/edit_profile.inc.php" method="post">
                 <div class="form-group">
                     <label for="fname" class="col-sm-3 control-label">First Name:</label>
                     <div class="col-sm-9">
@@ -122,3 +121,7 @@ if (isset($_POST['error_str']) && strcmp($_POST['error_str'],"Success")!=0) {
 
 </body>
 </html>
+
+<?php
+unset($_SESSION["error"]);
+?>

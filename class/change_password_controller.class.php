@@ -1,26 +1,28 @@
 <?php
 
+session_start();
+
 class Change_Password_Controller extends Password_Changer{
 
-    public function updatePassword($current_password, $new_password, $password_repeat, $type){
+    public function updatePassword($current_password, $new_password, $password_repeat){
 
         if(empty($current_password) || empty($new_password) || empty($password_repeat)){
             $_SESSION['error'] = "Fill all fields and try again";
-            header("location: ../change_password.php?account_type=$type");
+            header("location: ../change_password.php");
             exit();
         }
 
         if (strcmp($new_password, $password_repeat) != 0) {
             $_SESSION['error'] = "New password and reentered password don't match. Try again.";
-            header("location: ../change_password.php?account_type=$type");
+            header("location: ../change_password.php");
             exit();
         }
 
 //        This is for check strength of the new entered password. Uncomment after finalized
 
 //        if(!$this->checkPasswordStrength($new_password)){
-//            $_SESSION['error'] = "Enter_strong_password";
-//            header("location: ../change_password.php?account_type=$type&error=Enter_strong_password");
+//            $_SESSION['error'] = "Enter strong password";
+//            header("location: ../change_password.php");
 //            exit();
 //        }
 
@@ -34,8 +36,9 @@ class Change_Password_Controller extends Password_Changer{
                 exit();
             }
 
+            $type = $_SESSION['account_type'];
             if($type<=2){
-                header("location: ../edit_profile.php?account_type=$type");
+                header("location: ../edit_profile.php");
             }elseif ($type ==3){
                 header("location: ../board_manager_home.php");
             }elseif ($type == 4){
@@ -43,8 +46,8 @@ class Change_Password_Controller extends Password_Changer{
             }
 
         }else{
-            $_SESSION['error'] = "Entered password is invalid.";
-            header("location: ../change_password.php?account_type=$type");
+            $_SESSION['error'] = "Password is invalid.";
+            header("location: ../change_password.php");
         }
     }
 
@@ -61,9 +64,10 @@ class Change_Password_Controller extends Password_Changer{
         }
     }
 
-    public function returnPage($type){
+    public function returnPage(){
+        $type = $_SESSION['account_type'];
         if ($type <= 2) {
-            header("location: ../edit_profile.php?account_type=<?= $type ?>");
+            header("location: ../edit_profile.php");
             exit();
         }else if ($type == 3) {
             header("location: ../board_manager_home.php");

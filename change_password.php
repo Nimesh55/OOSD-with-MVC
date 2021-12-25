@@ -25,7 +25,7 @@ if (!isset($_SESSION['user_Id'])) {
 <body>
 <div class="container mt-3">
     <div style="background-color: #a3a3a3;width: 800px;padding:20px 0;margin: 130px auto; border-radius: 15px;">
-        <form method="POST" class="form-horizontal" action="includes/change_password.inc.php?account_type=<?= $_GET['account_type'] ?>" style="width: 700px; margin: 25px auto;">
+        <form method="POST" class="form-horizontal" action="includes/change_password.inc.php ?>" style="width: 700px; margin: 25px auto;">
 
             <?php
             if(isset($_SESSION["error"])){
