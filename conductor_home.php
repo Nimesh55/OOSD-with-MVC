@@ -42,7 +42,7 @@ $username = $row['first_name'] . " " . $row['last_name'];
                     <div class="navbar-collapse collapse" id="mobile_menu">
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="conductor_home.php">Home</a></li>
-                            <li><a href="conductor_verify_passenger.php">Verify Passenger</a></li>
+                            <li><a href="conductor_verify_passenger.php?show=false">Verify Passenger</a></li>
                             <li><a href="conductor_update_leave.php">Update Leave</a></li>
                             <li><a href="conductor_cancel_booking.php">Cancel Booking</a></li>
                         </ul>

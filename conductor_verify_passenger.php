@@ -7,10 +7,22 @@ if (!isset($_SESSION['user_Id'])) {
     return;
 }
 
+$state_query = 0;
+
 $conductorview = new Conductor_View($_SESSION['user_Id']);
 $row = $conductorview->getDetails();
 $row['user_id'] = $_SESSION['user_Id'];
 $username = $row['first_name'] . " " . $row['last_name'];
+
+//neeed to change
+if ($_GET["show"]=='success') {
+    $conductorview->setPassengerDetails($_GET["pName"]);
+
+    $state_query = 1;
+    $rowSecond  = $conductorview->getPassengerDetails();
+    
+}
+
 
 ?>
 
@@ -96,17 +108,17 @@ $username = $row['first_name'] . " " . $row['last_name'];
                     <p>:</p>
                 </div>
                 <div class="col-sm-6 p-3 bg-primary text-white">
-                <!-- remove this below line     -->
-                <p>Need to check</p>
-                    <!-- <p> &emsp; <?php
+                
+                
+                    <p> &emsp; <?php
 
                                 if ($state_query == 0) {
                                     echo "No Value";
                                 } elseif ($state_query == 1) {
-                                    echo  $row["first_name"] . " " . $row["last_name"];
+                                    echo  $rowSecond['passengerName'];
                                 }
 
-                                ?></p> -->
+                                ?></p>
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white"></div>
             </div>
@@ -121,19 +133,17 @@ $username = $row['first_name'] . " " . $row['last_name'];
                 </div>
                 <div class="col-sm-6 p-3 bg-primary text-white">
 
-                    <!-- <p> &emsp; <?php
+                    <p> &emsp; <?php
 
 
                                 if ($state_query == 0) {
                                     echo "No Value";
                                 } elseif ($state_query == 1) {
 
-                                    $passenger_query = $pdo->query("SELECT name FROM service WHERE service_no='{$row["service_no"]}' ");
-                                    $company = $passenger_query->fetch(PDO::FETCH_ASSOC);
-                                    echo  $company["name"];
+                                    echo 'Need to implement';
                                 }
 
-                                ?></p> -->
+                                ?>
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white"></div>
             </div>
@@ -148,15 +158,15 @@ $username = $row['first_name'] . " " . $row['last_name'];
                 </div>
                 <div class="col-sm-6 p-3 bg-primary text-white">
 
-                    <!-- <p> &emsp; <?php
+                    <p> &emsp; <?php
 
                                 if ($state_query == 0) {
                                     echo "No Value";
                                 } elseif ($state_query == 1) {
-                                    echo  $row["bus_route"];
+                                    echo 'Need to implement';
                                 }
 
-                                ?></p> -->
+                                ?></p> 
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white"></div>
             </div>
@@ -169,15 +179,15 @@ $username = $row['first_name'] . " " . $row['last_name'];
                 <div class="col-sm-1 p-3 bg-dark text-white">:</div>
                 <div class="col-sm-6 p-3 bg-primary text-white">
 
-                    <!-- <p> &emsp; <?php
+                    <p> &emsp; <?php
 
                                 if ($state_query == 0) {
                                     echo "No Value";
                                 } elseif ($state_query == 1) {
-                                    echo  $row["start_date"] . "  to  " . $row["end_date"];
+                                    echo 'Need to implement';
                                 }
 
-                                ?></p> -->
+                                ?></p> 
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white"></div>
             </div>

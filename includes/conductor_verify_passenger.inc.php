@@ -13,17 +13,17 @@ if (isset($_POST['submit'])) {
     require_once "../class/conductor_controller.class.php";
     require_once "../class/conductor_model.class.php";
     
-    echo "<pre>";
-    print_r($_POST);
-    echo"</pre>";
+    
     $conductor_ctrl_obj = new Conductor_Controller();
     $conductor_ctrl_obj->setPassengerId($passenger_id);
-    
 
-    echo "<pre>";
-    print_r($conductor_ctrl_obj);
-    echo "</pre>";
+    $arrObj = $conductor_ctrl_obj->verifyPassgenger();
+    $pName =  $arrObj["passengerName"];
+    // $companyName = 
+    // $route = 
+    // $timePeriod = 
+    // Implement this after tracker
 
-
-    $conductor_ctrl_obj->verifyPassgenger();
+    header("Location: ../conductor_verify_passenger.php?show=success&pName='{$pName}'");
+    return;
 }
