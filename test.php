@@ -7,6 +7,10 @@ if (!isset($_SESSION['user_Id'])) {
 }
 
 echo $_SESSION["user_Id"];
+if (isset($_POST['view'])) {
+    $id = $_POST['view'];
+    echo $id;
+}
 
 ?>
 
@@ -23,12 +27,12 @@ echo $_SESSION["user_Id"];
 
 <body>
     <div class="login-dark">
-    <div class="background-image"></div>
-    <h1>SAFE TRANSIT</h1>
-        <form action="includes/logout.inc.php" method="post">            
+        <div class="background-image"></div>
+        <h1>SAFE TRANSIT</h1>
+        <form action="includes/logout.inc.php" method="post">
             <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="submit">LogOut</button></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

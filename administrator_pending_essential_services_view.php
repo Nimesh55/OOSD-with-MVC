@@ -7,8 +7,8 @@ if (!isset($_SESSION['user_Id'])) {
     return;
 }
 
-if (isset($_GET['view'])) {
-    $id = $_GET['view'];
+if (isset($_POST['view'])) {
+    $id =$_POST['view'];
     $view = new Administrator_view();
     $rows = $view->fetchDetails($id);
     $service_id = $rows['id'];
@@ -62,7 +62,6 @@ if (isset($_GET['view'])) {
             </div>
         </div>
     </div>
-    <form action="administrator_approved_essential_services_view.php" method="POST">
         <input type="hidden" name="pass_no" value="<?php echo $pass_no ?>">
         <!-- Details of A single pass -->
         <div class="container mt-3">
@@ -109,19 +108,14 @@ if (isset($_GET['view'])) {
                 <div class="row">
                     <div class="col-sm-3 p-3"></div>
                     <div class="col-sm-3 p-3">
-                        <a href="includes/Servicefunctions.inc.php?id=<?php echo $id; ?>&type=0" class="btn btn-info"> Approve </a>
-                        <a href="includes/Servicefunctions.inc.php?id=<?php echo $id; ?>&type=1" class="btn btn-danger"> Decline </a>
+                        <a href="includes/serviceFunctions.inc.php" class="btn btn-info" onclick="<?php $_SESSION['decline'] = $service_id ?>"> Approve </a>
+                        <a href="includes/serviceFunctions.inc.php" class="btn btn-danger" onclick="<?php $_SESSION['decline'] = $service_id ?>"> Decline </a>
                     </div>
 
                     <div class="col-sm-3 p-3"></div>
                 </div>
-
-
             </div>
         </div>
-
-    </form>
-
 </body>
 
 </html>

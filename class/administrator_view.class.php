@@ -24,6 +24,10 @@
       return $this->getPendingEssentialServices();
     }
 
+    public function getApprovedRows(){
+      return $this->getApprovedEssentialServices();
+    }
+
     public function fetchDetails($service_no){
       $row = $this->adminctrl->formatForView($service_no);
       $details=array(

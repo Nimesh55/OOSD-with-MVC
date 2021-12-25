@@ -1,22 +1,16 @@
 <?php
-
-require_once "includes/dbh.inc.php";
-require 'pdo.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['user_Id'])) {
     header("Location: login.php");
     return;
 }
 
-// $rowsql = "SELECT * FROM service WHERE state = 0 ORDER BY service_no;"; // get approved services
+$view = new Administrator_view(); // view class
+//Service class object
+$rows = $view->getApprovedRows(); // getpending rows
 
-// //$numofIssuedPasses = 0;
-// // Perform query
-// if ($result = mysqli_query($conn, $rowsql)) {
-// }
-
-// 
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +46,7 @@ if (!isset($_SESSION['username'])) {
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['username'] ?> <span class="caret"></span></a>
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['user_Id'] ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="change_password.php">Change Password</a></li>
                                     <li><a href="logout.php">Log out</a></li>
@@ -67,46 +61,68 @@ if (!isset($_SESSION['username'])) {
 
     <!-- List Viw with two buttons -->
     <ul class="list-group action-list-group">
-        <form action="administrator_approved_essential_services_view.php" method="POST">
-            <?php $data = $pdo->query("SELECT * FROM service WHERE state = 2 ORDER BY service_no;"); ?>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Service ID</th>
+                    <th scope="col">Service Name</th>
+                    <th scope="col"></th>
 
-            <table class="table">
-                <thead>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $i = 0;
+                while ($i < count($rows)) :  ?>
                     <tr>
-                        <th scope="col"></th>
-                        <th scope="col">Service ID</th>
-                        <th scope="col">Service Name</th>
-                        <th scope="col"></th>
-
-
+                        <th scope="row"><?php echo $i+1; ?></th>
+                        <td><?php echo $rows[$i]["id"]; ?></td>
+                        <td><?php echo $rows[$i]["name"]; ?></td>
+                        <td>
+                            <a href="#" class="btn btn-info" onclick="clickView(<?php echo $rows[$i]['service_no'];  ?>)"> view </a>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $i = 0;
-                    while ($rows = $data->fetch(PDO::FETCH_ASSOC)) : $i++; ?>
-                        <tr>
-                            <th scope="row"><?php echo $i; ?></th>
-                            <td><?php echo $rows["id"]; ?></td>
-                            <td><?php echo $rows["name"]; ?></td>
+                <?php $i++;
+                endwhile; ?>
 
-                            <?php //$btn_name = "{$rows["service_no"]}"; 
-                            ?>
-
-                            <td>
-                                <a href = "administrator_approved_essential_services_view.php?view=<?php echo $rows['service_no'];?>" 
-                                class = "btn btn-info"> view </a>
-
-                            </td>
-
-                        </tr>
-                    <?php endwhile; ?>
-
-                </tbody>
-            </table>
-        </form>
-
+            </tbody>
+        </table>
     </ul>
+    <script type="text/javascript">
+        // Onclick function for the relavant button
+        function clickView(arg) {
+            post("administrator_approved_essential_services_view.php", {
+                view: arg
+            });
+        }
+        // 
+        /**
+         * Dynamically creates form elements and adds to $_POST
+         * path     : the path to send the post request to
+         * params   : The variables to be passed
+         * method   : the method to use on the form default set to 'post'
+         */
+        function post(path, params, method = 'post') {
+            const form = document.createElement('form');
+            form.method = method;
+            form.action = path;
+
+            for (const key in params) {
+                if (params.hasOwnProperty(key)) {
+                    const hiddenField = document.createElement('input');
+                    hiddenField.type = 'hidden';
+                    hiddenField.name = key;
+                    hiddenField.value = params[key];
+
+                    form.appendChild(hiddenField);
+                }
+            }
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
 </body>
 
 </html>

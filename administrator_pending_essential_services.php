@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
 if (!isset($_SESSION['user_Id'])) {
@@ -9,8 +9,7 @@ if (!isset($_SESSION['user_Id'])) {
 
 $view = new Administrator_view(); // view class
 //Service class object
-$rows = $view->getPendingRows()// getpending rows
-
+$rows = $view->getPendingRows(); // getpending rows
 ?>
 
 <!DOCTYPE html>
@@ -61,36 +60,68 @@ $rows = $view->getPendingRows()// getpending rows
 
     <!-- List Viw with two buttons -->
     <ul class="list-group action-list-group">
-        <form action="administrator_pending_essential_services_view.php" method="POST">
-            <table class="table">
-                <thead>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Service ID</th>
+                    <th scope="col">Service Name</th>
+                    <th scope="col"></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $i = 0;
+                while ($i < count($rows)) :  ?>
                     <tr>
-                        <th scope="col"></th>
-                        <th scope="col">Service ID</th>
-                        <th scope="col">Service Name</th>
-                        <th scope="col"></th>
-
+                        <th scope="row"><?php echo $i+1; ?></th>
+                        <td><?php echo $rows[$i]["id"]; ?></td>
+                        <td><?php echo $rows[$i]["name"]; ?></td>
+                        <td>
+                            <a href="#" class="btn btn-info" onclick="clickView(<?php echo $rows[$i]['service_no'];  ?>)"> view </a>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $i = 0;
-                    while ($i<count($rows)) :  ?>
-                        <tr>
-                            <th scope="row"><?php echo $i; ?></th>
-                            <td><?php echo $rows[$i]["id"];?></td>
-                            <td><?php echo $rows[$i]["name"]; ?></td>
-                            
-                            <td><a href="administrator_pending_essential_services_view.php?view=<?php echo $rows[$i]['service_no']; $i++;?>" class="btn btn-info"> view </a>
-                            </td>
-                        </tr>
-                    <?php endwhile; ?>
+                <?php $i++;
+                endwhile; ?>
 
-                </tbody>
-            </table>
-        </form>
-
+            </tbody>
+        </table>
     </ul>
+    <script type="text/javascript">
+        // Onclick function for the relavant button
+        function clickView(arg) {
+            post("administrator_pending_essential_services_view.php", {
+                view: arg
+            });
+        }
+        // 
+        /**
+         * Dynamically creates form elements and adds to $_POST
+         * path     : the path to send the post request to
+         * params   : The variables to be passed
+         * method   : the method to use on the form default set to 'post'
+         */
+        function post(path, params, method = 'post') {
+            const form = document.createElement('form');
+            form.method = method;
+            form.action = path;
+
+            for (const key in params) {
+                if (params.hasOwnProperty(key)) {
+                    const hiddenField = document.createElement('input');
+                    hiddenField.type = 'hidden';
+                    hiddenField.name = key;
+                    hiddenField.value = params[key];
+
+                    form.appendChild(hiddenField);
+                }
+            }
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
 </body>
 
 </html>

@@ -23,4 +23,9 @@ class EssentialServiceTracker extends Tracker{
         return $service;
     }
 
+    //Approve an Essential Service
+    public function approveService($service_no){
+        Service_Model::getInstance()->setStateEssential($service_no);
+    }
+
 }

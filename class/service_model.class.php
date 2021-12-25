@@ -42,9 +42,10 @@ class Service_Model extends Dbh
     }
 
     public function setStateEssential($service_no){
-        $sql = "UPDATE service SET state=2 where service_no=?";
+        $sql = "UPDATE service SET state= '2' where service_no= :id";
         $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([$service_no]);
+        $stmt->execute(array(
+            ':id' => $service_no));
     }
 
     public function setStateRemoved($service_no){

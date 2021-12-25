@@ -36,4 +36,12 @@ class Administrator_model extends Dbh
     $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $row;
   }
+
+  protected function getApprovedEssentialServices()
+  {
+    $stmt = $this->connect()->prepare("SELECT * FROM service WHERE state = 2 ORDER BY service_no;");
+    $stmt->execute();
+    $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $row;
+  }
 }
