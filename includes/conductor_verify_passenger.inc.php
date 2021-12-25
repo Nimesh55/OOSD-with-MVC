@@ -17,7 +17,14 @@ if (isset($_POST['submit'])) {
     $conductor_ctrl_obj = new Conductor_Controller();
     $conductor_ctrl_obj->setPassengerId($passenger_id);
 
-    $arrObj = $conductor_ctrl_obj->verifyPassgenger();
+    $arrObj = $conductor_ctrl_obj->validateDetails($passenger_id);
+    if ($arrObj != 0) {
+        # code...
+    }
+    if(!isset($_SESSION["error"])){
+        $_SESSION["error"] = "Success";
+    }
+
     $pName =  $arrObj["passengerName"];
     // $companyName = 
     // $route = 

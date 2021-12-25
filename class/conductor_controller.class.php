@@ -26,6 +26,20 @@ class Conductor_Controller extends Conductor_Model{
         
     }
 
+    public function validateDetails($passenger_id){
+        if (empty($passenger_id)) {
+            $_SESSION['error'] = "Empty Field!!!Please enter a Passenger ID";
+            return 0;
+        }
+        //Implement other conditions if there any
+        else{
+            return $this->verifyPassgenger();
+        }
+        
+        
+        
+    }
+
 }
 
 ?>

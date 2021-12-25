@@ -15,12 +15,11 @@ $row['user_id'] = $_SESSION['user_Id'];
 $username = $row['first_name'] . " " . $row['last_name'];
 
 //neeed to change
-if ($_GET["show"]=='success') {
+if ($_GET["show"] == 'success') {
     $conductorview->setPassengerDetails($_GET["pName"]);
 
     $state_query = 1;
     $rowSecond  = $conductorview->getPassengerDetails();
-    
 }
 
 
@@ -96,7 +95,6 @@ if ($_GET["show"]=='success') {
         </form>
 
         <br>
-        <br>
 
         <div>
             <div class="row">
@@ -108,8 +106,8 @@ if ($_GET["show"]=='success') {
                     <p>:</p>
                 </div>
                 <div class="col-sm-6 p-3 bg-primary text-white">
-                
-                
+
+
                     <p> &emsp; <?php
 
                                 if ($state_query == 0) {
@@ -166,7 +164,7 @@ if ($_GET["show"]=='success') {
                                     echo 'Need to implement';
                                 }
 
-                                ?></p> 
+                                ?></p>
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white"></div>
             </div>
@@ -187,7 +185,7 @@ if ($_GET["show"]=='success') {
                                     echo 'Need to implement';
                                 }
 
-                                ?></p> 
+                                ?></p>
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white"></div>
             </div>
