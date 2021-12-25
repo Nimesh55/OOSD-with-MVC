@@ -28,9 +28,7 @@
   public function createUsername($passenger){
     return $passenger->getFirstName()." ".$passenger->getLastName();
   }
-  public function setPassengerStaffId($service_no,$staff_id){
-      $this->setStaffId($service_no,$staff_id);
-  }
+
 
 
 

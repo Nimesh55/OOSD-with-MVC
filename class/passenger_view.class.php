@@ -6,9 +6,9 @@
 
     public function __construct($user_id){
       $this->passenger = Passenger::getInstance($user_id);
-      echo "<pre>";
-      print_r($_SESSION);
-      echo "</pre>";
+//      echo "<pre>";
+//      print_r($_SESSION);
+//      echo "</pre>";
     }
     public function getDetails()
     {

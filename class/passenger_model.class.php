@@ -29,9 +29,6 @@
 		  		$this->removeObj();
 		}
 		public function setCompanyDetails($service_no,$staff_id){
-			echo "<pre>";
-			print_r($_SESSION);
-			echo "</pre>";
 			$sql = "UPDATE Passenger SET staff_id = :stid,service_no= :sno,state= :st  WHERE passenger_no = :pas_no";
 			$stmt = $this->connect()->prepare($sql);
 			$stmt->execute(array(
@@ -41,6 +38,17 @@
 				':pas_no' => htmlentities($_SESSION['account_no'])));
 			$this->removeObj();
 		}
+		public function unSetCompanyDetails(){
+			$sql = "UPDATE Passenger SET staff_id = :stid,service_no= :sno,state= :st  WHERE passenger_no = :pas_no";
+			$stmt = $this->connect()->prepare($sql);
+			$stmt->execute(array(
+				':stid' => 0,
+				':sno' 	=> 0,
+				':st' 	=> 0,
+				':pas_no' => htmlentities($_SESSION['account_no'])));
+			$this->removeObj();
+		}
+
 
 		private function removeObj(){
 			$this->setRecord($_SESSION['user_Id']);
