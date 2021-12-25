@@ -1,5 +1,4 @@
 <?php
-
   require_once "dbh.class.php";
 	class Passenger_Model extends Dbh
 	{
@@ -27,8 +26,25 @@
 			  ':em' => htmlentities($details['email']),
 			  ':tel' => htmlentities($details['telephone']),
 			  ':pas_no' => htmlentities($details['passenger_no'])));
-		  $this->setRecord($_SESSION['user_Id']);
-		  unset($_SESSION['instance']);
+		  		$this->removeObj();
+		}
+		public function setCompanyDetails($service_no,$staff_id){
+			echo "<pre>";
+			print_r($_SESSION);
+			echo "</pre>";
+			$sql = "UPDATE Passenger SET staff_id = :stid,service_no= :sno,state= :st  WHERE passenger_no = :pas_no";
+			$stmt = $this->connect()->prepare($sql);
+			$stmt->execute(array(
+				':stid' => htmlentities($staff_id),
+				':sno' 	=> htmlentities($service_no),
+				':st' 	=> 1,
+				':pas_no' => htmlentities($_SESSION['account_no'])));
+			$this->removeObj();
+		}
+
+		private function removeObj(){
+			$this->setRecord($_SESSION['user_Id']);
+			unset($_SESSION['instance']);
 		}
 
 	}
