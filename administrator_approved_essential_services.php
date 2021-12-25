@@ -49,7 +49,7 @@ $rows = $view->getApprovedRows(); // getpending rows
                             <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['user_Id'] ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="change_password.php">Change Password</a></li>
-                                    <li><a href="logout.php">Log out</a></li>
+                                    <li><a href="includes/logout.inc.php">Log out</a></li>
                                 </ul>
                             </li>
                         </ul>
