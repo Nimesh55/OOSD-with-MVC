@@ -13,7 +13,7 @@ if(isset($_POST['submit'])){
     // Instanciate Signup Controller in MVC
     include "../class/dbh.class.php";
     include "../class/signup.class.php";
-    include "../class/signup_ctrl.class.php";
+    include "../class/signup_controller.class.php";
 
     //By throwing relevant values, make relevant signup class according to account type
     if($_GET['account_type']==0){
