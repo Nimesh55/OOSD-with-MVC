@@ -1,8 +1,8 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/OOSD-with-MVC/includes/autoloader.inc.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
 
-class Pass extends Dbh{
+class Pass{
     private $pass_no;
     private $passenger_no;
     private $service_no;
@@ -12,32 +12,31 @@ class Pass extends Dbh{
     private $bus_route;
     private $reason;
 
-    function __construct($pass_no){
+    function __construct(){
 
-        $this->pass_no=$pass_no;
-        $pass_model = new Pass_Model($pass_no);
-        $row = $pass_model->getRecord();
+    }
 
-        $this->pass_no = $row['pass_no'];
-        $this->passenger_no = $row['passenger_no'];
-        $this->service_no = $row['service_no'];
-        $this->start_date = $row['start_date'];
-        $this->end_date = $row['end_date'];
-        $this->state = $row['state'];
-        $this->bus_route = $row['bus_route'];
-        $this->reason = $row['reason'];
+    public function setValues($pass_no, $passenger_no, $service_no, $start_date, $end_date, $state, $bus_route, $reason){
+        $this->pass_no = $pass_no;
+        $this->passenger_no = $passenger_no;
+        $this->service_no = $service_no;
+        $this->start_date = $start_date;
+        $this->end_date = $end_date;
+        $this->state = $state;
+        $this->bus_route = $bus_route;
+        $this->reason = $reason;
     }
 
 
-    protected function getPassengerNo(){
+    public function getPassengerNo(){
         return $this->passenger_no;
     }
 
-    protected function getServiceNo(){
+    public function getServiceNo(){
         return $this->service_no;
     }
 
-    protected function getStartDate(){
+    public function getStartDate(){
         return $this->start_date;
     }
 
