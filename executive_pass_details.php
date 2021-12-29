@@ -1,25 +1,12 @@
 <?php
-<<<<<<< Updated upstream
-
-require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
-session_start();
-
-if(!isset($_SESSION['user_Id'])){
-=======
 require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
 if (!isset($_SESSION['user_Id'])) {
->>>>>>> Stashed changes
     header("Location: login.php");
     return;
 }
 
-<<<<<<< Updated upstream
-$executive_view = new Executive_View();
-$details = $executive_view->getPassDetailsDetails();
-
-=======
 $viewobj = new Executive_View();
 $detailsArray = $viewobj->getPassesDetails($_SESSION['service_no']);
 $row = 0; //tempararily
@@ -27,7 +14,6 @@ print_r($detailsArray[0]);
 echo "##";
 echo count($detailsArray);
 $listCount = count($detailsArray);
->>>>>>> Stashed changes
 ?>
 
 <!DOCTYPE html>
@@ -65,11 +51,7 @@ $listCount = count($detailsArray);
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-<<<<<<< Updated upstream
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?= $details['name'] ?> <span class="caret"></span></a>
-=======
                             <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['exec_name'] ?> <span class="caret"></span></a>
->>>>>>> Stashed changes
                                 <ul class="dropdown-menu">
                                     <li><a href="edit_profile.php">Edit profile</a></li>
                                     <li><a href="includes/logout.inc.php">Log out</a></li>
@@ -84,10 +66,6 @@ $listCount = count($detailsArray);
 
     <!-- List view with  view button -->
     <form action="executive_pass_details_view_page.php" method="GET">
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
         <table class="table">
             <thead>
                 <tr>
@@ -98,28 +76,6 @@ $listCount = count($detailsArray);
                 </tr>
             </thead>
             <tbody>
-<<<<<<< Updated upstream
-                <?php
-                $index = 0;
-                while ($index<$details['service_passes_count']) :
-                    $pass = $details['service_passes'][$index];
-                    $index++;
-                ?>
-                    <tr>
-                        <th scope="row"><?= $pass->getPassNo() ?></th>
-
-                        <?php
-                        //Must do followings using passenger tracker
-                        $name = $executive_view->getPassengerName($pass->getPassengerNo());
-                        ?>
-
-                        <td><?= $name ?></td>
-
-                        <td>
-                            <!-- <input type="submit" name="submit" value="View" /> -->
-
-                            <a href="executive_pass_details_view_page.php?pass_no=<?= $pass->getPassNo() ?>" class="btn btn-info"> View </a>
-=======
                 <?php while ($row < count($detailsArray)) :
 
                     $p_no = $detailsArray[$row]['passenger_no']; 
@@ -131,7 +87,6 @@ $listCount = count($detailsArray);
                         <td><?php echo $names["first_name"] . " " . $names["last_name"]; ?></td>
                         <td>
                             <a href="executive_pass_details_view_page.php?" class="btn btn-info"> View </a>
->>>>>>> Stashed changes
                         </td>
                     </tr>
                 <?php endwhile; ?>

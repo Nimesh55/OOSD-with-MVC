@@ -57,7 +57,6 @@ class Executive_Model extends Dbh
         return $count;
     }
 
-<<<<<<< Updated upstream
     // Load first name and last name of passenger from given passenger_no
     // This must be done using Passenger object
     public function getPassengerName($passenger_no){
@@ -75,14 +74,11 @@ class Executive_Model extends Dbh
     }
 
 
-}
-?>
-=======
+
     protected function getPasses($service_no){
         $stmt = $this->connect()->prepare("SELECT * FROM pass where service_no = ?");
         $stmt->execute(array($service_no));
-        $service = $stmt->fetchAll();
-        return $service;
+        $passes_in_service = $stmt->fetchAll();
+        return $passes_in_service;
     }
 }
->>>>>>> Stashed changes
