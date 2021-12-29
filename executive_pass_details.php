@@ -86,7 +86,7 @@ $listCount = count($detailsArray);
                         <th scope="row"><?php echo $p_no; ?></th>
                         <td><?php echo $names["first_name"] . " " . $names["last_name"]; ?></td>
                         <td>
-                            <a href="executive_pass_details_view_page.php?" class="btn btn-info"> View </a>
+                            <a href="#" class="btn btn-info" onclick="clickView(<?php echo $p_no ?>)"> View </a>
                         </td>
                     </tr>
                 <?php endwhile; ?>
@@ -94,6 +94,41 @@ $listCount = count($detailsArray);
             </tbody>
         </table>
     </form>
+
+    <script type="text/javascript">
+        // Onclick function for the relavant button
+        function clickView(arg) {
+            post("executive_pass_details_view_page.php", {
+                pass_no: arg
+            });
+        }
+        // 
+        /**
+         * Dynamically creates form elements and adds to $_POST
+         * path     : the path to send the post request to
+         * params   : The variables to be passed
+         * method   : the method to use on the form default set to 'post'
+         */
+        function post(path, params, method = 'post') {
+            const form = document.createElement('form');
+            form.method = method;
+            form.action = path;
+
+            for (const key in params) {
+                if (params.hasOwnProperty(key)) {
+                    const hiddenField = document.createElement('input');
+                    hiddenField.type = 'hidden';
+                    hiddenField.name = key;
+                    hiddenField.value = params[key];
+
+                    form.appendChild(hiddenField);
+                }
+            }
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
 </body>
 
 </html>
