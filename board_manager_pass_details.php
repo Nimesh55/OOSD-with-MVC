@@ -10,7 +10,7 @@ if(!isset($_SESSION['user_Id'])){
 
 
 $board_manager_view = new Board_Manager_View();
-$details = $board_manager_view->getPendingPassesDetails();
+$details = $board_manager_view->getApprovedPassesDetails();
 
 
 ?>
@@ -26,7 +26,7 @@ $details = $board_manager_view->getPendingPassesDetails();
     <link rel="stylesheet" href="css/passenger_home.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>Board Manager Pending Passes</title>
+    <title>Board Manager Pass Details</title>
 </head>
 
 <body>
@@ -43,8 +43,8 @@ $details = $board_manager_view->getPendingPassesDetails();
                     <div class="navbar-collapse collapse" id="mobile_menu">
                         <ul class="nav navbar-nav">
                             <li><a href="board_manager_home.php">Home</a></li>
-                            <li class="active"><a href="board_manager_pending_passes.php">Pending Passes</a></li>
-                            <li><a href="board_manager_pass_details.php">Pass Details</a></li>
+                            <li><a href="board_manager_pending_passes.php">Pending Passes</a></li>
+                            <li class="active"><a href="board_manager_pass_details.php">Pass Details</a></li>
                             <li><a href="board_manager_conductor_details.php">Conductor Details</a></li>
                             <li><a href="board_manager_create_conductor.php">Create Conductor Account</a></li>
                             <li><a href="board_manager_allocate_vehicle.php">Allocate Vehicle</a></li>
@@ -64,8 +64,9 @@ $details = $board_manager_view->getPendingPassesDetails();
         </div>
     </div>
 
+    <!-- SearchBar -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-    <form action="board_manager_pending_passes.php" method="GET">
+    <form action="board_manager_pass_details.php" method="GET">
         <div class="row">
             <div class="col-xs-6 col-md-4">
                 <div class="input-group">
@@ -80,26 +81,24 @@ $details = $board_manager_view->getPendingPassesDetails();
         </div>
     </form>
     <br>
-
-
     <!-- List view and redirected Page button -->
-    <ul class="list-group action-list-group">
-
-        <?php
-        $pendingPasses = $details['pendingPassesArray'];
-        foreach($pendingPasses as $pass) {
-//        for ($i = 0; $i < $details['pendingPassesCount']; $i++) {
-            $name = $board_manager_view->getPassengerName($pass->getPassengerNo());
-            if($name){
-                echo "<li class=\"list-group-item\">";
-                echo "{$name} ";
-                echo "<a class=\"btn btn-sm btn-default\" href=\"board_manager_pending_passes_view_and_delete.php?pass_no={$pass->getPassNo()}\">View</a>";
-                echo "</li>";
+    <div class="List of info">
+        <ul class="list-group action-list-group">
+            <?php
+            $approvedPasses = $details['approvedPassesArray'];
+            foreach($approvedPasses as $pass) {
+                $name = $board_manager_view->getPassengerName($pass->getPassengerNo());
+                if($name){
+                    echo "<li class=\"list-group-item\">";
+                    echo "{$name} ";
+                    echo "<a class=\"btn btn-sm btn-default\" href=\"board_manager_pending_passes_view_and_delete.php?pass_no={$pass->getPassNo()}\">View</a>";
+                    echo "</li>";
+                }
             }
-        }
+            ?>`
+        </ul>
+    </div>
 
-        ?>`
-    </ul>
 </body>
 
 </html>

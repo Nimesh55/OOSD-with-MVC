@@ -3,18 +3,18 @@
 require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/class/dbh.class.php";
 class Board_Manager_Model extends Dbh
 {
-    protected function getApprovedPassesCount(){
+    public function getPendingPassesCnt(){
+        $stmt = $this->connect()->prepare("SELECT count(*) FROM pass WHERE state=1");
+        $stmt->execute();
+        $count2 = $stmt->fetchColumn();
+        return $count2;
+    }
+
+    public function getApprovedPassesCount(){
         $stmt = $this->connect()->prepare("SELECT count(*) FROM pass WHERE state=2");
         $stmt->execute();
         $count1 = $stmt->fetchColumn();
         return $count1;
-    }
-
-    protected function getPendingPassesCount(){
-        $stmt = $this->connect()->prepare("SELECT count(*) FROM pass WHERE state=0 OR state=1");
-        $stmt->execute();
-        $count2 = $stmt->fetchColumn();
-        return $count2;
     }
 
     protected function getConductorCount(){
@@ -22,45 +22,6 @@ class Board_Manager_Model extends Dbh
         $stmt->execute();
         $count3 = $stmt->fetchColumn();
         return $count3;
-    }
-
-    protected function getPendingPassesQuery(){
-        if(isset($_GET['search'])){
-            // Handle sql injection in following query when add get value in search
-            $query = "SELECT * FROM users WHERE account_type=0 AND (user_id Like '%{$_GET['search']}%')  ORDER BY user_no";
-            $stmt = $this->connect()->prepare($query);
-
-            if($stmt->execute()){
-                $pending_passes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                $record_count = count($pending_passes);
-
-                $query = "SELECT * FROM pass WHERE state=1 AND (";
-                for($i=0; $i<$record_count; $i++){
-                    $record = $pending_passes[$i];
-                    if($i < $record_count-1){
-                        $query .= " passenger_no={$record['user_no']} OR";
-                    } else {
-                        $query .= " passenger_no={$record['user_no']})";
-                    }
-                }
-                return $query;
-            }
-        }
-        return null;
-    }
-
-    protected function getPendingPassesArray(){
-        $query = $this->getPendingPassesQuery();
-
-        if(!$query){
-            $query = "SELECT * FROM pass WHERE state=1";
-        }
-        $stmt = $this->connect()->prepare($query);
-        $stmt->execute();
-        $pending_passes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $pending_passes;
     }
 
     // Load first name and last name of passenger from given passenger_no
@@ -87,6 +48,5 @@ class Board_Manager_Model extends Dbh
 
         return $district_list;
     }
-
 
 }
