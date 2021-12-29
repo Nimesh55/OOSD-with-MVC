@@ -3,7 +3,7 @@
 require_once "dbh.class.php";
 class Executive_Model extends Dbh
 {
-    public function getRecord($user_id)
+    protected function getRecord($user_id)
     {
         $sql = "SELECT * FROM users JOIN executive ON Executive.executive_no = Users.account_no WHERE Users.user_id = $user_id";
         $stmt = $this->connect()->prepare($sql);
@@ -77,3 +77,12 @@ class Executive_Model extends Dbh
 
 }
 ?>
+=======
+    protected function getPasses($service_no){
+        $stmt = $this->connect()->prepare("SELECT * FROM pass where service_no = ?");
+        $stmt->execute(array($service_no));
+        $service = $stmt->fetchAll();
+        return $service;
+    }
+}
+>>>>>>> Stashed changes
