@@ -4,14 +4,21 @@ require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.p
 class Executive_Controller extends Executive_Model
 {
     private $executive;
+    private $pass_tracker;
+
+    public function __construct()
+    {
+        $this->pass_tracker = Pass_Tracker::getInstance();
+    }
+
 
     public function setUpDetails()
     {
         $details = $this->getRecord($_SESSION['user_Id']);
         $this->executive = new Executive();
         $this->executive->setValues($details['user_id'], $details['executive_no'], $details['first_name'],
-            $details['last_name'], $details['address'], $details['telephone'],
-            $details['service_no'], $details['email'], $details['state']);
+                                    $details['last_name'], $details['address'], $details['telephone'],
+                                    $details['service_no'], $details['email'], $details['state']);
         return $this->executive;
     }
 
@@ -30,6 +37,27 @@ class Executive_Controller extends Executive_Model
         if(!isset($_SESSION["error"])){
             $this->changeDetails($details);
         }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    public function approvePass($pass_no){
+        $this->pass_tracker->upgradePassState($pass_no);
+        header("Location: executive_pass_details.php");
+    }
+
+    public function declinePass($pass_no){
+        $this->pass_tracker->declinePass($pass_no);
+        header("Location: executive_pass_details.php");
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////
+
+    //Try to run this directly
+    public function passApproveDecline($pass_no){
+        if ($_GET['action']=='accept') {
+            $this->pass_tracker->upgradePassState($pass_no);
+        }elseif($_GET['action']=='decline') {
+            $this->pass_tracker->declinePass($pass_no);
+        }
+        header("Location: ../executive_pass_details.php");
     }
 
 }

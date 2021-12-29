@@ -7,7 +7,7 @@ if(!isset($_SESSION['user_Id'])){
     return;
 }
 
-$executive_view = new Executive_View($_SESSION['user_Id']);
+$executive_view = new Executive_View();
 $details = $executive_view->getHomeDetails();
 
 

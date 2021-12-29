@@ -1,11 +1,15 @@
 <?php
-require 'pdo.php';
+
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
-if (!isset($_SESSION['username'])) {
+if(!isset($_SESSION['user_Id'])){
     header("Location: login.php");
     return;
 }
+
+$executive_view = new Executive_View();
+$details = $executive_view->getPassDetailsDetails();
 
 ?>
 
@@ -44,10 +48,10 @@ if (!isset($_SESSION['username'])) {
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['username'] ?> <span class="caret"></span></a>
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?= $details['name'] ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="executive_edit_profile.php">Edit profile</a></li>
-                                    <li><a href="logout.php">Log out</a></li>
+                                    <li><a href="edit_profile.php">Edit profile</a></li>
+                                    <li><a href="includes/logout.inc.php">Log out</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -59,12 +63,6 @@ if (!isset($_SESSION['username'])) {
 
     <!-- List view with  view button -->
     <form action="executive_pass_details_view_page.php" method="GET">
-        <?php
-        $service_no = $_SESSION['service_no'];
-        $data = $pdo->query("SELECT * FROM pass WHERE (state=0 OR state=1) AND service_no=$service_no");
-
-
-        ?>
 
         <table class="table">
             <thead>
@@ -76,22 +74,26 @@ if (!isset($_SESSION['username'])) {
                 </tr>
             </thead>
             <tbody>
-                <?php while ($rows = $data->fetch(PDO::FETCH_ASSOC)) : ?>
+                <?php
+                $index = 0;
+                while ($index<$details['service_passes_count']) :
+                    $pass = $details['service_passes'][$index];
+                    $index++;
+                ?>
                     <tr>
-                        <th scope="row"><?php echo $rows["pass_no"]; ?></th>
+                        <th scope="row"><?= $pass->getPassNo() ?></th>
 
                         <?php
-                        $p_no = $rows["passenger_no"];
-                        $passenger_query = $pdo->query("SELECT passenger_no, first_name, last_name FROM passenger WHERE passenger_no='{$p_no}' ");
-                        $names = $passenger_query->fetch(PDO::FETCH_ASSOC);
+                        //Must do followings using passenger tracker
+                        $name = $executive_view->getPassengerName($pass->getPassengerNo());
                         ?>
 
-                        <td><?php echo $names["first_name"] . " " . $names["last_name"]; ?></td>
+                        <td><?= $name ?></td>
 
                         <td>
                             <!-- <input type="submit" name="submit" value="View" /> -->
 
-                            <a href="executive_pass_details_view_page.php?pass_no=<?php echo $rows['pass_no']; ?>" class="btn btn-info"> View </a>
+                            <a href="executive_pass_details_view_page.php?pass_no=<?= $pass->getPassNo() ?>" class="btn btn-info"> View </a>
                         </td>
                     </tr>
                 <?php endwhile; ?>

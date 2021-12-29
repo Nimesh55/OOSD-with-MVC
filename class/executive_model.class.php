@@ -56,5 +56,23 @@ class Executive_Model extends Dbh
         $count = $stmt->fetchColumn();
         return $count;
     }
+
+    // Load first name and last name of passenger from given passenger_no
+    // This must be done using Passenger object
+    public function getPassengerName($passenger_no){
+
+        $name = null;
+        $query = "SELECT first_name,last_name FROM passenger WHERE passenger_no={$passenger_no}";
+
+        $stmt = $this->connect()->prepare($query);
+
+        if ($stmt->execute()) {
+            $passengerDetails = $stmt->fetch(PDO::FETCH_ASSOC);
+            $name = $passengerDetails['first_name'] . " " . $passengerDetails['last_name'];
+        }
+        return $name;
+    }
+
+
 }
 ?>

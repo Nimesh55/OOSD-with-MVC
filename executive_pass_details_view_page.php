@@ -1,59 +1,30 @@
 <?php
-require 'pdo.php';
+
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
-if (!isset($_SESSION['username'])) {
+if(!isset($_SESSION['user_Id'])){
     header("Location: login.php");
     return;
 }
-
-if (isset($_GET['pass_no'])) {
-    $pass_no = $_GET['pass_no'];
+if (!isset($_GET['pass_no'])) {
+    header("Location: executive_home.php");
+    return;
 }
 
-$data_pass = $pdo->query("SELECT * FROM pass WHERE pass_no='{$pass_no}' ");
-$details_pass = $data_pass->fetch(PDO::FETCH_ASSOC);
+$pass_no = $_GET['pass_no'];
 
-$passenger_no = $details_pass["passenger_no"];
-$route = $details_pass["bus_route"];
-$reason = $details_pass["reason"];
-$start = $details_pass["start_date"];
-$end = $details_pass["end_date"];
-$status = $details_pass["state"];
+$executive_view = new Executive_View();
+$details = $executive_view->getPassDetailsViewDetails($pass_no);
 
-$data_passenger = $pdo->query("SELECT * FROM passenger WHERE passenger_no ='{$passenger_no}' ");
-$details_passenger = $data_passenger->fetch(PDO::FETCH_ASSOC);
-
-$requested_by = $details_passenger["first_name"] . " " . $details_passenger["last_name"];
-?>
-
-<?php
-
-if (isset($_GET['pass_no']) && isset($_GET['action']) && $_GET['action']=='accept') {
-    $pass_no = $_GET['pass_no'];
-    $sql = "UPDATE pass SET state = :state WHERE pass_no = :pass_no";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(array(
-        ':state' => 1,
-        ':pass_no' => $pass_no
-    ));
-
-    header("Location: executive_pass_details.php");
-} 
-
-if (isset($_GET['pass_no']) && isset($_GET['action']) && $_GET['action']=='decline') {
-    $pass_no = $_GET['pass_no'];
-    $sql = "UPDATE pass SET state = :state WHERE pass_no = :pass_no";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(array(
-        ':state' => 3,
-        ':pass_no' => $pass_no
-    ));
-
-    header("Location: executive_pass_details.php");
+if(isset($_GET['action'])){
+    $executive_controller = new Executive_Controller();
+    if($_GET['action']=='accept'){
+        $executive_controller->approvePass($pass_no);
+    }else{
+        $executive_controller->declinePass($pass_no);
+    }
 }
-
-
 
 ?>
 
@@ -92,10 +63,10 @@ if (isset($_GET['pass_no']) && isset($_GET['action']) && $_GET['action']=='decli
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['username'] ?> <span class="caret"></span></a>
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?= $details['name'] ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="executive_edit_profile.php">Edit profile</a></li>
-                                    <li><a href="logout.php">Log out</a></li>
+                                    <li><a href="edit_profile.php">Edit profile</a></li>
+                                    <li><a href="includes/logout.inc.php">Log out</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -106,7 +77,7 @@ if (isset($_GET['pass_no']) && isset($_GET['action']) && $_GET['action']=='decli
     </div>
 
     <form action="executive_pass_details_view_page.php" method="GET">
-        <input type="hidden" name="pass_no" value="<?php echo $pass_no ?>">
+        <input type="hidden" name="pass_no" value="<?= $_GET['pass_no'] ?>">
         <!-- Details of A single pass -->
         <div class="container mt-3">
 
@@ -117,7 +88,12 @@ if (isset($_GET['pass_no']) && isset($_GET['action']) && $_GET['action']=='decli
                         <p>Requested by</p>
                     </div>
                     <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?php echo $requested_by ?></p>
+                        <p>:
+                            <?php
+                            $name = $executive_view->getPassengerName($details['passenger_no']);
+                            echo $name;
+                            ?>
+                        </p>
                     </div>
                     <div class="col-sm-3 p-3"></div>
                 </div>
@@ -128,7 +104,7 @@ if (isset($_GET['pass_no']) && isset($_GET['action']) && $_GET['action']=='decli
                         <p>Route</p>
                     </div>
                     <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?php echo $route ?></p>
+                        <p>: <?= $details['route'] ?></p>
                     </div>
                     <div class="col-sm-3 p-3"></div>
                 </div>
@@ -139,7 +115,7 @@ if (isset($_GET['pass_no']) && isset($_GET['action']) && $_GET['action']=='decli
                         <p>Time Slot</p>
                     </div>
                     <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?php echo $start . " to " . $end ?></p>
+                        <p>: <?= $details['time_slot'] ?></p>
                     </div>
                     <div class="col-sm-3 p-3"></div>
                 </div>
@@ -150,7 +126,7 @@ if (isset($_GET['pass_no']) && isset($_GET['action']) && $_GET['action']=='decli
                         <p>Reason</p>
                     </div>
                     <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?php echo $reason ?></p>
+                        <p>: <?= $details['reason'] ?></p>
                     </div>
                     <div class="col-sm-3 p-3"></div>
                 </div>
@@ -161,17 +137,7 @@ if (isset($_GET['pass_no']) && isset($_GET['action']) && $_GET['action']=='decli
                         <p>Status</p>
                     </div>
                     <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?php
-                                if ($status == 0) {
-                                    echo "Pending";
-                                } elseif ($status == 1) {
-                                    echo "Accepted-1";
-                                } elseif ($status == 2) {
-                                    echo "Accepted-2";
-                                } elseif ($status == 3) {
-                                    echo "Declined";
-                                }
-                                ?>
+                        <p>: <?= $details['status']?>
                         </p>
                     </div>
                     <div class="col-sm-3 p-3"></div>
@@ -184,10 +150,10 @@ if (isset($_GET['pass_no']) && isset($_GET['action']) && $_GET['action']=='decli
                 <div class="row">
                     <div class="col-sm-3 p-3"></div>
                     <div class="col-sm-3 p-3">
-                        <a href="executive_pass_details_view_page.php?pass_no=<?php echo $pass_no; ?>&action=accept" class="btn btn-info"> Accept </a>
+                        <a href="executive_pass_details_view_page.php?pass_no=<?= $_GET['pass_no'] ?>&action=accept" class="btn btn-info"> Accept </a>
                     </div>
                     <div class="col-sm-3 p-3">
-                        <a href="executive_pass_details_view_page.php?pass_no=<?php echo $pass_no; ?>&action=decline" class="btn btn-info"> Decline </a>
+                        <a href="executive_pass_details_view_page.php?pass_no=<?= $_GET['pass_no'] ?>&action=decline" class="btn btn-info"> Decline </a>
                     </div>
                     <div class="col-sm-3 p-3"></div>
                 </div>
