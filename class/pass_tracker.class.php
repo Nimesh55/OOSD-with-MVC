@@ -73,4 +73,9 @@ class Pass_Tracker extends Tracker{
         return $passes_arr;
     }
 
+    public function getPassOwner($pass_no){
+        
+        return "pass owner name/username";
+    }
+
 }

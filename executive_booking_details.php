@@ -1,9 +1,7 @@
 <?php
-
-require_once "pdo.php";
 session_start();
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['user_Id'])) {
     header("Location: login.php");
     return;
 }
@@ -44,7 +42,7 @@ if (!isset($_SESSION['username'])) {
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['username'] ?> <span class="caret"></span></a>
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['exec_name'] ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="executive_edit_profile.php">Edit profile</a></li>
                                     <li><a href="logout.php">Log out</a></li>
@@ -71,14 +69,13 @@ if (!isset($_SESSION['username'])) {
             <tbody>
                 <?php
 
-                    $stmt = $pdo->query("SELECT * FROM Booking JOIN Executive ON Executive.service_no = Booking.service_no
-                    WHERE Booking.service_no = {$_SESSION['service_no']} AND (Booking.state = 0 OR Booking.state = 1) ");
-                    $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                    $bookings = ["x","y","z"]; //booking rows here from DB via booking tracker
 
                     foreach($bookings as $booking){
                         echo '<tr>';
-                        echo '<th scope="row">Booking '.$booking['booking_no'].'</th>';
-                        echo '<td><a href="executive_booking_details_view.php?booking_no='.$booking['booking_no'].'" class="btn btn-info"> View </a></td>';
+                        echo '<th scope="row">Booking '.'booking_no'.'</th>';
+                        echo '<td><a href="executive_booking_details_view.php?booking_no='.'booking_no'.'" class="btn btn-info"> View </a></td>';
                         echo '</tr>';
                     }
                 ?>

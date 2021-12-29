@@ -1,42 +1,15 @@
 <?php
-
-require_once('includes/dbh.inc.php');
 session_start();
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['user_Id'])) {
     header("Location: login.php");
     return;
 }
 
 
-$query_1 = "SELECT * FROM service WHERE service_no={$_SESSION['service_no']} AND state!=3  LIMIT 1";
-$result_1 = mysqli_query($conn, $query_1);
-$record_1 = mysqli_fetch_assoc($result_1);
-$state = $record_1['state'];
-$state_str='';
-if ($state==0) {
-    $state_str='Non-Essential';
-}
-elseif ($state==1) {
-    $state_str = 'Pending';
-}
-elseif ($state==2) {
-    $state_str = 'Essential';
-}
 
-if (isset($_POST['request'])) {
-    $query = "UPDATE service SET state=1 where service_no={$_SESSION['service_no']}";
-    $result = mysqli_query($conn, $query);
-    header("location:executive_essential_service_details.php");
-    
-    return;
-}
-if (isset($_POST['remove'])) {
-    $query = "UPDATE service SET state=0 where service_no={$_SESSION['service_no']}";
-    $result = mysqli_query($conn, $query);
-    header("location:executive_essential_service_details.php");
-}
-
+$state_str = "x";
+$state = 1;
 ?>
 
 <!DOCTYPE html>
@@ -74,7 +47,7 @@ if (isset($_POST['remove'])) {
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['username'] ?> <span class="caret"></span></a>
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['exec_name'] ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="executive_edit_profile.php">Edit profile</a></li>
                                     <li><a href="logout.php">Log out</a></li>
@@ -88,7 +61,7 @@ if (isset($_POST['remove'])) {
     </div>
 
     <div class="container mt-3" style="float:left;">
-        <h1> <?= $_SESSION['username'] ?> </h1>
+        <h1> <?= $_SESSION['service_name'] ?> </h1>
         <div style=" margin-top:100px;">
             <div class="row">
                 <div class="col-sm-3 p-3"></div>
@@ -138,4 +111,3 @@ if (isset($_POST['remove'])) {
 </body>
 
 </html>
-<?php mysqli_close($conn); ?>

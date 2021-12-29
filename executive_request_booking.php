@@ -1,51 +1,12 @@
 <?php
-
-    require_once "pdo.php";
     session_start();
 
-    if (!isset($_SESSION['username'])) {
+    if (!isset($_SESSION['user_Id'])) {
         header("Location: login.php");
         return;
     }
 
-    if(isset($_POST['request'])){
-        if(isset($_POST['start_date']) && isset($_POST['end_date']) && isset($_POST['start_dist']) && isset($_POST['end_dist'])){
 
-            if (!$_POST['start_date'] || !$_POST['end_date'] || !is_numeric($_POST['start_dist']) || !is_numeric($_POST['end_dist'])){
-                echo 'Not working';
-                echo $_POST['end_date'];
-                echo $_POST['start_date'];
-                $_SESSION['error'] = "Fill all fields and try again";
-                header("Location: executive_request_booking.php");
-                return;
-
-            }
-
-            $sql = "INSERT INTO Booking(service_no, start_date, end_date, pickup_district, destination_district
-                    ) VALUES ( :serv_no, :str_date, :end_date, :pick_dist, :dest_dist)";
-            $stmt = $pdo->prepare($sql);
-            $stmt -> execute(array(
-                ':serv_no' => $_SESSION['service_no'],
-                ':str_date' => $_POST['start_date'],
-                ':end_date' => $_POST['end_date'],
-                ':pick_dist' => $_POST['start_dist'],
-                ':dest_dist' => $_POST['end_dist']
-            ));
-            $_SESSION['error'] = "";
-            header("Location: executive_booking_details.php");
-            return;      
-        }else{
-            $_SESSION['error'] = "Fill all fields and try again";
-            header("Location: executive_request_booking.php");
-            return; 
-        }
-    }
-
-    if(isset($_POST['cancel'])){
-        $_SESSION['error'] = "";
-        header("Location: executive_booking_details.php");
-        return;
-    }
 
 ?>
 
@@ -89,7 +50,7 @@
                             echo '<select name="start_dist" id="district" class="form-control">';
                             $stmt = $pdo->query("SELECT * FROM district ");
 
-                            $districts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            $districts = ["x","y"];
                             echo "<option>Select Pickup</option>";
                             foreach ($districts as $district) {
                                 echo "<option value='" . $district['district_no'] . "' >" . $district['name'] . "</option>";
@@ -106,9 +67,9 @@
                         <?php
                             echo '<div class="col-sm-10">';
                             echo '<select name="end_dist" id="district" class="form-control">';
-                            $stmt = $pdo->query("SELECT * FROM district ");
 
-                            $districts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                            $districts = ["x","y"];
                             echo "<option>Select Destination</option>";
                             foreach ($districts as $district) {
                                 echo "<option value='" . $district['district_no'] . "' >" . $district['name'] . "</option>";

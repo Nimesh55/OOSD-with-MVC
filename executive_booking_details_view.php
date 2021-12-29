@@ -1,6 +1,4 @@
 <?php
-
-require_once "pdo.php";
 session_start();
 
 if(!isset($_SESSION['username'])){
@@ -8,11 +6,6 @@ if(!isset($_SESSION['username'])){
     return;
 }
 
-$stmt = $pdo->query("SELECT * FROM Booking  WHERE booking_no = {$_GET['booking_no']}");
-$booking = $stmt->fetch(PDO::FETCH_ASSOC);
-
-$stmt1 = $pdo->query("SELECT name FROM District WHERE district_no = {$booking['pickup_district']} ");
-$stmt2 = $pdo->query("SELECT name FROM District WHERE district_no = {$booking['destination_district']} ");
 
 $booing_name = "Booking ".$booking['booking_no'];
 $pick = $stmt1->fetchColumn();

@@ -22,7 +22,8 @@ class Executive_View extends Executive_Model{
             "passenger_count" => $this->getPassengerCountFromService($this->executiveobj->getServiceNo()),
             "requested_passes_count" => $this->getRequestedPassesCount($this->executiveobj->getServiceNo()),
             "approved_passes_count" => $this->getApprovedPassesCount($this->executiveobj->getServiceNo()),
-            "service_name"=>$this->getServiceName($this->executiveobj->getServiceNo()));
+            "service_name"=>$this->getServiceName($this->executiveobj->getServiceNo()),
+            "service_number"=>$this->executiveobj->getServiceNo());
         return $details;
 
     }
@@ -59,6 +60,11 @@ class Executive_View extends Executive_Model{
         return $details;
 
     }
-}
 
-?>
+    public function getPassesDetails($service_no)
+    { // fix this with proper details
+        $details= $this->getPasses($service_no);
+        return $details;
+
+    }
+}

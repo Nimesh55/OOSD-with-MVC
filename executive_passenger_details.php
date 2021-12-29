@@ -1,9 +1,7 @@
 <?php
-
-require_once "pdo.php";
 session_start();
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['user_Id'])) {
     header("Location: login.php");
     return;
 }
@@ -45,7 +43,7 @@ if (!isset($_SESSION['username'])) {
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['username'] ?> <span class="caret"></span></a>
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['exec_name'] ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                 <li><a href="executive_edit_profile.php">Edit profile</a></li>
                                     <li><a href="logout.php">Log out</a></li>
@@ -70,18 +68,13 @@ if (!isset($_SESSION['username'])) {
             <div class="col-sm-8">
                 <ul class="list-group action-list-group">
                     <?php
-                        $stmt = $pdo->query("SELECT * FROM Users JOIN Executive ON Executive.executive_no = Users.account_no
-                                            WHERE Users.user_id = {$_SESSION['executive_no']}");
-                        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                        $serv_no = $row['service_no'];
-
-                        $stmt = $pdo->query("SELECT * FROM Users JOIN Passenger ON Passenger.passenger_no = Users.account_no
-                                            WHERE Passenger.service_no = {$serv_no} AND Users.account_type=0 AND (Passenger.state = 1 OR Passenger.state = 2) ");
-                        $passengers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        $row = 0;
+                        $serv_no = "unavailable"; //fix these after passenger tracker
+                        $passengers = ["y","x"];
                         foreach($passengers as $passenger){
                             echo '<li class="list-group-item">';
-                            echo '<p '.'style="display: inline-block"'.' >'.$passenger['first_name'].' '.$passenger['last_name'].'</p>';
-                            echo '<a class="btn btn-sm btn-default" href="executive_passenger_details_view_page.php?passenger_no='.$passenger['passenger_no'].'" '.'style="float: right"'.'>View</a>';
+                            echo '<p '.'style="display: inline-block"'.' >'."firstnamehere".' '."lastnamehere".'</p>';
+                            echo '<a class="btn btn-sm btn-default" href="executive_passenger_details_view_page.php?passenger_no='."passenger number".'" '.'style="float: right"'.'>View</a>';
                             echo '</li>';
                         }
                     ?>
