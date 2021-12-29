@@ -54,6 +54,5 @@
 			$this->setRecord($_SESSION['user_Id']);
 			unset($_SESSION['instance']);
 		}
-
 	}
  ?>

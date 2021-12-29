@@ -20,7 +20,6 @@
     $row['telephone']=$_POST['telephone'];
     $row['email']=$_POST['email'];
     $error_str=$_POST['error_str'];
-
   }
   $username = $row['first_name']." ".$row['last_name'];
 

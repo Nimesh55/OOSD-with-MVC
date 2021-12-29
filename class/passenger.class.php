@@ -26,6 +26,17 @@
     public function getEmail(){return $this->email;}
     public function getState(){return $this->state;}
 
+    public function setUserId($user_id){$this->user_id=$user_id;}
+    public function setPassengerNo($passenger_no){$this->passenger_no=$passenger_no;}
+    public function setFirstName($first_name){$this->first_name=$first_name;}
+    public function setLastName($last_name){$this->last_name=$last_name;}
+    public function setAddress($address){$this->address=$address;}
+    public function setTelephone($telephone){$this->telephone=$telephone;}
+    public function setServiceNo($service_no){$this->service_no=$service_no;}
+    public function setStaffId($staff_id){$this->staff_id=$staff_id;}
+    public function setEmail($email){$this->email=$email;}
+    public function setState($state){$this->state=$state;}
+
     private function __construct($user_id)
     {
       $this->user_id=$user_id;
