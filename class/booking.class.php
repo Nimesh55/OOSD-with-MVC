@@ -12,50 +12,58 @@ class Booking{
     private $state;
     private $booked_conductor_no;
 
-    function __construct($booking_no){
+    function __construct(){
 
-        $this->booking_no=$booking_no;
-        $booking_model = new Booking_Model($booking_no);
-        $row = $booking_model->getRecord();
-
-        $this->service_no = $row['service_no'];
-        $this->start_date = $row['start_date'];
-        $this->end_date = $row['end_date'];
-        $this->pickup_district = $row['pickup_district'];
-        $this->destination_district = $row['destination_district'];
-        $this->state = $row['state'];
-        $this->booked_conductor_no = $row['booked_conductor_no'];
     }
+
+    public function setValues($booking_no, $service_no, $start_date, $end_date, $pickup_district,
+                              $destination_district, $state, $booked_conductor_no){
+        $this->booking_no = $booking_no;
+        $this->service_no = $service_no;
+        $this->start_date = $start_date;
+        $this->end_date = $end_date;
+        $this->pickup_district = $pickup_district;
+        $this->destination_district = $destination_district;
+        $this->state = $state;
+        $this->booked_conductor_no = $booked_conductor_no;
+    }
+
 
     public function getBookingNo()
     {
         return $this->booking_no;
     }
 
+
     public function getServiceNo()
     {
         return $this->service_no;
     }
+
 
     public function getStartDate()
     {
         return $this->start_date;
     }
 
+
     public function getEndDate()
     {
         return $this->end_date;
     }
+
 
     public function getPickupDistrict()
     {
         return $this->pickup_district;
     }
 
+
     public function getDestinationDistrict()
     {
         return $this->destination_district;
     }
+
 
     public function getState()
     {
@@ -66,5 +74,7 @@ class Booking{
     {
         return $this->booked_conductor_no;
     }
+
+
 
 }
