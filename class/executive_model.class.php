@@ -57,6 +57,7 @@ class Executive_Model extends Dbh
         return $count;
     }
 
+<<<<<<< Updated upstream
     // Load first name and last name of passenger from given passenger_no
     // This must be done using Passenger object
     public function getPassengerName($passenger_no){
