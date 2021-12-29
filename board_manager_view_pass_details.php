@@ -11,13 +11,15 @@ if(!isset($_GET['pass_no'])){
 $pass_no = $_GET['pass_no'];
 
 $board_manager_view = new Board_Manager_View();
-$details = $board_manager_view->pendingPassesViewDetails($pass_no);
+$details = $board_manager_view->viewPassDetails($pass_no);
 
 $board_manager_controller = new Board_Manager_Controller();
 if(isset($_POST['accept'])){
     $board_manager_controller->approvePass($pass_no);
 }elseif (isset($_POST['decline'])){
-$board_manager_controller->declinePass($pass_no);
+    $board_manager_controller->declinePass($pass_no);
+}elseif (isset($_POST['remove'])){
+    $board_manager_controller->removePass($pass_no);
 }
 
 ?>
@@ -99,11 +101,15 @@ $board_manager_controller->declinePass($pass_no);
         echo "<div class=\"col-sm-3 p-3\"></div>";
         echo "<div class=\"col-sm-3 p-3\"></div>";
         echo "<div class=\"col-sm-3 p-3\">";
-        echo "<form class=\"form-horizontal\" action=\"board_manager_pending_passes_accept_and_decline.php?pass_no={$pass_no}\" style=\"width: 600px;\" method=\"POST\">";
+        echo "<form class=\"form-horizontal\" action=\"board_manager_view_pass_details.php?pass_no={$pass_no}\" style=\"width: 600px;\" method=\"POST\">";
         echo "<div class=\"form-group\">";
         echo "<div class=\"col-sm-offset-2 col-sm-10\">";
-        echo "<input type=\"submit\" class=\"btn btn-default\" style=\"margin-right:15px;\" value=\"Accept\" name=\"accept\">";
-        echo "<input type=\"submit\" class=\"btn btn-default\" value=\"Decline\" name=\"decline\">";
+        if($details['state']==1){
+            echo "<input type=\"submit\" class=\"btn btn-default\" style=\"margin-right:15px;\" value=\"Accept\" name=\"accept\">";
+            echo "<input type=\"submit\" class=\"btn btn-default\" value=\"Decline\" name=\"decline\">";
+        }else{
+            echo "<input type=\"submit\" class=\"btn btn-default\" style=\"margin-right:15px;\" value=\"Remove\" name=\"remove\">";
+        }
         echo "</div>";
         echo "</div>";
         echo "</form>";

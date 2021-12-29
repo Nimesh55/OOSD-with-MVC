@@ -28,12 +28,13 @@ class Board_Manager_View extends Board_Manager_Model{
         return $details;
     }
 
-    public function pendingPassesViewDetails($pass_no){
+    public function viewPassDetails($pass_no){
         $pass = $this->pass_tracker->getPass($pass_no);
         $service = $this->essential_service_tracker->createService($pass->getServiceNo());
         //Modify this after create passenger tracker
         $details=array(
             "name" => $this->board_manager->getName(),
+            "state" => $pass->getState(),
             "passenger_email"=> $this->getPassengerEmail($pass->getPassengerNo()),
             "passenger_name"=> $this->getPassengerName($pass->getPassengerNo()),
             "service_name" => $service->getName(),

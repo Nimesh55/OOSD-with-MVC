@@ -91,7 +91,7 @@ $details = $board_manager_view->getApprovedPassesDetails();
                 if($name){
                     echo "<li class=\"list-group-item\">";
                     echo "{$name} ";
-                    echo "<a class=\"btn btn-sm btn-default\" href=\"board_manager_pending_passes_view_and_delete.php?pass_no={$pass->getPassNo()}\">View</a>";
+                    echo "<a class=\"btn btn-sm btn-default\" href=\"board_manager_view_pass_details.php?pass_no={$pass->getPassNo()}\">View</a>";
                     echo "</li>";
                 }
             }

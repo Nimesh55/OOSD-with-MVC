@@ -21,6 +21,11 @@ class Board_Manager_Controller extends Board_Manager_Model{
         $this->pass_tracker->declinePass($pass_no);
         header("Location: board_manager_pending_passes.php");
     }
+
+    public function removePass($pass_no){
+        $this->pass_tracker->declinePass($pass_no);
+        header("Location: board_manager_pass_details.php");
+    }
     ////////////////////////////////////////////////////////////////////////////////////////
 
 }
