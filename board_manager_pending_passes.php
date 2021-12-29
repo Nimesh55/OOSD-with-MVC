@@ -88,12 +88,11 @@ $details = $board_manager_view->getPendingPassesDetails();
         <?php
         $pendingPasses = $details['pendingPassesArray'];
         foreach($pendingPasses as $pass) {
-//        for ($i = 0; $i < $details['pendingPassesCount']; $i++) {
             $name = $board_manager_view->getPassengerName($pass->getPassengerNo());
             if($name){
                 echo "<li class=\"list-group-item\">";
                 echo "{$name} ";
-                echo "<a class=\"btn btn-sm btn-default\" href=\"board_manager_pending_passes_view_and_delete.php?pass_no={$pass->getPassNo()}\">View</a>";
+                echo "<a class=\"btn btn-sm btn-default\" href=\"board_manager_pending_passes_accept_and_decline.php?pass_no={$pass->getPassNo()}\">View</a>";
                 echo "</li>";
             }
         }

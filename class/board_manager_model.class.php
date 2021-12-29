@@ -49,4 +49,19 @@ class Board_Manager_Model extends Dbh
         return $district_list;
     }
 
+    //Remove this after passenger class created
+    public function getPassengerEmail($passenger_no){
+
+        $email = null;
+        $query = "SELECT email FROM passenger WHERE passenger_no={$passenger_no}";
+
+        $stmt = $this->connect()->prepare($query);
+
+        if ($stmt->execute()) {
+            $passengerDetails = $stmt->fetch(PDO::FETCH_ASSOC);
+            $email = $passengerDetails['email'];
+        }
+        return $email;
+    }
+
 }

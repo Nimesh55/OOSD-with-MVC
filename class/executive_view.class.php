@@ -37,15 +37,7 @@ class Executive_View extends Executive_Model{
 
     public function getPassDetailsViewDetails($pass_no){
         $pass = $this->pass_tracker->getPass($pass_no);
-        if ($pass->getState() == 0) {
-            $status = "Pending";
-        } elseif ($pass->getState() == 1) {
-            $status = "Accepted-1";
-        } elseif ($pass->getState() == 2) {
-            $status = "Accepted-2";
-        } elseif ($pass->getState() == 3) {
-            $status = "Declined";
-        }
+        $status = $this->executivectrl->getPassStatus($pass->getState());
         $details=array(
             "name"=> $this->executiveobj->getFirstName()." ".$this->executiveobj->getLastName(),
             "passenger_no" => $pass->getPassengerNo(),

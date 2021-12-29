@@ -60,6 +60,19 @@ class Executive_Controller extends Executive_Model
         header("Location: ../executive_pass_details.php");
     }
 
+    public function getPassStatus($state){
+        if ($state == 0) {
+            $status = "Pending";
+        } elseif ($state == 1) {
+            $status = "Accepted-1";
+        } elseif ($state == 2) {
+            $status = "Accepted-2";
+        } else {
+            $status = "Declined";
+        }
+        return $status;
+    }
+
 }
 
 ?>

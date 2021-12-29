@@ -3,79 +3,21 @@
 require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
-if (!isset($_SESSION['user_Id'])) {
-    header("Location: login.php");
+if(!isset($_GET['pass_no'])){
+    header("Location: board_manager_pending_passes.php");
     return;
 }
 
-$email = '';
-$name = '';
-$company = '';
-$date = '';
-$reason = '';
+$pass_no = $_GET['pass_no'];
 
-//filter the record from the pass table
-if (isset($_GET['pass_no'])) {
-    $query = "SELECT * FROM pass WHERE pass_no={$_GET['pass_no']}";
-    $result = mysqli_query($conn, $query);
+$board_manager_view = new Board_Manager_View();
+$details = $board_manager_view->pendingPassesViewDetails($pass_no);
 
-    
-
-    if ($result) {
-        $record = mysqli_fetch_assoc($result);
-
-
-        $date = "{$record['start_date']} to {$record['end_date']}";
-        $reason = $record['reason'];
-
-
-
-        //get details from passenger table such as email, name, company
-        $query_2 = "SELECT first_name,last_name,email FROM passenger WHERE passenger_no={$record['passenger_no']}";
-        $result_2 = mysqli_query($conn, $query_2);
-        if ($result_2) {
-            $record_2 = mysqli_fetch_assoc($result_2);
-            $email = $record_2['email'];
-            $name = $record_2['first_name'] . " " . $record_2['last_name'];
-        } else {
-            echo "query failed";
-        }
-
-        //get data from service table such as name
-        $query_3 = "SELECT name FROM service WHERE service_no={$record['service_no']}";
-        $result_3 = mysqli_query($conn, $query_3);
-        if ($result_3) {
-            $record_3 = mysqli_fetch_assoc($result_3);
-            $company = $record_3['name'];
-        } else {
-            echo "query failed";
-        }
-    } else {
-        echo "query failed";
-    }
-}
-
-//request accept
-if (isset($_POST['accept'])) {
-    // echo "Accept";
-    $query = "UPDATE pass SET state=2 WHERE pass_no={$_GET['pass_no']}";
-    $result = mysqli_query($conn, $query);
-    if ($result) {
-        echo mysqli_affected_rows($connection) . " Records updated.";
-    } else {
-        echo "Database query failed.";
-    }
-    header("location:board_manager_pending_passes.php");
-}
-if (isset($_POST['decline'])) {
-    $query = "UPDATE pass SET state=4 WHERE pass_no={$_GET['pass_no']}";
-    $result = mysqli_query($conn, $query);
-    if ($result) {
-        echo mysqli_affected_rows($connection) . " Records updated.";
-    } else {
-        echo "Database query failed.";
-    }
-    header("location:board_manager_pending_passes.php");
+$board_manager_controller = new Board_Manager_Controller();
+if(isset($_POST['accept'])){
+    $board_manager_controller->approvePass($pass_no);
+}elseif (isset($_POST['decline'])){
+$board_manager_controller->declinePass($pass_no);
 }
 
 ?>
@@ -138,11 +80,11 @@ if (isset($_POST['decline'])) {
         </thead>
         <tbody>
             <tr>
-                <th scope="row"><?php echo $email ?></th>
-                <td><?= $name ?></td>
-                <td><?= $company ?></td>
-                <td><?= $date ?></td>
-                <td><?= $reason ?></td>
+                <th scope="row"><?= $details['passenger_email'] ?></th>
+                <td><?= $details['passenger_name'] ?></td>
+                <td><?= $details['service_name'] ?></td>
+                <td><?= $details['time_slot'] ?></td>
+                <td><?= $details['reason'] ?></td>
             </tr>
         </tbody>
     </table>
@@ -157,7 +99,7 @@ if (isset($_POST['decline'])) {
         echo "<div class=\"col-sm-3 p-3\"></div>";
         echo "<div class=\"col-sm-3 p-3\"></div>";
         echo "<div class=\"col-sm-3 p-3\">";
-        echo "<form class=\"form-horizontal\" action=\"board_manager_pending_passes_view_and_delete.php?pass_no={$_GET['pass_no']}\" style=\"width: 600px;\" method=\"POST\">";
+        echo "<form class=\"form-horizontal\" action=\"board_manager_pending_passes_accept_and_decline.php?pass_no={$pass_no}\" style=\"width: 600px;\" method=\"POST\">";
         echo "<div class=\"form-group\">";
         echo "<div class=\"col-sm-offset-2 col-sm-10\">";
         echo "<input type=\"submit\" class=\"btn btn-default\" style=\"margin-right:15px;\" value=\"Accept\" name=\"accept\">";

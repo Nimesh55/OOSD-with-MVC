@@ -56,12 +56,9 @@ class Pass_Model extends Dbh
 
     public function setStateDeclined($pass_no)
     {
-        header("Location: ../login.php");
         $sql = "UPDATE pass SET state=4 where pass_no={$pass_no}";
         $stmt = $this->connect()->prepare($sql);
-        if(!$stmt->execute()){
-            header("Location: ../login.php");
-        }
+        $stmt->execute();
     }
 
     public function getCurrentPassesCount(){
@@ -103,9 +100,9 @@ class Pass_Model extends Dbh
                 for($i=0; $i<$record_count; $i++){
                     $record = $pending_passes[$i];
                     if($i < $record_count-1){
-                        $query .= " passenger_no={$record['user_no']} OR";
+                        $query .= " passenger_no={$record['account_no']} OR";
                     } else {
-                        $query .= " passenger_no={$record['user_no']})";
+                        $query .= " passenger_no={$record['account_no']})";
                     }
                 }
                 return $query;
@@ -141,9 +138,9 @@ class Pass_Model extends Dbh
                 for($i=0; $i<$record_count; $i++){
                     $record = $pending_passes[$i];
                     if($i < $record_count-1){
-                        $query .= " passenger_no={$record['user_no']} OR";
+                        $query .= " passenger_no={$record['account_no']} OR";
                     } else {
-                        $query .= " passenger_no={$record['user_no']})";
+                        $query .= " passenger_no={$record['account_no']})";
                     }
                 }
                 return $query;
