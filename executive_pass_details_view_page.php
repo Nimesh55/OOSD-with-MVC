@@ -7,24 +7,24 @@ if(!isset($_SESSION['user_Id'])){
     header("Location: login.php");
     return;
 }
-if (!isset($_GET['pass_no'])) {
+if (!isset($_POST['pass_no'])) {
     header("Location: executive_home.php");
     return;
 }
 
-$pass_no = $_GET['pass_no'];
+// $pass_no = $_GET['pass_no'];
 
-$executive_view = new Executive_View();
-$details = $executive_view->getPassDetailsViewDetails($pass_no);
+// $executive_view = new Executive_View();
+// $details = $executive_view->getPassDetailsViewDetails($pass_no);
 
-if(isset($_GET['action'])){
-    $executive_controller = new Executive_Controller();
-    if($_GET['action']=='accept'){
-        $executive_controller->approvePass($pass_no);
-    }else{
-        $executive_controller->declinePass($pass_no);
-    }
-}
+// if(isset($_GET['action'])){
+//     $executive_controller = new Executive_Controller();
+//     if($_GET['action']=='accept'){
+//         $executive_controller->approvePass($pass_no);
+//     }else{
+//         $executive_controller->declinePass($pass_no);
+//     }
+// }
 
 ?>
 
@@ -63,7 +63,7 @@ if(isset($_GET['action'])){
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?= $details['name'] ?> <span class="caret"></span></a>
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?= $_SESSION['exec_name'] ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="edit_profile.php">Edit profile</a></li>
                                     <li><a href="includes/logout.inc.php">Log out</a></li>
@@ -150,10 +150,10 @@ if(isset($_GET['action'])){
                 <div class="row">
                     <div class="col-sm-3 p-3"></div>
                     <div class="col-sm-3 p-3">
-                        <a href="executive_pass_details_view_page.php?pass_no=<?= $_GET['pass_no'] ?>&action=accept" class="btn btn-info"> Accept </a>
+                        <a href="#" class="btn btn-info"> Accept </a>
                     </div>
                     <div class="col-sm-3 p-3">
-                        <a href="executive_pass_details_view_page.php?pass_no=<?= $_GET['pass_no'] ?>&action=decline" class="btn btn-info"> Decline </a>
+                        <a href="#" class="btn btn-info"> Decline </a>
                     </div>
                     <div class="col-sm-3 p-3"></div>
                 </div>
