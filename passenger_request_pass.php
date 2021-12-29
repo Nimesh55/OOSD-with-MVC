@@ -1,29 +1,38 @@
 <?php
 
 
-require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
-session_start();
+    require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
+    session_start();
 
-if(!isset($_SESSION['account_no'])){
-    header("Location: login.php");
-    return;
-}
-$state=0;
-$passengerview = new Passenger_View($_SESSION['user_Id']);
-$row = $passengerview->getDetails();
-$row['user_id']=$_SESSION['user_Id'];
+    if(!isset($_SESSION['account_no'])){
+        header("Location: login.php");
+        return;
+    }
+    $state=0;
+    $passengerview = new Passenger_View($_SESSION['user_Id']);
+    $row = $passengerview->getDetails();
+    $row['user_id']=$_SESSION['user_Id'];
 
+    $username = $row['first_name']." ".$row['last_name'];
 
-$username = $row['first_name']." ".$row['last_name'];
+    $reason = "";
+    $start_date = "";
+    $end_date = "";
+    $bus_route ="";
+    if(isset($_GET['reason'])) {
+        $reason = $_GET['reason'];
+        $start_date = $_GET['start_date'];
+        $end_date = $_GET['end_date'];
+        $bus_route = $_GET['bus_route'];
+    }
 
-
-if($row['state'] == '0'){
-    $state = 0;
-}elseif($row['state'] == '1'){
-    $state = 1;
-}else{
-    $state = 2;
-}
+    if($row['state'] == '0'){
+        $state = 0;
+    }elseif($row['state'] == '1'){
+        $state = 1;
+    }else{
+        $state = 2;
+    }
 
 ?>
 <!DOCTYPE html>
@@ -87,36 +96,38 @@ if($row['state'] == '0'){
     </div>
 
     <div class="container heading">
-        <h1>Edit Profile</h1>
+        <h1>Request Pass</h1>
     </div>
     <div class="container">
         <div class="row">
             <div class="col-lg-3 cyan"></div>
             <div class="col-lg-6 pink wrapper">
 
-                <?php
-                if (isset($_POST['error_str']) && strcmp($_POST['error_str'],"Success")!=0) {
 
-                    echo "<div class=\"alert alert-danger\"><strong>".$error_str."</strong></div>";
-                }
-                if(isset($_POST['error_str']) && strcmp($_POST['error_str'],"Success")==0){
-                    echo "<div class=\"alert alert-success\"><strong>"."Successfully Updated!!!"."</strong></div>";
-                }
-                ?>
 
-                <form class="form-horizontal" role="form" action="includes/passenger_edit_profile.inc.php" method="post">
+                <form class="form-horizontal" role="form" action="includes/passenger_request_pass.inc.php" method="post">
+
+                    <?php
+                    if (isset($_GET['error']) && strcmp($_GET['error'],"success")!=0) {
+
+                        echo "<div class=\"alert alert-danger\"><strong>".$_GET['error']."</strong></div>";
+                    }
+                    if(isset($_GET['error']) && strcmp($_GET['error'],"success")==0){
+                        echo "<div class=\"alert alert-success\"><strong>"."Successfully Requested!!!"."</strong></div>";
+                    }
+                    ?>
 
                     <div class="form-group">
                         <label for="reason" class="col-sm-3 control-label">Reason:</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" name="reason" rows="5" id="reason"></textarea>
+                            <textarea class="form-control" name="reason" rows="5" id="reason"><?php echo $reason;?></textarea>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="bus_route" class="col-sm-3 control-label">Bus Route:</label>
                         <div class="col-sm-9">
-                            <input name="bus_route" type="text" class="form-control" id="bus_route" >
+                            <input name="bus_route" type="text" class="form-control" id="bus_route" value="<?php echo $bus_route?>">
                         </div>
                     </div>
 
@@ -128,20 +139,19 @@ if($row['state'] == '0'){
                                 <span class="input-group-addon">
                                     <span aria-hidden="true">From: </span>
                                 </span>
-                                <input type="date" class="form-control" aria-label="from date" placeholder="from">
+                                <input type="date" class="form-control" aria-label="from date" placeholder="from" name="from_date" value="<?php echo $start_date?>">
 
                                 <span class="input-group-addon">
                                     <span aria-hidden="true">To: </span>
                                 </span>
-                                <input type="date" class="form-control" aria-label="to date" placeholder="from">
+                                <input type="date" class="form-control" aria-label="to date" placeholder="to" name="to_date" value="<?php echo $end_date;?>">
                             </div>
                         </div>
                     </div>
                     <br>
                     <div class="btn-group btn-group-lg">
-                        <input type="submit" class="btn btn-primary ctrlbutton" name="cpwd" value="Change Password">
-                        <input type="submit" class="btn btn-primary ctrlbutton" name="save" value="Save">
-                        <input type="submit" class="btn btn-primary ctrlbutton" name="back" value="Back">
+<!--                        <input type="submit" class="btn btn-primary ctrlbutton" name="cpwd" value="Change Password">-->
+                        <input type="submit" class="btn btn-primary ctrlbutton" name="submit" value="Submit">
                     </div>
 
                 </form>

@@ -25,10 +25,25 @@ class Pass_Tracker extends Tracker{
     }
 
     //create a new pass
-    public function createPass($passenger_no, $service_no, $start_date, $end_date, $state, $bus_route, $reason){
-        $pass_no = Pass_Model::getInstance()->addNewPass($passenger_no, $service_no, $start_date, $end_date, $state, $bus_route, $reason);
+    public function createPass($details){
+        $pass_no = Pass_Model::getInstance()->addNewPass(
+            $details['passenger_no'],
+            $details['service_no'],
+            $details['start_date'],
+            $details['end_date'],
+            $details['state'],
+            $details['bus_route'],
+            $details['reason']);
         $pass = new Pass();
-        $pass->setValues($pass_no, $passenger_no, $service_no, $start_date, $end_date, $state, $bus_route, $reason);
+        $pass->setValues(
+            $pass_no,
+            $details['passenger_no'],
+            $details['service_no'],
+            $details['start_date'],
+            $details['end_date'],
+            $details['state'],
+            $details['bus_route'],
+            $details['reason']);
         return $pass;
     }
 

@@ -55,7 +55,7 @@
                         <li><a href="passenger_register_in_company.php">Register in a company</a></li>
                         <?php
                         if($state>1){
-                            echo'<li><a href="test.php">Request pass</a></li>';
+                            echo'<li><a href="passenger_request_pass.php">Request pass</a></li>';
                         }else{
                             echo '<li class="disabled"><a>Request pass</a></li>';
                         }

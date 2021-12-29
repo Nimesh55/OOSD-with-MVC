@@ -10,9 +10,9 @@
 }
 .heading{
   padding:15px 0;
-  text-align: center;
+  /*text-align: center;*/
   font-family: 'Roboto', sans-serif;
-  color: white;
+  /*color:black;*/
 }
 body{
   /*background: #081645 url(../img/login2.jpg);*/
