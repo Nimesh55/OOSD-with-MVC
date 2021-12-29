@@ -54,5 +54,17 @@
 			$this->setRecord($_SESSION['user_Id']);
 			unset($_SESSION['instance']);
 		}
+
+		public function getUserId($passenger_no){
+
+			$stmt = $this->connect()->query("SELECT * FROM users JOIN passenger 
+    							ON Passenger.passenger_no = Users.account_no 
+								WHERE Passenger.passenger_no = $passenger_no");
+			$row = $stmt->fetch();
+			return $row['user_id'];
+
+		}
 	}
+
+
  ?>

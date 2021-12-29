@@ -1,6 +1,6 @@
 <?php
     require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
-    session_start();
+//    session_start();
 
     class Passenger_Tracker
     {
@@ -22,8 +22,14 @@
             return self::$instance;
         }
 
+        public function getPassengerByPassengerNo($passenger_no){
+            $passenger_model = new Passenger_Model();
+            return $this->getPassenger($passenger_model->getUserId($passenger_no));
+        }
+
         public function getPassenger($user_id)
         {
+            unset($_SESSION['instance']);
             $this->passenger = Passenger::getInstance($user_id);
             return $this->passenger;
         }
@@ -96,6 +102,20 @@
 //    'password_repeat'=>'1997922@Test');
 //
 //    echo $passenger_tracker->creatPassenger($details);
+
+//  $passenger_tracker = Passenger_Tracker::getInstance();
+////  $passenger1=$passenger_tracker->getPassenger(00001);
+////  $passenger2=$passenger_tracker->getPassenger(00002);
+////  $passenger3=$passenger_tracker->getPassenger(00003);
+////  $passenger4=$passenger_tracker->getPassenger(00004);
+//  $passenger3=$passenger_tracker->getPassengerByPassengerNo(1);
+//  $passenger4=$passenger_tracker->getPassengerByPassengerNo(2);
+//  echo "<pre>";
+////  print_r($passenger1);
+////  print_r($passenger2);
+//  print_r($passenger3);
+//  print_r($passenger4);
+//  echo "</pre>";
 
 
 
