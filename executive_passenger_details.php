@@ -83,5 +83,4 @@ $passengers = $execObj->getPassengerAll($_SESSION['service_no']);
         </div>
     </div>
 </body>
-<!-- executive_passenger_details_view_page.php -->
 </html>

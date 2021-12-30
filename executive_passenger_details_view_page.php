@@ -1,36 +1,16 @@
 <?php
-
-require_once "pdo.php";
 session_start();
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['user_Id'])) {
     header("Location: login.php");
     return;
 }
-
-$stmt = $pdo->query("SELECT * FROM Users JOIN Passenger ON Passenger.passenger_no = Users.account_no
-                     WHERE passenger_no = {$_GET['passenger_no']} AND Users.account_type=0 ");
-$row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if(isset($_POST['exit'])){
-    header("Location:executive_passenger_details.php");
+if (!isset($_POST['pass_no'])) {
+    header("Location: executive_passenger_details.php");
     return;
 }
-
-if(isset($_POST['accept'])){
-    $stmt2 = $pdo->query("UPDATE Passenger SET state = 2 WHERE passenger_no = {$_GET['passenger_no']} ");
-    $stmt2->execute();
-    header("Location:executive_passenger_details.php");
-    return;
-}
-if(isset($_POST['decline'])){
-    $stmt3 = $pdo->query("UPDATE Passenger SET state = 0 WHERE passenger_no = {$_GET['passenger_no']} ");
-    $stmt3->execute();
-    header("Location:executive_passenger_details.php");
-    return;
-}
-
-
+$passenger_no = $_POST['pass_no'];
+$row = array('state' => 1, 'first_name' => $passenger_no, "fname", 'last_name' => "lname", 'address' => "address", 'staff_id' => "staffID", 'user_id' => "NIC", 'telephone' => "tele", 'email' => "email");
 ?>
 
 <!DOCTYPE html>
@@ -67,7 +47,7 @@ if(isset($_POST['decline'])){
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['username'] ?> <span class="caret"></span></a>
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['exec_name'] ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="executive_edit_profile.php">Edit profile</a></li>
                                     <li><a href="logout.php">Log out</a></li>
@@ -91,7 +71,7 @@ if(isset($_POST['decline'])){
                         <p>Name</p>
                     </div>
                     <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?= $row['first_name'].' '.$row['last_name'] ?> </p>
+                        <p>: <?= $row['first_name'] . ' ' . $row['last_name'] ?> </p>
                     </div>
                     <div class="col-sm-3 p-3"></div>
                 </div>
@@ -151,18 +131,18 @@ if(isset($_POST['decline'])){
                     <div class="col-sm-3 p-3"></div>
                 </div>
 
-                <?php 
-                    if($row['state']==1){
-                        echo '<input class="btn btn-default" type="submit" value="Accept" name="accept" style="color:blue;position:relative;
+                <?php
+                if ($row['state'] == 1) {
+                    echo '<input class="btn btn-default" type="submit" value="Accept" name="accept" style="color:blue;position:relative;
                                 left:65%;margin-top:10px; width:10%">';
-                        echo '<input class="btn btn-default" type="submit" value="Decline" name="decline" style="color:blue;position:relative;
+                    echo '<input class="btn btn-default" type="submit" value="Decline" name="decline" style="color:blue;position:relative;
                                 left:65%;margin-top:10px; width:10%">';
-                    }elseif($row['state']==2){
-                        echo '<input class="btn btn-default" type="submit" value="Remove" name="decline" style="color:blue;position:relative;
+                } elseif ($row['state'] == 2) {
+                    echo '<input class="btn btn-default" type="submit" value="Remove" name="decline" style="color:blue;position:relative;
                         left:65%;margin-top:10px; width:10%">';
-                    }
+                }
                 ?>
-                
+
                 <input class="btn btn-default" type="submit" value="Exit" name="exit" style="color:blue;position:relative;
                             left:65%;margin-top:10px; width:10%">
 
