@@ -13,15 +13,6 @@ $pass_no = $_GET['pass_no'];
 $board_manager_view = new Board_Manager_View();
 $details = $board_manager_view->viewPassDetails($pass_no);
 
-$board_manager_controller = new Board_Manager_Controller();
-if(isset($_POST['accept'])){
-    $board_manager_controller->approvePass($pass_no);
-}elseif (isset($_POST['decline'])){
-    $board_manager_controller->declinePass($pass_no);
-}elseif (isset($_POST['remove'])){
-    $board_manager_controller->removePass($pass_no);
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -31,10 +22,24 @@ if(isset($_POST['accept'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/passenger_home.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+<!--    <link rel="stylesheet" href="css/passenger_home.css">-->
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+
     <title>Pass Details</title>
 </head>
 
@@ -97,6 +102,9 @@ if(isset($_POST['accept'])){
         </tbody>
     </table>
 
+
+
+
     <!-- Deleting should be implemented later -->
     <?php
     
@@ -111,10 +119,10 @@ if(isset($_POST['accept'])){
         echo "<div class=\"form-group\">";
         echo "<div class=\"col-sm-offset-2 col-sm-10\">";
         if($details['state']==1){
-            echo "<input type=\"submit\" class=\"btn btn-default\" style=\"margin-right:15px;\" value=\"Accept\" name=\"accept\">";
-            echo "<input type=\"submit\" class=\"btn btn-default\" value=\"Decline\" name=\"decline\">";
+            echo "<a class=\"btn btn-default\" href=\"includes/view_pass.inc.php?action=accept&pass_no={$pass_no}\">Accept</a>";
+            echo "<a class=\"btn btn-default\" href=\"includes/view_pass.inc.php?action=decline&pass_no={$pass_no}\">Decline</a>";
         }else{
-            echo "<input type=\"submit\" class=\"btn btn-default\" style=\"margin-right:15px;\" value=\"Remove\" name=\"remove\">";
+            echo "<a class=\"btn btn-default\" href=\"includes/view_pass.inc.php?action=remove&pass_no={$pass_no}\">Remove</a>";
         }
         echo "</div>";
         echo "</div>";
