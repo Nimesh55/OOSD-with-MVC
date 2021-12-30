@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="47bd8e1a-391d-4ea9-bbbf-0a0d2636fcd5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class/passenger_controller.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/passenger_controller.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class/passenger_model.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/passenger_model.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class/passenger_view.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/passenger_view.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/passenger_register_in_company.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/passenger_register_in_company.inc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/passenger_register_in_company_1.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/passenger_register_in_company_1.inc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/passenger.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/passenger.class.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +60,8 @@
       <workItem from="1640337064405" duration="3102000" />
       <workItem from="1640341959648" duration="608000" />
       <workItem from="1640358296628" duration="26991000" />
+      <workItem from="1640883838634" duration="179000" />
+      <workItem from="1640884467394" duration="759000" />
     </task>
     <servers />
   </component>

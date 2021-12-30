@@ -12,6 +12,7 @@
     private $staff_id;
     private $email;
     private $state;
+    private static $instances = array();
     
 
 
@@ -58,29 +59,24 @@
 
     }
 
-    public static function getInstance($user_id)
-    {//fix this 
-      if(!isset($_SESSION['instance'])){
-        $_SESSION['instance'] = new Passenger($user_id);
-      }
-      return $_SESSION['instance'];
+//    public static function getInstance($user_id)
+//    {//fix this
+//      if(!isset($_SESSION['instance'])){
+//        $_SESSION['instance'] = new Passenger($user_id);
+//      }
+//      return $_SESSION['instance'];
+
+
+
+  public static function getInstance($user_id)
+  {
+    if(!array_key_exists($user_id, self::$instances)) {
+      self::$instances[$user_id] = new self($user_id);
     }
 
-
-
-
-
-
-
-
-
-
-
+    return self::$instances[$user_id];
   }
 
-
-
-
-
+  }
 
  ?>
