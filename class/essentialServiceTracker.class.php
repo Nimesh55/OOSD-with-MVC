@@ -24,7 +24,7 @@ class EssentialServiceTracker extends Tracker{
 
     //Approve an Essential Service
     public function approveService($service_no){
-        Service_Model::getInstance()->setStateEssential($service_no);
+        Service_Model::getInstance()->setStateEssential($service_no); // fix MVC make these methods protected
     }
 
     //Decline an Essential Service

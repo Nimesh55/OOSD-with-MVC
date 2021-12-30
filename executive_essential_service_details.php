@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_Id'])) {
 
 
 
-$state_str = "x";
+$state_str = "EssentialServiceTracker::getInstance()->";
 $state = 1;
 ?>
 
