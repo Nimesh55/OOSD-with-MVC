@@ -21,11 +21,21 @@ class Booking_Tracker extends Tracker
     //returns a Pass object with details
     public function getBooking($booking_no){
         $booking = new Booking();
-        $details = Booking_Model::getInstance()->getBookingDetails($booking_no);
-        $booking->setValues($booking_no, $details["service_no"], $details["start_date"],
+        $details = Booking_Controller::getInstance()->getBookingDetails($booking_no);
+        $booking->setValues($booking_no, $details["service_no"], $details["reason"], $details["start_date"],
             $details["end_date"], $details["pickup_district"], $details["destination_district"],
-            $details["state"],  $details["booked_conductor_no"]);
-        return $pass;
+            $details["passenger_count"], $details["state"],  $details["booked_conductor_no"]);
+        return $booking;
+    }
+
+    public function getBookingsArray(){
+        $bookings_arr = array();
+        $bookings = Booking_Controller::getInstance()->getBookingsArray();
+
+        foreach ($bookings as $booking){
+            array_push($bookings_arr, $this->getBooking($booking['booking_no']));
+        }
+        return $bookings_arr;
     }
 
 }

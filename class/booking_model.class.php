@@ -18,49 +18,49 @@ class Booking_Model extends Dbh
     }
 
 
-    public function getBookingDetails($booking_no)
+    protected function getBookingDetailsFromModel($booking_no)
     {
-        $stmt = $this->connect()->query("SELECT * FROM booking WHERE booking_no = $booking_no");
+        $stmt = $this->connect()->query("SELECT * FROM booking WHERE booking_no = {$booking_no}");
         $record = $stmt->fetch();
         return $record;
     }
 
-    public function getBookingState($booking_no)
+    protected function getBookingStateFromModel($booking_no)
     {
-        $stmt = $this->connect()->query("SELECT state FROM booking WHERE booking_no = $booking_no");
+        $stmt = $this->connect()->query("SELECT state FROM booking WHERE booking_no = {$booking_no}");
         $record = $stmt->fetch();
         return $record['state'];
     }
 
-    public function upgradeState($booking_no)
+    protected function upgradeStateFromModel($booking_no)
     {
         $next_state = $this->getPassState($booking_no)+1;
-        $sql = "UPDATE booking SET state=$next_state where service_no=$booking_no";
+        $sql = "UPDATE booking SET state={$next_state} where service_no={$booking_no}";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
     }
 
-    public function setStateCanelled($booking_no)
+    protected function setStateCanelledFromModel($booking_no)
     {
-        $sql = "UPDATE booking SET state=3 where booking_no=$booking_no";
+        $sql = "UPDATE booking SET state=3 where booking_no={$booking_no}";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
     }
 
-    public function getCurrentBookingsCount(){
+    protected function getCurrentBookingsCountFromModel(){
         $stmt = $this->connect()->prepare("SELECT count(*) FROM Booking");
         $stmt->execute();
         $count = $stmt->fetchColumn();
         return $count;
     }
 
-    public function addNewBooking($booking_no, $service_no, $start_date, $end_date, $pickup_district,
+    protected function addNewBookingFromModel($booking_no, $service_no, $start_date, $end_date, $pickup_district,
                                   $destination_district, $state, $booked_conductor_no){
-        $sql2 = "INSERT INTO Pass(booking_no, service_no, start_date, end_date, pickup_district, destination_district, 
+        $sql = "INSERT INTO Pass(booking_no, service_no, start_date, end_date, pickup_district, destination_district, 
                  state, booked_conductor_no) VALUES (:booking_no, :service_no, :start_date, :end_date, :pickup_district,                                                    
                                                    :destination_district ,:stat, :booked_conductor_no)";
-        $stmt2 = $this->connect()->prepare($sql2);
-        $stmt2 -> execute(array(
+        $stmt = $this->connect()->prepare($sql);
+        $stmt -> execute(array(
             ':booking_no' => $booking_no,
             ':service_no' => $service_no,
             ':start_date' => $start_date,
@@ -70,6 +70,13 @@ class Booking_Model extends Dbh
             ':stat' => $state,
             ':booked_conductor_no' => $booked_conductor_no));
         return $this->getCurrentBookingsCount();
+    }
+
+    protected function getBookingsArrayFromModel(){
+        $stmt = $this->connect()->prepare("SELECT * FROM Booking");
+        $stmt->execute();
+        $booking_array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $booking_array;
     }
 
 
