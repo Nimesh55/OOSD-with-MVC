@@ -75,6 +75,20 @@ class Executive_Controller extends Executive_Model
         return $status;
     }
 
+    public function getServiceStatus($id){
+        $state = EssentialServiceTracker::getInstance()->getServiceStatus($id);
+        if ($state == 0) {
+            $status = "Non-Essential";
+        } elseif ($state == 1) {
+            $status = "Pending";
+        } elseif ($state == 2) {
+            $status = "Essential";
+        } else {
+            $status = "Removed";
+        }
+        return $status;
+    }
+
     public function getAllPassengers($service_no){
         $passenger_no_array = $this->getPassengerNumbers_inService($service_no); // gets the passenger numbers for the passengers requesting or approved by this service
         

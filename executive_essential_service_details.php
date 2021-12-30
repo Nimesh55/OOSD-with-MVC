@@ -1,14 +1,16 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
+
 
 if (!isset($_SESSION['user_Id'])) {
     header("Location: login.php");
     return;
 }
 
+$exec_view = new Executive_View();
 
-
-$state_str = "EssentialServiceTracker::getInstance()->";
+$state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
 $state = 1;
 ?>
 

@@ -71,4 +71,8 @@ class Executive_View extends Executive_Model{
         $passenger_array = $this->executivectrl->getAllPassengers($service_no);
         return $passenger_array;
     }
+
+    public function getEssentialServiceDetails($id){
+        return $this->executivectrl->getServiceStatus($id);
+    }
 }

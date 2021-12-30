@@ -32,4 +32,9 @@ class EssentialServiceTracker extends Tracker{
         Service_Model::getInstance()->setStateNonEssential($service_no);
     }
 
+    public function getServiceStatus($serviceId){
+        $x = Service_Model::getInstance()->getServiceDetails($serviceId);
+        return $x['state'];
+    }
+
 }
