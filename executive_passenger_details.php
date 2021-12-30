@@ -64,7 +64,7 @@ $passengers = $execObj->getPassengerAll($_SESSION['service_no']);
 
         <div style="margin-top:100px;">
             <!-- Create new account -->
-            <a class="btn btn-sm btn-default" href="executive_create_passenger.php">Create passenger account</a>
+            <a class="btn btn-sm btn-default" href="passenger_signup.php?src=1">Create passenger account</a>
 
             <!-- List view with  view button -->
             

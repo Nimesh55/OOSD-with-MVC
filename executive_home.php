@@ -9,13 +9,9 @@ if(!isset($_SESSION['user_Id'])){
 
 $executive_view = new Executive_View();
 $details = $executive_view->getHomeDetails();
-var_dump( $details["service_number"]);
 $_SESSION['service_no'] = $details["service_number"];
 $_SESSION['exec_name'] = $details['name'];
 $_SESSION['service_name'] = $details['service_name'];
-//print_r($details);
-
-
 ?>
 
 <!DOCTYPE html>

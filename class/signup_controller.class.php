@@ -42,45 +42,53 @@ class Signup_Controller extends Signup{
 
     public function signupUser(){
         // check for all the errors using the helper functions
+        if (isset($_GET['src'])) {
+            if ($_GET['src']==1) {
+                $src = 1;
+            }
+            else{
+                $src = 0;
+            }
+        }
         if ($this->emptyField() == false) {
             // error msg here
-            header("location: ../".$this->page_name."_signup.php?error=emptyfield");
+            header("location: ../".$this->page_name."_signup.php?error=emptyfield&src=".$src);
             exit();
         }
 
         if ($this->password_match() == false) {
             // error msg here
-            header("location: ../".$this->page_name."_signup.php?error=passwordmismatch");
+            header("location: ../".$this->page_name."_signup.php?error=passwordmismatch&src=".$src);
             exit();
         }
 
         if ($this->user_exist()) {
             // error msg here
-            header("location: ../".$this->page_name."_signup.php?error=user_exist");
+            header("location: ../".$this->page_name."_signup.php?error=user_exist&src=".$src);
             exit();
         }
 
         if (!$this->isValidEmail()) {
             // error msg here
-            header("location: ../".$this->page_name."_signup.php?error=emailWrong");
+            header("location: ../".$this->page_name."_signup.php?error=emailWrong&src=".$src);
             exit();
         }
 
         if ($this->isUserValidInput() == false) {
             // error msg here
-            header("location: ../".$this->page_name."_signup.php?error=invalidusername");
+            header("location: ../".$this->page_name."_signup.php?error=invalidusername&src=".$src);
             exit();
         }
 
         if ($this->isTelephoneValidInput() == false) {
             // error msg here
-            header("location: ../".$this->page_name."_signup.php?error=invalidtelephone");
+            header("location: ../".$this->page_name."_signup.php?error=invalidtelephone&src=".$src);
             exit();
         }
 
         $this->addToUser( $this->uid , $this->password, $this->firstname, $this->lastname, $this->address, $this->telephone, $this->email, $this->company_name, $this->company_Id, $this->vehicle_no, $this->district, $this->account_type);
         if($this->account_type==1){
-            header("location: ../board_manager_create_conductor.php?error=none");
+            header("location: ../board_manager_create_conductor.php?error=none&src=".$src);
         }else{
             header("location: ../login.php?error=none");
         }

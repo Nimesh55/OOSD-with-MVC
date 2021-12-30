@@ -1,3 +1,11 @@
+<?php
+if (isset($_GET['src'])) {
+	$src = $_GET['src'];
+}
+else{
+	$src = 0;
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +22,7 @@
 		<h1>Passenger SignUp Form</h1>
 		<div class="main-agileinfo">
 			<div class="agileits-top">
-				<form action="includes/signup.inc.php?account_type=0" method="post">
+				<form action="includes/signup.inc.php?account_type=0&src=<?php echo $src  ?>" method="post">
                     <input class="text" type="text" name="Firstname" placeholder="First name" >
 					<input class="text" type="text" name="Lastname" placeholder="Last name">
                     <input class="text" type="text" name="ID" placeholder="NIC" >
@@ -26,7 +34,15 @@
 
 					<input type="submit" name= "submit" value="SIGNUP">
 				</form>
-				<p>Don't have an Account? <a href="login.php"> Login Now!</a></p>
+				<?php
+				// Depending on where this form is loaded the relavant parts are loaded accordingly
+				if (isset($_GET['src']) && $_GET['src']==1) {
+					echo "<p><a href=\"executive_passenger_details.php\"> back to passenger list</a></p>";
+				}
+				else{
+					echo "<p>Don't have an Account? <a href=\"login.php\"> Login Now!</a></p>";
+				}	
+				?>
 			</div>
 		</div>
 	</div>

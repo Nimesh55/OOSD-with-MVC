@@ -1,7 +1,7 @@
 <?php
 
 if(isset($_POST['submit'])){
-
+    //####make sure to pass the $_GET['src']
     // fetching data
     $firstname = htmlentities($_POST["Firstname"]);
     $lastname = htmlentities($_POST["Lastname"]);

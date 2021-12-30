@@ -1,16 +1,18 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
 if (!isset($_SESSION['user_Id'])) {
     header("Location: login.php");
     return;
 }
-if (!isset($_POST['pass_no'])) {
+if (!isset($_POST['variablePass1'])) {
     header("Location: executive_passenger_details.php");
     return;
 }
-$passenger_no = $_POST['pass_no'];
-$row = array('state' => 1, 'first_name' => $passenger_no, "fname", 'last_name' => "lname", 'address' => "address", 'staff_id' => "staffID", 'user_id' => "NIC", 'telephone' => "tele", 'email' => "email");
+$passenger_no = $_POST['variablePass1'];
+$passenger = Passenger_Tracker::getInstance()->createPassenger($passenger_no);
+$row = array('state' => $passenger->getState(), 'first_name' => $passenger_no, 'last_name' => $passenger->getLastName(), 'address' => $passenger->getAddress(), 'staff_id' => $passenger->getStaffId(), 'user_id' => $passenger->getUserId(), 'telephone' => $passenger->getTelephone(), 'email' => $passenger->getEmail());
 ?>
 
 <!DOCTYPE html>

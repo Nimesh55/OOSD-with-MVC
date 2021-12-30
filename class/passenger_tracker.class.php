@@ -31,7 +31,6 @@
 
         public function getPassenger($user_id)
         {
-            unset($_SESSION['instance']);
             $this->passenger = Passenger::getInstance($user_id);
             return $this->passenger;
         }

@@ -65,7 +65,7 @@ class Executive_Model extends Dbh
     }
 
     protected function getPassengerNumbers_inService($service_no){
-        $stmt = $this->connect()->prepare("SELECT passenger_no FROM passenger where service_no = ?");
+        $stmt = $this->connect()->prepare("SELECT passenger_no FROM passenger where service_no = ? AND (state =1 OR state = 2)"); //only in pending or approved state
         $stmt->execute(array($service_no));
         $passengers_in_service = $stmt->fetchAll();
         return $passengers_in_service;

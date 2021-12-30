@@ -10,9 +10,6 @@ if (!isset($_SESSION['user_Id'])) {
 $viewobj = new Executive_View();
 $detailsArray = $viewobj->getPassesDetails($_SESSION['service_no']);
 $row = 0;
-print_r($detailsArray[0]);
-echo "##";
-echo count($detailsArray);
 $listCount = count($detailsArray);
 ?>
 
