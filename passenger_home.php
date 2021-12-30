@@ -31,11 +31,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/passenger_home.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
     <title>Passenger Home</title>
+    <style>
+        .wrapper{
+            /*background: #e6e6e6;*/
+            /*color: #000000;*/
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 15px;
+            text-align: center;
+            word-break: break-word;
+            background-color: rgb(44, 44, 37);
+            color: aliceblue;
+            opacity: 0.95;
+            margin-top:75px;
+        }
+        #heading{
+            padding:15px 0;
+            font-family: 'Roboto', sans-serif;
+        }
+        .field{
+            text-align: right;
+        }
+    </style>
 </head>
 
 <body>
@@ -76,78 +102,86 @@
     </div>
 </div>
 
-      <div class="container mt-3">
-          <h1> <?= $username; ?> </h1>
 
-          <div style="margin-top:100px;">
-              <div class="row">
-                  <div class="col-sm-3 p-3"></div>
-                  <div class="col-sm-3 p-3 bg-dark text-white">
-                      <p>First Name</p>
-                  </div>
-                  <div class="col-sm-3 p-3 bg-primary text-white">
-                      <p>: <?= $row['first_name'] ?> </p>
-                  </div>
-                  <div class="col-sm-3 p-3"></div>
-              </div>
 
-              <div class="row">
-                  <div class="col-sm-3 p-3"></div>
-                  <div class="col-sm-3 p-3 bg-dark text-white">
-                      <p>Last Name</p>
-                  </div>
-                  <div class="col-sm-3 p-3 bg-primary text-white">
-                      <p>: <?= $row['last_name'] ?></p>
-                  </div>
-                  <div class="col-sm-3 p-3"></div>
-              </div>
 
-              <div class="row">
-                  <div class="col-sm-3 p-3"></div>
-                  <div class="col-sm-3 p-3 bg-dark text-white">
-                      <p>Address</p>
-                  </div>
-                  <div class="col-sm-3 p-3 bg-primary text-white">
-                      <p>: <?= $row['address'] ?> </p>
-                  </div>
-                  <div class="col-sm-3 p-3"></div>
-              </div>
+<div class="container">
+    <h1 id="heading"> <?= $username; ?> </h1>
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6 wrapper">
 
-              <div class="row">
-                  <div class="col-sm-3 p-3"></div>
-                  <div class="col-sm-3 p-3 bg-dark text-white">
-                      <p>NIC</p>
-                  </div>
-                  <div class="col-sm-3 p-3 bg-primary text-white">
-                      <p>: <?= $row['user_id'] ?> </p>
-                  </div>
-                  <div class="col-sm-3 p-3"></div>
-              </div>
+            <div class="row">
+                <div class="col-sm-4 p-3 field">
+                    <p>First Name</p>
+                </div>
+                <div class="col-sm-1 p-3">:</div>
+                <div class="col-sm-7 p-3">
+                    <p><?= $row['first_name'] ?> </p>
+                </div>
+            </div>
 
-              <div class="row">
-                  <div class="col-sm-3 p-3"></div>
-                  <div class="col-sm-3 p-3 bg-dark text-white">
-                      <p>Telephone NO</p>
-                  </div>
-                  <div class="col-sm-3 p-3 bg-primary text-white">
-                      <p>: <?= $row['telephone'] ?> </p>
-                  </div>
-                  <div class="col-sm-3 p-3"></div>
-              </div>
+            <div class="row">
+                <div class="col-sm-4 p-3 field">
+                    <p>Last Name</p>
+                </div>
+                <div class="col-sm-1 p-3">:</div>
+                <div class="col-sm-7 p-3">
+                    <p><?= $row['last_name'] ?></p>
+                </div>
+            </div>
 
-              <div class="row">
-                  <div class="col-sm-3 p-3"></div>
-                  <div class="col-sm-3 p-3 bg-dark text-white">
-                      <p>Email</p>
-                  </div>
-                  <div class="col-sm-3 p-3 bg-primary text-white">
-                      <p>: <?= $row['email'] ?> </p>
-                  </div>
-                  <div class="col-sm-3 p-3"></div>
-              </div>
+            <div class="row">
+                <div class="col-sm-4 p-3 field">
+                    <p>Address</p>
+                </div>
+                <div class="col-sm-1 p-3">:</div>
+                <div class="col-sm-7 p-3">
+                    <p><?= $row['address'] ?> </p>
+                </div>
+            </div>
 
-          </div>
-      </div>
+            <div class="row">
+                <div class="col-sm-4 p-3 field">
+                    <p>NIC</p>
+                </div>
+                <div class="col-sm-1 p-3">:</div>
+                <div class="col-sm-7 p-3">
+                    <p><?= $row['user_id'] ?> </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 p-3 field">
+                    <p>Telephone NO</p>
+                </div>
+                <div class="col-sm-1 p-3">:</div>
+                <div class="col-sm-7 p-3">
+                    <p><?= $row['telephone'] ?> </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 p-3 field">
+                    <p>Email</p>
+                </div>
+                <div class="col-sm-1 p-3">:</div>
+                <div class="col-sm-7 p-3">
+                    <p><?= $row['email'] ?> </p>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-lg-3"></div>
+
+    </div>
+
+</div>
+
+
+
 
 
   </body>
