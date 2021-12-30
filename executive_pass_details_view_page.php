@@ -1,9 +1,9 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
-if(!isset($_SESSION['user_Id'])){
+if (!isset($_SESSION['user_Id'])) {
     header("Location: login.php");
     return;
 }
@@ -11,20 +11,10 @@ if (!isset($_POST['pass_no'])) {
     header("Location: executive_home.php");
     return;
 }
-
-// $pass_no = $_GET['pass_no'];
-
-// $executive_view = new Executive_View();
-// $details = $executive_view->getPassDetailsViewDetails($pass_no);
-
-// if(isset($_GET['action'])){
-//     $executive_controller = new Executive_Controller();
-//     if($_GET['action']=='accept'){
-//         $executive_controller->approvePass($pass_no);
-//     }else{
-//         $executive_controller->declinePass($pass_no);
-//     }
-// }
+$pass_no = $_POST['pass_no'];
+$execObj = new Executive_View();
+$pass = $execObj->getPassDetailsViewDetails($pass_no);
+$details = array("name" => $pass_no, 'route' => $pass['route'], 'time_slot' => $pass['time_slot'], 'reason' => $pass['reason'], 'status' => $pass['status']);
 
 ?>
 
@@ -90,7 +80,7 @@ if (!isset($_POST['pass_no'])) {
                     <div class="col-sm-3 p-3 bg-primary text-white">
                         <p>:
                             <?php
-                            $name = $executive_view->getPassengerName($details['passenger_no']);
+                            $name = $details['name'];
                             echo $name;
                             ?>
                         </p>
@@ -137,7 +127,7 @@ if (!isset($_POST['pass_no'])) {
                         <p>Status</p>
                     </div>
                     <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?= $details['status']?>
+                        <p>: <?= $details['status'] ?>
                         </p>
                     </div>
                     <div class="col-sm-3 p-3"></div>

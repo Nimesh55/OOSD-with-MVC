@@ -5,10 +5,12 @@ class Executive_Controller extends Executive_Model
 {
     private $executive;
     private $pass_tracker;
+    private $passenger_tracker;
 
     public function __construct()
     {
         $this->pass_tracker = Pass_Tracker::getInstance();
+        $this->passenger_tracker = Passenger_Tracker::getInstance();
     }
 
 
@@ -73,6 +75,23 @@ class Executive_Controller extends Executive_Model
         return $status;
     }
 
-}
+    public function getAllPassengers($service_no){
+        $passenger_no_array = $this->getPassengerNumbers_inService($service_no);
+        
+        $passengerArray = array();
+        print_r(count($passenger_no_array));
+        foreach ($passenger_no_array as $elem) {
+            $curpassengerno = $elem['passenger_no'];
+            $passengerArray[] =array( $curpassengerno => "Error in Passenger class") ; //FIX HERE!!
+            // var_dump($elem) ;
+            // echo "<br>";
+            // echo"####";
+            // echo "<br>";
+            //$passengerArray += [$elem => $this->passenger_tracker->getPassengerByPassengerNo($elem['passenger_no'])];
+        }//output rows of passengers in assoc array
+        var_dump($passengerArray);
+        
+        return $passengerArray;
+    }
 
-?>
+}

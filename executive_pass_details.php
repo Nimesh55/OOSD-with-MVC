@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_Id'])) {
 
 $viewobj = new Executive_View();
 $detailsArray = $viewobj->getPassesDetails($_SESSION['service_no']);
-$row = 0; //tempararily
+$row = 0;
 print_r($detailsArray[0]);
 echo "##";
 echo count($detailsArray);
@@ -79,14 +79,16 @@ $listCount = count($detailsArray);
                 <?php while ($row < count($detailsArray)) :
 
                     $p_no = $detailsArray[$row]['passenger_no']; 
-                    $names = array("first_name" => "firstname", "last_name" => "lastname");// fix this after fixing passenger tracker
+                    $pass_no = $detailsArray[$row]['pass_no'];
+                    $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($p_no);
+                    $names = array("first_name" => $passenger->getFirstName(), "last_name" => $passenger->getLastName());// fix this after fixing passenger tracker
                     $row++;
                 ?>
                     <tr>
-                        <th scope="row"><?php echo $p_no; ?></th>
+                        <th scope="row"><?php echo $row; ?></th>
                         <td><?php echo $names["first_name"] . " " . $names["last_name"]; ?></td>
                         <td>
-                            <a href="#" class="btn btn-info" onclick="clickView(<?php echo $p_no ?>)"> View </a>
+                            <a href="#" class="btn btn-info" onclick="clickView(<?php echo $pass_no ?>)"> View </a>
                         </td>
                     </tr>
                 <?php endwhile; ?>

@@ -1,11 +1,14 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
 if (!isset($_SESSION['user_Id'])) {
     header("Location: login.php");
     return;
 }
-
+$execObj = new Executive_View();
+$passengers = $execObj->getPassengerAll($_SESSION['service_no']);
+print_r($passengers);
 ?>
 
 <!DOCTYPE html>
@@ -68,10 +71,8 @@ if (!isset($_SESSION['user_Id'])) {
             <div class="col-sm-8">
                 <ul class="list-group action-list-group">
                     <?php
-                        $row = 0;
-                        $serv_no = "unavailable"; //fix these after passenger tracker
-                        $passengers = ["y","x"];
                         foreach($passengers as $passenger){
+                            $obj = (object) $passenger;
                             echo '<li class="list-group-item">';
                             echo '<p '.'style="display: inline-block"'.' >'."firstnamehere".' '."lastnamehere".'</p>';
                             echo '<a class="btn btn-sm btn-default" href="executive_passenger_details_view_page.php?passenger_no='."passenger number".'" '.'style="float: right"'.'>View</a>';

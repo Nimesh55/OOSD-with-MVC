@@ -12,6 +12,7 @@
     private $staff_id;
     private $email;
     private $state;
+    
 
 
     //getters
@@ -58,7 +59,7 @@
     }
 
     public static function getInstance($user_id)
-    {
+    {//fix this 
       if(!isset($_SESSION['instance'])){
         $_SESSION['instance'] = new Passenger($user_id);
       }

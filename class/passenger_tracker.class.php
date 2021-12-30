@@ -23,6 +23,7 @@
         }
 
         public function getPassengerByPassengerNo($passenger_no){
+            // FIX THIS ERROR###
             $passenger_model = new Passenger_Model();
             return $this->getPassenger($passenger_model->getUserId($passenger_no));
         }
