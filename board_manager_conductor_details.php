@@ -11,12 +11,13 @@ if (!isset($_SESSION['user_Id'])) {
 $board_manager_view = new Board_Manager_View();
 $details = $board_manager_view->getHomeDetails();
 
+$state_query = 0;
 if ($_GET["show"] == "success") {
+    $state_query = 1;
     $data = $board_manager_view->getConductorDetails($_GET["conductor_id"]);
-
-    echo "<pre>";
-    print_r($data);
-    echo "</pre>";
+    $error="none";
+}else{
+    $error = $_GET["show"];
 }
 
 
@@ -34,7 +35,7 @@ if ($_GET["show"] == "success") {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <!-- <link rel="stylesheet" href="css/board_manager_conductor_details.css"> -->
+    <link rel="stylesheet" href="css/board_manager_conductor_details.css">
     <title>Conductor Details</title>
 </head>
 
@@ -51,10 +52,10 @@ if ($_GET["show"] == "success") {
 
                     <div class="navbar-collapse collapse" id="mobile_menu">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="board_manager_home.php">Home</a></li>
+                            <li><a href="board_manager_home.php">Home</a></li>
                             <li><a href="board_manager_pending_passes.php">Pending Passes</a></li>
                             <li><a href="board_manager_pass_details.php">Pass Details</a></li>
-                            <li><a href="board_manager_conductor_details.php?show=none">Conductor Details</a></li>
+                            <li class="active"><a href="board_manager_conductor_details.php?show=none">Conductor Details</a></li>
                             <li><a href="board_manager_create_conductor.php">Create Conductor Account</a></li>
                             <li><a href="board_manager_allocate_vehicle.php">Allocate Vehicle</a></li>
                         </ul>
@@ -75,6 +76,14 @@ if ($_GET["show"] == "success") {
 
     <div class="container mt-3" id="contanier-data">
 
+        <div class="row">
+            <div class="col-lg-12">
+                <p><?php
+                if($error!='none')
+                    echo $error; ?>
+                </p>
+            </div>
+        </div>
 
         <form action="includes/board_mananger_conductor_details.inc.php" method="POST">
             <div class="row">
@@ -107,15 +116,15 @@ if ($_GET["show"] == "success") {
                 <div class="col-sm-6 p-3 bg-primary text-white">
 
 
-                    <!-- <p> &emsp; <?php
+                    <p> &emsp; <?php
 
-                                    if ($state_query == 0) {
-                                        echo "No Value";
-                                    } elseif ($state_query == 1) {
-                                        echo  $rowSecond['passengerName'];
-                                    }
+                                if ($state_query == 0) {
+                                    echo "No Value";
+                                } elseif ($state_query == 1) {
+                                    echo  $data['fname'] . " " . $data['lname'];
+                                }
 
-                                    ?></p> -->
+                                ?></p>
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white"></div>
             </div>
@@ -130,17 +139,17 @@ if ($_GET["show"] == "success") {
                 </div>
                 <div class="col-sm-6 p-3 bg-primary text-white">
 
-                    <!-- <p> &emsp; <?php
+                    <p> &emsp; <?php
 
 
-                                    if ($state_query == 0) {
-                                        echo "No Value";
-                                    } elseif ($state_query == 1) {
+                                if ($state_query == 0) {
+                                    echo "No Value";
+                                } elseif ($state_query == 1) {
 
-                                        echo 'Need to implement';
-                                    }
+                                    echo $data["district"];;
+                                }
 
-                                    ?> -->
+                                ?></p>
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white"></div>
             </div>
@@ -155,15 +164,15 @@ if ($_GET["show"] == "success") {
                 </div>
                 <div class="col-sm-6 p-3 bg-primary text-white">
 
-                    <!-- <p> &emsp; <?php
+                    <p> &emsp; <?php
 
-                                    if ($state_query == 0) {
-                                        echo "No Value";
-                                    } elseif ($state_query == 1) {
-                                        echo 'Need to implement';
-                                    }
+                                if ($state_query == 0) {
+                                    echo "No Value";
+                                } elseif ($state_query == 1) {
+                                    echo $data["vehicle_no"];
+                                }
 
-                                    ?></p> -->
+                                ?></p>
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white"></div>
             </div>
@@ -175,17 +184,16 @@ if ($_GET["show"] == "success") {
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white">:</div>
                 <div class="col-sm-6 p-3 bg-primary text-white">
-                    <p>Need to change</p>
-                    <!-- chaaangeeee -->
-                    <!-- <p> &emsp; <?php
 
-                                    if ($state_query == 0) {
-                                        echo "No Value";
-                                    } elseif ($state_query == 1) {
-                                        echo 'Need to implement';
-                                    }
+                    <p> &emsp; <?php
 
-                                    ?></p> -->
+                                if ($state_query == 0) {
+                                    echo "No Value";
+                                } elseif ($state_query == 1) {
+                                    echo $data["telephone_no"];
+                                }
+
+                                ?></p>
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white"></div>
             </div>
@@ -197,17 +205,16 @@ if ($_GET["show"] == "success") {
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white">:</div>
                 <div class="col-sm-6 p-3 bg-primary text-white">
-                    <p>Need to change</p>
-                    <!-- chaaangeeee -->
-                    <!-- <p> &emsp; <?php
 
-                                    if ($state_query == 0) {
-                                        echo "No Value";
-                                    } elseif ($state_query == 1) {
-                                        echo 'Need to implement';
-                                    }
+                    <p> &emsp; <?php
 
-                                    ?></p> -->
+                                if ($state_query == 0) {
+                                    echo "No Value";
+                                } elseif ($state_query == 1) {
+                                    echo $data["status"];
+                                }
+
+                                ?></p>
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white"></div>
             </div>
