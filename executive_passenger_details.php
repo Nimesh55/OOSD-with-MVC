@@ -8,7 +8,6 @@ if (!isset($_SESSION['user_Id'])) {
 }
 $execObj = new Executive_View();
 $passengers = $execObj->getPassengerAll($_SESSION['service_no']);
-print_r($passengers);
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +21,7 @@ print_r($passengers);
     <link rel="stylesheet" href="css/passenger_home.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/buttons.js"></script>
     <title>Executive Passenger Details</title>
 </head>
 
@@ -49,7 +49,7 @@ print_r($passengers);
                             <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['exec_name'] ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                 <li><a href="executive_edit_profile.php">Edit profile</a></li>
-                                    <li><a href="logout.php">Log out</a></li>
+                                    <li><a href="includes/logout.inc.php">Log out</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -71,11 +71,10 @@ print_r($passengers);
             <div class="col-sm-8">
                 <ul class="list-group action-list-group">
                     <?php
-                        foreach($passengers as $passenger){
-                            $obj = (object) $passenger;
+                        foreach($passengers as $cur){
                             echo '<li class="list-group-item">';
-                            echo '<p '.'style="display: inline-block"'.' >'."firstnamehere".' '."lastnamehere".'</p>';
-                            echo '<a class="btn btn-sm btn-default" href="executive_passenger_details_view_page.php?passenger_no='."passenger number".'" '.'style="float: right"'.'>View</a>';
+                            echo '<p '.'style="display: inline-block"'.' >'. $cur->getFirstName() .' '.$cur->getLastName().'</p>';
+                            echo '<a class="btn btn-sm btn-default" href="#" onclick="clickView('.$cur->getPassengerNo().',\'executive_passenger_details_view_page.php\')" style="float: right"'.'>View</a>';
                             echo '</li>';
                         }
                     ?>
@@ -83,7 +82,6 @@ print_r($passengers);
             </div>
         </div>
     </div>
-
 </body>
-
+<!-- executive_passenger_details_view_page.php -->
 </html>

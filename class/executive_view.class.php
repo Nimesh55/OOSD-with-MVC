@@ -69,7 +69,6 @@ class Executive_View extends Executive_Model{
 
     public function getPassengerAll($service_no){
         $passenger_array = $this->executivectrl->getAllPassengers($service_no);
-        print_r($passenger_array);
         return $passenger_array;
     }
 }

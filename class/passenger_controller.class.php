@@ -124,5 +124,9 @@ class Passenger_Controller extends Passenger_Model
             return false;
         }
     }
+
+    public function getPassenger($passenger_no){
+        $details = $this->getPassengerDetails($passenger_no);
+        return $details;
+    }
 }
-?>

@@ -76,22 +76,16 @@ class Executive_Controller extends Executive_Model
     }
 
     public function getAllPassengers($service_no){
-        $passenger_no_array = $this->getPassengerNumbers_inService($service_no);
+        $passenger_no_array = $this->getPassengerNumbers_inService($service_no); // gets the passenger numbers for the passengers requesting or approved by this service
         
+        // creates an array of passenger objects via passenger tracker of the above passenger numbers 
         $passengerArray = array();
-        print_r(count($passenger_no_array));
-        foreach ($passenger_no_array as $elem) {
-            $curpassengerno = $elem['passenger_no'];
-            $passengerArray[] =array( $curpassengerno => "Error in Passenger class") ; //FIX HERE!!
-            // var_dump($elem) ;
-            // echo "<br>";
-            // echo"####";
-            // echo "<br>";
-            //$passengerArray += [$elem => $this->passenger_tracker->getPassengerByPassengerNo($elem['passenger_no'])];
-        }//output rows of passengers in assoc array
-        var_dump($passengerArray);
-        
+        for ($i=0; $i < count($passenger_no_array); $i++) { 
+            $curpassengerno = $passenger_no_array[$i];
+            $cur = $this->passenger_tracker->createPassenger($curpassengerno['passenger_no']);
+            $passengerArray[$i] = $cur;
+
+        }
         return $passengerArray;
     }
-
 }
