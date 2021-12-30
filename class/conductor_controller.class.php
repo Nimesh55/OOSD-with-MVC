@@ -36,9 +36,18 @@ class Conductor_Controller extends Conductor_Model{
             return $this->verifyPassgenger();
         }
         
-        
-        
     }
+
+    public function getConductor_by_conductor_no($conductor_no)
+    {
+        $data = $this->getConductor_ByConductorNo($conductor_no);
+        $conductor_id  = $data["user_id"];
+        // echo $conductor_id;
+
+        $condObject = new Conductor($conductor_id);
+        return $condObject;
+
+    } 
 
 }
 

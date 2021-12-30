@@ -26,7 +26,7 @@ class Conductor_View extends Conductor_Model
       "state" => $this->conductor->getstate(),
       "district_name" => $this->conductor->getdistric_name()
     );
-
+    //print_r($details);
     return $details;
   }
 
