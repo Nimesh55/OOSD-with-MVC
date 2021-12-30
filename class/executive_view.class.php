@@ -5,11 +5,15 @@ class Executive_View extends Executive_Model{
     private $executivectrl;
     private $executiveobj;
     private $pass_tracker;
+    private $booking_tracker;
+    private $conductor_tracker;
 
     public function __construct(){
         $this->executivectrl = new Executive_Controller();
         $this->executiveobj = $this->executivectrl->setUpDetails();
         $this->pass_tracker = Pass_Tracker::getInstance();
+        $this->booking_tracker = Booking_Tracker::getInstance();
+        $this->conductor_tracker = Conductor_Tracker::getInstance();
 
     }
 
@@ -60,6 +64,34 @@ class Executive_View extends Executive_Model{
 
     }
 
+    public function getBookingDetailsDetails(){
+        $details=array(
+            "name"=> $this->executiveobj->getFirstName()." ".$this->executiveobj->getLastName(),
+            "service_bookings" => $this->booking_tracker->getBookingsArrayForService($this->executiveobj->getServiceNo()));
+        return $details;
+    }
+
+    public function getBookingViewDetails($booking_no){
+        $booking = Booking_Tracker::getInstance()->getBooking($booking_no);
+        $booking_state = $booking->getState();
+        $status = $this->executivectrl->getPassStatus($booking_state);
+
+        //Modify this after getting conductor no correctly
+//        $conductor = $this->conductor_tracker->getConductor($booking->getBookedConductorNo());
+//        $bus_no = $this->executivectrl->getBusNo($conductor->getvehicle_no(), $booking_state);
+        $bus_no=null;
+        $details=array(
+            "booking_no" => $booking->getBookingNo(),
+            "pickup_district" => $booking->getPickupDistrict(),
+            "destination_district"=> $booking->getDestinationDistrict(),
+            "start_date" => $booking->getStartDate(),
+            "end_date" => $booking->getEndDate(),
+            "state" => $booking_state,
+            "bus_no" => $bus_no,
+            "status"=> $status);
+        return $details;
+    }
+
     public function getPassesDetails($service_no)
     {
         $details= $this->getPasses($service_no);
@@ -75,4 +107,5 @@ class Executive_View extends Executive_Model{
     public function getEssentialServiceDetails($id){
         return $this->executivectrl->getServiceStatus($id);
     }
+
 }

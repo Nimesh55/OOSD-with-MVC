@@ -38,6 +38,17 @@ class Booking_Tracker extends Tracker
         return $bookings_arr;
     }
 
+
+    public function getBookingsArrayForService($service_no){
+        $bookings_arr = array();
+        $bookings = Booking_Controller::getInstance()->getBookingsArrayForService($service_no);
+
+        foreach ($bookings as $booking){
+            array_push($bookings_arr, $this->getBooking($booking['booking_no']));
+        }
+        return $bookings_arr;
+    }
+
 }
 
 
