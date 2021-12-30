@@ -11,21 +11,19 @@ class Board_Manager_Controller extends Board_Manager_Model{
         $this->pass_tracker = Pass_Tracker::getInstance();
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////////
     public function approvePass($pass_no){
         $this->pass_tracker->upgradePassState($pass_no);
-        header("Location: board_manager_pending_passes.php");
+        header("Location: ../board_manager_pending_passes.php");
     }
 
     public function declinePass($pass_no){
         $this->pass_tracker->declinePass($pass_no);
-        header("Location: board_manager_pending_passes.php");
+        header("Location: ../board_manager_pending_passes.php");
     }
 
     public function removePass($pass_no){
         $this->pass_tracker->declinePass($pass_no);
-        header("Location: board_manager_pass_details.php");
+        header("Location: ../board_manager_pass_details.php");
     }
-    ////////////////////////////////////////////////////////////////////////////////////////
 
 }
