@@ -8,11 +8,8 @@ if(!isset($_SESSION['user_Id'])){
     return;
 }
 
-
 $board_manager_view = new Board_Manager_View();
 $details = $board_manager_view->getHomeDetails();
-
-
 
 ?>
 

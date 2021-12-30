@@ -51,7 +51,13 @@ if(isset($_POST['accept'])){
 
                     <div class="navbar-collapse collapse" id="mobile_menu">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="board_manager_pending_passes.php">Back</a></li>
+                            <?php
+                            if($details['state']==1){
+                                echo '<li class="active"><a href="board_manager_pending_passes.php">Back</a></li>';
+                            }else{
+                                echo '<li class="active"><a href="board_manager_pass_details.php">Back</a></li>';
+                            }
+                            ?>
 
                         </ul>
 
