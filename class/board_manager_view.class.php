@@ -102,6 +102,10 @@ class Board_Manager_View extends Board_Manager_Model{
         return $details;
     }
 
+    public function getConductorDetails(){
+        
+    }
+
 }
 
 ?>
