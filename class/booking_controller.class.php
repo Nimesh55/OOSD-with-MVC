@@ -26,8 +26,12 @@ class Booking_Controller extends Booking_Model{
         return $this->getBookingStateFromModel($booking_no);
     }
 
-    public function upgradeState($booking_no){
-        $this->upgradeStateFromModel($booking_no);
+    public function setStateApproved($booking_no){
+        $this->setStateApproveedFromModel($booking_no);
+    }
+
+    public function setStateExpired($booking_no){
+        $this->setStateExpiredFromModel($booking_no);
     }
 
     public function setStateCanelled($booking_no){

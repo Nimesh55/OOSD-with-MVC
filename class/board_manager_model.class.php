@@ -64,4 +64,12 @@ class Board_Manager_Model extends Dbh
         return $email;
     }
 
+    protected function getDistrictName($district_no){
+        $query = "SELECT name FROM district WHERE district_no={$district_no}";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute();
+        $district_name = $stmt->fetch(PDO::FETCH_ASSOC)['name'];
+        return $district_name;
+    }
+
 }

@@ -32,10 +32,16 @@ class Booking_Model extends Dbh
         return $record['state'];
     }
 
-    protected function upgradeStateFromModel($booking_no)
+    protected function setStateApprovedFromModel($booking_no)
     {
-        $next_state = $this->getPassState($booking_no)+1;
-        $sql = "UPDATE booking SET state={$next_state} where service_no={$booking_no}";
+        $sql = "UPDATE booking SET state=1 where booking_no={$booking_no}";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+    }
+
+    protected function setStateExpireedFromModel($booking_no)
+    {
+        $sql = "UPDATE booking SET state=2 where booking_no={$booking_no}";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
     }
@@ -73,7 +79,7 @@ class Booking_Model extends Dbh
     }
 
     protected function getBookingsArrayFromModel(){
-        $stmt = $this->connect()->prepare("SELECT * FROM Booking");
+        $stmt = $this->connect()->prepare("SELECT * FROM Booking WHERE (state=0 OR state=1)");
         $stmt->execute();
         $booking_array = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $booking_array;
