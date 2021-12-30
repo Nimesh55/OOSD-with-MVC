@@ -72,14 +72,5 @@ class Board_Manager_Model extends Dbh
         return $district_name;
     }
 
-    // protected function getConductorArray($conductor_id){
-    //     $query = "SELECT * FROM Users JOIN Conductor ON Users.account_no=conductor.conductor_no 
-    //         WHERE Users.account_type=1 AND Users.user_id={$conductor_id}";
-    //     $stmt = $this->connect()->prepare($query);
-    //     $stmt->execute();
-
-    //     $conductorDetails =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-    //     return $conductorDetails;
-    // }
 
 }

@@ -13,9 +13,11 @@ $details = $board_manager_view->getHomeDetails();
 
 $state_query = 0;
 if ($_GET["show"] == "success") {
+    
     $state_query = 1;
     $data = $board_manager_view->getConductorDetails($_GET["conductor_id"]);
     $error="none";
+
 }else{
     $error = $_GET["show"];
 }

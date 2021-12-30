@@ -64,4 +64,15 @@ class Board_Manager_Controller extends Board_Manager_Model
             $error = "Please Enter a Conductor Account!!";
         return $error;
     }
+
+    public function checkConductorAccountExist($conductor_obj){
+        
+        if (empty($conductor_obj->getfirst_name()) && empty($conductor_obj->getlast_name()) )
+        {
+            $error = "Conductor Account Doesn't Exist!!";
+            header("Location: board_manager_conductor_details.php?show='{$error}'");
+            return;
+            
+        }
+    }
 }
