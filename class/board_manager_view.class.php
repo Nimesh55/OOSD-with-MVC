@@ -127,10 +127,6 @@ class Board_Manager_View extends Board_Manager_Model
     {
         $conductor_obj = $this->conductor_tracker->getConductor($conductor_id);
 
-        echo "<pre>";
-        print_r($conductor_obj);
-        echo "</pre>";
-
         $this->board_manager_controller->checkConductorAccountExist($conductor_obj);
 
         $status = $conductor_obj->getstate();
