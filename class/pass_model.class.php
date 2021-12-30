@@ -17,21 +17,21 @@ class Pass_Model extends Dbh
         return self::$instance;
     }
 
-    public function getPassDetails($pass_no)
+    protected function getPassDetailsFromModel($pass_no)
     {
         $stmt = $this->connect()->query("SELECT * FROM pass WHERE pass_no = {$pass_no}");
         $record = $stmt->fetch();
         return $record;
     }
 
-    public function getPassState($pass_no)
+    protected function getPassStateFromModel($pass_no)
     {
         $stmt = $this->connect()->query("SELECT state FROM pass WHERE pass_no = {$pass_no}");
         $record = $stmt->fetch();
         return $record['state'];
     }
 
-    public function upgradeState($pass_no)
+    protected function upgradeStateFromModel($pass_no)
     {
         $next_state = $this->getPassState($pass_no)+1;
         $sql = "UPDATE pass SET state={$next_state} where pass_no={$pass_no}";
@@ -39,7 +39,7 @@ class Pass_Model extends Dbh
         $stmt->execute();
     }
 
-    public function setStatePending($pass_no)
+    protected function setStatePendingFromModel($pass_no)
     {
         $sql = "UPDATE pass SET state=0 where pass_no={$pass_no}";
         $stmt = $this->connect()->prepare($sql);
@@ -47,28 +47,28 @@ class Pass_Model extends Dbh
     }
 
 
-    public function setStateExpired($pass_no)
+    protected function setStateExpiredFromModel($pass_no)
     {
         $sql = "UPDATE pass SET state=3 where pass_no={$pass_no}";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
     }
 
-    public function setStateDeclined($pass_no)
+    protected function setStateDeclinedFromModel($pass_no)
     {
         $sql = "UPDATE pass SET state=4 where pass_no={$pass_no}";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
     }
 
-    public function getCurrentPassesCount(){
+    protected function getCurrentPassesCountFromModel(){
         $stmt = $this->connect()->prepare("SELECT count(*) FROM Pass");
         $stmt->execute();
         $count = $stmt->fetchColumn();
         return $count;
     }
 
-    public function addNewPass($passenger_no, $service_no, $start_date, $end_date, $state, $bus_route, $reason){
+    protected function addNewPassFromModel($passenger_no, $service_no, $start_date, $end_date, $state, $bus_route, $reason){
 
         $sql2 = "INSERT INTO Pass(passenger_no, service_no, start_date, end_date, state, bus_route, reason) VALUES (
                 :passenger_no, :service_no, :start_date, :end_date, :stat, :bus_route, :reason)";
@@ -81,7 +81,7 @@ class Pass_Model extends Dbh
             ':stat' => $state,
             ':bus_route' => $bus_route,
             ':reason' => $reason));
-        return $this->getCurrentPassesCount();
+        return $this->getCurrentPassesCountFromModel();
     }
 
 
@@ -111,7 +111,7 @@ class Pass_Model extends Dbh
         return null;
     }
 
-    public function getPendingPassesSearchArray(){
+    protected function getPendingPassesSearchArrayFromModel(){
         $query = $this->getPendingPassesSearchQuery();
 
         if(!$query){
@@ -149,7 +149,7 @@ class Pass_Model extends Dbh
         return null;
     }
 
-    public function getApprovedPassesSearchArray(){
+    protected function getApprovedPassesSearchArrayFromModel(){
         $query = $this->getApprovedPassesSearchQuery();
 
         if(!$query){
@@ -157,12 +157,12 @@ class Pass_Model extends Dbh
         }
         $stmt = $this->connect()->prepare($query);
         $stmt->execute();
-        $pending_passes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $approved_passes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        return $pending_passes;
+        return $approved_passes;
     }
 
-    public function getPassesArrayForService($service_no){
+    protected function getPassesArrayForServiceFromModel($service_no){
         $query = "SELECT * FROM pass WHERE (state=0 OR state=1) AND service_no={$service_no}";
         $stmt = $this->connect()->prepare($query);
         $stmt->execute();

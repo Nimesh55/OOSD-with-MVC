@@ -18,7 +18,7 @@ class Pass_Tracker extends Tracker{
     //returns a Pass object with details
     public function getPass($pass_no){
         $pass = new Pass();
-        $details = Pass_Model::getInstance()->getPassDetails($pass_no);
+        $details = Pass_Controller::getInstance()->getPassDetails($pass_no);
         $pass->setValues($pass_no, $details["passenger_no"], $details["service_no"], $details["start_date"],
                         $details["end_date"], $details["state"], $details["bus_route"], $details["reason"]);
         return $pass;
@@ -26,7 +26,7 @@ class Pass_Tracker extends Tracker{
 
     //create a new pass
     public function createPass($details){
-        $pass_no = Pass_Model::getInstance()->addNewPass(
+        $pass_no = Pass_Controller::getInstance()->addNewPass(
             $details['passenger_no'],
             $details['service_no'],
             $details['start_date'],
@@ -49,17 +49,17 @@ class Pass_Tracker extends Tracker{
 
     //Approve an Essential Service
     public function upgradePassState($pass_no){
-        Pass_Model::getInstance()->upgradeState($pass_no);
+        Pass_Controller::getInstance()->upgradeState($pass_no);
     }
 
     public function declinePass($pass_no){
-        Pass_Model::getInstance()->setStateDeclined($pass_no);
+        Pass_Controller::getInstance()->setStateDeclined($pass_no);
     }
 
 
     public function getPendingPassesSearchArray(){
         $passes_arr = array();
-        $passes = Pass_Model::getInstance()->getPendingPassesSearchArray();
+        $passes = Pass_Controller::getInstance()->getPendingPassesSearchArray();
 
         foreach ($passes as $pass){
             array_push($passes_arr, $this->getPass($pass['pass_no']));
@@ -70,7 +70,7 @@ class Pass_Tracker extends Tracker{
 
     public function getApprovedPassesSearchArray(){
         $passes_arr = array();
-        $passes = Pass_Model::getInstance()->getApprovedPassesSearchArray();
+        $passes = Pass_Controller::getInstance()->getApprovedPassesSearchArray();
 
         foreach ($passes as $pass){
             array_push($passes_arr, $this->getPass($pass['pass_no']));
@@ -80,7 +80,7 @@ class Pass_Tracker extends Tracker{
 
     public function getPassesArrayForService($service_no){
         $passes_arr = array();
-        $passes = Pass_Model::getInstance()->getPassesArrayForService($service_no);
+        $passes = Pass_Controller::getInstance()->getPassesArrayForService($service_no);
 
         foreach ($passes as $pass){
             array_push($passes_arr, $this->getPass($pass['pass_no']));
