@@ -52,4 +52,8 @@ class Booking_Controller extends Booking_Model{
         return $this->getBookingsArrayFromModel();
     }
 
+    public function getBookingsArrayForService($service_no){
+        return $this->getBookingsArrayForServiceFromModel($service_no);
+    }
+
 }

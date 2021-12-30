@@ -1,18 +1,14 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
-if(!isset($_SESSION['username'])){
+if (!isset($_SESSION['user_Id'])) {
     header("Location: login.php");
     return;
 }
 
-
-$booing_name = "Booking ".$booking['booking_no'];
-$pick = $stmt1->fetchColumn();
-$dest = $stmt2->fetchColumn();
-$st_date = $booking['start_date'];
-$en_date = $booking['end_date'];
-$stat = $booking['state'] ==0? 'Pending':'Approved';
+$viewobj = new Executive_View();
+$detailsArray = $viewobj->getBookingViewDetails($_GET['booking_no']);
 
 ?>
 
@@ -49,7 +45,7 @@ $stat = $booking['state'] ==0? 'Pending':'Approved';
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['username'] ?> <span class="caret"></span></a>
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['exec_name'] ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="executive_edit_profile.php">Edit profile</a></li>
                                     <li><a href="logout.php">Log out</a></li>
@@ -65,7 +61,7 @@ $stat = $booking['state'] ==0? 'Pending':'Approved';
     <!-- Details are shown here -->
     <form action="executive_booking_details.php" method="post">
         <div class="container mt-3">
-            <h1><?= $booing_name ?></h1>
+            <h1>Booking <?= $detailsArray['booking_no'] ?></h1>
 
             <div style="margin-top:100px;">
                 <div class="row">
@@ -74,7 +70,7 @@ $stat = $booking['state'] ==0? 'Pending':'Approved';
                         <p>Pickup District</p>
                     </div>
                     <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?= $pick ?> </p>
+                        <p>: <?= $detailsArray['pickup_district'] ?> </p>
                     </div>
                     <div class="col-sm-3 p-3"></div>
                 </div>
@@ -85,7 +81,7 @@ $stat = $booking['state'] ==0? 'Pending':'Approved';
                         <p>Destination District</p>
                     </div>
                     <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?= $dest ?> </p>
+                        <p>: <?= $detailsArray['destination_district'] ?> </p>
                     </div>
                     <div class="col-sm-3 p-3"></div>
                 </div>
@@ -96,7 +92,7 @@ $stat = $booking['state'] ==0? 'Pending':'Approved';
                         <p>Start date</p>
                     </div>
                     <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?= $st_date ?> </p>
+                        <p>: <?= $detailsArray['start_date'] ?> </p>
                     </div>
                     <div class="col-sm-3 p-3"></div>
                 </div>
@@ -107,7 +103,7 @@ $stat = $booking['state'] ==0? 'Pending':'Approved';
                         <p>End date</p>
                     </div>
                     <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?= $en_date ?> </p>
+                        <p>: <?= $detailsArray['end_date'] ?> </p>
                     </div>
                     <div class="col-sm-3 p-3"></div>
                 </div>
@@ -118,14 +114,14 @@ $stat = $booking['state'] ==0? 'Pending':'Approved';
                         <p>State</p>
                     </div>
                     <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?= $stat ?> </p>
+                        <p>: <?= $detailsArray['status'] ?> </p>
                     </div>
                     <div class="col-sm-3 p-3"></div>
                 </div>
 
                 <?php
 
-                    if($booking['state'] ==1){
+                    if($detailsArray['state'] ==1){
                         echo '<div class="row">';
                         echo '<div class="col-sm-3 p-3"></div>';
                         echo '<div class="col-sm-3 p-3 bg-dark text-white">';
@@ -133,9 +129,7 @@ $stat = $booking['state'] ==0? 'Pending':'Approved';
                         echo '</div>';
                         echo '<div class="col-sm-3 p-3 bg-primary text-white">';
 
-                        $stmt3 = $pdo->query("SELECT vehicle_no FROM Conductor WHERE conductor_no = {$booking['booked_conductor_no']} ");
-                        $bus_no = $stmt3->fetchColumn();
-                        echo '<p>: '.$bus_no.' </p>';
+                        echo '<p>: '.$detailsArray['bus_no'].' </p>';
 
                         echo '</div>';
                         echo '<div class="col-sm-3 p-3"></div>';

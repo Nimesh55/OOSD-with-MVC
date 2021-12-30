@@ -85,6 +85,14 @@ class Booking_Model extends Dbh
         return $booking_array;
     }
 
+    protected function getBookingsArrayForServiceFromModel($service_no){
+        $query = "SELECT * FROM booking WHERE (state=0 OR state=1) AND service_no={$service_no}";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute();
+        $service_bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $service_bookings;
+    }
+
 
 }
 

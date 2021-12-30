@@ -1,10 +1,14 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
 if (!isset($_SESSION['user_Id'])) {
     header("Location: login.php");
     return;
 }
+
+$viewobj = new Executive_View();
+$detailsArray = $viewobj->getBookingDetailsDetails();
 
 ?>
 
@@ -70,12 +74,13 @@ if (!isset($_SESSION['user_Id'])) {
                 <?php
 
 
-                    $bookings = ["x","y","z"]; //booking rows here from DB via booking tracker
+                    $bookings = $detailsArray['service_bookings']; //booking rows here from DB via booking tracker
 
                     foreach($bookings as $booking){
+                        $booking_no = $booking->getBookingNo();
                         echo '<tr>';
-                        echo '<th scope="row">Booking '.'booking_no'.'</th>';
-                        echo '<td><a href="executive_booking_details_view.php?booking_no='.'booking_no'.'" class="btn btn-info"> View </a></td>';
+                        echo '<th scope="row">Booking '.$booking_no.'</th>';
+                        echo '<td><a href="executive_booking_details_view.php?booking_no='.$booking_no.'" class="btn btn-info"> View </a></td>';
                         echo '</tr>';
                     }
                 ?>

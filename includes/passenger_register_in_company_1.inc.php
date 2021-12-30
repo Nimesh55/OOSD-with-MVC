@@ -28,7 +28,7 @@
                 </div>
                 <br>
 
-                <input type="submit" class="btn btn-default btn-lg" value="Remove" name="remove">
+                <input type="submit" class="btn btn-primary btn-lg" value="Remove" name="remove">
 
             </form>
 
