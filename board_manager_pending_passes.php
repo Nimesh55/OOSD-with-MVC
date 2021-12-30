@@ -45,7 +45,7 @@ $details = $board_manager_view->getPendingPassesDetails();
                             <li><a href="board_manager_home.php">Home</a></li>
                             <li class="active"><a href="board_manager_pending_passes.php">Pending Passes</a></li>
                             <li><a href="board_manager_pass_details.php">Pass Details</a></li>
-                            <li><a href="board_manager_conductor_details.php">Conductor Details</a></li>
+                            <li><a href="board_manager_conductor_details.php?show=none">Conductor Details</a></li>
                             <li><a href="board_manager_create_conductor.php">Create Conductor Account</a></li>
                             <li><a href="board_manager_allocate_vehicle.php">Allocate Vehicle</a></li>
                         </ul>

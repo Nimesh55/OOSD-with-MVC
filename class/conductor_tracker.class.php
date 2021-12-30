@@ -13,10 +13,11 @@ class Conductor_Tracker extends Tracker{
         return self::$instance;  
     }
 
-    public function createConductor($conductor_id){
+    public function getConductor($conductor_id){
         $conductorObj = new Conductor($conductor_id);
         return $conductorObj;
     }
+
 }
 
 ?>

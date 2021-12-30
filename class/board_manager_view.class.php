@@ -6,6 +6,7 @@ class Board_Manager_View extends Board_Manager_Model{
     private $essential_service_tracker;
     private $booking_tracker;
     private $passenger_tracker;
+    private $conductor_tracker;
 
     public function __construct(){
         $this->board_manager = new Board_Manager();
@@ -13,6 +14,7 @@ class Board_Manager_View extends Board_Manager_Model{
         $this->essential_service_tracker = EssentialServiceTracker::getInstance();
         $this->booking_tracker = Booking_Tracker::getInstance();
         $this->passenger_tracker = Passenger_Tracker::getInstance();
+        $this->conductor_tracker = Conductor_Tracker::getInstance();
     }
     public function getHomeDetails()
     {
@@ -102,8 +104,25 @@ class Board_Manager_View extends Board_Manager_Model{
         return $details;
     }
 
-    public function getConductorDetails(){
+    public function getConductorDetails($conductor_id){
+        $conductor_obj = $this->conductor_tracker->getConductor($conductor_id);
         
+        $status = $conductor_obj->getstate();
+        $state = "Unavailable";
+        if ($status==0)
+            $state = "Available";
+
+        $details = array(
+            "fname" => $conductor_obj->getfirst_name(),
+            "lname" => $conductor_obj->getlast_name(),
+            "district" => $conductor_obj->getdistric_name(),
+            "vehicle_no" => $conductor_obj->getvehicle_no(),
+            "telephone_no" => $conductor_obj->gettelephone(),
+            "status" => $state
+
+        );
+
+        return $details;
     }
 
 }

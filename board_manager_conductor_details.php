@@ -11,6 +11,14 @@ if (!isset($_SESSION['user_Id'])) {
 $board_manager_view = new Board_Manager_View();
 $details = $board_manager_view->getHomeDetails();
 
+if ($_GET["show"] == "success") {
+    $data = $board_manager_view->getConductorDetails($_GET["conductor_id"]);
+
+    echo "<pre>";
+    print_r($data);
+    echo "</pre>";
+}
+
 
 ?>
 
@@ -26,7 +34,7 @@ $details = $board_manager_view->getHomeDetails();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="css/board_manager_conductor_details.css">
+    <!-- <link rel="stylesheet" href="css/board_manager_conductor_details.css"> -->
     <title>Conductor Details</title>
 </head>
 
@@ -46,7 +54,7 @@ $details = $board_manager_view->getHomeDetails();
                             <li class="active"><a href="board_manager_home.php">Home</a></li>
                             <li><a href="board_manager_pending_passes.php">Pending Passes</a></li>
                             <li><a href="board_manager_pass_details.php">Pass Details</a></li>
-                            <li><a href="board_manager_conductor_details.php">Conductor Details</a></li>
+                            <li><a href="board_manager_conductor_details.php?show=none">Conductor Details</a></li>
                             <li><a href="board_manager_create_conductor.php">Create Conductor Account</a></li>
                             <li><a href="board_manager_allocate_vehicle.php">Allocate Vehicle</a></li>
                         </ul>
@@ -101,13 +109,13 @@ $details = $board_manager_view->getHomeDetails();
 
                     <!-- <p> &emsp; <?php
 
-                                if ($state_query == 0) {
-                                    echo "No Value";
-                                } elseif ($state_query == 1) {
-                                    echo  $rowSecond['passengerName'];
-                                }
+                                    if ($state_query == 0) {
+                                        echo "No Value";
+                                    } elseif ($state_query == 1) {
+                                        echo  $rowSecond['passengerName'];
+                                    }
 
-                                ?></p> -->
+                                    ?></p> -->
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white"></div>
             </div>
@@ -125,14 +133,14 @@ $details = $board_manager_view->getHomeDetails();
                     <!-- <p> &emsp; <?php
 
 
-                                if ($state_query == 0) {
-                                    echo "No Value";
-                                } elseif ($state_query == 1) {
+                                    if ($state_query == 0) {
+                                        echo "No Value";
+                                    } elseif ($state_query == 1) {
 
-                                    echo 'Need to implement';
-                                }
+                                        echo 'Need to implement';
+                                    }
 
-                                ?> -->
+                                    ?> -->
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white"></div>
             </div>
@@ -149,13 +157,13 @@ $details = $board_manager_view->getHomeDetails();
 
                     <!-- <p> &emsp; <?php
 
-                                if ($state_query == 0) {
-                                    echo "No Value";
-                                } elseif ($state_query == 1) {
-                                    echo 'Need to implement';
-                                }
+                                    if ($state_query == 0) {
+                                        echo "No Value";
+                                    } elseif ($state_query == 1) {
+                                        echo 'Need to implement';
+                                    }
 
-                                ?></p> -->
+                                    ?></p> -->
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white"></div>
             </div>
@@ -171,13 +179,13 @@ $details = $board_manager_view->getHomeDetails();
                     <!-- chaaangeeee -->
                     <!-- <p> &emsp; <?php
 
-                                if ($state_query == 0) {
-                                    echo "No Value";
-                                } elseif ($state_query == 1) {
-                                    echo 'Need to implement';
-                                }
+                                    if ($state_query == 0) {
+                                        echo "No Value";
+                                    } elseif ($state_query == 1) {
+                                        echo 'Need to implement';
+                                    }
 
-                                ?></p> -->
+                                    ?></p> -->
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white"></div>
             </div>
@@ -193,13 +201,13 @@ $details = $board_manager_view->getHomeDetails();
                     <!-- chaaangeeee -->
                     <!-- <p> &emsp; <?php
 
-                                if ($state_query == 0) {
-                                    echo "No Value";
-                                } elseif ($state_query == 1) {
-                                    echo 'Need to implement';
-                                }
+                                    if ($state_query == 0) {
+                                        echo "No Value";
+                                    } elseif ($state_query == 1) {
+                                        echo 'Need to implement';
+                                    }
 
-                                ?></p> -->
+                                    ?></p> -->
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white"></div>
             </div>
