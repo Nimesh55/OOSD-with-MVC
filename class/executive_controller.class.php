@@ -6,11 +6,13 @@ class Executive_Controller extends Executive_Model
     private $executive;
     private $pass_tracker;
     private $passenger_tracker;
+    private $conductor_tracker;
 
     public function __construct()
     {
         $this->pass_tracker = Pass_Tracker::getInstance();
         $this->passenger_tracker = Passenger_Tracker::getInstance();
+        $this->conductor_tracker = Conductor_Tracker::getInstance();
     }
 
 
@@ -40,7 +42,7 @@ class Executive_Controller extends Executive_Model
             $this->changeDetails($details);
         }
     }
-    /////////////////////////////////////////////////////////////////////////////////////////////
+
     public function approvePass($pass_no){
         $this->pass_tracker->upgradePassState($pass_no);
         header("Location: executive_pass_details.php");
@@ -50,16 +52,14 @@ class Executive_Controller extends Executive_Model
         $this->pass_tracker->declinePass($pass_no);
         header("Location: executive_pass_details.php");
     }
-    ////////////////////////////////////////////////////////////////////////////////////////
 
-    //Try to run this directly
-    public function passApproveDecline($pass_no){
-        if ($_GET['action']=='accept') {
-            $this->pass_tracker->upgradePassState($pass_no);
-        }elseif($_GET['action']=='decline') {
-            $this->pass_tracker->declinePass($pass_no);
+    public function getBusNo($conductor_no, $booking_state){
+        $conductor = $this->conductor_tracker->getConductor($conductor_no);
+        $bus_no =null;
+        if($booking_state>0){
+            $bus_no = $conductor->getvehicle_no();
         }
-        header("Location: ../executive_pass_details.php");
+        return $bus_no;
     }
 
     public function getPassStatus($state){

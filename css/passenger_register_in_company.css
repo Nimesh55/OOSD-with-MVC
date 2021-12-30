@@ -2,7 +2,9 @@
     margin-top: 10px;
 }
 .wrapper{
-    background-color: #e6e6e6;
+    background-color: rgb(44, 44, 37);
+    color: aliceblue;
+    opacity: 0.95;
     /*color: white;*/
     padding: 25px;
     border-radius: 15px;
