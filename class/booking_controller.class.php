@@ -27,11 +27,11 @@ class Booking_Controller extends Booking_Model{
     }
 
     public function setStateApproved($booking_no){
-        $this->setStateApproveedFromModel($booking_no);
+        $this->setStateApprovedFromModel($booking_no);
     }
 
     public function setStateExpired($booking_no){
-        $this->setStateExpiredFromModel($booking_no);
+        $this->setStateExpireedFromModel($booking_no);
     }
 
     public function setStateCanelled($booking_no){
