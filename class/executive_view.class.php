@@ -77,10 +77,9 @@ class Executive_View extends Executive_Model{
         $status = $this->executivectrl->getPassStatus($booking_state);
 
         $bus_no = "";
-        if($this->executivectrl->checkConductorAvailability($booking->getBookedConductorNo())){
+        if($this->executivectrl->checkConductorAvailability($booking_state)){
             $conductor = $this->conductor_tracker->getConductorByNumber($booking->getBookedConductorNo());
-            $bus_no = $this->executivectrl->getBusNo($conductor, $booking_state);
-
+            $bus_no = $this->executivectrl->getBusNo($conductor);
         }
         $details=array(
             "booking_no" => $booking->getBookingNo(),
