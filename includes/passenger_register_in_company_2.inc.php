@@ -3,6 +3,12 @@
         <div class="col-lg-3 cyan"></div>
         <div class="col-lg-6 wrapper">
             <form class="form-horizontal" role="form" action="includes/passenger_register_in_company.inc.php" method="post">
+                <?php
+                if (isset($_POST['error']) && strcmp($_POST['error'], "identified") == 0) {
+
+                    echo "<div class=\"alert alert-danger\"><strong>".'*Enter the correct Staff Id!!!'."</strong></div>";
+                }
+                ?>
                 <div class="form-group">
                     <label for="company" class="col-sm-3 control-label">Company:</label>
                     <div class="col-sm-9">

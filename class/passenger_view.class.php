@@ -5,10 +5,8 @@
     private $passenger;
 
     public function __construct($user_id){
-      $this->passenger = Passenger::getInstance($user_id);
-//      echo "<pre>";
-//      print_r($_SESSION);
-//      echo "</pre>";
+      $passenger_tracker = Passenger_Tracker::getInstance();
+      $this->passenger = $passenger_tracker->getPassenger($user_id);
     }
     public function getDetails()
     {
@@ -43,6 +41,10 @@
     }
     public function getPassengerStaffId(){
       return $this->passenger->getStaffId();
+    }
+    public function getPassengerUserId($passenger_no)
+    {
+      return $this->getUserId($passenger_no);
     }
   }
 

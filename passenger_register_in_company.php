@@ -7,6 +7,7 @@
         return;
     }
 
+
     $passengerview = new Passenger_View($_SESSION['account_no']);
     $pass_state = $passengerview->getPassState();
     $username = $passengerview->getUserName();

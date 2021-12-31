@@ -7,6 +7,7 @@
         return;
     }
     $state=0;
+    $disable ="";
     $passengerview = new Passenger_View($_SESSION['user_Id']);
     $row = $passengerview->getDetails();
     $row['user_id']=$_SESSION['user_Id'];
@@ -22,6 +23,9 @@
         $start_date = $_GET['start_date'];
         $end_date = $_GET['end_date'];
         $bus_route = $_GET['bus_route'];
+        if(strcmp($_GET['error'], "success")== 0){
+            $disable = 'disabled';
+        }
     }
 
     if($row['state'] == '0'){
@@ -149,7 +153,7 @@
                     <br>
                     <div class="btn-group btn-group-lg">
 <!--                        <input type="submit" class="btn btn-primary ctrlbutton" name="cpwd" value="Change Password">-->
-                        <input type="submit" class="btn btn-primary ctrlbutton" name="submit" value="Submit">
+                        <input type="submit" class="btn btn-primary ctrlbutton" name="submit" value="Submit" <?php echo $disable;?>>
                     </div>
 
                 </form>

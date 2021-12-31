@@ -8,9 +8,7 @@
         private Passenger $passenger;
         private Passenger_Controller $passenger_ctrl;
 
-        /**
-         * @param Passenger $passenger
-         */
+
         private function __construct()
         {
             $this->passenger_ctrl = new Passenger_Controller();
@@ -31,8 +29,13 @@
 
         public function getPassenger($user_id)
         {
-            $this->passenger = Passenger::getInstance($user_id);
-            return $this->passenger;
+//            $this->passenger = Passenger::getInstance($user_id);
+//            return $this->passenger;
+            $passenger = Passenger::getInstance($user_id);
+            $passenger_controller = new Passenger_Controller();
+            $passenger_controller->setPassengerDetails($passenger);
+            return $passenger;
+
         }
 
 //         public function creatPassenger($details)

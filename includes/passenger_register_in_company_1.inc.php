@@ -3,6 +3,7 @@
         <div class="col-lg-3 cyan"></div>
         <div class="col-lg-6 wrapper">
             <form class="form-horizontal" role="form" action="includes/passenger_register_in_company.inc.php" method="post">
+
                 <div class="form-group">
                     <label for="pass_status" class="col-sm-3 control-label">Passenger Status:</label>
                     <div class="col-sm-9">

@@ -42,20 +42,20 @@
     private function __construct($user_id)
     {
       $this->user_id=$user_id;
-      $passenger_model = new Passenger_Model();
-      $passenger_model->setRecord($user_id);
-      $row = $passenger_model->getRecord();
-
-      $this->passenger_no=$row['passenger_no'];
-      $this->first_name=$row['first_name'];
-      $this->last_name=$row['last_name'];
-      $this->address=$row['address'];
-      $this->telephone=$row['telephone'];
-      $this->service_no=$row['service_no'];
-      $this->staff_id=$row['staff_id'];
-      $this->email=$row['email'];
-      $this->state=$row['state'];
-      $_SESSION['instance']=$this;
+//      $passenger_model = new Passenger_Model();
+//      $passenger_model->setRecord($user_id);
+//      $row = $passenger_model->getRecord();
+//
+//      $this->passenger_no=$row['passenger_no'];
+//      $this->first_name=$row['first_name'];
+//      $this->last_name=$row['last_name'];
+//      $this->address=$row['address'];
+//      $this->telephone=$row['telephone'];
+//      $this->service_no=$row['service_no'];
+//      $this->staff_id=$row['staff_id'];
+//      $this->email=$row['email'];
+//      $this->state=$row['state'];
+//      $_SESSION['instance']=$this;
 
     }
 

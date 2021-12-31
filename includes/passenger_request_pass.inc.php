@@ -1,12 +1,9 @@
 <?php
     require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
     session_start();
-//    echo "<pre>";
-//    print_r($_POST);
-//    echo "</pre>";
     if (isset($_POST['submit']) && $_POST['submit']=='Submit') {
         $passenger_request_pass_controller = new Passenger_Request_Pass_Controller();
-        $passenger = Passenger::getInstance($_SESSION['user_Id']);
+        $passenger = Passenger_Tracker::getInstance()->getPassenger($_SESSION['user_Id']);
         $pass_tracker = Pass_tracker::getInstance();
         $details = array(
             'passenger_no' => $passenger->getPassengerNo(),

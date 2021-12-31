@@ -2,20 +2,22 @@
   require_once "dbh.class.php";
 	class Passenger_Model extends Dbh
 	{
-		private $record;
+//		private $record;
 
-		public function setRecord($user_id): void
+//		public function setRecord($user_id): void
+//		{
+//			$stmt = $this->connect()->query("SELECT * FROM users JOIN passenger ON Passenger.passenger_no = Users.account_no WHERE Users.user_id = $user_id");
+////			$this->record = $stmt->fetch();
+//		}
+
+		protected function getRecord($user_id)
 		{
-			$stmt = $this->connect()->query("SELECT * FROM users JOIN passenger ON Passenger.passenger_no = Users.account_no WHERE Users.user_id = $user_id");
-			$this->record = $stmt->fetch();
+            $stmt = $this->connect()->query("SELECT * FROM users JOIN passenger ON Passenger.passenger_no = Users.account_no WHERE Users.user_id = $user_id");
+            return $stmt->fetch();
+//			return $this->record;
 		}
 
-		public function getRecord()
-		{
-			return $this->record;
-		}
-
-		public function changeDetails($details)
+		protected function changeDetails($details)
 		{
 		  $sql = "UPDATE Passenger SET first_name = :fn, last_name = :ln, address = :addr,
 						   email = :em, telephone = :tel WHERE passenger_no = :pas_no";
@@ -29,7 +31,7 @@
 			  ':pas_no' => htmlentities($details['passenger_no'])));
 		  		$this->removeObj();
 		}
-		public function setCompanyDetails($service_no,$staff_id){
+		protected function setCompanyDetails($service_no,$staff_id){
 			$sql = "UPDATE Passenger SET staff_id = :stid,service_no= :sno,state= :st  WHERE passenger_no = :pas_no";
 			$stmt = $this->connect()->prepare($sql);
 			$stmt->execute(array(
@@ -37,9 +39,9 @@
 				':sno' 	=> htmlentities($service_no),
 				':st' 	=> 1,
 				':pas_no' => htmlentities($_SESSION['account_no'])));
-			$this->removeObj();
+//			$this->removeObj();
 		}
-		public function unSetCompanyDetails(){
+		protected function unSetCompanyDetails(){
 			$sql = "UPDATE Passenger SET staff_id = :stid,service_no= :sno,state= :st  WHERE passenger_no = :pas_no";
 			$stmt = $this->connect()->prepare($sql);
 			$stmt->execute(array(
@@ -47,14 +49,14 @@
 				':sno' 	=> 0,
 				':st' 	=> 0,
 				':pas_no' => htmlentities($_SESSION['account_no'])));
-			$this->removeObj();
+//			$this->removeObj();
 		}
 
 
-		private function removeObj(){
-			$this->setRecord($_SESSION['user_Id']);
-			unset($_SESSION['instance']);
-		}
+//		private function removeObj(){
+//			$this->setRecord($_SESSION['user_Id']);
+//			unset($_SESSION['instance']);
+//		}
 
 		public function getUserId($passenger_no){
 
