@@ -10,7 +10,6 @@ class Passenger_Controller extends Passenger_Model
     }
 
     public function setPassengerDetails(Passenger $passenger){
-//        $this->setRecord($passenger->getUserId());
         $row = $this->getRecord($passenger->getUserId());
         $passenger->setPassengerNo($row['passenger_no']);
         $passenger->setFirstName($row['first_name']);
@@ -62,7 +61,6 @@ class Passenger_Controller extends Passenger_Model
         if(isset($details['password'])) {
             $this->is_valid_password($details['password']);
         }else{$this->error.='*Enter valid password!!! ';}
-//        echo $this->error;
         return $this->error;
     }
     //Validate NIC
@@ -142,11 +140,7 @@ class Passenger_Controller extends Passenger_Model
     public function getPassengerUserId($passenger_no){
         return $this->getUserId($passenger_no);
     }
-
-//    public function getPassenger($passenger_no){
-//        $details = $this->getPassengerDetails($passenger_no);
-//        return $details;
-//    }
+    
     public function setPassengerCompanyDetails($service_no,$staff_id){
         $this->setCompanyDetails($service_no,$staff_id);
     }
