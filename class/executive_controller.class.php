@@ -96,10 +96,16 @@ class Executive_Controller extends Executive_Model
         $passengerArray = array();
         for ($i=0; $i < count($passenger_no_array); $i++) { 
             $curpassengerno = $passenger_no_array[$i];
-            $cur = $this->passenger_tracker->createPassenger($curpassengerno['passenger_no']);
+            $cur = $this->passenger_tracker->getPassengerByPassengerNo($curpassengerno['passenger_no']);
             $passengerArray[$i] = $cur;
 
         }
         return $passengerArray;
+    }
+
+    //used to set state within the executive dashboard approve, decline, remove
+    public function setPassengerState($state, $passenger_no){
+        $this->passenger_tracker->setPassengerState($state, $passenger_no);
+        header("Location: ../executive_passenger_details.php");
     }
 }

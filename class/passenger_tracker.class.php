@@ -38,6 +38,10 @@
 
         }
 
+        public function setPassengerState($state, $passenger_no){
+            $this->passenger_ctrl->setPassengerState($state, $passenger_no);
+        }
+
 //         public function creatPassenger($details)
 //         {
 //             $passenger_controller = new Passenger_Controller();

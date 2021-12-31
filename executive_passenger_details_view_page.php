@@ -11,8 +11,8 @@ if (!isset($_POST['variablePass1'])) {
     return;
 }
 $passenger_no = $_POST['variablePass1'];
-$passenger = Passenger_Tracker::getInstance()->createPassenger($passenger_no);
-$row = array('state' => $passenger->getState(), 'first_name' => $passenger_no, 'last_name' => $passenger->getLastName(), 'address' => $passenger->getAddress(), 'staff_id' => $passenger->getStaffId(), 'user_id' => $passenger->getUserId(), 'telephone' => $passenger->getTelephone(), 'email' => $passenger->getEmail());
+$passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($passenger_no);
+$row = array('state' => $passenger->getState(), 'first_name' => $passenger->getFirstName(), 'last_name' => $passenger->getLastName(), 'address' => $passenger->getAddress(), 'staff_id' => $passenger->getStaffId(), 'user_id' => $passenger->getUserId(), 'telephone' => $passenger->getTelephone(), 'email' => $passenger->getEmail());
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +25,7 @@ $row = array('state' => $passenger->getState(), 'first_name' => $passenger_no, '
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/buttons.js"></script>
     <title>Executive Passenger Details</title>
 </head>
 
@@ -135,13 +136,13 @@ $row = array('state' => $passenger->getState(), 'first_name' => $passenger_no, '
 
                 <?php
                 if ($row['state'] == 1) {
-                    echo '<input class="btn btn-default" type="submit" value="Accept" name="accept" style="color:blue;position:relative;
-                                left:65%;margin-top:10px; width:10%">';
-                    echo '<input class="btn btn-default" type="submit" value="Decline" name="decline" style="color:blue;position:relative;
-                                left:65%;margin-top:10px; width:10%">';
+                    echo '<a class="btn btn-default" type="submit" value="Accept" name="decline" onclick="clickView(\'2-'.$passenger_no.'\',\'includes/executive_passenger_view.inc.php\')" style="color:blue;position:relative;
+                    left:65%;margin-top:10px; width:10%">Accept</a>';
+                    echo '<a class="btn btn-default" type="submit" value="Decline" name="decline" onclick="clickView(\'0-'.$passenger_no.'\',\'includes/executive_passenger_view.inc.php\')" style="color:blue;position:relative;
+                    left:65%;margin-top:10px; width:10%">Decline</a>';
                 } elseif ($row['state'] == 2) {
-                    echo '<input class="btn btn-default" type="submit" value="Remove" name="decline" style="color:blue;position:relative;
-                        left:65%;margin-top:10px; width:10%">';
+                    echo '<a class="btn btn-default" type="submit" value="Remove" name="decline" onclick="clickView(\'0-'.$passenger_no.'\',\'includes/executive_passenger_view.inc.php\')" style="color:blue;position:relative;
+                        left:65%;margin-top:10px; width:10%">Remove</a>';
                 }
                 ?>
 

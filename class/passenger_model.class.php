@@ -69,6 +69,15 @@
 
 		}
 
+		// Sets passenger state by taking passenger_no and state
+		protected function setPassengerStateinTable($state, $passenger_no){
+			$sql = "UPDATE passenger SET state= :st  WHERE passenger_no = :pas_no";
+			$stmt = $this->connect()->prepare($sql);
+			$stmt->execute(array(
+				':st' 	=> $state,
+				':pas_no' => $passenger_no));
+		}
+
 		//Gets all the details to create a Passenger Object
 //		protected function getPassengerDetails($passenger_no){
 //			$stmt1 = $this->connect()->prepare("SELECT * FROM passenger WHERE passenger_no = ?");
