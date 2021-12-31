@@ -29,7 +29,7 @@
 			  ':em' => htmlentities($details['email']),
 			  ':tel' => htmlentities($details['telephone']),
 			  ':pas_no' => htmlentities($details['passenger_no'])));
-		  		$this->removeObj();
+//		  		$this->removeObj();
 		}
 		protected function setCompanyDetails($service_no,$staff_id){
 			$sql = "UPDATE Passenger SET staff_id = :stid,service_no= :sno,state= :st  WHERE passenger_no = :pas_no";
