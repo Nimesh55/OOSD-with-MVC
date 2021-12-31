@@ -10,7 +10,7 @@ class Booking_Model extends Dbh
 
     }
 
-    public static function getInstance(){
+    protected static function getInstance(){
         if (self::$instance == null) {
             self::$instance = new Booking_Model();
         }
