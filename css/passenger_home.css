@@ -1,0 +1,20 @@
+.wrapper{
+    /*background: #e6e6e6;*/
+    /*color: #000000;*/
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 15px;
+    text-align: center;
+    word-break: break-word;
+    background-color: rgb(44, 44, 37);
+    color: aliceblue;
+    opacity: 0.95;
+    margin-top:75px;
+}
+#heading{
+    padding:15px 0;
+    font-family: 'Roboto', sans-serif;
+}
+.field{
+    text-align: right;
+}
