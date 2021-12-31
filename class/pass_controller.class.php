@@ -30,6 +30,10 @@ class Pass_Controller extends Pass_Model{
         $this->setPassStateAccept_one($pass_no);
     }
 
+    public function setPassStateAccept_twoCtrl($pass_no){
+        $this->setPassStateAccept_two($pass_no);
+    }
+
     public function setStatePending($pass_no){
         $this->setStatePendingFromModel($pass_no);
     }

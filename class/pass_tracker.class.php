@@ -49,7 +49,11 @@ class Pass_Tracker extends Tracker{
 
     //Approve an Essential Service
     public function upgradePassState($pass_no){
-        Pass_Controller::getInstance()->setPassStateAccept_oneCtrl($pass_no);
+        $state = Pass_Controller::getInstance()->getPassState($pass_no);
+        if($state==0)
+            Pass_Controller::getInstance()->setPassStateAccept_oneCtrl($pass_no);
+        elseif ($state==1)
+            Pass_Controller::getInstance()->setPassStateAccept_twoCtrl($pass_no);
     }
 
     public function declinePass($pass_no){
