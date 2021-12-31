@@ -61,4 +61,10 @@ class Pass_Controller extends Pass_Model{
     public function getCurrentPassesCount(){
         return $this->getCurrentPassesCountFromModel();
     }
+
+    public function getPassby_passenger_id($passenger_id)
+    {
+        return $this->getPassby_passenger_id_model($passenger_id);
+
+    }
 }

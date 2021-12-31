@@ -7,19 +7,20 @@ if (!isset($_SESSION['user_Id'])) {
     return;
 }
 
-$state_query = 0;
-
 $conductorview = new Conductor_View($_SESSION['user_Id']);
 $row = $conductorview->getDetails();
 $row['user_id'] = $_SESSION['user_Id'];
 $username = $row['first_name'] . " " . $row['last_name'];
 
-//neeed to change
-if ($_GET["show"] == 'success') {
-    $conductorview->setPassengerDetails($_GET["pName"]);
-
+$state_query = 0;
+if ($_GET["show"] == "false") {
+} elseif ($_GET["show"] == "success") {
     $state_query = 1;
-    $rowSecond  = $conductorview->getPassengerDetails();
+    $passDetails = $conductorview->verifyPassenger($_GET['passenger_id']);
+    $error = "none";
+} else {
+    $state_query = 2;
+    $error = $_GET["show"];
 }
 
 
@@ -54,7 +55,7 @@ if ($_GET["show"] == 'success') {
                     <div class="navbar-collapse collapse" id="mobile_menu">
                         <ul class="nav navbar-nav">
                             <li><a href="conductor_home.php">Home</a></li>
-                            <li class="active"><a href="conductor_verify_passenger.php">Verify Passenger</a></li>
+                            <li class="active"><a href="conductor_verify_passenger.php?show=false">Verify Passenger</a></li>
                             <li><a href="conductor_update_leave.php">Update Leave</a></li>
                             <li><a href="conductor_cancel_booking.php">Cancel Booking</a></li>
                         </ul>
@@ -77,6 +78,19 @@ if ($_GET["show"] == 'success') {
     <div class="container mt-3" id="contanier-data">
 
 
+        <div class="row">
+            <div class="col-sm-3 p-3 bg-dark text-white"></div>
+            <div class="col-sm-6 p-3 bg-dark text-white">
+
+                <?php
+                if ($state_query == 2) {
+                    echo $error;
+                }
+                ?>
+            </div>
+            <div class="col-sm-3 p-3 bg-dark text-white"></div>
+        </div>
+
         <form action="includes/conductor_verify_passenger.inc.php" method="POST">
             <div class="row">
                 <div class="col-lg-2"></div>
@@ -97,6 +111,7 @@ if ($_GET["show"] == 'success') {
         <br>
 
         <div>
+
             <div class="row">
                 <div class="col-sm-1 p-3 bg-dark text-white"></div>
                 <div class="col-sm-3 p-3 bg-dark text-white">
@@ -110,10 +125,10 @@ if ($_GET["show"] == 'success') {
 
                     <p> &emsp; <?php
 
-                                if ($state_query == 0) {
+                                if ($state_query == 0 || $state_query == 2) {
                                     echo "No Value";
                                 } elseif ($state_query == 1) {
-                                    echo  $rowSecond['passengerName'];
+                                    echo  $passDetails['passenger_name'];
                                 }
 
                                 ?></p>
@@ -134,11 +149,11 @@ if ($_GET["show"] == 'success') {
                     <p> &emsp; <?php
 
 
-                                if ($state_query == 0) {
+                                if ($state_query == 0 || $state_query == 2) {
                                     echo "No Value";
                                 } elseif ($state_query == 1) {
 
-                                    echo 'Need to implement';
+                                    echo $passDetails['company_name'];
                                 }
 
                                 ?>
@@ -158,10 +173,10 @@ if ($_GET["show"] == 'success') {
 
                     <p> &emsp; <?php
 
-                                if ($state_query == 0) {
+                                if ($state_query == 0 || $state_query == 2) {
                                     echo "No Value";
                                 } elseif ($state_query == 1) {
-                                    echo 'Need to implement';
+                                    echo $passDetails['route'];
                                 }
 
                                 ?></p>
@@ -179,10 +194,10 @@ if ($_GET["show"] == 'success') {
 
                     <p> &emsp; <?php
 
-                                if ($state_query == 0) {
+                                if ($state_query == 0 || $state_query == 2) {
                                     echo "No Value";
                                 } elseif ($state_query == 1) {
-                                    echo 'Need to implement';
+                                    echo $passDetails['time_period'];
                                 }
 
                                 ?></p>

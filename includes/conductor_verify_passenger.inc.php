@@ -15,20 +15,15 @@ if (isset($_POST['submit'])) {
     
     
     $conductor_ctrl_obj = new Conductor_Controller();
-    $conductor_ctrl_obj->setPassengerId($passenger_id);
-
-    $arrObj = $conductor_ctrl_obj->validateDetails($passenger_id);
     
-    if(!isset($_SESSION["error"])){
-        $_SESSION["error"] = "Success";
+    $error = $conductor_ctrl_obj->validatePassengerId($passenger_id);
+
+    if($error=="None"){
+        header("Location: ../conductor_verify_passenger.php?show=success&passenger_id='{$passenger_id}'");
+        return;
     }
-
-    $pName =  $arrObj["passengerName"];
-    // $companyName = 
-    // $route = 
-    // $timePeriod = 
-    // Implement this after tracker
-
-    header("Location: ../conductor_verify_passenger.php?show=success&pName='{$pName}'");
-    return;
+    else{
+        header("Location: ../conductor_verify_passenger.php?show='{$error}'");
+        return;
+    }
 }
