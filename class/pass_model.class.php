@@ -31,10 +31,10 @@ class Pass_Model extends Dbh
         return $record['state'];
     }
 
-    protected function upgradeStateFromModel($pass_no)
+    protected function setPassStateAccept_one($pass_no)
     {
-        $next_state = $this->getPassState($pass_no)+1;
-        $sql = "UPDATE pass SET state={$next_state} where pass_no={$pass_no}";
+        //$next_state = $this->getPassState($pass_no)+1;
+        $sql = "UPDATE pass SET state=1 where pass_no={$pass_no}";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
     }

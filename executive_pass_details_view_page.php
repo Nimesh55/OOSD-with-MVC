@@ -15,7 +15,7 @@ $pass_no = $_POST['pass_no'];
 $execObj = new Executive_View();
 $pass = $execObj->getPassDetailsViewDetails($pass_no);
 $details = array("name" => $pass_no, 'route' => $pass['route'], 'time_slot' => $pass['time_slot'], 'reason' => $pass['reason'], 'status' => $pass['status']);
-
+///echo $details['status'];
 ?>
 
 <!DOCTYPE html>
@@ -138,6 +138,7 @@ $details = array("name" => $pass_no, 'route' => $pass['route'], 'time_slot' => $
                 <br>
 
                 <!-- accept and decline buttons -->
+                <?php if(strcmp($details['status'],"Pending")==0): ?>
                 <div class="row">
                     <div class="col-sm-3 p-3"></div>
                     <div class="col-sm-3 p-3">
@@ -148,7 +149,7 @@ $details = array("name" => $pass_no, 'route' => $pass['route'], 'time_slot' => $
                     </div>
                     <div class="col-sm-3 p-3"></div>
                 </div>
-
+                <?php endif;?>
 
             </div>
         </div>

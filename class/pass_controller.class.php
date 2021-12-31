@@ -26,8 +26,8 @@ class Pass_Controller extends Pass_Model{
         return $this->getPassStateFromModel($pass_no);
     }
 
-    public function upgradeState($pass_no){
-        $this->upgradeStateFromModel($pass_no);
+    public function setPassStateAccept_oneCtrl($pass_no){
+        $this->setPassStateAccept_one($pass_no);
     }
 
     public function setStatePending($pass_no){
