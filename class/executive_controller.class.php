@@ -45,12 +45,12 @@ class Executive_Controller extends Executive_Model
 
     public function approvePass($pass_no){
         $this->pass_tracker->upgradePassState($pass_no);
-        header("Location: executive_pass_details.php");
+        header("Location: ../executive_pass_details.php");
     }
 
     public function declinePass($pass_no){
         $this->pass_tracker->declinePass($pass_no);
-        header("Location: executive_pass_details.php");
+        header("Location: ../executive_pass_details.php");
     }
 
     public function getBusNo($conductor_no, $booking_state){

@@ -29,6 +29,7 @@ $details = array("name" => $pass_no, 'route' => $pass['route'], 'time_slot' => $
     <link rel="stylesheet" href="css/passenger_home.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/buttons.js"></script>
     <title>Executive Pass Details</title>
 </head>
 
@@ -140,10 +141,10 @@ $details = array("name" => $pass_no, 'route' => $pass['route'], 'time_slot' => $
                 <div class="row">
                     <div class="col-sm-3 p-3"></div>
                     <div class="col-sm-3 p-3">
-                        <a href="#" class="btn btn-info"> Accept </a>
+                        <a href="#" class="btn btn-info" onclick="clickView('1-<?php echo $pass_no ?>','includes/executive_pass_view.inc.php')"> Accept </a>
                     </div>
                     <div class="col-sm-3 p-3">
-                        <a href="#" class="btn btn-info"> Decline </a>
+                        <a href="#" class="btn btn-info" onclick="clickView('4-<?php echo $pass_no ?>','includes/executive_pass_view.inc.php')"> Decline </a>
                     </div>
                     <div class="col-sm-3 p-3"></div>
                 </div>
