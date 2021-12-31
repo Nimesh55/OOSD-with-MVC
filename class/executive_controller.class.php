@@ -52,7 +52,7 @@ class Executive_Controller extends Executive_Model
         $this->pass_tracker->declinePass($pass_no);
         header("Location: ../executive_pass_details.php");
     }
-    
+
 
     public function getPassStatus($state){
         if ($state == 0) {

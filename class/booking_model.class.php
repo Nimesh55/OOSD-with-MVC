@@ -60,18 +60,15 @@ class Booking_Model extends Dbh
         return $count;
     }
 
-    protected function addNewBookingFromModel($booking_no, $service_no, $reason, $start_date, $end_date, $start_time,
+    protected function addNewBookingFromModel($service_no, $reason, $start_date, $end_date, $start_time,
                                               $end_time, $pickup_district, $pickup_location, $destination_district,
-                                              $destination_location, $passenger_count, $state, $booked_conductor_no){
-        $sql = "INSERT INTO Booking(booking_no, service_no, reason, start_date, end_date, start_time, end_time, 
-                    pickup_district, pickup_location, destination_district, destination_location, passenger_count,
-                    state, booked_conductor_no) VALUES (:booking_no, :service_no, :reason, :start_date, :end_date,
-                                                        :start_time, :end_time, :pickup_district, :pickup_location, 
-                                                        :destination_district , :destination_location, :passenger_count,
-                                                        :stat, :booked_conductor_no)";
+                                              $destination_location, $passenger_count){
+        $sql = "INSERT INTO Booking(service_no, reason, start_date, end_date, start_time, end_time, 
+                    pickup_district, pickup_location, destination_district, destination_location, passenger_count)
+                     VALUES (:service_no, :reason, :start_date, :end_date, :start_time, :end_time,
+                    :pickup_district, :pickup_location, :destination_district , :destination_location, :passenger_count)";
         $stmt = $this->connect()->prepare($sql);
         $stmt -> execute(array(
-            ':booking_no' => $booking_no,
             ':service_no' => $service_no,
             ':reason' => $reason,
             ':start_date' => $start_date,
@@ -82,9 +79,7 @@ class Booking_Model extends Dbh
             ':pickup_location' => $pickup_location,
             ':destination_district' => $destination_district,
             ':destination_location' =>$destination_location,
-            ':passenger_count' => $passenger_count,
-            ':stat' => $state,
-            ':booked_conductor_no' => $booked_conductor_no));
+            ':passenger_count' => $passenger_count));
         return $this->getCurrentBookingsCount();
     }
 

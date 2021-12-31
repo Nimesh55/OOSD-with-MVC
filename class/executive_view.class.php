@@ -89,6 +89,13 @@ class Executive_View extends Executive_Model{
         return $details;
     }
 
+    public function getRequestBookingDetails(){
+        $details=array(
+            "districts"=> $this->getDistrictArray(),
+            "service_bookings" => $this->booking_tracker->getBookingsArrayForService($this->executiveobj->getServiceNo()));
+        return $details;
+    }
+
 
 
     public function getPassesDetails($service_no)
