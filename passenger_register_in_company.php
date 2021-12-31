@@ -1,6 +1,11 @@
 <?php
     require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
     session_start();
+//
+//    echo "<pre>";
+//    print_r($_SESSION);
+//    echo "</pre>";
+
 
     if(!isset($_SESSION['account_no'])){
         header("Location: login.php");
@@ -8,7 +13,7 @@
     }
 
 
-    $passengerview = new Passenger_View($_SESSION['account_no']);
+    $passengerview = new Passenger_View($_SESSION['user_Id']);
     $pass_state = $passengerview->getPassState();
     $username = $passengerview->getUserName();
     $service_no=$passengerview->getPassengerServiceNo();

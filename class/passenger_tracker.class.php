@@ -23,8 +23,8 @@
 
         public function getPassengerByPassengerNo($passenger_no){
             // FIX THIS ERROR###
-            $passenger_model = new Passenger_Model();
-            return $this->getPassenger($passenger_model->getUserId($passenger_no));
+//            $passenger_model = new Passenger_Model();
+            return $this->getPassenger($this->passenger_ctrl->getPassengerUserId($passenger_no));
         }
 
         public function getPassenger($user_id)
@@ -74,9 +74,14 @@
 
 //         }
 
-        public function createPassenger($passenger_no){
-            $passengerdetails = $this->passenger_ctrl->getPassenger($passenger_no);
-            $passengerObj = new Passenger2($passengerdetails);
-            return $passengerObj;
-        }
+//        public function createPassenger($passenger_no){
+//            $passengerdetails = $this->passenger_ctrl->getPassenger($passenger_no);
+//            $passengerObj = new Passenger2($passengerdetails);
+//            return $passengerObj;
+//        }
     }
+//    $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo(3);
+////    $passenger = Passenger_Tracker::getInstance()->createPassenger(3);
+//    echo "<pre>";
+//    print_r($passenger);
+//    echo "</pre>";

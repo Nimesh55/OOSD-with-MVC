@@ -139,10 +139,14 @@ class Passenger_Controller extends Passenger_Model
         }
     }
 
-    public function getPassenger($passenger_no){
-        $details = $this->getPassengerDetails($passenger_no);
-        return $details;
+    public function getPassengerUserId($passenger_no){
+        return $this->getUserId($passenger_no);
     }
+
+//    public function getPassenger($passenger_no){
+//        $details = $this->getPassengerDetails($passenger_no);
+//        return $details;
+//    }
     public function setPassengerCompanyDetails($service_no,$staff_id){
         $this->setCompanyDetails($service_no,$staff_id);
     }
