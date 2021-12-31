@@ -58,7 +58,7 @@ class Executive_Model extends Dbh
     }
     
     protected function getPasses($service_no){
-        $stmt = $this->connect()->prepare("SELECT * FROM pass where service_no = ?");
+        $stmt = $this->connect()->prepare("SELECT * FROM pass where service_no = ? AND state<3");
         $stmt->execute(array($service_no));
         $passes_in_service = $stmt->fetchAll();
         return $passes_in_service;

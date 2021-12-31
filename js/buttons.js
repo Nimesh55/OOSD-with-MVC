@@ -1,5 +1,5 @@
 // Onclick function for the relavant button
-function clickView(arg, path) {
+function clickView(arg, path) { 
     post(path, {
         variablePass1: arg
     });
@@ -26,7 +26,6 @@ function post(path, params, method = 'post') {
             form.appendChild(hiddenField);
         }
     }
-
     document.body.appendChild(form);
     form.submit();
 }
