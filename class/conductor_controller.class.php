@@ -61,4 +61,8 @@ class Conductor_Controller extends Conductor_Model{
             
         }
     }
+
+    public function getConductorsArrayByDistrict($district_no){
+        return $this->getConductorsArrayByDistrictFromModel($district_no);
+    }
 }

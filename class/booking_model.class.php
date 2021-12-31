@@ -53,11 +53,11 @@ class Booking_Model extends Dbh
         $stmt->execute();
     }
 
-    protected function getCurrentBookingsCountFromModel(){
-        $stmt = $this->connect()->prepare("SELECT count(*) FROM Booking");
+    private function getCurrentBookingsCountFromModel(){
+        $stmt = $this->connect()->prepare("SELECT booking_no FROM Booking ORDER BY booking_no DESC ");
         $stmt->execute();
-        $count = $stmt->fetchColumn();
-        return $count;
+        $last_no = $stmt->fetch();
+        return $last_no['booking_no'];
     }
 
     protected function addNewBookingFromModel($service_no, $reason, $start_date, $end_date, $start_time,
@@ -80,7 +80,7 @@ class Booking_Model extends Dbh
             ':destination_district' => $destination_district,
             ':destination_location' =>$destination_location,
             ':passenger_count' => $passenger_count));
-        return self::getCurrentBookingsCountFromModel();
+        return $this->getCurrentBookingsCountFromModel();
     }
 
     protected function getBookingsArrayFromModel(){

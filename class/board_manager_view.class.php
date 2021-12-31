@@ -118,7 +118,7 @@ class Board_Manager_View extends Board_Manager_Model
     {
         $details = array(
             "name" => $this->board_manager->getName(),
-            "bookingsArray" => $this->booking_tracker->getBookingsArray()
+            "vehicle_list" => $this->conductor_tracker
         );
         return $details;
     }

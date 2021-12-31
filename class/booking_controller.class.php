@@ -38,9 +38,6 @@ class Booking_Controller extends Booking_Model{
         $this->setStateCanelledFromModel($booking_no);
     }
 
-    public function getCurrentBookingsCount(){
-        return self::getCurrentBookingsCountFromModel();
-    }
 
     public function addNewBooking($service_no, $reason, $start_date, $end_date, $start_time, $end_time, $pickup_district,
                                   $pickup_location, $destination_district, $destination_location, $passenger_count){
