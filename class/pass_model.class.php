@@ -74,7 +74,7 @@ class Pass_Model extends Dbh
         return $count;
     }
 
-    protected function addNewPassFromModel($passenger_no, $service_no, $start_date, $end_date, $state, $bus_route, $reason){
+    protected function addNewPassFromModel($passenger_no, $service_no, $start_date, $end_date, $bus_route, $reason){
 
         $sql2 = "INSERT INTO Pass(passenger_no, service_no, start_date, end_date, state, bus_route, reason) VALUES (
                 :passenger_no, :service_no, :start_date, :end_date, :stat, :bus_route, :reason)";
@@ -84,7 +84,7 @@ class Pass_Model extends Dbh
             ':service_no' => $service_no,
             ':start_date' => $start_date,
             ':end_date' => $end_date,
-            ':stat' => $state,
+            ':stat' => 0,
             ':bus_route' => $bus_route,
             ':reason' => $reason));
         return $this->getCurrentPassesCountFromModel();

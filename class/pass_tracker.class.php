@@ -31,7 +31,6 @@ class Pass_Tracker extends Tracker{
             $details['service_no'],
             $details['start_date'],
             $details['end_date'],
-            $details['state'],
             $details['bus_route'],
             $details['reason']);
         $pass = new Pass();

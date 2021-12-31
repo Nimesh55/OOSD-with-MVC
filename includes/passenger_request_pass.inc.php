@@ -10,7 +10,6 @@
             'service_no' => $passenger->getServiceNo(),
             'start_date' => $_POST['from_date'],
             'end_date' => $_POST['to_date'],
-            'state' => $passenger->getState(),
             'bus_route' => $_POST['bus_route'],
             'reason' => $_POST['reason']
         );
