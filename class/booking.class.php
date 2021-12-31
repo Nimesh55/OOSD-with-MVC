@@ -8,8 +8,12 @@ class Booking{
     private $reason;
     private $start_date;
     private $end_date;
+    private $start_time;
+    private $end_time;
     private $pickup_district;
+    private $pickup_location;
     private $destination_district;
+    private $destination_location;
     private $passenger_count;
     private $state;
     private $booked_conductor_no;
@@ -18,15 +22,20 @@ class Booking{
 
     }
 
-    public function setValues($booking_no, $service_no, $reason, $start_date, $end_date, $pickup_district,
-                              $destination_district, $passenger_count, $state, $booked_conductor_no){
+    public function setValues($booking_no, $service_no, $reason, $start_date, $end_date, $start_time, $end_time,
+                              $pickup_district, $pickup_location, $destination_district, $destination_location,
+                              $passenger_count, $state, $booked_conductor_no){
         $this->booking_no = $booking_no;
         $this->service_no = $service_no;
         $this->reason = $reason;
         $this->start_date = $start_date;
         $this->end_date = $end_date;
+        $this->start_time = $start_time;
+        $this->end_time = $end_time;
         $this->pickup_district = $pickup_district;
+        $this->pickup_location = $pickup_location;
         $this->destination_district = $destination_district;
+        $this->destination_location = $destination_location;
         $this->passenger_count = $passenger_count;
         $this->state = $state;
         $this->booked_conductor_no = $booked_conductor_no;
@@ -87,6 +96,26 @@ class Booking{
     public function getPassengerCount()
     {
         return $this->passenger_count;
+    }
+
+    public function getStartTime()
+    {
+        return $this->start_time;
+    }
+
+    public function getEndTime()
+    {
+        return $this->end_time;
+    }
+
+    public function getPickupLocation()
+    {
+        return $this->pickup_location;
+    }
+
+    public function getDestinationLocation()
+    {
+        return $this->destination_location;
     }
 
 
