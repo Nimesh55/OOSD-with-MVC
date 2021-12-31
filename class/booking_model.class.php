@@ -80,7 +80,7 @@ class Booking_Model extends Dbh
             ':destination_district' => $destination_district,
             ':destination_location' =>$destination_location,
             ':passenger_count' => $passenger_count));
-        return $this->getCurrentBookingsCount();
+        return self::getCurrentBookingsCountFromModel();
     }
 
     protected function getBookingsArrayFromModel(){

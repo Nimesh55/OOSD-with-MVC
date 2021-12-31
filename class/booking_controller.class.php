@@ -39,7 +39,7 @@ class Booking_Controller extends Booking_Model{
     }
 
     public function getCurrentBookingsCount(){
-        return $this->getCurrentBookingsCountFromModel();
+        return self::getCurrentBookingsCountFromModel();
     }
 
     public function addNewBooking($service_no, $reason, $start_date, $end_date, $start_time, $end_time, $pickup_district,
