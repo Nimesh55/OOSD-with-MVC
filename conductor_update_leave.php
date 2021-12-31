@@ -12,8 +12,6 @@ $row = $conductorview->getDetails();
 $row['user_id'] = $_SESSION['user_Id'];
 $username = $row['first_name'] . " " . $row['last_name'];
 
-
-
 ?>
 
 <!DOCTYPE html>
@@ -24,14 +22,13 @@ $username = $row['first_name'] . " " . $row['last_name'];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="css/conductor_home.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>Conductor Home</title>
+    <title>Conductor || Update Leave</title>
 </head>
 
 <body>
-<div class="navbar navbar-inverse">
+    <div class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
@@ -62,6 +59,26 @@ $username = $row['first_name'] . " " . $row['last_name'];
             </div>
         </div>
     </div>
+
+
+    <form action="includes/conductor_update_leave.inc.php" method="POST">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-5">
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="leave_date">Leave Date:</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" id="from" name="leave_date">
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-4"></div>
+
+            <button class="btn btn-primary" type="submit" name="submit">Submit</button>
+        </div>
+    </form>
 
 
 </body>
