@@ -30,6 +30,10 @@ class Pass_Controller extends Pass_Model{
         $this->setPassStateAccept_one($pass_no);
     }
 
+    public function setPassStateAccept_twoCtrl($pass_no){
+        $this->setPassStateAccept_two($pass_no);
+    }
+
     public function setStatePending($pass_no){
         $this->setStatePendingFromModel($pass_no);
     }
@@ -42,8 +46,8 @@ class Pass_Controller extends Pass_Model{
         $this->setStateDeclinedFromModel($pass_no);
     }
 
-    public function addNewPass($passenger_no, $service_no, $start_date, $end_date, $state, $bus_route, $reason){
-        return $this->addNewPassFromModel($passenger_no, $service_no, $start_date, $end_date, $state, $bus_route, $reason);
+    public function addNewPass($passenger_no, $service_no, $start_date, $end_date, $bus_route, $reason){
+        return $this->addNewPassFromModel($passenger_no, $service_no, $start_date, $end_date, $bus_route, $reason);
     }
 
     public function getPendingPassesSearchArray(){

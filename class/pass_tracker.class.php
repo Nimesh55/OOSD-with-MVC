@@ -31,7 +31,6 @@ class Pass_Tracker extends Tracker{
             $details['service_no'],
             $details['start_date'],
             $details['end_date'],
-            $details['state'],
             $details['bus_route'],
             $details['reason']);
         $pass = new Pass();
@@ -49,7 +48,11 @@ class Pass_Tracker extends Tracker{
 
     //Approve an Essential Service
     public function upgradePassState($pass_no){
-        Pass_Controller::getInstance()->upgradeState($pass_no);
+        $state = Pass_Controller::getInstance()->getPassState($pass_no);
+        if($state==0)
+            Pass_Controller::getInstance()->setPassStateAccept_oneCtrl($pass_no);
+        elseif ($state==1)
+            Pass_Controller::getInstance()->setPassStateAccept_twoCtrl($pass_no);
     }
 
     public function declinePass($pass_no){

@@ -53,13 +53,8 @@ class Executive_Controller extends Executive_Model
         header("Location: ../executive_pass_details.php");
     }
 
-    public function getBusNo($conductor_no, $booking_state){
-        $conductor = $this->conductor_tracker->getConductor($conductor_no);
-        $bus_no =null;
-        if($booking_state>0){
-            $bus_no = $conductor->getvehicle_no();
-        }
-        return $bus_no;
+    public function getBusNo($conductor){
+        return $conductor->getvehicle_no();
     }
 
     public function getPassStatus($state){
@@ -107,5 +102,13 @@ class Executive_Controller extends Executive_Model
     public function setPassengerState($state, $passenger_no){
         $this->passenger_tracker->setPassengerState($state, $passenger_no);
         header("Location: ../executive_passenger_details.php");
+    }
+
+    public function checkConductorAvailability($booking_state){
+        if ($booking_state>0){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

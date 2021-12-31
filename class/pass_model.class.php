@@ -33,8 +33,14 @@ class Pass_Model extends Dbh
 
     protected function setPassStateAccept_one($pass_no)
     {
-        //$next_state = $this->getPassState($pass_no)+1;
         $sql = "UPDATE pass SET state=1 where pass_no={$pass_no}";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+    }
+
+    protected function setPassStateAccept_two($pass_no)
+    {
+        $sql = "UPDATE pass SET state=2 where pass_no={$pass_no}";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
     }
@@ -69,8 +75,7 @@ class Pass_Model extends Dbh
         return $count;
     }
 
-    protected function addNewPassFromModel($passenger_no, $service_no, $start_date, $end_date, $state, $bus_route, $reason)
-    {
+    protected function addNewPassFromModel($passenger_no, $service_no, $start_date, $end_date, $bus_route, $reason){
 
         $sql2 = "INSERT INTO Pass(passenger_no, service_no, start_date, end_date, state, bus_route, reason) VALUES (
                 :passenger_no, :service_no, :start_date, :end_date, :stat, :bus_route, :reason)";
@@ -80,7 +85,7 @@ class Pass_Model extends Dbh
             ':service_no' => $service_no,
             ':start_date' => $start_date,
             ':end_date' => $end_date,
-            ':stat' => $state,
+            ':stat' => 0,
             ':bus_route' => $bus_route,
             ':reason' => $reason
         ));
