@@ -128,15 +128,18 @@ $details = $execObj->getRequestBookingDetails();
 
                     <input type="submit" name= "request" value="Request" id="request">
                     <input type="submit" name= "request" value="Cancel" id="cancel_request">
-                    <!--                    <a class="btn btn-default" href="includes/request_booking.inc.php?action=request">Request</a>-->
-                    <!--                    <a class="btn btn-default" href="executive_booking_details.php">Cancel</a>-->
 
-<!--                    --><?php
-//                        echo '<label name="error" id="error" style="color:#ff0000; float:none;">' ."{$_SESSION['error']}".'</label>';
-//                    ?>
+                    <?php
+                        if(isset($_SESSION['error']))
+                            echo '<label name="error" id="error" style="color:#ff0000; float:none;">' ."{$_SESSION['error']}".'</label>';
+                    ?>
 				</form>
 			</div>
 		</div>
 	</div>
 </body>
 </html>
+
+<?php
+unset($_SESSION["error"]);
+?>

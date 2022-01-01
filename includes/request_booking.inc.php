@@ -3,8 +3,6 @@
 require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
-// ## add validation
-
 if($_POST['request'] == "Request"){
     $details = array(
         "service_no" => $_SESSION["service_no"],
@@ -19,10 +17,8 @@ if($_POST['request'] == "Request"){
         "destination_location" => htmlentities($_POST["destination_loc"]),
         "passenger_count" => htmlentities($_POST["passenger_count"]));
 
-    Booking_Tracker::getInstance()->createBooking($details); // Fix the design
+    $executive_ctrl = new Executive_Controller();
+    $executive_ctrl->requestBooking($details);
+}else{
+    header("Location: ../executive_booking_details.php");
 }
-
-header("Location: ../executive_booking_details.php");
-
-
-

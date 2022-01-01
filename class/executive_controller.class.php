@@ -4,17 +4,6 @@ require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.p
 class Executive_Controller extends Executive_Model
 {
     private $executive;
-    private $pass_tracker;
-    private $passenger_tracker;
-    private $conductor_tracker;
-
-    public function __construct()
-    {
-        $this->pass_tracker = Pass_Tracker::getInstance();
-        $this->passenger_tracker = Passenger_Tracker::getInstance();
-        $this->conductor_tracker = Conductor_Tracker::getInstance();
-    }
-
 
     public function setUpDetails()
     {
@@ -44,12 +33,12 @@ class Executive_Controller extends Executive_Model
     }
 
     public function approvePass($pass_no){
-        $this->pass_tracker->upgradePassState($pass_no);
+        Pass_Tracker::getInstance()->upgradePassState($pass_no);
         header("Location: ../executive_pass_details.php");
     }
 
     public function declinePass($pass_no){
-        $this->pass_tracker->declinePass($pass_no);
+        Pass_Tracker::getInstance()->declinePass($pass_no);
         header("Location: ../executive_pass_details.php");
     }
 
@@ -88,7 +77,7 @@ class Executive_Controller extends Executive_Model
         $passengerArray = array();
         for ($i=0; $i < count($passenger_no_array); $i++) { 
             $curpassengerno = $passenger_no_array[$i];
-            $cur = $this->passenger_tracker->getPassengerByPassengerNo($curpassengerno['passenger_no']);
+            $cur = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($curpassengerno['passenger_no']);
             $passengerArray[$i] = $cur;
 
         }
@@ -97,16 +86,49 @@ class Executive_Controller extends Executive_Model
 
     //used to set state within the executive dashboard approve, decline, remove
     public function setPassengerState($state, $passenger_no){
-        $this->passenger_tracker->setPassengerState($state, $passenger_no);
+        Passenger_Tracker::getInstance()->setPassengerState($state, $passenger_no);
         header("Location: ../executive_passenger_details.php");
     }
 
     public function getBusNo($booking){
         $bus_no = "";
         if ($booking->getState()>0){
-            $conductor = $this->conductor_tracker->getConductorByNumber($booking->getBookedConductorNo());
+            $conductor = Conductor_Tracker::getInstance()->getConductorByNumber($booking->getBookedConductorNo());
             $bus_no = $conductor->getvehicle_no();
         }
         return $bus_no;
+    }
+
+    public function requestBooking($details){
+
+        if($this->validateRequestBooking($details)){
+            Booking_Tracker::getInstance()->createBooking($details);
+            header("Location: ../executive_booking_details.php");
+        }else{
+            header("Location: ../executive_request_booking.php");
+        }
+
+
+    }
+
+    public function validateRequestBooking($details){
+
+        if(empty($details['reason'])||empty($details['start_date'])||empty($details['end_date'])||empty($details['start_time'])||
+            empty($details['end_time'])||empty($details['pickup_district'])||empty($details['destination_district'])||
+            empty($details['destination_location'])||empty($details['passenger_count'])){
+            $_SESSION["error"] = 'Please fill all fields';
+        }elseif((strtotime($details['start_date'])<strtotime("now"))||(strtotime($details['start_date'])>strtotime($details['end_date']))) {
+            $_SESSION["error"] = 'Invalid dates. Check your dates again and try again';
+        }elseif (strtotime($details['start_time'])>strtotime($details['end_time'])){
+            $_SESSION["error"] = 'Invalid times. Check your times again and try again';
+        }elseif (is_numeric( $details['passenger_count'] ) && floor( $details['passenger_count'] ) != $details['passenger_count']){
+            $_SESSION["error"] = 'Invalid passenger count. Enter valid passenger count and try again';
+        }elseif ($details['passenger_count']<0 || $details['passenger_count']>30){
+            $_SESSION["error"] = 'Passenger count must be in between 0 and 30. Enter valid passenger count and try again';
+        }
+
+        if(isset($_SESSION["error"]))
+            return false;
+        return true;
     }
 }
