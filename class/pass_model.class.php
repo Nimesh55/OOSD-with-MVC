@@ -176,7 +176,7 @@ class Pass_Model extends Dbh
 
     protected function getPassesArrayForServiceFromModel($service_no)
     {
-        $query = "SELECT * FROM pass WHERE (state=0 OR state=1) AND service_no={$service_no}";
+        $query = "SELECT * FROM pass WHERE  service_no={$service_no}";
         $stmt = $this->connect()->prepare($query);
         $stmt->execute();
         $service_passes = $stmt->fetchAll(PDO::FETCH_ASSOC);

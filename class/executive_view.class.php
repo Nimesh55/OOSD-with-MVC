@@ -100,9 +100,8 @@ class Executive_View extends Executive_Model{
 
     public function getPassesDetails($service_no)
     {
-        $details= $this->getPasses($service_no);
+        $details= $this->executivectrl->get_PassesForDashboard($service_no);
         return $details;
-
     }
 
     public function getPassengerAll($service_no){

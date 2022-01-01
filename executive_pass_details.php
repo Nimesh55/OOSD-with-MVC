@@ -10,6 +10,7 @@ if (!isset($_SESSION['user_Id'])) {
 $viewobj = new Executive_View();
 $detailsArray = $viewobj->getPassesDetails($_SESSION['service_no']);
 $row = 0;
+print_r($detailsArray);
 $listCount = count($detailsArray);
 ?>
 
@@ -107,11 +108,11 @@ $listCount = count($detailsArray);
                 </tr>
             </thead>
             <tbody>
-                <?php while ($row < count($detailsArray)) :
+                <?php while ($row < 10) :
 
-                    $p_no = $detailsArray[$row]['passenger_no']; 
-                    $pass_no = $detailsArray[$row]['pass_no'];
-                    $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($p_no);
+                    $p_no = "xxxxx"; 
+                    $pass_no = "xxxxx";
+                    $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo("1");
                     $names = array("first_name" => $passenger->getFirstName(), "last_name" => $passenger->getLastName());// fix this after fixing passenger tracker
                     $row++;
                 ?>

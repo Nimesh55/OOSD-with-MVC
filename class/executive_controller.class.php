@@ -131,4 +131,16 @@ class Executive_Controller extends Executive_Model
             return false;
         return true;
     }
+
+    //Setting up Passes of state: Pending, Accepted-1, Accepted-2 for the relavent Service in executive dashboard
+    public function get_PassesForDashboard($service_no){
+        $passes = Pass_Tracker::getInstance()->getPassesArrayForService($service_no);
+        $finalPasses = array();
+        foreach($passes as $currentPass){
+            if($currentPass->getState()<3){ // Filters in state 0,1,2
+                array_push($finalPasses,$currentPass);
+            }
+        }
+        return $finalPasses;
+    }
 }

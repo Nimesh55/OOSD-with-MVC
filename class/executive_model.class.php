@@ -57,12 +57,12 @@ class Executive_Model extends Dbh
         return $count;
     }
     
-    protected function getPasses($service_no){
-        $stmt = $this->connect()->prepare("SELECT * FROM pass where service_no = ? AND state<3");
-        $stmt->execute(array($service_no));
-        $passes_in_service = $stmt->fetchAll();
-        return $passes_in_service;
-    }
+    // protected function getPasses($service_no){ // remove this properly
+    //     $stmt = $this->connect()->prepare("SELECT * FROM pass where service_no = ? AND state<3");
+    //     $stmt->execute(array($service_no));
+    //     $passes_in_service = $stmt->fetchAll();
+    //     return $passes_in_service;
+    // }
 
     protected function getPassengerNumbers_inService($service_no){
         $stmt = $this->connect()->prepare("SELECT passenger_no FROM passenger where service_no = ? AND (state =1 OR state = 2) ORDER BY state"); //only in pending or approved state. Adjust the order as neccessary
