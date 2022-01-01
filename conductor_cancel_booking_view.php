@@ -16,6 +16,11 @@ $bookingNo = $_GET['booking_no'];
 
 $bookingDetails = $conductorview->showBookingInfo($bookingNo);
 
+$state_query = 0;
+if ($_GET["error"] != 'none') {
+    $error = $_GET["error"];
+    $state_query = 1;
+}
 // echo '<pre>';
 // print_r($bookingDetails);
 // echo '</pre>';
@@ -31,6 +36,8 @@ $bookingDetails = $conductorview->showBookingInfo($bookingNo);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+    <link rel="stylesheet" href="css/conductor_cancel_booking_view.css">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Conductor Home</title>
@@ -70,8 +77,20 @@ $bookingDetails = $conductorview->showBookingInfo($bookingNo);
     </div>
 
     <div class="container mt-3" id="contanier-data">
-        <!-- <h1> <?php echo "$username" ?> </h1> -->
+        
         <div>
+            <div class="row" id="error">
+                <div class="col-sm-2 p-2"></div>
+                <div class="col-sm-8 p-4 bg-danger text-danger">
+                    <?php if ($state_query==1) {
+                        echo "<p>$error</p>";
+                    } ?>
+                </div>
+                <div class="col-sm-2 p-3"></div>
+            </div>
+
+            <br>
+
             <div class="row">
                 <div class="col-sm-2 p-2"></div>
                 <div class="col-sm-4 p-3 bg-dark text-white">
@@ -100,7 +119,7 @@ $bookingDetails = $conductorview->showBookingInfo($bookingNo);
                     <p>Start Date and Time</p>
                 </div>
                 <div class="col-sm-4 p-4 bg-primary text-white">
-                    <p>: <?= $bookingDetails['start_date']." From ". $bookingDetails['start_time']   ?> </p>
+                    <p>: <?= $bookingDetails['start_date'] . " From " . $bookingDetails['start_time']   ?> </p>
                 </div>
                 <div class="col-sm-2 p-3"></div>
             </div>
@@ -111,7 +130,7 @@ $bookingDetails = $conductorview->showBookingInfo($bookingNo);
                     <p>End Date and Time</p>
                 </div>
                 <div class="col-sm-4 p-4 bg-primary text-white">
-                    <p>: <?= $bookingDetails['end_date']." From ". $bookingDetails['end_time'] ?> </p>
+                    <p>: <?= $bookingDetails['end_date'] . " From " . $bookingDetails['end_time'] ?> </p>
                 </div>
                 <div class="col-sm-2 p-3"></div>
             </div>
@@ -167,6 +186,31 @@ $bookingDetails = $conductorview->showBookingInfo($bookingNo);
                 <div class="col-sm-4 p-4 bg-primary text-white">
                     <p>: <?= $bookingDetails['passenger_count'] ?> </p>
                 </div>
+                <div class="col-sm-2 p-3"></div>
+            </div>
+            
+            <br>
+            <br>
+
+            <div class="row">
+                <div class="col-sm-3 p-2"></div>
+                <div class="col-sm-3 p-3">
+                    <?php
+                    echo "<a class=\"btn btn-default\" href=\"conductor_cancel_booking.php\">Back</a>";
+                    ?>
+                </div>
+                <div class="col-sm-4 p-3">
+
+                    <?php
+
+                    if ($bookingDetails['flag'] == 0) {
+                        echo "<a class=\"btn btn-default\" href=\"includes/condcutor_cancel_booking_totally.inc.php?booking_no={$bookingNo}\">Cancel Booking</a>";
+                    }
+
+                    ?>
+
+                </div>
+
                 <div class="col-sm-2 p-3"></div>
             </div>
 

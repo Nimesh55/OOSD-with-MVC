@@ -20,7 +20,8 @@ class Booking_Model extends Dbh
 
     protected function getBookingDetailsFromModel($booking_no)
     {
-        $stmt = $this->connect()->query("SELECT * FROM booking WHERE booking_no = {$booking_no}");
+        $sql = "SELECT * FROM booking WHERE booking_no = $booking_no";
+        $stmt = $this->connect()->query($sql);
         $record = $stmt->fetch();
         return $record;
     }
@@ -126,6 +127,14 @@ class Booking_Model extends Dbh
         $stmt->execute();
         $conductor_bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $conductor_bookings;
+    }
+
+    protected function updateFlag_Booking_Cancel($booking_no)
+    {
+        $query = "UPDATE booking SET flag=1 where booking_no=$booking_no";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute();
+        return;
     }
 
 }

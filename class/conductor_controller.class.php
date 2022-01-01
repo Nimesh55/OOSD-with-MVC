@@ -118,4 +118,10 @@ class Conductor_Controller extends Conductor_Model{
         return $z;
     }
 
+    public function cancelBooking($bookingNo)
+    {
+        Conductor_Tracker::getInstance()->cancel_Booking($bookingNo);
+        return;
+    }
+
 }

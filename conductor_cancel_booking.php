@@ -12,10 +12,7 @@ $row = $conductorview->getDetails();
 $row['user_id'] = $_SESSION['user_Id'];
 $username = $row['first_name'] . " " . $row['last_name'];
 
-$bookingRecords = $conductorview->showBookings(1);
-// echo '<pre>';
-// print_r($bookingRecords);
-// echo '</pre>';
+$bookingRecords = $conductorview->showBookings($_SESSION['account_no']);
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +24,7 @@ $bookingRecords = $conductorview->showBookings(1);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+    <link rel="stylesheet" href="css/conductor_cancel_booking.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Conductor Home</title>
@@ -65,31 +63,31 @@ $bookingRecords = $conductorview->showBookings(1);
         </div>
     </div>
 
-    <div class="List of info">
-        <ul class="list-group action-list-group">
-            <?php
+    <div class="container mt-3" id="contanier-data">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Booking Number</th>
+                    <th scope="col">Click Here to View</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    $i = 1;
+                    while ($i <= count($bookingRecords)) {
+                        echo "<tr>";
+                        $bookingNo = $bookingRecords[$i-1]->getBookingNo();
+                        echo "<th scope=\"row\">$i</th>";
+                        echo "<td>"."Booking No. " . $bookingNo . "&nbsp;&nbsp;&nbsp;"."</td>";
+                        echo "<td><a class=\"btn btn-sm btn-default\" id=\"\" href=\"conductor_cancel_booking_view.php?booking_no={$bookingNo}&error=none\">View</a></td>";
+                        echo "</tr>";
 
-                $i = 0;
-                while ($i < count($bookingRecords)) {
-                    echo "<li class=\"list-group-item\">";
-                    
-                    $bookingNo = $bookingRecords[$i]->getBookingNo();
-                    
-                    //remove this later
-                    echo "<pre>";
-                    print_r($bookingRecords[$i]);
-                    echo "</pre>";
-
-                    echo "Booking No. ". $bookingNo ."&nbsp;&nbsp;&nbsp;";
-                    echo "<a class=\"btn btn-sm btn-default\" href=\"conductor_cancel_booking_view.php?booking_no={$bookingNo}\">View</a>";
-                    echo "</li>";
-
-                    $i++;
-                }
-
-            ?>
-
-        </ul>
+                        $i++;
+                    }
+                ?>
+            </tbody>
+        </table>
     </div>
 
 </body>

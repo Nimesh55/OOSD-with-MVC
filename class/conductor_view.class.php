@@ -75,7 +75,8 @@ class Conductor_View extends Conductor_Model
       "pickup_location" => $bookingObj->getPickupLocation(),
       "destination_district" => $this->conductor_controller->getDistrictName($bookingObj->getDestinationDistrict()),
       "destination_location" => $bookingObj->getDestinationLocation(),
-      "passenger_count" => $bookingObj->getPassengerCount()
+      "passenger_count" => $bookingObj->getPassengerCount(),
+      "flag" => $bookingObj->getFlag()
       
     );
     
