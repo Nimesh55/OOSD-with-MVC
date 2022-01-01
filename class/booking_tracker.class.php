@@ -18,7 +18,7 @@ class Booking_Tracker extends Tracker
         return self::$instance;
     }
 
-    //returns a Pass object with details
+    //returns a booking object
     public function getBooking($booking_no){
         $booking = new Booking();
         $details = Booking_Controller::getInstance()->getBookingDetails($booking_no);

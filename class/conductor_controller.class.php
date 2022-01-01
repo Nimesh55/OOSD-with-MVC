@@ -5,11 +5,8 @@ require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.p
 
 class Conductor_Controller extends Conductor_Model{
 
-    private $booking_tracker;
-
     public function __construct()
     {
-        $this->booking_tracker = Booking_Tracker::getInstance();
     }
 
     public function getConductor_by_conductor_no($conductor_no)
@@ -100,7 +97,25 @@ class Conductor_Controller extends Conductor_Model{
         return $this->getConductorLeavesArrayFromModel($conductor_no);
     }
 
+    //achira
     public function getConductorBookings($conductor_no){
         return Booking_Tracker::getInstance()->getBookingsForConductor($conductor_no);
     }
+
+    public function getBooking($bookingNo)
+    {
+        return Booking_Tracker::getInstance()->getBooking($bookingNo);
+    }
+
+    public function getEssentialServiceName($serviceNo)
+    {
+        return Conductor_Tracker::getInstance()->getEssentialServiceName($serviceNo);
+    }
+
+    public function getDistrictName($district_no)
+    { 
+        $z = $this->getDistrictNameFromModel($district_no);
+        return $z;
+    }
+
 }

@@ -7,11 +7,13 @@ class Conductor_Tracker extends Tracker{
     private static  $instance = null;
     private $conductor_controller;
     private $booking_tracker;
+    private $essentialService_tracker;
 
     public function __construct()
     {
         $this->conductor_controller = new Conductor_Controller();
         $this->booking_tracker = Booking_Tracker::getInstance();
+        $this->essentialService_tracker = EssentialServiceTracker::getInstance();
     }
 
     public static function getInstance(){
@@ -67,7 +69,22 @@ class Conductor_Tracker extends Tracker{
     {
         return $this->booking_tracker->checkBooking($conductor_no, $date, $type);
     }
+    
+    public function getBookingsFor_ConductorNo($conductor_no)
+    {
+        return $this->booking_tracker->getBookingsForConductor($conductor_no);
+    }
 
+    // return booking object by Booking Number
+    public function getBooking_by_bookingNo($bookingNo)
+    {
+        return $this->booking_tracker->getBooking($bookingNo);
+    }
+
+    public function getEssentialServiceName($service_no)
+    {
+        return $this->essentialService_tracker->getServiceName($service_no);
+    }
 
 }
 

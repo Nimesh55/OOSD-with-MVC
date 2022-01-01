@@ -5,7 +5,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc
 class Conductor_View extends Conductor_Model
 {
   private $conductor;
-  private $passenger_tracker;
   private $conductor_controller;
   private $pass_tracker;
 
@@ -13,7 +12,6 @@ class Conductor_View extends Conductor_Model
   {
 
     $this->conductor = new Conductor($conductor_no);
-    $this->passenger_tracker = Passenger_Tracker::getInstance();
     $this->conductor_controller = new Conductor_Controller();
     $this->pass_tracker = Pass_Tracker::getInstance();
   }
@@ -54,5 +52,33 @@ class Conductor_View extends Conductor_Model
     );
 
     return $details;
+  }
+
+  public function showBookings($conductor_no)
+  {
+    return $this->conductor_controller->getConductorBookings($conductor_no);
+  }
+
+  public function showBookingInfo($bookingNo)
+  {
+    $bookingObj = $this->conductor_controller->getBooking($bookingNo);
+    
+    $details = array(
+
+      "booking_no" => $bookingObj->getBookingNo(),
+      "service_name" => $this->conductor_controller->getEssentialServiceName($bookingObj->getServiceNo()),
+      "start_date" => $bookingObj->getStartDate(),
+      "start_time" => $bookingObj->getStartTime(),
+      "end_date" => $bookingObj->getEndDate(),
+      "end_time" => $bookingObj->getEndTime(),
+      "pickup_district" => $this->conductor_controller->getDistrictName($bookingObj->getPickupDistrict()),
+      "pickup_location" => $bookingObj->getPickupLocation(),
+      "destination_district" => $this->conductor_controller->getDistrictName($bookingObj->getDestinationDistrict()),
+      "destination_location" => $bookingObj->getDestinationLocation(),
+      "passenger_count" => $bookingObj->getPassengerCount()
+      
+    );
+    
+    return $details; 
   }
 }
