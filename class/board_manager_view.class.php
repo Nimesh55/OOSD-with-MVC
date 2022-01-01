@@ -110,8 +110,11 @@ class Board_Manager_View extends Board_Manager_Model
             "destination_location" => $this->getDistrictName($booking->getDestinationDistrict()),
             "start_date" => $booking->getStartDate(),
             "end_date" => $booking->getEndDate(),
+            "start_time" => $booking->getStartTime(),
+            "end_time" => $booking->getEndTime(),
             "booking_state" => $booking->getState(),
             "booked_vehicle" => $vehicle_no,
+            "flag" => $booking->getFlag(),
             "passenger_count" => $booking->getPassengerCount()
         );
         return $details;

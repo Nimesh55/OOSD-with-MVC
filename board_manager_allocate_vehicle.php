@@ -68,7 +68,7 @@ $details = $board_manager_view->getBookingsDetails();
         <li class="active"><a href="#pending" data-toggle="tab">Pending</a></li>
         <li><a href="#approved" data-toggle="tab">Approved</a></li>
         <li><a href="#expired" data-toggle="tab">Expired/Declined</a></li>
-        <li><a href="#declined" data-toggle="tab">Cancelled</a></li>
+        <li><a href="#declined" data-toggle="tab">Cancelled Bookings</a></li>
     </ul>
 
     <?php $bookings = $details['bookingsArray'];?>
@@ -149,7 +149,7 @@ $details = $board_manager_view->getBookingsDetails();
         </div>
 
         <div id="declined" class="tab-pane fade">
-            <h3>Cancelled</h3>
+            <h3>Cancelled Bookings</h3>
 
             <div class="List of info">
                 <ul class="list-group action-list-group">

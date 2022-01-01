@@ -67,6 +67,8 @@ $details = $board_manager_view->getBookingViewDetails($_GET['booking_no']);
         <th scope="col">Destination Location</th>
         <th scope="col">Start Date</th>
         <th scope="col">End Date</th>
+        <th scope="col">Start Time</th>
+        <th scope="col">End Time</th>
 <!--        <th scope="col">Start Time</th>-->
 <!--        <th scope="col">End Time</th>-->
         <th scope="col">No of Passengers</th>
@@ -85,8 +87,8 @@ $details = $board_manager_view->getBookingViewDetails($_GET['booking_no']);
         <td><?= $details['destination_location'] ?></td>
         <td><?= $details['start_date'] ?></td>
         <td><?= $details['end_date'] ?></td>
-<!--        <td>15.23 AM</td>-->
-<!--        <td>15.13 PM</td>-->
+        <td><?= $details['start_time'] ?></td>
+        <td><?= $details['end_time'] ?></td>
         <td><?= $details['passenger_count'] ?></td>
         <?php
             if($details['booking_state']==1){
@@ -101,6 +103,8 @@ $details = $board_manager_view->getBookingViewDetails($_GET['booking_no']);
     if($details['booking_state']==0){
         echo "<a class=\"btn btn-sm btn-default\" href=\"includes/allocate_vehicle.inc.php?action=1&booking_no={$_GET['booking_no']}\">Accept</a>";
         echo "<a class=\"btn btn-sm btn-default\" href=\"includes/allocate_vehicle.inc.php?action=0&booking_no={$_GET['booking_no']}\">Decline</a>";
+    }elseif ($details['booking_state']==1 && $details['flag']==1){
+        echo "<a class=\"btn btn-sm btn-default\" href=\"includes/allocate_vehicle.inc.php?action=1&booking_no={$_GET['booking_no']}\">Reallocate Conductor</a>";
     }
 ?>
 <!--<a class="btn btn-sm btn-default" href="includes/allocate_vehicle.inc.php?action=1&booking_no=--><?//= $_GET['booking_no']?><!--">Accept</a>-->
