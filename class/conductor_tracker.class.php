@@ -6,10 +6,12 @@ require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.p
 class Conductor_Tracker extends Tracker{
     private static  $instance = null;
     private $conductor_controller;
+    private $booking_tracker;
 
     public function __construct()
     {
         $this->conductor_controller = new Conductor_Controller();
+        $this->booking_tracker = Booking_Tracker::getInstance();
     }
 
     public static function getInstance(){
@@ -38,6 +40,13 @@ class Conductor_Tracker extends Tracker{
 
         }
     }
+
+    public function checkBooking($conductor_no, $date, $type)
+    {
+        return $this->booking_tracker->checkBooking($conductor_no, $date, $type);
+    }
+
+
 }
 
 ?>

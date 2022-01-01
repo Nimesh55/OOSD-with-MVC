@@ -69,6 +69,21 @@ class Booking_Tracker extends Tracker
         return $bookings_arr;
     }
 
+    // can be extended to return the Booking and conductor details
+    public function checkBooking($conductor, $date, $type)
+    {
+        $result = Booking_Controller::getInstance()->getBookingByConductor_on_given_date($conductor, $date, $type);
+        if(!empty($result)){
+            //Booking Found
+            return true;
+        }
+        else {
+            // Booking not found
+            return false;
+        }
+        
+    }
+
 }
 
 

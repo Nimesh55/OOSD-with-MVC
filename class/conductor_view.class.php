@@ -36,22 +36,23 @@ class Conductor_View extends Conductor_Model
     return $details;
   }
 
+
   public function verifyPassenger($passenger_id)
   {
-    
+
     //$passengerObj = $this->passenger_tracker->getPassenger($passenger_id);
     $pass_details_array = $this->pass_tracker->getPass_by_passenger_id($passenger_id);
 
-    $this->conductor_controller->checkPassExist($pass_details_array);    
+    $this->conductor_controller->checkPassExist($pass_details_array);
 
     $details = array(
       "passenger_name" => $pass_details_array["passenger_name"],
       "company_name" => $pass_details_array["company_name"],
       "route" => $pass_details_array["passObj"]->getBusRoute(),
-      "time_period" => ($pass_details_array["passObj"]->getStartDate())." to ".($pass_details_array["passObj"]->getEndDate()),
+      "time_period" => ($pass_details_array["passObj"]->getStartDate()) . " to " . ($pass_details_array["passObj"]->getEndDate()),
       "state" => $pass_details_array["passObj"]->getState()
     );
-    
+
     return $details;
   }
 }

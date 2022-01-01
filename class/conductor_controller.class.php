@@ -5,7 +5,6 @@ require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.p
 
 class Conductor_Controller extends Conductor_Model{
 
-
     public function getConductor_by_conductor_no($conductor_no)
     {
         $data = $this->getConductor_ByConductorNo($conductor_no);
@@ -64,5 +63,29 @@ class Conductor_Controller extends Conductor_Model{
 
     public function getConductorsArrayByDistrict($district_no){
         return $this->getConductorsArrayByDistrictFromModel($district_no);
+    }
+
+    public function updateLeave($conductor_no, $date, $type)
+    {
+        $isBooked = Conductor_Tracker::getInstance()->checkBooking($conductor_no, $date, $type);
+        $isLeaveExist = $this->checkLeaveExist_FromModel($conductor_no, $date);
+
+        if (!empty($isLeaveExist)) {
+            $error = "Leave Already Created with that Date!!";
+            header("Location: ../conductor_update_leave.php?error='{$error}'");
+            return;
+        }
+        elseif($isBooked == true && empty($isLeaveExist))
+        {
+            $error = "Booking has been made. Try another date!!";
+            header("Location: ../conductor_update_leave.php?error='{$error}'");
+            return;
+        }
+        elseif ($isBooked == false && empty($isLeaveExist) ) {
+            $this->updateLeaveFromModel($conductor_no, $date);
+            $error = "Leave Granted!!";
+            header("Location: ../conductor_update_leave.php?error='{$error}'");
+            return;
+        }
     }
 }

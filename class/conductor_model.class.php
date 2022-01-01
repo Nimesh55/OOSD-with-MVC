@@ -33,6 +33,20 @@ class Conductor_Model extends Dbh{ // ## make the methods protected
         $record = $stmt->fetchAll();
         return $record;
     }
+
+    protected function updateLeaveFromModel($conductor_no, $date){
+        $sql = "INSERT INTO conductor_leave (conductor_no, date) VALUES ($conductor_no, '{$date}')";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+    }
+
+    protected function checkLeaveExist_FromModel($conductor_no, $date){
+        $sql = "SELECT * FROM conductor_leave WHERE conductor_no=$conductor_no AND date='{$date}'";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+        $record = $stmt->fetchAll();
+        return $record;
+    }
     
 }
 

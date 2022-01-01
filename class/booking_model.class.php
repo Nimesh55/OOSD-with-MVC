@@ -98,6 +98,27 @@ class Booking_Model extends Dbh
         return $service_bookings;
     }
 
+    // make sure to give date and conductor as varchar
+    // type means we are checking booked conductor or replcement conductor
+    protected function getBookingByConductor_on_given_date_byModel($conductor_no, $date, $type)
+    {
+        if ($type == 'booked') {
+            $query = "SELECT booking_no FROM conductor JOIN booking ON conductor.conductor_no=booking.booked_conductor_no 
+                WHERE booking.start_date<='{$date}' AND booking.end_date>='{$date}' AND conductor.conductor_no=$conductor_no";
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute();
+            $booking_details = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $booking_details;
+        }else {
+            $query = "SELECT booking_no FROM conductor JOIN booking ON conductor.conductor_no=booking.replacement_conductor_no 
+                WHERE booking.start_date<='{$date}' AND booking.end_date>='{$date}' AND conductor.conductor_no=$conductor_no";
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute();
+            $booking_details = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $booking_details;
+        }
+        
+    }
 
 }
 
