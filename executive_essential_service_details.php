@@ -95,7 +95,7 @@ $state = 1;
                                     if($state==0){
                                         echo '<input type="submit" class="btn btn-default" style="margin-right:15px;" value="Request" name="request">';
                                     }else{
-                                        echo '<input type="submit" class="btn btn-default" value="Remove" name="remove">';
+                                        echo '<input type="submit" class="btn btn-default" value="Remove" name="remove">'; // ## connect this
                                     }
 
                                 ?>

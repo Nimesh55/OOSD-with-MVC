@@ -8,10 +8,19 @@ if (!isset($_SESSION['user_Id'])) {
 }
 
 $viewobj = new Executive_View();
-$detailsArray = $viewobj->getPassesDetails($_SESSION['service_no']);
-$row = 0;
-print_r($detailsArray);
-$listCount = count($detailsArray);
+$passDetailsArray = $viewobj->getPassesDetails($_SESSION['service_no']);
+$pendingPassesArray = array();
+$acceptedPassesArray = array();
+$confirmedPassesArray = array();
+foreach ($passDetailsArray as $cur) { // Seperated the Passes in to 3 array for 3 tabs to display easily
+    if ($cur->getState() == 0) {
+        array_push($pendingPassesArray, $cur);
+    } elseif ($cur->getState() == 1) {
+        array_push($acceptedPassesArray, $cur);
+    } elseif ($cur->getState() == 2) {
+        array_push($confirmedPassesArray, $cur);
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -65,69 +74,119 @@ $listCount = count($detailsArray);
     <!-- List view with  view button -->
 
     <div class="container">
-        <h2>Dynamic Tabs</h2>
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#link1" data-toggle="tab">Link 1</a></li>
-            <li><a href="#link2" data-toggle="tab">Link 2</a></li>
-            <li><a href="#link3" data-toggle="tab">Link 3</a></li>
-            <li><a href="#link4" data-toggle="tab">Link 4</a></li>
+            <li class="active"><a href="#link1" data-toggle="tab">Pending</a></li>
+            <li><a href="#link2" data-toggle="tab">Approved</a></li>
+            <li><a href="#link3" data-toggle="tab">Confirmed</a></li>
         </ul>
 
         <div class="tab-content">
             <div id="link1" class="tab-pane fade in active">
-                <h3>Link 1</h3>
-                Content
+                <form action="executive_pass_details_view_page.php" method="GET">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Pass Number</th>
+                                <th scope="col">Passenger Name</th>
+                                <th scope="col">View Details</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $row = 0;
+                            foreach ($pendingPassesArray as $cur) :
+                                $p_no = $cur->getPassengerNo();
+                                $pass_no = $cur->getPassNo();
+                                $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($p_no);
+                                $names = array("first_name" => $passenger->getFirstName(), "last_name" => $passenger->getLastName());
+                                $row++;
+                            ?>
+                                <tr>
+
+                                    <th scope="row"><?php echo $row; ?></th>
+                                    <td><?php echo $names["first_name"] . " " . $names["last_name"]; ?></td>
+                                    <td>
+                                        <a href="#" class="btn btn-info" onclick="clickView(<?php echo $pass_no ?>)"> View </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+
+                        </tbody>
+                    </table>
+                </form>
             </div>
 
             <div id="link2" class="tab-pane fade">
-                <h3>Link 2</h3>
-                Content
+                <form action="executive_pass_details_view_page.php" method="GET">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Pass Number</th>
+                                <th scope="col">Passenger Name</th>
+                                <th scope="col">View Details</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $row = 0;
+                            foreach ($acceptedPassesArray as $cur) :
+                                $p_no = $cur->getPassengerNo();
+                                $pass_no = $cur->getPassNo();
+                                $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($p_no);
+                                $names = array("first_name" => $passenger->getFirstName(), "last_name" => $passenger->getLastName());
+                                $row++;
+                            ?>
+                                <tr>
+
+                                    <th scope="row"><?php echo $row; ?></th>
+                                    <td><?php echo $names["first_name"] . " " . $names["last_name"]; ?></td>
+                                    <td>
+                                        <a href="#" class="btn btn-info" onclick="clickView(<?php echo $pass_no ?>)"> View </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+
+                        </tbody>
+                    </table>
+                </form>
             </div>
 
             <div id="link3" class="tab-pane fade">
-                <h3>Link 3</h3>
-                Content
-            </div>
+                <form action="executive_pass_details_view_page.php" method="GET">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Pass Number</th>
+                                <th scope="col">Passenger Name</th>
+                                <th scope="col">View Details</th>
 
-            <div id="link4" class="tab-pane fade">
-                <h3>Link 4</h3>
-                Content
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $row = 0;
+                            foreach ($confirmedPassesArray as $cur) :
+                                $p_no = $cur->getPassengerNo();
+                                $pass_no = $cur->getPassNo();
+                                $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($p_no);
+                                $names = array("first_name" => $passenger->getFirstName(), "last_name" => $passenger->getLastName());
+                                $row++;
+                            ?>
+                                <tr>
+
+                                    <th scope="row"><?php echo $row; ?></th>
+                                    <td><?php echo $names["first_name"] . " " . $names["last_name"]; ?></td>
+                                    <td>
+                                        <a href="#" class="btn btn-info" onclick="clickView(<?php echo $pass_no ?>)"> View </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+
+                        </tbody>
+                    </table>
+                </form>
             </div>
         </div>
     </div>
-
-
-    <form action="executive_pass_details_view_page.php" method="GET">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Pass Number</th>
-                    <th scope="col">Passenger Name</th>
-                    <th scope="col">View Details</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($row < 10) :
-
-                    $p_no = "xxxxx"; 
-                    $pass_no = "xxxxx";
-                    $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo("1");
-                    $names = array("first_name" => $passenger->getFirstName(), "last_name" => $passenger->getLastName());// fix this after fixing passenger tracker
-                    $row++;
-                ?>
-                    <tr>
-                        <th scope="row"><?php echo $row; ?></th>
-                        <td><?php echo $names["first_name"] . " " . $names["last_name"]; ?></td>
-                        <td>
-                            <a href="#" class="btn btn-info" onclick="clickView(<?php echo $pass_no ?>)"> View </a>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-
-            </tbody>
-        </table>
-    </form>
 
     <script type="text/javascript">
         // Onclick function for the relavant button

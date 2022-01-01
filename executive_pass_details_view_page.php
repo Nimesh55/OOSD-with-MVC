@@ -13,8 +13,9 @@ if (!isset($_POST['pass_no'])) {
 }
 $pass_no = $_POST['pass_no'];
 $execObj = new Executive_View();
-$pass = $execObj->getPassDetailsViewDetails($pass_no);
-$details = array("name" => $pass_no, 'route' => $pass['route'], 'time_slot' => $pass['time_slot'], 'reason' => $pass['reason'], 'status' => $pass['status']);
+$pass = $execObj->getPassDetailsViewDetails($pass_no); // ## Get Pass Object 
+$passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($pass['passenger_no']);
+$details = array("name" => $passenger->getFirstName().' '.$passenger->getLastName(), 'route' => $pass['route'], 'time_slot' => $pass['time_slot'], 'reason' => $pass['reason'], 'status' => $pass['status']);
 ///echo $details['status'];
 ?>
 
