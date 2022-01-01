@@ -37,4 +37,9 @@ class EssentialServiceTracker extends Tracker{
         return $x['state'];
     }
 
+    public function getServiceName($service_no){
+        $y = Service_Model::getInstance()->getServiceName_FromModel($service_no);
+        return $y['name'];
+    }
+
 }

@@ -55,6 +55,14 @@ class Conductor_Model extends Dbh{ // ## make the methods protected
         $record = $stmt->fetchAll();
         return $record;
     }
+
+    protected function getDistrictNameFromModel($district_no){
+        $sql = "SELECT name FROM district WHERE district_no = $district_no";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+        $record = $stmt->fetch();
+        return $record['name'];
+    }
     
 }
 

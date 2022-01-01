@@ -12,8 +12,10 @@ $row = $conductorview->getDetails();
 $row['user_id'] = $_SESSION['user_Id'];
 $username = $row['first_name'] . " " . $row['last_name'];
 
-
-
+$bookingRecords = $conductorview->showBookings(1);
+// echo '<pre>';
+// print_r($bookingRecords);
+// echo '</pre>';
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +26,7 @@ $username = $row['first_name'] . " " . $row['last_name'];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Conductor Home</title>
@@ -63,6 +65,31 @@ $username = $row['first_name'] . " " . $row['last_name'];
         </div>
     </div>
 
+    <div class="List of info">
+        <ul class="list-group action-list-group">
+            <?php
 
+                $i = 0;
+                while ($i < count($bookingRecords)) {
+                    echo "<li class=\"list-group-item\">";
+                    
+                    $bookingNo = $bookingRecords[$i]->getBookingNo();
+                    
+                    //remove this later
+                    echo "<pre>";
+                    print_r($bookingRecords[$i]);
+                    echo "</pre>";
+
+                    echo "Booking No. ". $bookingNo ."&nbsp;&nbsp;&nbsp;";
+                    echo "<a class=\"btn btn-sm btn-default\" href=\"conductor_cancel_booking_view.php?booking_no={$bookingNo}\">View</a>";
+                    echo "</li>";
+
+                    $i++;
+                }
+
+            ?>
+
+        </ul>
+    </div>
 
 </body>

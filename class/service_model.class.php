@@ -64,4 +64,11 @@ class Service_Model extends Dbh
         $services = $stmt->fetchAll();
         return $services;
     }
+
+    public function getServiceName_FromModel($service_no)
+    {
+        $stmt = $this->connect()->query("SELECT name FROM service WHERE service_no = $service_no");
+        $serviceName = $stmt->fetch();
+        return $serviceName;
+    }
 }
