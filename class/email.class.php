@@ -53,18 +53,3 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc
         }
 
     }
-
-    $to = "yheshan1@gmail.com";
-    $from = "safetansit@gmail.com";
-    $subject = "Email adapter test 01";
-    $body = "test";
-
-    $email = new Email($from,$to,$subject,$body);
-    $result =  $email->sendEmail();
-
-    if ($result){
-        echo "success";
-    }
-    else{
-        echo "failed";
-    }
