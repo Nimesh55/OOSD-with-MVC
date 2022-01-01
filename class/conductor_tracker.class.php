@@ -33,12 +33,34 @@ class Conductor_Tracker extends Tracker{
 
     }
 
-    public function getAvailableConductors($district_no){
+    public function getAvailableConductors($district_no, $start_date, $end_date){
         $conductor_arr = $this->conductor_controller->getConductorsArrayByDistrict($district_no);
         $final_conductors = array();
-        foreach ($conductor_arr as $conductor){
+
+        foreach ($conductor_arr as $conductor_data) {
+            $conductor = $this->getConductorbyNumber($conductor_data['conductor_no']);
+            $leaves = $this->conductor_controller->getConductorLeavesArray($conductor->getconductor_no());
+            $valid = true;
+            if(!empty($leaves)){
+                foreach ($leaves as $leave) {
+                    if ($leave['date'] >= $start_date && $leave['date'] <= $end_date)
+                        $valid = false;
+                }
+            }
+            $bookings = $this->conductor_controller->getConductorBookings($conductor->getconductor_no());
+            foreach ($bookings as $booking) {
+                if (($booking->getStartDate() >= $start_date && $booking->getStartDate() <= $end_date) ||
+                    ($booking->getEndDate() >= $start_date && $booking->getEndDate() <= $end_date)) {
+                    $valid = false;
+                }
+            }
+
+            if ($valid) {
+                array_push($final_conductors, $conductor);
+            }
 
         }
+        return $final_conductors;
     }
 
     public function checkBooking($conductor_no, $date, $type)

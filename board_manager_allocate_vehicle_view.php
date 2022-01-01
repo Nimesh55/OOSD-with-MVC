@@ -70,6 +70,11 @@ $details = $board_manager_view->getBookingViewDetails($_GET['booking_no']);
 <!--        <th scope="col">Start Time</th>-->
 <!--        <th scope="col">End Time</th>-->
         <th scope="col">No of Passengers</th>
+        <?php
+        if($details['booking_state']==1){
+            echo '<th scope="col">Vehicle No</th>';
+        }
+        ?>
     </tr>
     </thead>
     <tbody>
@@ -83,14 +88,24 @@ $details = $board_manager_view->getBookingViewDetails($_GET['booking_no']);
 <!--        <td>15.23 AM</td>-->
 <!--        <td>15.13 PM</td>-->
         <td><?= $details['passenger_count'] ?></td>
+        <?php
+            if($details['booking_state']==1){
+                echo "<td>{$details['booked_vehicle']}</td>";
+            }
+        ?>
     </tr>
     </tbody>
 </table>
 
-<!-- Deleting should be implemented later -->
-<a class="btn btn-sm btn-default" href="includes/allocate_vehicle.inc.php?action=1&booking_no=<?= $_GET['booking_no']?>">Accept</a>
-<a class="btn btn-sm btn-default" href="includes/allocate_vehicle.inc.php?action=0&booking_no=<?= $_GET['booking_no']?>">Decline</a>
-<!--<a class="btn btn-sm btn-default" href="board_manager_allocate_vehicle.php">Cancel</a>-->
+<?php
+    if($details['booking_state']==0){
+        echo "<a class=\"btn btn-sm btn-default\" href=\"includes/allocate_vehicle.inc.php?action=1&booking_no={$_GET['booking_no']}\">Accept</a>";
+        echo "<a class=\"btn btn-sm btn-default\" href=\"includes/allocate_vehicle.inc.php?action=0&booking_no={$_GET['booking_no']}\">Decline</a>";
+    }
+?>
+<!--<a class="btn btn-sm btn-default" href="includes/allocate_vehicle.inc.php?action=1&booking_no=--><?//= $_GET['booking_no']?><!--">Accept</a>-->
+<!--<a class="btn btn-sm btn-default" href="includes/allocate_vehicle.inc.php?action=0&booking_no=--><?//= $_GET['booking_no']?><!--">Decline</a>-->
+
 </body>
 
 </html>

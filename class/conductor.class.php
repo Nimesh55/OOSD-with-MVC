@@ -3,7 +3,7 @@
 
 class Conductor
 {
-
+    private $conductor_no;
     private $conductor_id;
     private $first_name;
     private $last_name;
@@ -23,6 +23,7 @@ class Conductor
         $row = $conductor_model->getRecord();
 
         if (!empty($row)) {
+            $this->conductor_no = $row['conductor_no'];
             $this->first_name = $row['first_name'];
             $this->last_name = $row['last_name'];
             $this->address = $row['address'];
@@ -71,5 +72,10 @@ class Conductor
     public function getdistric_name()
     {
         return $this->district_name;
+    }
+
+    public function getconductor_no()
+    {
+        return $this->conductor_no;
     }
 }

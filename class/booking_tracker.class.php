@@ -84,6 +84,16 @@ class Booking_Tracker extends Tracker
         
     }
 
+    public function getBookingsForConductor($conductor_no){
+        $bookings_arr = array();
+        $bookings = Booking_Controller::getInstance()->getBookingsForSelectedConductor($conductor_no);
+
+        foreach ($bookings as $booking){
+            array_push($bookings_arr, $this->getBooking($booking['booking_no']));
+        }
+        return $bookings_arr;
+    }
+
 }
 
 

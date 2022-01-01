@@ -9,8 +9,9 @@ if($_GET['action'] == 0){
 }elseif($_GET['action'] == 1){
     header("Location: ../board_manager_allocate_vehicle_select.php?booking_no={$_GET['booking_no']}");
 }elseif($_GET['action'] == 2){
-    $board_manager = new Board_Manager_Controller();
+    $board_manager_ctrl = new Board_Manager_Controller();
     // implement here to book a vehicle for given booking
+    $board_manager_ctrl->allocateConductorForBooking($_GET['booking_no'], $_GET['conductor_no']);
 
     header("Location: ../board_manager_allocate_vehicle.php");
 }

@@ -9,7 +9,10 @@ if(!isset($_SESSION['user_Id'])){
 }
 
 $board_manager_view = new Board_Manager_View();
-$details = $board_manager_view->getSelectVehicleDetails();
+$details = $board_manager_view->getSelectVehicleDetails($_GET['booking_no'],1);
+
+$available_vehicles = $details['vehicle_list'];
+$vehicle_cnt = count($available_vehicles);
 
 ?>
 
@@ -60,24 +63,24 @@ $details = $board_manager_view->getSelectVehicleDetails();
 
 
 <!-- List view with buttons -->
-
+<h1>Available Vehicle List</h1>
 <div class="list-group">
     <?php
-        $vehicle_cnt =0;
-        while ($vehicle_cnt<10):
+        $index =0;
+        while ($index<$vehicle_cnt):
     ?>
-    <a href="#" class="list-group-item list-group-item-action active">Vehicle 1</a>
+    <a class="list-group-item list-group-item-action active" href="includes/allocate_vehicle.inc.php?action=2&booking_no=<?= $_GET['booking_no']?>&conductor_no=<?= $available_vehicles[$index]->getconductor_no() ?>"><?= $available_vehicles[$index]->getvehicle_no() ?></a>
 <!--    <a href="#" class="list-group-item list-group-item-action">Vehicle 2</a>-->
 <!--    <a href="#" class="list-group-item list-group-item-action">Vehicle 3</a>-->
 <!--    <a href="#" class="list-group-item list-group-item-action">Vehicle 4</a>-->
     <?php
-        $vehicle_cnt++;
+            $index++;
         endwhile;
     ?>
 </div>
 
 <!-- Selecting the Vehicle should be implemented later -->
-<a class="btn btn-sm btn-default" href="includes/allocate_vehicle.inc.php?action=2">Select</a>
+<!--<a class="btn btn-sm btn-default" href="includes/allocate_vehicle.inc.php?action=2">Select</a>-->
 </body>
 
 </html>

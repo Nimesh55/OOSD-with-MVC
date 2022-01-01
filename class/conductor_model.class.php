@@ -47,6 +47,14 @@ class Conductor_Model extends Dbh{ // ## make the methods protected
         $record = $stmt->fetchAll();
         return $record;
     }
+
+    protected function getConductorLeavesArrayFromModel($conductor_no){
+        $sql = "SELECT * from conductor_leave WHERE conductor_no=?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$conductor_no]);
+        $record = $stmt->fetchAll();
+        return $record;
+    }
     
 }
 

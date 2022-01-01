@@ -57,4 +57,8 @@ class Booking_Controller extends Booking_Model{
         return $this->getBookingByConductor_on_given_date_byModel($conductor, $date, $type);
     }
 
+    public function getBookingsForSelectedConductor($conductor_no){
+        return $this->getBookingsForSelectedConductorFromModel($conductor_no);
+    }
+
 }

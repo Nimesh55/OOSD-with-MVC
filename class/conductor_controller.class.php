@@ -5,6 +5,13 @@ require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.p
 
 class Conductor_Controller extends Conductor_Model{
 
+    private $booking_tracker;
+
+    public function __construct()
+    {
+        $this->booking_tracker = Booking_Tracker::getInstance();
+    }
+
     public function getConductor_by_conductor_no($conductor_no)
     {
         $data = $this->getConductor_ByConductorNo($conductor_no);
@@ -87,5 +94,13 @@ class Conductor_Controller extends Conductor_Model{
             header("Location: ../conductor_update_leave.php?error='{$error}'");
             return;
         }
+    }
+
+    public function getConductorLeavesArray($conductor_no){
+        return $this->getConductorLeavesArrayFromModel($conductor_no);
+    }
+
+    public function getConductorBookings($conductor_no){
+        return Booking_Tracker::getInstance()->getBookingsForConductor($conductor_no);
     }
 }

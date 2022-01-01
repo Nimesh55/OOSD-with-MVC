@@ -100,6 +100,8 @@ class Board_Manager_View extends Board_Manager_Model
     {
         $booking = $this->booking_tracker->getBooking($booking_no);
         $service = $this->essential_service_tracker->createService($booking->getServiceNo());
+
+        $vehicle_no = $this->board_manager_controller->getBookedVehicleNo($booking);
         $details = array(
             "name" => $this->board_manager->getName(),
             "service_name" => $service->getName(),
@@ -108,17 +110,20 @@ class Board_Manager_View extends Board_Manager_Model
             "destination_location" => $this->getDistrictName($booking->getDestinationDistrict()),
             "start_date" => $booking->getStartDate(),
             "end_date" => $booking->getEndDate(),
+            "booking_state" => $booking->getState(),
+            "booked_vehicle" => $vehicle_no,
             "passenger_count" => $booking->getPassengerCount()
         );
         return $details;
     }
 
     // Change this
-    public function getSelectVehicleDetails()
+    public function getSelectVehicleDetails($booking_no, $district_no)
     {
+        $date_range = $this->board_manager_controller->getBookingDateRange($booking_no);
         $details = array(
             "name" => $this->board_manager->getName(),
-            "vehicle_list" => $this->conductor_tracker
+            "vehicle_list" => $this->conductor_tracker->getAvailableConductors($district_no, $date_range['start_date'], $date_range['end_date'])
         );
         return $details;
     }

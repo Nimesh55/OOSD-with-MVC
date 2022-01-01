@@ -6,10 +6,14 @@ class Board_Manager_Controller extends Board_Manager_Model
 {
 
     private $pass_tracker;
+    private $booking_tracker;
+    private $conductor_tracker;
 
     public function __construct()
     {
         $this->pass_tracker = Pass_Tracker::getInstance();
+        $this->booking_tracker = Booking_Tracker::getInstance();
+        $this->conductor_tracker = Conductor_Tracker::getInstance();
     }
 
     public function approvePass($pass_no)
@@ -74,5 +78,24 @@ class Board_Manager_Controller extends Board_Manager_Model
             return;
             
         }
+    }
+
+    public function getBookingDateRange($booking_no){
+        $booking = $this->booking_tracker->getBooking($booking_no);
+        $date_range = array("start_date" => $booking->getStartDate(), "end_date" => $booking->getEndDate());
+        return $date_range;
+    }
+
+    public function allocateConductorForBooking($booking_no, $conductor_no){
+        $this->allocateConductorForBookingFromModel($booking_no,$conductor_no);
+    }
+
+    public function getBookedVehicleNo($booking){
+        $vehicle_no ="-";
+        if($booking->getState()==1){
+            $conductor_obj = $this->conductor_tracker->getConductorbyNumber($booking->getBookedConductorNo());
+            $vehicle_no = $conductor_obj->getvehicle_no();
+        }
+        return $vehicle_no;
     }
 }
