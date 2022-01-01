@@ -12,6 +12,8 @@ $row = $conductorview->getDetails();
 $row['user_id'] = $_SESSION['user_Id'];
 $username = $row['first_name'] . " " . $row['last_name'];
 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -22,9 +24,10 @@ $username = $row['first_name'] . " " . $row['last_name'];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>Conductor || Update Leave</title>
+    <title>Conductor Home</title>
 </head>
 
 <body>
@@ -42,8 +45,8 @@ $username = $row['first_name'] . " " . $row['last_name'];
                         <ul class="nav navbar-nav">
                             <li><a href="conductor_home.php">Home</a></li>
                             <li><a href="conductor_verify_passenger.php?show=false">Verify Passenger</a></li>
-                            <li class="active"><a href="conductor_update_leave.php?error=none">Update Leave</a></li>
-                            <li><a href="conductor_cancel_booking.php">Cancel Booking</a></li>
+                            <li><a href="conductor_update_leave.php?error=none">Update Leave</a></li>
+                            <li class="active"><a href="conductor_cancel_booking.php">Cancel Booking</a></li>
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
@@ -60,25 +63,6 @@ $username = $row['first_name'] . " " . $row['last_name'];
         </div>
     </div>
 
-
-    <form action="includes/conductor_update_leave.inc.php" method="POST">
-        <div class="row">
-            <div class="col-lg-3"></div>
-            <div class="col-lg-5">
-
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="leave_date">Leave Date:</label>
-                    <div class="col-sm-10">
-                        <input type="date" class="form-control" id="from" name="leave_date">
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-lg-4"></div>
-
-            <button class="btn btn-primary" type="submit" name="submit">Submit</button>
-        </div>
-    </form>
 
 
 </body>

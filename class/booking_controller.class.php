@@ -27,25 +27,22 @@ class Booking_Controller extends Booking_Model{
     }
 
     public function setStateApproved($booking_no){
-        $this->setStateApproveedFromModel($booking_no);
+        $this->setStateApprovedFromModel($booking_no);
     }
 
     public function setStateExpired($booking_no){
-        $this->setStateExpiredFromModel($booking_no);
+        $this->setStateExpireedFromModel($booking_no);
     }
 
     public function setStateCanelled($booking_no){
         $this->setStateCanelledFromModel($booking_no);
     }
 
-    public function getCurrentBookingsCount(){
-        return $this->getCurrentBookingsCountFromModel();
-    }
 
-    public function addNewBooking($booking_no, $service_no, $start_date, $end_date, $pickup_district,
-                                  $destination_district, $state, $booked_conductor_no){
-        return $this->addNewBookingFromModel($booking_no, $service_no, $start_date, $end_date, $pickup_district,
-                                                $destination_district, $state, $booked_conductor_no);
+    public function addNewBooking($service_no, $reason, $start_date, $end_date, $start_time, $end_time, $pickup_district,
+                                  $pickup_location, $destination_district, $destination_location, $passenger_count){
+        return $this->addNewBookingFromModel($service_no, $reason, $start_date, $end_date, $start_time, $end_time, $pickup_district,
+                                            $pickup_location, $destination_district, $destination_location, $passenger_count);
     }
 
     public function getBookingsArray(){

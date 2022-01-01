@@ -10,7 +10,7 @@ class Booking_Model extends Dbh
 
     }
 
-    public static function getInstance(){
+    protected static function getInstance(){
         if (self::$instance == null) {
             self::$instance = new Booking_Model();
         }
@@ -53,25 +53,22 @@ class Booking_Model extends Dbh
         $stmt->execute();
     }
 
-    protected function getCurrentBookingsCountFromModel(){
-        $stmt = $this->connect()->prepare("SELECT count(*) FROM Booking");
+    private function getCurrentBookingsCountFromModel(){
+        $stmt = $this->connect()->prepare("SELECT booking_no FROM Booking ORDER BY booking_no DESC ");
         $stmt->execute();
-        $count = $stmt->fetchColumn();
-        return $count;
+        $last_no = $stmt->fetch();
+        return $last_no['booking_no'];
     }
 
-    protected function addNewBookingFromModel($booking_no, $service_no, $reason, $start_date, $end_date, $start_time,
+    protected function addNewBookingFromModel($service_no, $reason, $start_date, $end_date, $start_time,
                                               $end_time, $pickup_district, $pickup_location, $destination_district,
-                                              $destination_location, $passenger_count, $state, $booked_conductor_no){
-        $sql = "INSERT INTO Booking(booking_no, service_no, reason, start_date, end_date, start_time, end_time, 
-                    pickup_district, pickup_location, destination_district, destination_location, passenger_count,
-                    state, booked_conductor_no) VALUES (:booking_no, :service_no, :reason, :start_date, :end_date,
-                                                        :start_time, :end_time, :pickup_district, :pickup_location, 
-                                                        :destination_district , :destination_location, :passenger_count,
-                                                        :stat, :booked_conductor_no)";
+                                              $destination_location, $passenger_count){
+        $sql = "INSERT INTO Booking(service_no, reason, start_date, end_date, start_time, end_time, 
+                    pickup_district, pickup_location, destination_district, destination_location, passenger_count)
+                     VALUES (:service_no, :reason, :start_date, :end_date, :start_time, :end_time,
+                    :pickup_district, :pickup_location, :destination_district , :destination_location, :passenger_count)";
         $stmt = $this->connect()->prepare($sql);
         $stmt -> execute(array(
-            ':booking_no' => $booking_no,
             ':service_no' => $service_no,
             ':reason' => $reason,
             ':start_date' => $start_date,
@@ -82,10 +79,8 @@ class Booking_Model extends Dbh
             ':pickup_location' => $pickup_location,
             ':destination_district' => $destination_district,
             ':destination_location' =>$destination_location,
-            ':passenger_count' => $passenger_count,
-            ':stat' => $state,
-            ':booked_conductor_no' => $booked_conductor_no));
-        return $this->getCurrentBookingsCount();
+            ':passenger_count' => $passenger_count));
+        return $this->getCurrentBookingsCountFromModel();
     }
 
     protected function getBookingsArrayFromModel(){

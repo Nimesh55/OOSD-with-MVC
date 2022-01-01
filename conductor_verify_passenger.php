@@ -56,7 +56,7 @@ if ($_GET["show"] == "false") {
                         <ul class="nav navbar-nav">
                             <li><a href="conductor_home.php">Home</a></li>
                             <li class="active"><a href="conductor_verify_passenger.php?show=false">Verify Passenger</a></li>
-                            <li><a href="conductor_update_leave.php">Update Leave</a></li>
+                            <li><a href="conductor_update_leave.php?error=none">Update Leave</a></li>
                             <li><a href="conductor_cancel_booking.php">Cancel Booking</a></li>
                         </ul>
 

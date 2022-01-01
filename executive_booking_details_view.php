@@ -10,6 +10,8 @@ if (!isset($_SESSION['user_Id'])) {
 $viewobj = new Executive_View();
 $detailsArray = $viewobj->getBookingViewDetails($_GET['booking_no']);
 
+print_r($detailsArray); // ## expand the interface
+
 ?>
 
 <!DOCTYPE html>

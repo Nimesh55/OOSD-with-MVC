@@ -70,4 +70,21 @@ class Executive_Model extends Dbh
         $passengers_in_service = $stmt->fetchAll();
         return $passengers_in_service;
     }
+
+    protected function getDistrictName($district_no){
+        $query = "SELECT name FROM district WHERE district_no={$district_no}";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute();
+        $district_name = $stmt->fetch(PDO::FETCH_ASSOC)['name'];
+        return $district_name;
+    }
+
+    public function getDistrictArray(){
+        $query = "SELECT * FROM district";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute();
+        $district_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $district_list;
+    }
 }

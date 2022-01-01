@@ -30,6 +30,14 @@ class Conductor_Tracker extends Tracker{
         return $this->conductor_controller->getConductor_by_conductor_no($conductor_no);
 
     }
+
+    public function getAvailableConductors($district_no){
+        $conductor_arr = $this->conductor_controller->getConductorsArrayByDistrict($district_no);
+        $final_conductors = array();
+        foreach ($conductor_arr as $conductor){
+
+        }
+    }
 }
 
 ?>

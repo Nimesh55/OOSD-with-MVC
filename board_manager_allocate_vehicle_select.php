@@ -62,10 +62,18 @@ $details = $board_manager_view->getSelectVehicleDetails();
 <!-- List view with buttons -->
 
 <div class="list-group">
+    <?php
+        $vehicle_cnt =0;
+        while ($vehicle_cnt<10):
+    ?>
     <a href="#" class="list-group-item list-group-item-action active">Vehicle 1</a>
-    <a href="#" class="list-group-item list-group-item-action">Vehicle 2</a>
-    <a href="#" class="list-group-item list-group-item-action">Vehicle 3</a>
-    <a href="#" class="list-group-item list-group-item-action">Vehicle 4</a>
+<!--    <a href="#" class="list-group-item list-group-item-action">Vehicle 2</a>-->
+<!--    <a href="#" class="list-group-item list-group-item-action">Vehicle 3</a>-->
+<!--    <a href="#" class="list-group-item list-group-item-action">Vehicle 4</a>-->
+    <?php
+        $vehicle_cnt++;
+        endwhile;
+    ?>
 </div>
 
 <!-- Selecting the Vehicle should be implemented later -->

@@ -3,7 +3,7 @@
 require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
 require_once "dbh.class.php";
 
-class Conductor_Model extends Dbh{
+class Conductor_Model extends Dbh{ // ## make the methods protected
     private $record;
 
     public function setRecord($conductor_id){
@@ -26,6 +26,13 @@ class Conductor_Model extends Dbh{
         return $record2;
     }
 
+    protected function getConductorsArrayByDistrictFromModel($district_no){
+        $sql = "SELECT * from conductor WHERE district_no=?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$district_no]);
+        $record = $stmt->fetchAll();
+        return $record;
+    }
     
 }
 
