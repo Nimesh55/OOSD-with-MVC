@@ -1,5 +1,0 @@
-{
-    "require": {
-        "vonage/client": "^2.4"
-    }
-}
