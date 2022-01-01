@@ -62,6 +62,40 @@ $listCount = count($detailsArray);
     </div>
 
     <!-- List view with  view button -->
+
+    <div class="container">
+        <h2>Dynamic Tabs</h2>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#link1" data-toggle="tab">Link 1</a></li>
+            <li><a href="#link2" data-toggle="tab">Link 2</a></li>
+            <li><a href="#link3" data-toggle="tab">Link 3</a></li>
+            <li><a href="#link4" data-toggle="tab">Link 4</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="link1" class="tab-pane fade in active">
+                <h3>Link 1</h3>
+                Content
+            </div>
+
+            <div id="link2" class="tab-pane fade">
+                <h3>Link 2</h3>
+                Content
+            </div>
+
+            <div id="link3" class="tab-pane fade">
+                <h3>Link 3</h3>
+                Content
+            </div>
+
+            <div id="link4" class="tab-pane fade">
+                <h3>Link 4</h3>
+                Content
+            </div>
+        </div>
+    </div>
+
+
     <form action="executive_pass_details_view_page.php" method="GET">
         <table class="table">
             <thead>

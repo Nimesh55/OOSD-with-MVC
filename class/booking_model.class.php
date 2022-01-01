@@ -84,7 +84,7 @@ class Booking_Model extends Dbh
     }
 
     protected function getBookingsArrayFromModel(){
-        $stmt = $this->connect()->prepare("SELECT * FROM Booking WHERE (state=0 OR state=1)");
+        $stmt = $this->connect()->prepare("SELECT * FROM Booking");
         $stmt->execute();
         $booking_array = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $booking_array;

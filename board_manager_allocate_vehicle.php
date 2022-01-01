@@ -61,21 +61,120 @@ $details = $board_manager_view->getBookingsDetails();
 </div>
 
 <!-- List view and redirected Page button -->
-<div class="List of info">
-    <ul class="list-group action-list-group">
-        <?php
-        $bookings = $details['bookingsArray'];
-        foreach($bookings as $booking) {
-            $reason = $booking->getReason();
-            echo "<li class=\"list-group-item\">";
-            echo "<p>{$reason}</p> ";
-            echo "<a class=\"btn btn-sm btn-default\" href=\"board_manager_allocate_vehicle_view.php?booking_no={$booking->getBookingNo()}\">View</a>";
-            echo "</li>";
-        }
-        ?>
+
+<div class="container">
+    <h2>Allocate Vehicle</h2>
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#pending" data-toggle="tab">Pending</a></li>
+        <li><a href="#approved" data-toggle="tab">Approved</a></li>
+        <li><a href="#expired" data-toggle="tab">Expired/Declined</a></li>
+        <li><a href="#declined" data-toggle="tab">Cancelled</a></li>
     </ul>
 
+    <?php $bookings = $details['bookingsArray'];?>
 
+    <div class="tab-content">
+        <div id="pending" class="tab-pane fade in active">
+            <h3>Pending</h3>
+
+                <div class="List of info">
+                    <ul class="list-group action-list-group">
+                        <?php
+                        foreach($bookings as $booking) {
+                            $reason = $booking->getReason();
+                            $state = $booking->getState();
+                            $flag =  $booking->getflag();
+                            if($state==0) {
+
+                                echo "<li class=\"list-group-item\">";
+                                echo "<p>{$reason}</p> ";
+                                echo "<a class=\"btn btn-sm btn-default\" href=\"board_manager_allocate_vehicle_view.php?booking_no={$booking->getBookingNo()}\">View</a>";
+                                echo "</li>";
+                            }
+                        }
+                        ?>
+                    </ul>
+                </div>
+
+        </div>
+
+        <div id="approved" class="tab-pane fade">
+            <h3>Approved</h3>
+
+            <div class="List of info">
+                <ul class="list-group action-list-group">
+                    <?php
+
+                    foreach($bookings as $booking) {
+                        $reason = $booking->getReason();
+                        $state = $booking->getState();
+                        $flag =  $booking->getflag();
+                        if($state==1 && !($flag == 1 || $flag==2)) {
+
+                            echo "<li class=\"list-group-item\">";
+                            echo "<p>{$reason}</p> ";
+                            echo "<a class=\"btn btn-sm btn-default\" href=\"board_manager_allocate_vehicle_view.php?booking_no={$booking->getBookingNo()}\">View</a>";
+                            echo "</li>";
+                        }
+                    }
+                    ?>
+                </ul>
+            </div>
+
+        </div>
+
+        <div id="expired" class="tab-pane fade">
+            <h3>Expired/Declined</h3>
+
+            <div class="List of info">
+                <ul class="list-group action-list-group">
+                    <?php
+
+                    foreach($bookings as $booking) {
+                        $reason = $booking->getReason();
+                        $state = $booking->getState();
+                        $flag =  $booking->getflag();
+                        if($state==2 || $state==3) {
+
+                            echo "<li class=\"list-group-item\">";
+                            echo "<p>{$reason}</p> ";
+                            echo "<a class=\"btn btn-sm btn-default\" href=\"board_manager_allocate_vehicle_view.php?booking_no={$booking->getBookingNo()}\">View</a>";
+                            echo "</li>";
+                        }
+                    }
+                    ?>
+                </ul>
+            </div>
+
+        </div>
+
+        <div id="declined" class="tab-pane fade">
+            <h3>Cancelled</h3>
+
+            <div class="List of info">
+                <ul class="list-group action-list-group">
+                    <?php
+
+                    foreach($bookings as $booking) {
+                        $reason = $booking->getReason();
+                        $state = $booking->getState();
+                        $flag =  $booking->getflag();
+                        if($state==1 && ($flag == 1 || $flag==2)) {
+
+                            echo "<li class=\"list-group-item\">";
+                            echo "<p>{$reason}</p> ";
+                            echo "<a class=\"btn btn-sm btn-default\" href=\"board_manager_allocate_vehicle_view.php?booking_no={$booking->getBookingNo()}\">View</a>";
+                            echo "</li>";
+                        }
+                    }
+                    ?>
+                </ul>
+            </div>
+
+        </div>
+    </div>
 </div>
+
+
 </body>
 </html>
