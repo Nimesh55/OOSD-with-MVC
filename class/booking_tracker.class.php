@@ -48,6 +48,10 @@ class Booking_Tracker extends Tracker
         return $booking;
     }
 
+    public function setbookingStateExpired($booking_no){
+        Booking_Controller::getInstance()->setStateExpired($booking_no);
+    }
+
     public function getBookingsArray(){
         $bookings_arr = array();
         $bookings = Booking_Controller::getInstance()->getBookingsArray();

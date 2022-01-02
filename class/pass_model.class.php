@@ -75,7 +75,8 @@ class Pass_Model extends Dbh
         return $count;
     }
 
-    protected function addNewPassFromModel($passenger_no, $service_no, $start_date, $end_date, $bus_route, $reason){
+    protected function addNewPassFromModel($passenger_no, $service_no, $start_date, $end_date, $bus_route, $reason)
+    {
 
         $sql2 = "INSERT INTO Pass(passenger_no, service_no, start_date, end_date, state, bus_route, reason) VALUES (
                 :passenger_no, :service_no, :start_date, :end_date, :stat, :bus_route, :reason)";
@@ -185,7 +186,7 @@ class Pass_Model extends Dbh
 
     protected function getPassby_passenger_id_model($passenger_id)
     {
-        
+
         $query = "SELECT * FROM pass JOIN passenger ON pass.passenger_no = passenger.passenger_no JOIN users ON 
 		    passenger.passenger_no=users.account_no JOIN Service ON Service.service_no=pass.service_no WHERE users.user_id=$passenger_id ";
         $stmt = $this->connect()->prepare($query);
@@ -193,5 +194,15 @@ class Pass_Model extends Dbh
         $pass = $stmt->fetch();
 
         return $pass;
+    }
+
+    // Gets all the passes that are not expired or declined; used in Timer class
+    protected function getAllPasses()
+    {
+        $query = "SELECT * FROM pass WHERE state = 0 OR state = 1 OR state = 2";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute();
+        $passArray = $stmt->fetchAll();
+        return $passArray;
     }
 }

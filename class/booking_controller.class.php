@@ -31,7 +31,7 @@ class Booking_Controller extends Booking_Model{
     }
 
     public function setStateExpired($booking_no){
-        $this->setStateExpireedFromModel($booking_no);
+        $this->setStateExpiredFromModel($booking_no);
     }
 
     public function setStateCanelled($booking_no){

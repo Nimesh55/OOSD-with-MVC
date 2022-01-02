@@ -40,7 +40,7 @@ class Booking_Model extends Dbh
         $stmt->execute();
     }
 
-    protected function setStateExpireedFromModel($booking_no)
+    protected function setStateExpiredFromModel($booking_no)
     {
         $sql = "UPDATE booking SET state=2 where booking_no={$booking_no}";
         $stmt = $this->connect()->prepare($sql);
