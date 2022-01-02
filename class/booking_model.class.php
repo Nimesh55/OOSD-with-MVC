@@ -122,7 +122,7 @@ class Booking_Model extends Dbh
     }
 
     protected function getBookingsForSelectedConductorFromModel($conductor_no){
-        $query = "SELECT * FROM booking WHERE booked_conductor_no={$conductor_no}";
+        $query = "SELECT * FROM booking WHERE booked_conductor_no={$conductor_no} AND flag=0";
         $stmt = $this->connect()->prepare($query);
         $stmt->execute();
         $conductor_bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
