@@ -61,4 +61,10 @@ class Booking_Controller extends Booking_Model{
         return $this->getBookingsForSelectedConductorFromModel($conductor_no);
     }
 
+    public function cancelBooking($booking_no)
+    {
+        $this->updateFlag_Booking_Cancel($booking_no);
+        return;
+    }
+
 }

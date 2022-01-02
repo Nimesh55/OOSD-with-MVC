@@ -98,6 +98,12 @@ class Booking_Tracker extends Tracker
         return $bookings_arr;
     }
 
+    public function cancelBooking($booking_no)
+    {
+        Booking_Controller::getInstance()->cancelBooking($booking_no);
+        return;
+    }
+
 }
 
 

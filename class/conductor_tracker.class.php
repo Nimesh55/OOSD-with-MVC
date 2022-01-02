@@ -86,6 +86,12 @@ class Conductor_Tracker extends Tracker{
         return $this->essentialService_tracker->getServiceName($service_no);
     }
 
+    public function cancel_Booking($bookingNo)
+    {
+        $this->booking_tracker->cancelBooking($bookingNo);
+        return;
+    }
+
 }
 
 ?>
