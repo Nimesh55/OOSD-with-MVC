@@ -71,4 +71,8 @@ class Pass_Controller extends Pass_Model{
         return $this->getPassby_passenger_id_model($passenger_id);
 
     }
+
+    public function getAllPasses_array(){
+        return $this->getAllPasses();
+    }
 }
