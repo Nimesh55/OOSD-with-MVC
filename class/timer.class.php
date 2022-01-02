@@ -53,6 +53,7 @@ class Timer
         return $change;
     }
 
+    //calls the expire methods and write the number of state changes in to timerLog.txt
     public function update_All_Expire_State()
     {
         $passes = $this->updateStateinPasses();
