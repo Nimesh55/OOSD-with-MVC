@@ -63,6 +63,19 @@ class Conductor_Model extends Dbh{ // ## make the methods protected
         $record = $stmt->fetch();
         return $record['name'];
     }
+
+    protected function changeDetails($details)
+    {
+        $stmt = $this->connect()->prepare("UPDATE Conductor SET first_name = :fn, last_name = :ln,
+                     address = :addr, telephone = :tel, email = :em  WHERE conductor_no = :con_no");
+        $stmt->execute(array(
+            ':fn' => htmlentities($details['fname']),
+            ':ln' => htmlentities($details['lname']),
+            ':addr' => htmlentities($details['address']),
+            ':em' => htmlentities($details['email']),
+            ':tel' => htmlentities($details['telephone']),
+            ':con_no' => htmlentities($details['conductor_no'])));
+    }
     
 }
 
