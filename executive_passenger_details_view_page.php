@@ -52,8 +52,8 @@ $row = array('state' => $passenger->getState(), 'first_name' => $passenger->getF
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['exec_name'] ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="executive_edit_profile.php">Edit profile</a></li>
-                                    <li><a href="logout.php">Log out</a></li>
+                                    <li><a href="edit_profile.php">Edit profile</a></li>
+                                    <li><a href="includes/logout.inc.php">Log out</a></li>
                                 </ul>
                             </li>
                         </ul>
