@@ -143,4 +143,10 @@ class Executive_Controller extends Executive_Model
         }
         return $finalPasses;
     }
+
+    public function setEssentialServiceState($state, $service_no)
+    {
+        //echo "s=".$state." & ser no=".$service_no;
+        EssentialServiceTracker::getInstance()->setState($state, $service_no);
+    }
 }

@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_Id'])) {
 $exec_view = new Executive_View();
 
 $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
-$state = 1;
+
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +25,7 @@ $state = 1;
     <link rel="stylesheet" href="css/passenger_home.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/buttons.js"></script>
     <title>Executive Essential Service Details</title>
 </head>
 
@@ -63,7 +64,7 @@ $state = 1;
     </div>
 
     <div class="container mt-3" style="float:left;">
-        <h1> <?= $_SESSION['service_name'] ?> </h1>
+        <h1> <?= $_SESSION['service_name']; ?> </h1>
         <div style=" margin-top:100px;">
             <div class="row">
                 <div class="col-sm-3 p-3"></div>
@@ -83,28 +84,27 @@ $state = 1;
             <br>
             <br>
             <br>
-            <div class="row">
-                <div class="col-sm-3 p-3"></div>
-                <div class="col-sm-3 p-3"></div>
-                <div class="col-sm-3 p-3"></div>
-                <div class="col-sm-3 p-3">
-                    <form class="form-horizontal" action="executive_essential_service_details.php" style="width: 600px;" method="POST">
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <?php
-                                    if($state==0){
-                                        echo '<input type="submit" class="btn btn-default" style="margin-right:15px;" value="Request" name="request">';
-                                    }else{
-                                        echo '<input type="submit" class="btn btn-default" value="Remove" name="remove">'; // ## connect this
-                                    }
-
-                                ?>
-                                
-                            </div>
-                        </div>
-                    </form>
+            <?php if($state_str == "Non-Essential"):?>
+                <div class="row">
+                    <div class="col-sm-3 p-3"></div>
+                    <div class="col-sm-3 p-3">
+                        <a href="#" class="btn btn-info" onclick="clickView('1-<?php echo $_SESSION['service_no'] ?>','includes/executive_essential_service_details.inc.php')"> Request </a>
+                    </div>
+                    
+                    <div class="col-sm-3 p-3"></div>
                 </div>
-            </div>
+            <?php endif;?>
+            <?php if($state_str == "Essential" || $state_str == "Pending"): ?>
+                <div class="row">
+                    <div class="col-sm-3 p-3"></div>
+                    <div class="col-sm-3 p-3">
+                        <a href="#" class="btn btn-info" onclick="clickView('0-<?php echo $_SESSION['service_no'] ?>','includes/executive_essential_service_details.inc.php')"> Remove </a>
+                    </div>
+                    
+                    <div class="col-sm-3 p-3"></div>
+                </div>
+            <?php endif;?>
+
 
 
         </div>

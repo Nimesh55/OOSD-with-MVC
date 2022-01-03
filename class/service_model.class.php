@@ -42,9 +42,11 @@ class Service_Model extends Dbh
     }
 
     public function setStatePending($service_no){
-        $sql = "UPDATE service SET state=1 where id=?";
+        // echo $service_no;
+        $sql = "UPDATE service SET state=1 where id=$service_no";
+        echo $sql;
         $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([$service_no]);
+        $stmt->execute();
     }
 
     public function setStateEssential($service_no){
@@ -70,5 +72,29 @@ class Service_Model extends Dbh
         $stmt = $this->connect()->query("SELECT name FROM service WHERE service_no = $service_no");
         $serviceName = $stmt->fetch();
         return $serviceName;
+    }
+
+    protected function setStateNonEssential_using_ServiceNo_FromModel($service_no){
+        $sql = "UPDATE service SET state=0 where service_no=?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$service_no]);
+    }
+
+    protected function setStatePending_using_ServiceNo_FromModel($service_no){
+        $sql = "UPDATE service SET state=1 where service_no=?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$service_no]);
+    }
+
+    protected function setStateEssential_using_ServiceNo_FromModel($service_no){
+        $sql = "UPDATE service SET state = 2 WHERE service_no= ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$service_no]);
+    }
+
+    protected function setStateRemoved_using_ServiceNo_FromModel($service_no){
+        $sql = "UPDATE service SET state=3 where service_no=?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$service_no]);
     }
 }

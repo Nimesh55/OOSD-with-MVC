@@ -42,4 +42,10 @@ class EssentialServiceTracker extends Tracker{
         return $y['name'];
     }
 
+    public function setState($state, $service_no)
+    {
+        $ctrl_obj = new Service_Controller();
+        $ctrl_obj->setState($state, $service_no);
+    }
+
 }
