@@ -2,15 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="47bd8e1a-391d-4ea9-bbbf-0a0d2636fcd5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/OOSD-with-MVC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/OOSD-with-MVC.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class/passenger.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/passenger.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/dbh.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/dbh.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/email.class.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/email_sender.class.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/executive_pass_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/executive_pass_details.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true">
+    <pharConfigPath>$PROJECT_DIR$/sms/composer.json</pharConfigPath>
     <execution />
   </component>
   <component name="Git.Settings">
@@ -24,7 +31,27 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP">
+    <include_path>
+      <path value="$PROJECT_DIR$/sms/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/sms/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/sms/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/sms/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/sms/vendor/composer" />
+      <path value="$PROJECT_DIR$/sms/vendor/lcobucci/jwt" />
+      <path value="$PROJECT_DIR$/sms/vendor/lcobucci/clock" />
+      <path value="$PROJECT_DIR$/sms/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/sms/vendor/laminas/laminas-diactoros" />
+      <path value="$PROJECT_DIR$/sms/vendor/vonage/nexmo-bridge" />
+      <path value="$PROJECT_DIR$/sms/vendor/vonage/client-core" />
+      <path value="$PROJECT_DIR$/sms/vendor/vonage/client" />
+      <path value="$PROJECT_DIR$/sms/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/sms/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/sms/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/sms/vendor/psr/http-client" />
+      <path value="$PROJECT_DIR$/sms/vendor/psr/container" />
+    </include_path>
+  </component>
   <component name="ProjectId" id="22g2x6ENvYiEyGqS7fjicAVxPFl" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -36,12 +63,14 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../bin/php/php7.4.16/php.exe" />
-    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\OOSD-with-MVC" />
+      <recent name="C:\xampp\htdocs\OOSD-with-MVC\class" />
       <recent name="C:\MAMP\htdocs\OOSD-with-MVC\headers" />
       <recent name="C:\MAMP\htdocs\OOSD-with-MVC\includes" />
     </key>
@@ -61,11 +90,23 @@
       <workItem from="1640341959648" duration="608000" />
       <workItem from="1640358296628" duration="26991000" />
       <workItem from="1640883838634" duration="179000" />
-      <workItem from="1640884467394" duration="759000" />
+      <workItem from="1640884467394" duration="11817000" />
+      <workItem from="1640926913527" duration="14942000" />
+      <workItem from="1640964869965" duration="2436000" />
+      <workItem from="1641019403954" duration="2429000" />
+      <workItem from="1641061802966" duration="5139000" />
+      <workItem from="1641068322814" duration="7015000" />
+      <workItem from="1641204318342" duration="1731000" />
+      <workItem from="1641215021207" duration="779000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/OOSD-with-MVC" />
+    </ignored-roots>
   </component>
 </project>

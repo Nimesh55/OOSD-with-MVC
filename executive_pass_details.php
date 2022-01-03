@@ -21,7 +21,10 @@ foreach ($passDetailsArray as $cur) { // Seperated the Passes in to 3 array for 
         array_push($confirmedPassesArray, $cur);
     }
 }
+
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

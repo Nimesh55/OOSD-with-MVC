@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/sms/vendor/guzzlehttp/psr7" />
+      <excludeFolder url="file://$MODULE_DIR$/sms/vendor/guzzlehttp/promises" />
+      <excludeFolder url="file://$MODULE_DIR$/sms/vendor/guzzlehttp/guzzle" />
+      <excludeFolder url="file://$MODULE_DIR$/sms/vendor/ralouphie/getallheaders" />
+      <excludeFolder url="file://$MODULE_DIR$/sms/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/sms/vendor/lcobucci/jwt" />
+      <excludeFolder url="file://$MODULE_DIR$/sms/vendor/lcobucci/clock" />
+      <excludeFolder url="file://$MODULE_DIR$/sms/vendor/symfony/deprecation-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/sms/vendor/laminas/laminas-diactoros" />
+      <excludeFolder url="file://$MODULE_DIR$/sms/vendor/vonage/nexmo-bridge" />
+      <excludeFolder url="file://$MODULE_DIR$/sms/vendor/vonage/client-core" />
+      <excludeFolder url="file://$MODULE_DIR$/sms/vendor/vonage/client" />
+      <excludeFolder url="file://$MODULE_DIR$/sms/vendor/psr/log" />
+      <excludeFolder url="file://$MODULE_DIR$/sms/vendor/psr/http-message" />
+      <excludeFolder url="file://$MODULE_DIR$/sms/vendor/psr/http-factory" />
+      <excludeFolder url="file://$MODULE_DIR$/sms/vendor/psr/http-client" />
+      <excludeFolder url="file://$MODULE_DIR$/sms/vendor/psr/container" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
