@@ -59,7 +59,7 @@ if ($_GET["error"] != 'none') {
                             <li><a href="conductor_home.php">Home</a></li>
                             <li><a href="conductor_verify_passenger.php?show=false">Verify Passenger</a></li>
                             <li><a href="conductor_update_leave.php?error=none">Update Leave</a></li>
-                            <li class="active"><a href="conductor_cancel_booking.php">Cancel Booking</a></li>
+                            <li class="active"><a href="conductor_cancel_booking.php">Booking View</a></li>
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
@@ -152,7 +152,7 @@ if ($_GET["error"] != 'none') {
                     <p>Pickup Location</p>
                 </div>
                 <div class="col-sm-4 p-4 bg-primary text-white">
-                    <p>: <?= $bookingDetails['pickup_location'] ?> </p>
+                    <p>: <a href="<?= $bookingDetails['pickup_location'] ?>" target="_blank">View pickup</a> </p>
                 </div>
                 <div class="col-sm-2 p-3"></div>
             </div>
@@ -173,7 +173,7 @@ if ($_GET["error"] != 'none') {
                     <p>Destination Location</p>
                 </div>
                 <div class="col-sm-4 p-4 bg-primary text-white">
-                    <p>: <?= $bookingDetails['destination_location'] ?> </p>
+                    <p>:  <a href="<?= $bookingDetails['destination_location'] ?>" target="_blank">View destination</a>  </p>
                 </div>
                 <div class="col-sm-2 p-3"></div>
             </div>

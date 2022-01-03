@@ -63,14 +63,14 @@ $details = $board_manager_view->getBookingViewDetails($_GET['booking_no']);
     <tr>
         <th scope="col">Service</th>
         <th scope="col">Reason</th>
+        <th scope="col">Pickup District</th>
         <th scope="col">Pickup Location</th>
+        <th scope="col">Destination District</th>
         <th scope="col">Destination Location</th>
         <th scope="col">Start Date</th>
         <th scope="col">End Date</th>
         <th scope="col">Start Time</th>
         <th scope="col">End Time</th>
-<!--        <th scope="col">Start Time</th>-->
-<!--        <th scope="col">End Time</th>-->
         <th scope="col">No of Passengers</th>
         <?php
         if($details['booking_state']==1){
@@ -83,8 +83,14 @@ $details = $board_manager_view->getBookingViewDetails($_GET['booking_no']);
     <tr>
         <td><?= $details['service_name'] ?></td>
         <td><?= $details['reason'] ?></td>
-        <td><?= $details['pickup_location'] ?></td>
-        <td><?= $details['destination_location'] ?></td>
+        <td><?= $details['pickup_district'] ?></td>
+        <td>
+            <a href="<?= $details['pickup_location'] ?>" target="_blank">View pickup</a>
+        </td>
+        <td><?= $details['destination_district'] ?></td>
+        <td>
+            <a href="<?= $details['destination_location'] ?>" target="_blank">View destination</a>
+        </td>
         <td><?= $details['start_date'] ?></td>
         <td><?= $details['end_date'] ?></td>
         <td><?= $details['start_time'] ?></td>
@@ -107,8 +113,6 @@ $details = $board_manager_view->getBookingViewDetails($_GET['booking_no']);
         echo "<a class=\"btn btn-sm btn-default\" href=\"includes/allocate_vehicle.inc.php?action=1&booking_no={$_GET['booking_no']}\">Reallocate Conductor</a>";
     }
 ?>
-<!--<a class="btn btn-sm btn-default" href="includes/allocate_vehicle.inc.php?action=1&booking_no=--><?//= $_GET['booking_no']?><!--">Accept</a>-->
-<!--<a class="btn btn-sm btn-default" href="includes/allocate_vehicle.inc.php?action=0&booking_no=--><?//= $_GET['booking_no']?><!--">Decline</a>-->
 
 </body>
 

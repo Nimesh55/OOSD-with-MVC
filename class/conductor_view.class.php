@@ -72,9 +72,9 @@ class Conductor_View extends Conductor_Model
       "end_date" => $bookingObj->getEndDate(),
       "end_time" => $bookingObj->getEndTime(),
       "pickup_district" => $this->conductor_controller->getDistrictName($bookingObj->getPickupDistrict()),
-      "pickup_location" => $bookingObj->getPickupLocation(),
+      "pickup_location" => "https://maps.google.com/maps?q=".$bookingObj->getPickupLocation(),
       "destination_district" => $this->conductor_controller->getDistrictName($bookingObj->getDestinationDistrict()),
-      "destination_location" => $bookingObj->getDestinationLocation(),
+      "destination_location" => "https://maps.google.com/maps?q=".$bookingObj->getDestinationLocation(),
       "passenger_count" => $bookingObj->getPassengerCount(),
       "flag" => $bookingObj->getFlag()
       
