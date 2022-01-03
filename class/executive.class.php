@@ -1,15 +1,8 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
-class Executive
+class Executive extends User
 {
-    private $uid;
-    private $executive_no;
-    private $first_name;
-    private $last_name;
-    private $address;
-    private $telephone;
     private $service_no;
-    private $email;
     private $state;
 
     function __construct()
@@ -18,40 +11,40 @@ class Executive
     }
 
     public function setValues($uid, $executive_no, $first_name, $last_name, $address, $telephone, $service_no, $email, $state){
-        $this->uid = $uid;
-        $this->executive_no = $executive_no;
-        $this->first_name = $first_name;
-        $this->last_name = $last_name;
-        $this->address = $address;
-        $this->telephone = $telephone;
+        $this->setUserIdInUser($uid);
+        $this->setAccountNoInUser($executive_no);
+        $this->setFirstNameInUser($first_name);
+        $this->setLastNameInUser($last_name);
+        $this->setAddressInUser($address);
+        $this->setTelephoneInUser($telephone);
         $this->service_no = $service_no;
-        $this->email=$email;
+        $this->setEmailInUser($email);
         $this->state=$state;
     }
 
     public function getExecutiveNo()
     {
-        return $this->executive_no;
+        return $this->getAccountNoFromUser();
     }
 
     public function getFirstName()
     {
-        return $this->first_name;
+        return $this->getFirstNameFromUser();
     }
 
     public function getLastName()
     {
-        return $this->last_name;
+        return $this->getLastNameFromUser();
     }
 
     public function getAddress()
     {
-        return $this->address;
+        return $this->getAddressFromUser();
     }
 
     public function getTelephone()
     {
-        return $this->telephone;
+        return $this->getTelephoneFromUser();
     }
 
     public function getServiceNo()
@@ -61,7 +54,7 @@ class Executive
 
     public function getEmail()
     {
-        return $this->email;
+        return $this->getEmailFromUser();
     }
 
     public function getState()

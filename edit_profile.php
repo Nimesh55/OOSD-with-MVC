@@ -13,7 +13,8 @@ if($_SESSION['account_type']==0){
     $passenger_view = new Passenger_View($_SESSION['user_Id']);
     $row = $passenger_view->getDetails();
 }elseif ($_SESSION['account_type']==1){
-    // Add conductor view logic
+    $conductor_view = new Conductor_View($_SESSION['user_Id']);
+    $row = $conductor_view->getDetails();
 }else{
     $executive_view = new Executive_View();
     $row = $executive_view->getDetails();

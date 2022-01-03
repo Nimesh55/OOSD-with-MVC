@@ -46,13 +46,13 @@ $bookingRecords = $conductorview->showBookings($_SESSION['account_no']);
                             <li><a href="conductor_home.php">Home</a></li>
                             <li><a href="conductor_verify_passenger.php?show=false">Verify Passenger</a></li>
                             <li><a href="conductor_update_leave.php?error=none">Update Leave</a></li>
-                            <li class="active"><a href="conductor_cancel_booking.php">Cancel Booking</a></li>
+                            <li class="active"><a href="conductor_cancel_booking.php">Booking View</a></li>
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $username ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="conductor_edit_profile.php">Edit profile</a></li>
+                                    <li><a href="edit_profile.php">Edit profile</a></li>
                                     <li><a href="includes/logout.inc.php">Log out</a></li>
                                 </ul>
                             </li>

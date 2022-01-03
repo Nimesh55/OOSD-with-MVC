@@ -1,36 +1,29 @@
 <?php
 
 
-class Conductor
+class Conductor extends User
 {
-    private $conductor_no;
-    private $conductor_id;
-    private $first_name;
-    private $last_name;
-    private $address;
-    private $telephone;
     private $vehicle_no;
     private $district_no;
-    private $email;
     private $state;
     private $district_name;
 
     public function __construct($conductor_id)
     {
-        $this->conductor_id = $conductor_id;
+        $this->setUserIdInUser($conductor_id);
         $conductor_model = new Conductor_Model();
         $conductor_model->setRecord($conductor_id);
         $row = $conductor_model->getRecord();
 
         if (!empty($row)) {
-            $this->conductor_no = $row['conductor_no'];
-            $this->first_name = $row['first_name'];
-            $this->last_name = $row['last_name'];
-            $this->address = $row['address'];
-            $this->telephone = $row['telephone'];
+            $this->setAccountNoInUser($row['conductor_no']);
+            $this->setFirstNameInUser($row['first_name']);
+            $this->setLastNameInUser($row['last_name']);
+            $this->setAddressInUser($row['address']);
+            $this->setTelephoneInUser($row['telephone']);
             $this->vehicle_no = $row['vehicle_no'];
             $this->district_no = $row['district_no'];
-            $this->email = $row['email'];
+            $this->setEmailInUser($row['email']);
             $this->state = $row['state'];
             $this->district_name = $row['name'];
         }
@@ -39,19 +32,19 @@ class Conductor
 
     public function getfirst_name()
     {
-        return $this->first_name;
+        return $this->getFirstNameFromUser();
     }
     public function getlast_name()
     {
-        return $this->last_name;
+        return $this->getLastNameFromUser();
     }
     public function getaddress()
     {
-        return $this->address;
+        return $this->getAddressFromUser();
     }
     public function gettelephone()
     {
-        return $this->telephone;
+        return $this->getTelephoneFromUser();
     }
     public function getvehicle_no()
     {
@@ -63,7 +56,7 @@ class Conductor
     }
     public function getemail()
     {
-        return $this->email;
+        return $this->getEmailFromUser();
     }
     public function getstate()
     {
@@ -76,6 +69,6 @@ class Conductor
 
     public function getconductor_no()
     {
-        return $this->conductor_no;
+        return $this->getAccountNoFromUser();
     }
 }
