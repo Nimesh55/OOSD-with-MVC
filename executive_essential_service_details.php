@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
 
@@ -43,9 +43,17 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
                     <div class="navbar-collapse collapse" id="mobile_menu">
                         <ul class="nav navbar-nav">
                             <li><a href="executive_home.php">Home</a></li>
-                            <li><a href="executive_pass_details.php">Pass Details</a></li>
-                            <li><a href="executive_booking_details.php">Booking Details</a></li>
-                            <li><a href="executive_passenger_details.php">Passenger Details</a></li>
+                            <?php
+                            if ($state_str == "Pending" || $state_str == "Non-Essential" || $state_str == "Removed") {
+                                echo '<li class="disabled"><a>Pass Details</a></li>';
+                                echo '<li class="disabled"><a>Booking Details</a></li>';
+                                echo '<li class="disabled"><a>Passenger Details</a></li>';
+                            } else {
+                                echo '<li><a href="executive_pass_details.php">Pass Details</a></li>';
+                                echo '<li><a href="executive_booking_details.php">Booking Details</a></li>';
+                                echo '<li><a href="executive_passenger_details.php"> Passenger Details</a></li>';
+                            }
+                            ?>
                             <li class="active"><a href="executive_essential_service_details.php">Essential Service Details</a></li>
                         </ul>
 
@@ -84,26 +92,26 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
             <br>
             <br>
             <br>
-            <?php if($state_str == "Non-Essential"):?>
+            <?php if ($state_str == "Non-Essential") : ?>
                 <div class="row">
                     <div class="col-sm-3 p-3"></div>
                     <div class="col-sm-3 p-3">
                         <a href="#" class="btn btn-info" onclick="clickView('1-<?php echo $_SESSION['service_no'] ?>','includes/executive_essential_service_details.inc.php')"> Request </a>
                     </div>
-                    
+
                     <div class="col-sm-3 p-3"></div>
                 </div>
-            <?php endif;?>
-            <?php if($state_str == "Essential" || $state_str == "Pending"): ?>
+            <?php endif; ?>
+            <?php if ($state_str == "Essential" || $state_str == "Pending") : ?>
                 <div class="row">
                     <div class="col-sm-3 p-3"></div>
                     <div class="col-sm-3 p-3">
                         <a href="#" class="btn btn-info" onclick="clickView('0-<?php echo $_SESSION['service_no'] ?>','includes/executive_essential_service_details.inc.php')"> Remove </a>
                     </div>
-                    
+
                     <div class="col-sm-3 p-3"></div>
                 </div>
-            <?php endif;?>
+            <?php endif; ?>
 
 
 

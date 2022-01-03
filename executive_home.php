@@ -12,6 +12,8 @@ $details = $executive_view->getHomeDetails();
 $_SESSION['service_no'] = $details["service_number"];
 $_SESSION['exec_name'] = $details['name'];
 $_SESSION['service_name'] = $details['service_name'];
+
+$state_str = $executive_view->getEssentialServiceDetails($_SESSION['service_no']);
 ?>
 
 <!DOCTYPE html>
@@ -42,9 +44,18 @@ $_SESSION['service_name'] = $details['service_name'];
                 <div class="navbar-collapse collapse" id="mobile_menu">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="executive_home.php">Home</a></li>
-                        <li><a href="executive_pass_details.php">Pass Details</a></li>
-                        <li><a href="executive_booking_details.php">Booking Details</a></li>
-                        <li><a href="executive_passenger_details.php"> Passenger Details</a></li>
+                        <?php 
+                        if ($state_str == "Pending" || $state_str=="Non-Essential" || $state_str=="Removed") {
+                            echo '<li class="disabled"><a>Pass Details</a></li>';
+                            echo '<li class="disabled"><a>Booking Details</a></li>';
+                            echo '<li class="disabled"><a> Passenger Details</a></li>';
+                        }
+                        else{
+                            echo '<li><a href="executive_pass_details.php">Pass Details</a></li>';
+                            echo '<li><a href="executive_booking_details.php">Booking Details</a></li>';
+                            echo '<li><a href="executive_passenger_details.php"> Passenger Details</a></li>';
+                        }
+                        ?>
                         <li><a href="executive_essential_service_details.php">Essential Service Details</a></li>
                     </ul>
 
