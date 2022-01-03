@@ -35,7 +35,7 @@ if ($_GET["error"] != 'none') {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="css/conductor_cancel_booking_view.css">
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Conductor Home</title>
@@ -75,12 +75,12 @@ if ($_GET["error"] != 'none') {
     </div>
 
     <div class="container mt-3" id="contanier-data">
-        
+
         <div>
             <div class="row" id="error">
                 <div class="col-sm-2 p-2"></div>
                 <div class="col-sm-8 p-4 bg-danger text-danger">
-                    <?php if ($state_query==1) {
+                    <?php if ($state_query == 1) {
                         echo "<p>$error</p>";
                     } ?>
                 </div>
@@ -171,7 +171,7 @@ if ($_GET["error"] != 'none') {
                     <p>Destination Location</p>
                 </div>
                 <div class="col-sm-4 p-4 bg-primary text-white">
-                    <p>:  <a href="<?= $bookingDetails['destination_location'] ?>" target="_blank">View destination</a>  </p>
+                    <p>: <a href="<?= $bookingDetails['destination_location'] ?>" target="_blank">View destination</a> </p>
                 </div>
                 <div class="col-sm-2 p-3"></div>
             </div>
@@ -186,7 +186,7 @@ if ($_GET["error"] != 'none') {
                 </div>
                 <div class="col-sm-2 p-3"></div>
             </div>
-            
+
             <br>
             <br>
 
@@ -197,18 +197,13 @@ if ($_GET["error"] != 'none') {
                     echo "<a class=\"btn btn-default\" href=\"conductor_cancel_booking.php\">Back</a>";
                     ?>
                 </div>
-                <div class="col-sm-4 p-3">
 
-                    <?php
+                <?php if ($bookingDetails['flag'] == 0) : ?>
+                    <div class="col-sm-4 p-3">
+                        <a class="btn btn-default" href="includes/condcutor_cancel_booking_totally.inc.php?booking_no=<?php echo $bookingNo ?>">Cancel Booking</a>
 
-                    if ($bookingDetails['flag'] == 0) {
-                        echo "<a class=\"btn btn-default\" href=\"includes/condcutor_cancel_booking_totally.inc.php?booking_no={$bookingNo}\">Cancel Booking</a>";
-                    }
-
-                    ?>
-
-                </div>
-
+                    </div>
+                <?php endif; ?>
                 <div class="col-sm-2 p-3"></div>
             </div>
 
