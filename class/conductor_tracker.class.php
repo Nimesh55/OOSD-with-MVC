@@ -92,6 +92,11 @@ class Conductor_Tracker extends Tracker{
         return;
     }
 
+    public function getBookingsFor_ConductorNo_FromGivenDate($conductor_no)
+    {
+        return $this->booking_tracker->getBookingsForConductor_FromGivenDate($conductor_no);
+    }
+
 }
 
 ?>

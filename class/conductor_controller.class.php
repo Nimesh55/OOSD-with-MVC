@@ -124,4 +124,9 @@ class Conductor_Controller extends Conductor_Model{
         return;
     }
 
+    public function getBookings_ForConductor_FromGivenDate($conductor_no)
+    {
+        return Conductor_Tracker::getInstance()->getBookingsFor_ConductorNo_FromGivenDate($conductor_no);
+    }
+
 }

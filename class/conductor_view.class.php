@@ -56,7 +56,7 @@ class Conductor_View extends Conductor_Model
 
   public function showBookings($conductor_no)
   {
-    return $this->conductor_controller->getConductorBookings($conductor_no);
+    return $this->conductor_controller->getBookings_ForConductor_FromGivenDate($conductor_no);
   }
 
   public function showBookingInfo($bookingNo)
