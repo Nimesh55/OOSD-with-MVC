@@ -17,6 +17,26 @@ if(isset($_GET['district_no'])){
 }
 
 $districts = $details['districts'];
+$bookings = $details['bookingsArray'];
+
+$pending_bookings = array();
+$approved_bookings = array();
+$declined_bookings = array();
+$cancelled_bookings = array();
+
+foreach ($bookings as $booking){
+    if($booking->getState()==0){
+        array_push($pending_bookings,$booking);
+    }elseif ($booking->getState()==1){
+        if($booking->getflag() == 0){
+            array_push($approved_bookings,$booking);
+        }else{
+            array_push($cancelled_bookings,$booking);
+        }
+    }else{
+        array_push($declined_bookings,$booking);
+    }
+}
 
 ?>
 
@@ -94,22 +114,17 @@ $districts = $details['districts'];
 
 
                 <div class="input-group-btn">
-                    <button class="btn btn-primary" type="submit" name="submit" value="1">
+                    <button class="btn btn-primary" type="submit">
                         <span class="glyphicon glyphicon-search"></span>
                     </button>
                 </div>
             </div>
 
-<!--            <div class="col-sm-9">-->
-<!--                -->
-<!--            </div>-->
         </div>
 
 
     </div>
 </form>
-
-<!-- List view and redirected Page button -->
 
 <div class="container">
     <h2>Allocate Vehicle</h2>
@@ -120,107 +135,169 @@ $districts = $details['districts'];
         <li><a href="#declined" data-toggle="tab">Cancelled Bookings</a></li>
     </ul>
 
-    <?php $bookings = $details['bookingsArray'];?>
 
     <div class="tab-content">
         <div id="pending" class="tab-pane fade in active">
-            <h3>Pending</h3>
 
                 <div class="List of info">
                     <ul class="list-group action-list-group">
-                        <?php
-                        foreach($bookings as $booking) {
-                            $service = $booking->getServiceNo();
-                            $reason = $booking->getReason();
-                            $state = $booking->getState();
-                            $flag =  $booking->getflag();
-                            if($state==0) {
 
-                                echo "<li class=\"list-group-item\">";
-                                echo "<p>{$reason}</p> ";
-                                echo "<a class=\"btn btn-sm btn-default\" href=\"board_manager_allocate_vehicle_view.php?booking_no={$booking->getBookingNo()}\">View</a>";
-                                echo "</li>";
-                            }
-                        }
-                        ?>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Booking Number</th>
+                                <th scope="col">Service Name</th>
+                                <th scope="col">Passenger Count</th>
+                                <th scope="col">View Details</th>
+
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            $row = 0;
+                            foreach ($pending_bookings as $booking) :
+                                $service = EssentialServiceTracker::getInstance()->getServiceName($booking->getServiceNo());
+                                $passenger_cnt = $booking->getPassengerCount();
+                                $row++;
+                                ?>
+                                <tr>
+
+                                    <th scope="row"><?= $row ?></th>
+                                    <td><?= $service ?></td>
+                                    <td><?= $passenger_cnt ?></td>
+                                    <td>
+                                        <a class="btn btn-info" href="board_manager_allocate_vehicle_view.php?booking_no=<?=$booking->getBookingNo()?>">View</a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+
+                            </tbody>
+                        </table>
+
                     </ul>
                 </div>
 
         </div>
 
         <div id="approved" class="tab-pane fade">
-            <h3>Approved</h3>
 
             <div class="List of info">
                 <ul class="list-group action-list-group">
-                    <?php
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Booking Number</th>
+                            <th scope="col">Service Name</th>
+                            <th scope="col">Passenger Count</th>
+                            <th scope="col">View Details</th>
 
-                    foreach($bookings as $booking) {
-                        $service = $booking->getServiceNo();
-                        $reason = $booking->getReason();
-                        $state = $booking->getState();
-                        $flag =  $booking->getflag();
-                        if($state==1 && !($flag == 1 || $flag==2)) {
 
-                            echo "<li class=\"list-group-item\">";
-                            echo "<p>{$reason}</p> ";
-                            echo "<a class=\"btn btn-sm btn-default\" href=\"board_manager_allocate_vehicle_view.php?booking_no={$booking->getBookingNo()}\">View</a>";
-                            echo "</li>";
-                        }
-                    }
-                    ?>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $row = 0;
+                        foreach ($approved_bookings as $booking) :
+                            $service = EssentialServiceTracker::getInstance()->getServiceName($booking->getServiceNo());
+                            $passenger_cnt = $booking->getPassengerCount();
+                            $row++;
+                            ?>
+                            <tr>
+
+                                <th scope="row"><?= $row ?></th>
+                                <td><?= $service ?></td>
+                                <td><?= $passenger_cnt ?></td>
+                                <td>
+                                    <a class="btn btn-info" href="board_manager_allocate_vehicle_view.php?booking_no=<?=$booking->getBookingNo()?>">View</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+
+                        </tbody>
+                    </table>
                 </ul>
             </div>
 
         </div>
 
         <div id="expired" class="tab-pane fade">
-            <h3>Expired/Declined</h3>
 
             <div class="List of info">
                 <ul class="list-group action-list-group">
-                    <?php
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Booking Number</th>
+                            <th scope="col">Service Name</th>
+                            <th scope="col">Passenger Count</th>
+                            <th scope="col">View Details</th>
 
-                    foreach($bookings as $booking) {
-                        $service = $booking->getServiceNo();
-                        $reason = $booking->getReason();
-                        $state = $booking->getState();
-                        $flag =  $booking->getflag();
-                        if($state==2 || $state==3) {
 
-                            echo "<li class=\"list-group-item\">";
-                            echo "<p>{$reason}</p> ";
-                            echo "<a class=\"btn btn-sm btn-default\" href=\"board_manager_allocate_vehicle_view.php?booking_no={$booking->getBookingNo()}\">View</a>";
-                            echo "</li>";
-                        }
-                    }
-                    ?>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $row = 0;
+                            foreach ($declined_bookings as $booking) :
+                                $service = EssentialServiceTracker::getInstance()->getServiceName($booking->getServiceNo());
+                                $passenger_cnt = $booking->getPassengerCount();
+                                $row++;
+                                ?>
+                            <tr>
+
+                                <th scope="row"><?= $row ?></th>
+                                <td><?= $service ?></td>
+                                <td><?= $passenger_cnt ?></td>
+                                <td>
+                                    <a class="btn btn-info" href="board_manager_allocate_vehicle_view.php?booking_no=<?=$booking->getBookingNo()?>">View</a>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+
+                        </tbody>
+                    </table>
                 </ul>
             </div>
 
         </div>
 
         <div id="declined" class="tab-pane fade">
-            <h3>Cancelled Bookings</h3>
 
             <div class="List of info">
                 <ul class="list-group action-list-group">
-                    <?php
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Booking Number</th>
+                            <th scope="col">Service Name</th>
+                            <th scope="col">Passenger Count</th>
+                            <th scope="col">View Details</th>
 
-                    foreach($bookings as $booking) {
-                        $service = $booking->getServiceNo();
-                        $reason = $booking->getReason();
-                        $state = $booking->getState();
-                        $flag =  $booking->getflag();
-                        if($state==1 && ($flag == 1 || $flag==2)) {
 
-                            echo "<li class=\"list-group-item\">";
-                            echo "<p>{$reason}</p> ";
-                            echo "<a class=\"btn btn-sm btn-default\" href=\"board_manager_allocate_vehicle_view.php?booking_no={$booking->getBookingNo()}\">View</a>";
-                            echo "</li>";
-                        }
-                    }
-                    ?>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $row = 0;
+                        foreach ($cancelled_bookings as $booking) :
+                            $service = EssentialServiceTracker::getInstance()->getServiceName($booking->getServiceNo());
+                            $passenger_cnt = $booking->getPassengerCount();
+                            $row++;
+                            ?>
+                            <tr>
+
+                                <th scope="row"><?= $row ?></th>
+                                <td><?= $service ?></td>
+                                <td><?= $passenger_cnt ?></td>
+                                <td>
+                                    <a class="btn btn-info" href="board_manager_allocate_vehicle_view.php?booking_no=<?=$booking->getBookingNo()?>">View</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+
+                        </tbody>
+                    </table>
                 </ul>
             </div>
 
