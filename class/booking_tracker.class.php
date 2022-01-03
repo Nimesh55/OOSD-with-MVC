@@ -1,7 +1,8 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/class/observer.interface.php";
 // Tracker Class Singleton
-class Booking_Tracker extends Tracker
+class Booking_Tracker extends Tracker implements Observer
 {
     private static $instance = null;
 
@@ -114,6 +115,18 @@ class Booking_Tracker extends Tracker
         return;
     }
 
+    public function update($curDate){
+        $change=0;
+        $bookingArray = $this->getBookingsArray();
+        foreach ($bookingArray as $booking) {
+            $bookingEnd = $booking->getEndDate();
+            if ($curDate > $bookingEnd && $booking->getState()!=2) {
+                $this->setbookingStateExpired($booking->getBookingNo());
+                $change++;
+            }
+        }
+        return $change;
+    }
 }
 
 

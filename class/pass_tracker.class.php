@@ -1,7 +1,8 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/class/observer.interface.php";
 // Tracker Class Singleton
-class Pass_Tracker extends Tracker
+class Pass_Tracker extends Tracker implements Observer
 {
     private static  $instance = null;
 
@@ -152,7 +153,7 @@ class Pass_Tracker extends Tracker
         return $pass_details;
     }
 
-    // can Use in the timer class
+    // Used in the expire function
     public function getAllPasses()
     {
         $passesArray = Pass_Controller::getInstance()->getAllPasses_array();
@@ -162,5 +163,19 @@ class Pass_Tracker extends Tracker
             array_push($passesObjArray, $passObj);
         }
         return $passesObjArray;
+    }
+
+    // Called in Timer Observable
+    public function update($curDate){
+        $change=0;
+        $passesArray = $this->getAllPasses();
+        foreach ($passesArray as $pass) {
+            $passEndDate = $pass->getEndDate();
+            if ($curDate > $passEndDate) {
+                $this->setPassStateExpired($pass->getPassNo());
+                $change++;
+            }
+        }
+        return $change;
     }
 }
