@@ -16,7 +16,7 @@ class Conductor_Model extends Dbh{ // ## make the methods protected
         return $this->record;
     }
 
-    public function getConductor_ByConductorNo($conductor_no)
+    protected function getConductor_ByConductorNo($conductor_no)
     {
         $stmt2 = $this->connect()->query("SELECT user_id FROM users
             JOIN conductor ON Conductor.conductor_no = Users.account_no
