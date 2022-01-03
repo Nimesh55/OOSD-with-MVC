@@ -9,6 +9,7 @@ class Service_Controller extends Service_Model {
         
     }
 
+    //Only used for Executive
     public function setState($state, $service_no)
     {
         if ($state == 0) {
@@ -20,9 +21,7 @@ class Service_Controller extends Service_Model {
         else if($state == 2){
             $this->setStateEssential_using_ServiceNo_FromModel($service_no);
         }
-        else if ($state == 3) {
-            $this->setStateRemoved_using_ServiceNo_FromModel($service_no);
-        }
+        
     }
 
 

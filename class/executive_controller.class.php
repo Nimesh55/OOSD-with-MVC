@@ -149,4 +149,18 @@ class Executive_Controller extends Executive_Model
         //echo "s=".$state." & ser no=".$service_no;
         EssentialServiceTracker::getInstance()->setState($state, $service_no);
     }
+
+    public function setExecutiveState($state, $service_no)
+    {
+        if ($state == 0) {
+            $this->setStateUnregistered_using_ServiceNo_FromModel($service_no);
+        }
+        else if ($state == 1) {
+            $this->setStatePending_using_ServiceNo_FromModel($service_no);
+        }
+        else if($state == 2){
+            $this->setStateRegistered_using_ServiceNo_FromModel($service_no);
+        }
+        
+    }
 }

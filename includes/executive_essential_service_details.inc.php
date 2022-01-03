@@ -14,11 +14,13 @@ if (isset($_POST['variablePass1'])) {
         // echo "Yahoo";
         // echo $button_service_no;
         $ctrl_obj->setEssentialServiceState(0, $button_service_no);
+        $ctrl_obj->setExecutiveState(0, $button_service_no);
     }
     elseif($button_state == 1)
     {
         //echo "No= ".$button_service_no;
         $ctrl_obj->setEssentialServiceState(1, $button_service_no);
+        $ctrl_obj->setExecutiveState(1, $button_service_no);
     }
 
     header("Location: ../executive_essential_service_details.php");

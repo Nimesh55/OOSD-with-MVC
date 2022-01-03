@@ -87,4 +87,22 @@ class Executive_Model extends Dbh
 
         return $district_list;
     }
+
+    protected function setStateUnregistered_using_ServiceNo_FromModel($service_no){
+        $sql = "UPDATE executive SET state=0 where service_no=?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$service_no]);
+    }
+
+    protected function setStatePending_using_ServiceNo_FromModel($service_no){
+        $sql = "UPDATE executive SET state=1 where service_no=?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$service_no]);
+    }
+
+    protected function setStateRegistered_using_ServiceNo_FromModel($service_no){
+        $sql = "UPDATE executive SET state = 2 WHERE service_no= ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$service_no]);
+    }
 }
