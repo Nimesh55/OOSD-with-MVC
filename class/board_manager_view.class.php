@@ -87,11 +87,12 @@ class Board_Manager_View extends Board_Manager_Model
         return $details;
     }
 
-    public function getBookingsDetails()
+    public function getBookingsDetails($district_no)
     {
         $details = array(
             "name" => $this->board_manager->getName(),
-            "bookingsArray" => $this->booking_tracker->getBookingsArray()
+            "bookingsArray" => $this->booking_tracker->getBookingsForDistrict($district_no),
+            "districts" => $this->board_manager_controller->getDistrictArray()
         );
         return $details;
     }

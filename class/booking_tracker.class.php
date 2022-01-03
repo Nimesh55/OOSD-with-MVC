@@ -73,6 +73,16 @@ class Booking_Tracker extends Tracker
         return $bookings_arr;
     }
 
+    public function getBookingsForDistrict($district_no){
+        $bookings_arr = array();
+        $bookings = Booking_Controller::getInstance()->getBookingsForDistrict($district_no);
+
+        foreach ($bookings as $booking){
+            array_push($bookings_arr, $this->getBooking($booking['booking_no']));
+        }
+        return $bookings_arr;
+    }
+
     // can be extended to return the Booking and conductor details
     public function checkBooking($conductor, $date, $type)
     {

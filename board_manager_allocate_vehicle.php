@@ -9,7 +9,14 @@ if(!isset($_SESSION['user_Id'])){
 }
 
 $board_manager_view = new Board_Manager_View();
-$details = $board_manager_view->getBookingsDetails();
+
+if(isset($_GET['district_no'])){
+    $details = $board_manager_view->getBookingsDetails($_GET['district_no']);
+}else{
+    $details = $board_manager_view->getBookingsDetails(null);
+}
+
+$districts = $details['districts'];
 
 ?>
 
@@ -60,6 +67,48 @@ $details = $board_manager_view->getBookingsDetails();
     </div>
 </div>
 
+<form action="board_manager_allocate_vehicle.php" method="GET">
+    <div class="row">
+        <div class="col-xs-6 col-md-4">
+            <div class="input-group">
+
+                <label for="district" class="col-sm-3 control-label">District:</label>
+                <select name="district_no" id="district" class="form-control">
+
+
+                    <option value="0">All</option>
+                    <?php
+
+
+                    foreach ($districts as $district){
+
+                        if(isset($_GET['district_no']) and $_GET['district_no']==$district['district_no']){
+                            echo "<option value=\"{$district['district_no']}\" selected>{$district['name']}</option>";
+                        }else{
+                            echo "<option value=\"{$district['district_no']}\">{$district['name']}</option>";
+                        }
+
+                    }
+                    ?>
+                </select>
+
+
+                <div class="input-group-btn">
+                    <button class="btn btn-primary" type="submit" name="submit" value="1">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </div>
+            </div>
+
+<!--            <div class="col-sm-9">-->
+<!--                -->
+<!--            </div>-->
+        </div>
+
+
+    </div>
+</form>
+
 <!-- List view and redirected Page button -->
 
 <div class="container">
@@ -81,6 +130,7 @@ $details = $board_manager_view->getBookingsDetails();
                     <ul class="list-group action-list-group">
                         <?php
                         foreach($bookings as $booking) {
+                            $service = $booking->getServiceNo();
                             $reason = $booking->getReason();
                             $state = $booking->getState();
                             $flag =  $booking->getflag();
@@ -106,6 +156,7 @@ $details = $board_manager_view->getBookingsDetails();
                     <?php
 
                     foreach($bookings as $booking) {
+                        $service = $booking->getServiceNo();
                         $reason = $booking->getReason();
                         $state = $booking->getState();
                         $flag =  $booking->getflag();
@@ -131,6 +182,7 @@ $details = $board_manager_view->getBookingsDetails();
                     <?php
 
                     foreach($bookings as $booking) {
+                        $service = $booking->getServiceNo();
                         $reason = $booking->getReason();
                         $state = $booking->getState();
                         $flag =  $booking->getflag();
@@ -156,6 +208,7 @@ $details = $board_manager_view->getBookingsDetails();
                     <?php
 
                     foreach($bookings as $booking) {
+                        $service = $booking->getServiceNo();
                         $reason = $booking->getReason();
                         $state = $booking->getState();
                         $flag =  $booking->getflag();

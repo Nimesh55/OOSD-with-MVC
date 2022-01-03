@@ -91,13 +91,24 @@ class Booking_Model extends Dbh
         return $booking_array;
     }
 
+
     protected function getBookingsArrayForServiceFromModel($service_no){
-        $query = "SELECT * FROM booking WHERE (state=0 OR state=1) AND service_no={$service_no}";
+        $query = "SELECT * FROM booking WHERE service_no={$service_no}";
         $stmt = $this->connect()->prepare($query);
         $stmt->execute();
         $service_bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $service_bookings;
     }
+
+    protected function getBookingsArrayForPickupFromModel($district_no){
+        $query = "SELECT * FROM booking WHERE pickup_district={$district_no}";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute();
+        $pickup_bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $pickup_bookings;
+    }
+
+
 
     // make sure to give date and conductor as varchar
     // type means we are checking booked conductor or replcement conductor
@@ -134,8 +145,8 @@ class Booking_Model extends Dbh
         $query = "UPDATE booking SET flag=1 where booking_no=$booking_no";
         $stmt = $this->connect()->prepare($query);
         $stmt->execute();
-        return;
     }
+
 
 }
 
