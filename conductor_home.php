@@ -12,7 +12,7 @@ $row = $conductorview->getDetails();
 $row['user_id'] = $_SESSION['user_Id'];
 $username = $row['first_name'] . " " . $row['last_name'];
 
-
+$_SESSION["username"] = $username;
 
 ?>
 

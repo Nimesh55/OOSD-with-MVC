@@ -8,9 +8,7 @@ if (!isset($_SESSION['user_Id'])) {
 }
 
 $conductorview = new Conductor_View($_SESSION['user_Id']);
-$row = $conductorview->getDetails();
-$row['user_id'] = $_SESSION['user_Id'];
-$username = $row['first_name'] . " " . $row['last_name'];
+
 
 $state_query = 0;
 if ($_GET["show"] == "false") {
@@ -23,6 +21,7 @@ if ($_GET["show"] == "false") {
     $error = $_GET["show"];
 }
 
+$username = $_SESSION["username"];
 
 ?>
 

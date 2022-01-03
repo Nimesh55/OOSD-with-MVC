@@ -8,9 +8,7 @@ if (!isset($_SESSION['account_no'])) {
 }
 
 $conductorview = new Conductor_View($_SESSION['user_Id']);
-$conductorDetails = $conductorview->getDetails();
-$conductorDetails['user_id'] = $_SESSION['user_Id'];
-$username = $conductorDetails['first_name'] . " " . $conductorDetails['last_name'];
+$username = $_SESSION["username"];
 
 $bookingNo = $_GET['booking_no'];
 
