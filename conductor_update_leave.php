@@ -13,11 +13,10 @@ $row['user_id'] = $_SESSION['user_Id'];
 $username = $row['first_name'] . " " . $row['last_name'];
 
 $state_query = 0;
-if ($_GET["error"] != "none")
-{
+if ($_GET["error"] != "none") {
     $state_query = 1;
     $error = $_GET["error"];
-} 
+}
 
 ?>
 
@@ -29,7 +28,7 @@ if ($_GET["error"] != "none")
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    
+
     <link rel="stylesheet" href="css/conductor_update_leave.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -73,16 +72,13 @@ if ($_GET["error"] != "none")
 
     <div class="container mt-3" id="contanier-data">
         <div class="row">
-            <div class="col-lg-2"></div>
-            <div class="col-lg-6">
-                <p>
-                    <?php if ($state_query == 1) {
-                        echo $error;
-                    } ?>
-                </p>   
-            </div>
-            <div class="col-lg-4"></div>
+            <?php if ($state_query == 1) {
+                echo "<p id=\"error\">{$error}</p>";
+            } ?>
         </div>
+
+        <br>;
+
         <form action="includes/conductor_update_leave.inc.php" method="POST">
             <div class="row">
                 <div class="col-lg-3">

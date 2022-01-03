@@ -147,6 +147,15 @@ class Booking_Model extends Dbh
         $stmt->execute();
     }
 
+    protected function getBookingsForSelectedConductorFromModel_FromGivenDate($conductor_no){
+        $date = date('Y-m-d');
+        $query = "SELECT * FROM booking WHERE booked_conductor_no={$conductor_no} AND state=1 AND flag=0 AND end_date>'{$date}'";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute();
+        $conductor_bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $conductor_bookings;
+    }
+
 
 }
 
