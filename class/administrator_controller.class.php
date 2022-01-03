@@ -34,6 +34,50 @@
       "state"=> $state);
     return $details;
   }
+  public function getAdministratorEmailSettings(){
+      return $this->getEmailSettings();
+  }
+  public function addAdministratorNewEmailSettings($email,$password,$port){
+    $error = '';
+    $this->is_email($email);
+    if (empty($password)){
+       $error = "*Password should not be empty!!!";
+    }
+    if(!is_numeric($port)){
+        $error = "*Port number should be a number!";
+    }
+
+    if(empty($error)){
+        $this->addNewEmailSettings($email,$password,$port);
+    }
+    return $error;
+
+  }
+
+  public function editAdministratorEmailSettings($email,$password,$port){
+      $error = '';
+      $this->is_email($email);
+      if (empty($password)){
+          $error = "*Password should not be empty!!!";
+      }
+      if(!is_numeric($port)){
+          $error = "*Port number should be a number!";
+      }
+
+      if(empty($error)){
+          $this->editEmailSettings($email,$password,$port);
+      }
+      return $error;
+
+
+  }
+
+
+  private function is_email($email){
+      if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+          return '* Please insert valid email!!! ';
+      }
+  }
 
   
 }

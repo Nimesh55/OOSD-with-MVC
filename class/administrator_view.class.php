@@ -36,4 +36,7 @@
         "state"=> $row['state']);
       return $details;
     }
+    public function getEmailSettingsDetails(){
+        return $this->getEmailSettings();
+    }
   }

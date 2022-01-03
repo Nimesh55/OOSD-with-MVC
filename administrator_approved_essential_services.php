@@ -48,6 +48,7 @@ $rows = $view->getApprovedRows(); // getpending rows
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['user_Id'] ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
+                                    <li><a href="administrator_set_email_settings.php">Settings</a></li>
                                     <li><a href="change_password.php">Change Password</a></li>
                                     <li><a href="includes/logout.inc.php">Log out</a></li>
                                 </ul>

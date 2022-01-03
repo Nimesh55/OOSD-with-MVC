@@ -44,4 +44,33 @@ class Administrator_model extends Dbh
     $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $row;
   }
+
+  protected function getEmailSettings(){
+      $stmt = $this->connect()->prepare("SELECT * FROM email;");
+      $stmt->execute();
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+      return $row;
+  }
+  protected function addNewEmailSettings($email,$password,$port){
+      $query1 = "INSERT INTO email (email,password,port) VALUES (?, ?, ?);";
+      $stmt1 = $this->connect()->prepare($query1);
+
+      $stmt1->execute(array(
+             htmlentities($email),
+             htmlentities($password),
+             htmlentities($port)
+      ));
+  }
+
+  protected function editEmailSettings(){
+      echo "Edit action";
+      $sql = "UPDATE email SET email = :email, password = :password, port = :port WHERE row_id = 0";
+      $stmt = $this->connect()->prepare($sql);
+      $stmt->execute(array(
+          ':email' => htmlentities($_POST['email']),
+          ':password' => htmlentities($_POST['password']),
+          ':port' => htmlentities($_POST['port'])));
+  }
+
+
 }
