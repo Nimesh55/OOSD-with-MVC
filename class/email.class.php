@@ -1,6 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
-require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/Email/email_sender.class.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/api/email/email_sender.class.php";
 
     class Email{
         private $to;
