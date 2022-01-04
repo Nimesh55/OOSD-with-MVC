@@ -33,7 +33,8 @@
       $details=array(
         "id"=> $row['id'],
         "name"=> $row['name'],
-        "state"=> $row['state']);
+        "state"=> $row['state'],
+        "file_no"=> $row['file_no']);
       return $details;
     }
     public function getEmailSettingsDetails(){

@@ -31,7 +31,9 @@
     $details=array(
       "id"=> $ServiceObj->getId(),
       "name"=> $ServiceObj->getName(),
-      "state"=> $state);
+      "state"=> $state,
+      "file_no"=> $ServiceObj->getFileNo()
+    );
     return $details;
   }
   public function getAdministratorEmailSettings(){

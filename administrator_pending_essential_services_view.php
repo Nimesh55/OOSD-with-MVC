@@ -14,6 +14,7 @@ if (isset($_POST['view'])) {
     $service_id = $rows['id'];
     $service_name = $rows['name'];
     $status = $rows['state'];
+    $service_file = File_Controller::getInstance()->getFileDetails($rows['file_no']);
 }
 ?>
 
@@ -101,6 +102,31 @@ if (isset($_POST['view'])) {
                     </div>
                     <div class="col-sm-3 p-3"></div>
                 </div>
+
+                <div class="row">
+                    <div class="col-sm-3 p-3"></div>
+                    <div class="col-sm-3 p-3 bg-dark text-white">
+                        <p>Attachments</p>
+                    </div>
+                    <div class="col-sm-3 p-3 bg-primary text-white">
+
+                        <?php
+                        if($service_file==null):
+                            ?>
+                            <p>: No files added </p>
+                        <?php
+                        else:
+                            ?>
+                            <button class="alert-success"><a href="includes/download.inc.php?name=<?php echo $service_file['name'];?>
+                                                            &fname=<?php echo $service_file['fname'] ?>">Download</a></button>
+                        <?php
+                        endif;
+                        ?>
+
+                    </div>
+                    <div class="col-sm-3 p-3"></div>
+                </div>
+
 
                 <br>
                 <br>
