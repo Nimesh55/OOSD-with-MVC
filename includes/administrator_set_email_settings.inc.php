@@ -53,8 +53,8 @@
     <input type="hidden" name="email" value="<?php echo $_POST['email'] ?>">
     <input type="hidden" name="password" value="<?php echo $_POST['password']; ?>">
     <input type="hidden" name="port" value="<?php echo $_POST['port']; ?>">
-    <input type="hidden" name="smsapikey" value="<?php echo $_POST['smsapikey']; ?>">
-    <input type="hidden" name="device_id" value="<?php echo $_POST['device_id']; ?>">
+    <input type="hidden" name="sms_ApiKey" value="<?php echo $_POST['smsapikey']; ?>">
+    <input type="hidden" name="sms_DeviceId" value="<?php echo $_POST['device_id']; ?>">
     <input type="hidden" name="error" value="<?php echo $error; ?>">
 
     <input type="hidden" name="sub" value="finish">

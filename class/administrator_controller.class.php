@@ -62,7 +62,7 @@
       // if (empty($password)){
       //     $error = "*Password should not be empty!!!";
       // }
-      if(!is_numeric($port)){
+      if(!is_numeric($port)&&$port!=null){
           $error = "*Port number should be a number!";
       }
 

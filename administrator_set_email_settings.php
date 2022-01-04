@@ -112,7 +112,7 @@ if(isset($_POST['error'])){
                             <div class="form-group">
                                 <label for="email" class="col-sm-3 control-label">Email:</label>
                                 <div class="col-sm-9">
-                                    <input name="email" type="email" class="form-control" id="email" value="<?php echo $email;?>"></div>
+                                    <input name="email" type="text" class="form-control" id="email" value="<?php echo $email;?>"></div>
                             </div>
                             <div class="form-group">
                                 <label for="password" class="col-sm-3 control-label">Password:</label>
@@ -165,7 +165,7 @@ if(isset($_POST['error'])){
                             <br>
                             <div class="btn-group btn-group-lg">
                                 <input type="submit" class="btn btn-primary ctrlbutton" name="save" value="Set">
-                                <input type="submit" class="btn btn-primary ctrlbutton" name="back" value="Back">
+                                <a href="administrator_home.php" class="btn btn-primary ctrlbutton">Back</a>
                             </div>
                             <input type="text" name="edit" value="<?php echo $edit;?>" hidden>
 
