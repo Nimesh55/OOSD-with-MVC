@@ -9,7 +9,7 @@ class notification_handler{
         self::$admin_controller = new Administrator_controller();
         $details = self::$admin_controller->getAdministratorConfigSettings();
         self::$smsAdapter = new Sms_adapter();
-        self::$emailAdapter = new Email_Client_Adapter($details);
+        self::$emailAdapter = Email_Client_Adapter::getInstance($details);
         self::$smsAdapter->setConfig($details['sms_ApiKey'], $details['sms_DeviceId']);
     }
 
@@ -18,12 +18,13 @@ class notification_handler{
     * @param: $reciverArray- index 0 = telephone number index 1 = email address
     * @param: $messageBody- The notification text that is needed to be sent
     */
-    public static function sendNotification($reciverArray, $messageBody){
+    public static function sendNotification($reciverArray, $messageBody, $emailSubject){
         $telephone = $reciverArray[0];
-        //## $email = $reciverArray[1];
-        // self::set_config();
+        $email = $reciverArray[1];
+        self::set_config();
         self::$smsAdapter->send_Sms($telephone, $messageBody);
-        //## Add email send message call here...
+        $emailObj = new Email($email,$emailSubject, $messageBody);
+        self::$emailAdapter->sendEmail($emailObj);
 
     }
 }
