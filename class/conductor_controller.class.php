@@ -1,9 +1,10 @@
-<?php 
+<?php
 
-require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
 
 
-class Conductor_Controller extends Conductor_Model{
+class Conductor_Controller extends Conductor_Model
+{
 
     public function __construct()
     {
@@ -17,8 +18,7 @@ class Conductor_Controller extends Conductor_Model{
 
         $condObject = new Conductor($conductor_id);
         return $condObject;
-
-    } 
+    }
 
     public function checkPassengerAccount($passenger_id)
     {
@@ -38,34 +38,35 @@ class Conductor_Controller extends Conductor_Model{
 
     public function checkEmpty($passenger_id)
     {
-        if(!empty($passenger_id))
+        if (!empty($passenger_id))
             return true;
         return false;
     }
 
-    public function validatePassengerId($passenger_id){
+    public function validatePassengerId($passenger_id)
+    {
         $error = "None";
-        if($this->checkEmpty($passenger_id)==false)
+        if ($this->checkEmpty($passenger_id) == false)
             $error = "Empty Filed";
-        else if($this->checkNumbersOnly($passenger_id)==false)
+        else if ($this->checkNumbersOnly($passenger_id) == false)
             $error = "Please Enter a Numbers only";
-        else if($this->checkPassengerAccount($passenger_id)==false)
+        else if ($this->checkPassengerAccount($passenger_id) == false)
             $error = "Please Enter a Passenger Account";
         return $error;
     }
 
-    public function checkPassExist($pass_details_array){
-        
-        if (empty($pass_details_array))
-        {
+    public function checkPassExist($pass_details_array)
+    {
+
+        if (empty($pass_details_array)) {
             $error = "Pass Doesn't Exist!!";
             header("Location: conductor_verify_passenger.php?show='{$error}'");
             return;
-            
         }
     }
 
-    public function getConductorsArrayByDistrict($district_no){
+    public function getConductorsArrayByDistrict($district_no)
+    {
         return $this->getConductorsArrayByDistrictFromModel($district_no);
     }
 
@@ -78,14 +79,11 @@ class Conductor_Controller extends Conductor_Model{
             $error = "Leave Already Created with that Date!!";
             header("Location: ../conductor_update_leave.php?error='{$error}'");
             return;
-        }
-        elseif($isBooked == true && empty($isLeaveExist))
-        {
+        } elseif ($isBooked == true && empty($isLeaveExist)) {
             $error = "Booking has been made. Try another date!!";
             header("Location: ../conductor_update_leave.php?error='{$error}'");
             return;
-        }
-        elseif ($isBooked == false && empty($isLeaveExist) ) {
+        } elseif ($isBooked == false && empty($isLeaveExist)) {
             $this->updateLeaveFromModel($conductor_no, $date);
             $error = "Leave Granted!!";
             header("Location: ../conductor_update_leave.php?error='{$error}'");
@@ -93,12 +91,14 @@ class Conductor_Controller extends Conductor_Model{
         }
     }
 
-    public function getConductorLeavesArray($conductor_no){
+    public function getConductorLeavesArray($conductor_no)
+    {
         return $this->getConductorLeavesArrayFromModel($conductor_no);
     }
 
     //achira
-    public function getConductorBookings($conductor_no){
+    public function getConductorBookings($conductor_no)
+    {
         return Booking_Tracker::getInstance()->getBookingsForConductor($conductor_no);
     }
 
@@ -113,13 +113,21 @@ class Conductor_Controller extends Conductor_Model{
     }
 
     public function getDistrictName($district_no)
-    { 
+    {
         $z = $this->getDistrictNameFromModel($district_no);
         return $z;
     }
 
     public function cancelBooking($bookingNo)
     {
+        $contactDetailsArray = array();
+        array_push($contactDetailsArray, "+94778665718");
+        array_push($contactDetailsArray, "sathira.19@cse.mrt.ac.lk");
+        $mesb = "This is to inform you that Boooking No.".$bookingNo." has been cancelled by the Conductor!";
+        $ems = "Cancellation of Booking No.".$bookingNo;
+
+        notification_handler::sendNotification($contactDetailsArray, $mesb, $ems);
+
         Conductor_Tracker::getInstance()->cancel_Booking($bookingNo);
         return;
     }
@@ -134,16 +142,15 @@ class Conductor_Controller extends Conductor_Model{
         //validate details and give feedback
         if (empty($details['fname']) && empty($details['lname'])) {
             $_SESSION["error"] = 'Please enter first name and last name!!!';
-        }elseif(empty($details['address'])){
+        } elseif (empty($details['address'])) {
             $_SESSION["error"] = 'Please enter address!!!';
-        }elseif(filter_var($details['email'], FILTER_VALIDATE_EMAIL) === false) {
+        } elseif (filter_var($details['email'], FILTER_VALIDATE_EMAIL) === false) {
             $_SESSION["error"] = 'Please insert valid email!!!';
-        }elseif (!is_numeric($details['telephone']) or strlen($details['telephone'])!=10) {
+        } elseif (!is_numeric($details['telephone']) or strlen($details['telephone']) != 10) {
             $_SESSION["error"] = "Enter correct telephone number!!!";
         }
-        if(!isset($_SESSION["error"])){
+        if (!isset($_SESSION["error"])) {
             $this->changeDetails($details);
         }
     }
-
 }
