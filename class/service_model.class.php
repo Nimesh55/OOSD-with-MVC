@@ -19,7 +19,7 @@ class Service_Model extends Dbh
     // returns an array of attributes of an Essential Service
     public function getServiceDetails($service_no)
     {
-        $stmt = $this->connect()->query("SELECT * FROM service WHERE service_no = $service_no");
+        $stmt = $this->connect()->query("SELECT * FROM service WHERE service_no = '{$service_no}'");
         $record = $stmt->fetch();
         return $record;
     }

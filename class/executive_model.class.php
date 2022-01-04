@@ -5,7 +5,7 @@ class Executive_Model extends Dbh
 {
     protected function getRecord($user_id)
     {
-        $sql = "SELECT * FROM users JOIN executive ON Executive.executive_no = Users.account_no WHERE Users.user_id = $user_id";
+        $sql = "SELECT * FROM users JOIN executive ON Executive.executive_no = Users.account_no WHERE Users.user_id = '{$user_id}'";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
         $record = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -27,8 +27,8 @@ class Executive_Model extends Dbh
 
     protected function getServiceName($service_no){
         $stmt = $this->connect()->prepare("SELECT * FROM service where service_no = ?");
-        $stmt->execute(array($service_no));
-        $service = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->execute(array('{$service_no}'));
+        $service = $stmt->fetch();
         return $service['name'];
     }
 

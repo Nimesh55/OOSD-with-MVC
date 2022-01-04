@@ -4,7 +4,7 @@
 class Dbh{
     private $host = "localhost";
     private $user = "root";
-    private $pwd = "";
+    private $pwd = "root";
     private $dbName = "safe_transit";
 
     protected function connect(){
