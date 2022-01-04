@@ -32,6 +32,6 @@ if (isset($_POST['variablePass1'])) {
     return;
 }
 
-
+return;
 
 ?>
