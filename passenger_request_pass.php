@@ -10,6 +10,7 @@
     $button='submit';
     $passengerview = new Passenger_View($_SESSION['user_Id']);
     $row = $passengerview->getDetails();
+    $passenger_file = $passengerview->getPassengerFileDetails();
     $row['user_id']=$_SESSION['user_Id'];
 
     $username = $row['first_name']." ".$row['last_name'];
@@ -85,7 +86,7 @@
                             <li><a href="passenger_register_in_company.php">Register in a company</a></li>
                             <?php
                             if($state>1){
-                                echo'<li class="active"><a href="test.php">Request pass</a></li>';
+                                echo'<li class="active"><a href="passenger_request_pass.php">Request pass</a></li>';
                             }else{
                                 echo '<li class="disabled"><a>Request pass</a></li>';
                             }
@@ -161,19 +162,34 @@
                     </div>
                     <br>
 
+                    <div class="form-group">
+                        <label for="file" class="col-sm-3 control-label">Attachments:</label>
+                        <div class="col-sm-9">
+                            <?php if(strcmp($button,'submit')==0): ?>
+                                <input type="file" id="file" name="file"/>;
+                            <?php elseif($passenger_file==null): ?>
+                                <input name="view" type="text" class="form-control" id="view" readonly value="No file added">
+                            <?php else: ?>
+                                <input name="view" type="text" class="form-control" id="view" readonly value="<?= $passenger_file['name'] ?>">
+                                <button class="alert-success"><a href="includes/download.inc.php?name=<?php echo $passenger_file['name'];?>
+                                                                &fname=<?php echo $passenger_file['fname'] ?>">Download</a></button>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+
                     <?php
 
                         if(strcmp($button,'submit')==0){
 
                             echo "<input type=\"submit\" class=\"btn btn-primary btn-lg ctrlbutton\" name=\"submit\" value=\"Submit\">";
                         }else{
+
                             echo "<input type=\"submit\" class=\"btn btn-primary btn-lg ctrlbutton\" name=\"remove\" value=\"Remove\">";
                         }
                         ?>
+
                     <input type="text" hidden name="pass_no" value="<?php echo $result['pass_no'] ?>">
-
-
-
 
 
                 </form>
