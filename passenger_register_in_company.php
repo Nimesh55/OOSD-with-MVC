@@ -1,10 +1,6 @@
 <?php
     require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
     session_start();
-//
-//    echo "<pre>";
-//    print_r($_SESSION);
-//    echo "</pre>";
 
 
     if(!isset($_SESSION['account_no'])){
@@ -19,14 +15,12 @@
     $service_no=$passengerview->getPassengerServiceNo();
     $staff_id = $passengerview->getPassengerStaffId();
     $service_name = $passengerview->getServiceName($service_no);
+    $passenger_file = $passengerview->getPassengerFileDetails();
     $state=0;
     $state_name ='';
 
     $service_model = Service_Model::getInstance();
     $services=$service_model->getServiceNames();
-//    echo "<pre>";
-//    print_r($services);
-//    echo "</pre>";
 
     if($pass_state == '0'){
         $state = 0;
@@ -111,9 +105,6 @@
     }
 
 ?>
-
-
-
 
 </body>
 </html>

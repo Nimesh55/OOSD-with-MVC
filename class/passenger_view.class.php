@@ -19,6 +19,7 @@
           "service_no"=> $this->passenger->getServiceNo(),
           "staff_id"=> $this->passenger->getStaffId(),
           "email"=> $this->passenger->getEmail(),
+          "file_no"=> $this->passenger->getFileNo(),
           "state"=> $this->passenger->getState());
       return $details;
 
@@ -48,6 +49,11 @@
     public function getPassengerUserId($passenger_no)
     {
       return $this->getUserId($passenger_no);
+    }
+
+    public function getPassengerFileDetails(){
+      $details = File_Controller::getInstance()->getFileDetails($this->passenger->getFileNo());
+      return $details;
     }
   }
 

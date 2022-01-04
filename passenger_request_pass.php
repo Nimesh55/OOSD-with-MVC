@@ -116,7 +116,7 @@
 
 
 
-                <form class="form-horizontal" role="form" action="includes/passenger_request_pass.inc.php" method="post">
+                <form class="form-horizontal" role="form" action="includes/passenger_request_pass.inc.php" method="post" enctype="multipart/form-data">
 
                     <?php
                     if (isset($_GET['error']) && strcmp($_GET['error'],"success")!=0) {

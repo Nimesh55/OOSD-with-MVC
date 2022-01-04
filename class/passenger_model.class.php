@@ -33,13 +33,27 @@
 
 		}
 
+        protected function setCompanyDetailsWithFile($service_no,$staff_id, $last_no){
+
+            $sql = "UPDATE Passenger SET staff_id = :stid,service_no= :sno,state= :st,file_no=:fno  WHERE passenger_no = :pas_no";
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute(array(
+                ':stid' => htmlentities($staff_id),
+                ':sno' 	=> htmlentities($service_no),
+                ':st' 	=> 1,
+                ':fno' => $last_no,
+                ':pas_no' => htmlentities($_SESSION['account_no'])));
+
+        }
+
 		protected function unSetCompanyDetails(){
-			$sql = "UPDATE Passenger SET staff_id = :stid,service_no= :sno,state= :st  WHERE passenger_no = :pas_no";
+            $sql = "UPDATE Passenger SET staff_id = :stid,service_no= :sno,state= :st,file_no=:fno  WHERE passenger_no = :pas_no";
 			$stmt = $this->connect()->prepare($sql);
 			$stmt->execute(array(
 				':stid' => 0,
 				':sno' 	=> 0,
 				':st' 	=> 0,
+                ':fno' => null,
 				':pas_no' => htmlentities($_SESSION['account_no'])));
 
 		}

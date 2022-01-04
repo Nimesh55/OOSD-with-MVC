@@ -20,6 +20,7 @@ class Passenger_Controller extends Passenger_Model
         $passenger->setStaffId($row['staff_id']);
         $passenger->setEmail($row['email']);
         $passenger->setState($row['state']);
+        $passenger->setFileNo($row['file_no']);
     }
 
     public function validatedetails($details)
@@ -142,7 +143,13 @@ class Passenger_Controller extends Passenger_Model
     }
     
     public function setPassengerCompanyDetails($service_no,$staff_id){
-        $this->setCompanyDetails($service_no,$staff_id);
+        if(isset($_FILES["file"]) && $_FILES['file']['name']==null){
+            $this->setCompanyDetails($service_no,$staff_id);
+        }
+        else{
+            $last_no = File_Controller::getInstance()->uploadFile();
+            $this->setCompanyDetailsWithFile($service_no, $staff_id, $last_no);
+        }
     }
     public function unSetPassengerCompanyDetails()
     {

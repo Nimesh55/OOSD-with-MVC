@@ -29,6 +29,27 @@
                 </div>
                 <br>
 
+                <div class="form-group">
+                    <label for="view" class="col-sm-3 control-label">View File:</label>
+                    <div class="col-sm-9">
+                        <?php
+                        if($passenger_file==null):
+                            ?>
+                            <input name="view" type="text" class="form-control" id="staff_id" readonly value="No file added">
+                        <?php
+                        else:
+                            ?>
+                            <input name="view" type="text" class="form-control" id="staff_id" readonly value="<?= $passenger_file['name'] ?>">
+                            <button class="alert-success"><a href="includes/download.inc.php?name=<?php echo $passenger_file['name'];?>
+                                                            &fname=<?php echo $passenger_file['fname'] ?>">Download</a></button>
+                        <?php
+                        endif;
+                        ?>
+
+                    </div>
+                </div>
+                <br>
+
                 <input type="submit" class="btn btn-primary btn-lg" value="Remove" name="remove">
 
             </form>

@@ -5,6 +5,7 @@
     private $service_no;
     private $staff_id;
     private $state;
+    private $file_no;
     private static $instances = array();
 
     //getters
@@ -18,6 +19,7 @@
     public function getStaffId(){return $this->staff_id;}
     public function getEmail(){return $this->getEmailFromUser();}
     public function getState(){return $this->state;}
+    public function getFileNo(){return $this->file_no;}
 
     public function setUserId($user_id){$this->setUserIdInUser($user_id);}
     public function setPassengerNo($passenger_no){$this->setAccountNoInUser($passenger_no);}
@@ -29,6 +31,7 @@
     public function setStaffId($staff_id){$this->staff_id=$staff_id;}
     public function setEmail($email){$this->setEmailInUser($email);}
     public function setState($state){$this->state=$state;}
+    public function setFileNo($file_no){$this->file_no = $file_no;}
 
     private function __construct($user_id)
     {
