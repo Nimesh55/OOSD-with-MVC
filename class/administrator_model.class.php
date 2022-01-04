@@ -45,14 +45,14 @@ class Administrator_model extends Dbh
     return $row;
   }
 
-  protected function getEmailSettings(){
-      $stmt = $this->connect()->prepare("SELECT * FROM email;");
+  protected function getNotificationConfigData(){
+      $stmt = $this->connect()->prepare("SELECT * FROM notification_config_data;");
       $stmt->execute();
       $row = $stmt->fetch(PDO::FETCH_ASSOC);
       return $row;
   }
-  protected function addNewEmailSettings($email,$password,$port){
-      $query1 = "INSERT INTO email (email,password,port) VALUES (?, ?, ?);";
+  protected function addNewNotificationConfigSettings($email,$password,$port){
+      $query1 = "INSERT INTO notification_config_data (email_emailAddress,email_password,email_port) VALUES (?, ?, ?);";
       $stmt1 = $this->connect()->prepare($query1);
 
       $stmt1->execute(array(
@@ -62,9 +62,9 @@ class Administrator_model extends Dbh
       ));
   }
 
-  protected function editEmailSettings(){
+  protected function editNotificationConfigSettings(){
       echo "Edit action";
-      $sql = "UPDATE email SET email = :email, password = :password, port = :port WHERE row_id = 0";
+      $sql = "UPDATE notification_config_data SET email_emailAddress = :email, email_password = :password, email_port = :port WHERE row_id = 1";
       $stmt = $this->connect()->prepare($sql);
       $stmt->execute(array(
           ':email' => htmlentities($_POST['email']),

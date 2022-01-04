@@ -10,7 +10,7 @@ class Email_Client_Adapter implements Email_Client_interface {
         private function __construct()
         {
             $this->admin_controller = new Administrator_controller();
-            $details = $this->admin_controller->getAdministratorEmailSettings();
+            $details = $this->admin_controller->getAdministratorConfigSettings();
             $this->email_api= Email_Api::getInstance($details['email'],$details['password'],$details['port']);
         }
 

@@ -36,8 +36,8 @@
     );
     return $details;
   }
-  public function getAdministratorEmailSettings(){
-      return $this->getEmailSettings();
+  public function getAdministratorConfigSettings(){
+      return $this->getNotificationConfigData();
   }
   public function addAdministratorNewEmailSettings($email,$password,$port){
     $error = '';
@@ -50,7 +50,7 @@
     }
 
     if(empty($error)){
-        $this->addNewEmailSettings($email,$password,$port);
+        $this->addNewNotificationConfigSettings($email,$password,$port);
     }
     return $error;
 
@@ -67,7 +67,7 @@
       }
 
       if(empty($error)){
-          $this->editEmailSettings($email,$password,$port);
+          $this->editNotificationConfigSettings($email,$password,$port);
       }
       return $error;
 

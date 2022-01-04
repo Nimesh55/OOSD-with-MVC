@@ -38,6 +38,6 @@
       return $details;
     }
     public function getEmailSettingsDetails(){
-        return $this->getEmailSettings();
+        return $this->getNotificationConfigData();
     }
   }

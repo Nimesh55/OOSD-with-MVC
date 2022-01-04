@@ -4,10 +4,10 @@ class notification_handler{
     private static $smsAdapter;
     private static $emailAdapter;
 
-    public static function set_config(){
+    public static function set_config($apiKey, $deviceId){
         self::$smsAdapter = new Sms_adapter();
         //## $this->emailAdapter = new Email
-        self::$smsAdapter->setConfig('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhZG1pbiIsImlhdCI6MTY0MTA1NDcyMSwiZXhwIjo0MTAyNDQ0ODAwLCJ1aWQiOjkyMjIyLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0.Mip0jiKnQrI3_9xcrF1cQmZuZugTv_jgyMh33om8S8Y','126786'); //## retrieve this from database later.
+        self::$smsAdapter->setConfig($apiKey, $deviceId);
     }
 
     /*
@@ -18,7 +18,7 @@ class notification_handler{
     public static function sendNotification($reciverArray, $messageBody){
         $telephone = $reciverArray[0];
         //## $email = $reciverArray[1];
-        self::set_config();
+        // self::set_config();
         self::$smsAdapter->send_Sms($telephone, $messageBody);
         //## Add email send message call here...
 
