@@ -147,7 +147,7 @@ class Executive_Controller extends Executive_Model
     public function setEssentialServiceState($state, $service_no)
     {
         print_r($_FILES);
-        exit();
+        //exit();
         if(isset($_FILES["file"]) && $_FILES['file']['name']!=null){
             $last_no = File_Controller::getInstance()->uploadFile();
             EssentialServiceTracker::getInstance()->setFileNo($last_no,$service_no);

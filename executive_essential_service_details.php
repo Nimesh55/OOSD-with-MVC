@@ -116,9 +116,11 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
                 <div class="row">
                     <div class="col-sm-3 p-3"></div>
                     <div class="col-sm-3 p-3">
-                        <button type="submit" name="submit" value="Request" onclick="clickView('1-<?php echo $_SESSION['service_no'] ?>','includes/executive_essential_service_details.inc.php')" ></button>
-
-
+                        <form action="includes/executive_essential_service_details.inc.php" method="POST">
+                            <input type="hidden" name="variablePass1" value="1-<?php echo $_SESSION['service_no'] ?>">
+                        <button class="btn btn-info" type="submit" name="submit" value="Request" onclick="clickView('1-<?php echo $_SESSION['service_no'] ?>','includes/executive_essential_service_details.inc.php')" >Request</button>
+                        </form>
+                        
                     </div>
 
                     <div class="col-sm-3 p-3"></div>
