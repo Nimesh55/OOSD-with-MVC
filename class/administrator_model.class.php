@@ -1,6 +1,6 @@
 <?php
 
-include "dbh.class.php";
+require_once "dbh.class.php";
 
 class Administrator_model extends Dbh
 {

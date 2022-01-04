@@ -31,7 +31,6 @@ class File_Controller extends File_Model{
     public function downloadFile($file, $name, $mime_type='')
     {
         if(!is_readable($file)) die('File not found!');
-
         $size = filesize($file);
         $name = rawurldecode($name);
         $known_mime_types=array(

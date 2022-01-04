@@ -142,9 +142,13 @@ class Booking_Model extends Dbh
 
     protected function updateFlag_Booking_Cancel($booking_no)
     {
-        $query = "UPDATE booking SET flag=1 where booking_no=$booking_no";
-        $stmt = $this->connect()->prepare($query);
-        $stmt->execute();
+        $query1 = "UPDATE booking SET flag=1 where booking_no=$booking_no";
+        $stmt1 = $this->connect()->prepare($query1);
+        $stmt1->execute();
+
+        $query2 = "UPDATE booking SET state=0 where booking_no=$booking_no";
+        $stmt2 = $this->connect()->prepare($query2);
+        $stmt2->execute();
     }
 
     protected function getBookingsForSelectedConductorFromModel_FromGivenDate($conductor_no){
