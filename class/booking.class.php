@@ -18,7 +18,6 @@ class Booking{
     private $state;
     private $booked_conductor_no;
     private $flag;
-    private $replacement_conductor_no;
 
     function __construct(){
 
@@ -26,7 +25,7 @@ class Booking{
 
     public function setValues($booking_no, $service_no, $reason, $start_date, $end_date, $start_time, $end_time,
                               $pickup_district, $pickup_location, $destination_district, $destination_location,
-                              $passenger_count, $state, $booked_conductor_no, $flag, $replacement_conductor_no){
+                              $passenger_count, $state, $booked_conductor_no, $flag){
         $this->booking_no = $booking_no;
         $this->service_no = $service_no;
         $this->reason = $reason;
@@ -42,7 +41,6 @@ class Booking{
         $this->state = $state;
         $this->booked_conductor_no = $booked_conductor_no;
         $this->flag = $flag;
-        $this->replacement_conductor_no = $replacement_conductor_no;
     }
 
 
@@ -126,12 +124,6 @@ class Booking{
     {
         return $this->flag;
     }
-
-    public function getReplacementConductorNo()
-    {
-        return $this->replacement_conductor_no;
-    }
-
 
 
 

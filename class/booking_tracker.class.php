@@ -26,8 +26,7 @@ class Booking_Tracker extends Tracker implements Observer
         $booking->setValues($booking_no, $details["service_no"], $details["reason"], $details["start_date"],
             $details["end_date"], $details["start_time"], $details["end_time"], $details["pickup_district"],
             $details["pickup_location"], $details["destination_district"], $details["destination_location"],
-            $details["passenger_count"], $details["state"],  $details["booked_conductor_no"], $details['flag'],
-            $details['replacement_conductor_no']);
+            $details["passenger_count"], $details["state"],  $details["booked_conductor_no"], $details['flag']);
         return $booking;
     }
 
