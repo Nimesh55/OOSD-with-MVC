@@ -58,8 +58,10 @@
 
     public function getPassFileDetails(){
       $pass = Pass_Tracker::getInstance()->getActivePassForPassenger($this->passenger->getPassengerNo());
-      if(pass)
-      $details = File_Controller::getInstance()->getFileDetails($pass->getFileNo());
+      $details = null;
+      if($pass!=null){
+        $details = File_Controller::getInstance()->getFileDetails($pass->getFileNo());
+      }
       return $details;
     }
   }
