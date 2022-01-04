@@ -39,7 +39,7 @@
   public function getAdministratorConfigSettings(){
       return $this->getNotificationConfigData();
   }
-  public function addAdministratorNewEmailSettings($email,$password,$port){
+  public function addAdministratorNewSettings($email, $password, $port, $smsapikey, $device_id){
     $error = '';
     $this->is_email($email);
     // if (empty($password)){
@@ -50,13 +50,13 @@
     }
 
     if(empty($error)){
-        $this->addNewNotificationConfigSettings($email,$password,$port);
+        $this->addNewNotificationConfigSettings($email,$password,$port, $smsapikey, $device_id);
     }
     return $error;
 
   }
 
-  public function editAdministratorEmailSettings($email,$password,$port){
+  public function editAdministratorConfigSettings($email, $password, $port, $smsapikey, $device_id){
       $error = '';
       $this->is_email($email);
       // if (empty($password)){
@@ -67,7 +67,7 @@
       }
 
       if(empty($error)){
-          $this->editNotificationConfigSettings($email,$password,$port);
+          $this->editNotificationConfigSettings($email,$password,$port, $smsapikey, $device_id);
       }
       return $error;
 

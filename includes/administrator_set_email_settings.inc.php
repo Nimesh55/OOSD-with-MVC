@@ -1,32 +1,44 @@
 <?php
     session_start();
     require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
+
     $error = '';
+//echo "<pre>";
+//print_r($_POST);
+//echo "</pre>";
 
     if (isset($_POST['save'])){
-        // echo "<pre>";
-        // print_r($_POST);
-        // echo "</pre>";
+
 
         $addministrator_controller = new Administrator_controller();
         if(strcmp($_POST['edit'],'yes')==0) {
-            $error = $addministrator_controller->addAdministratorNewEmailSettings(
+            $error = $addministrator_controller->addAdministratorNewSettings(
                 $_POST['email'],
                 $_POST['password'],
-                $_POST['port']
+                $_POST['port'],
+                $_POST['smsapikey'],
+                $_POST['device_id']
             );
-        }else{
-            $error = $addministrator_controller->editAdministratorEmailSettings(
+        }
+        else{
+            $error = $addministrator_controller->editAdministratorConfigSettings(
                 $_POST['email'],
                 $_POST['password'],
-                $_POST['port']);
+                $_POST['port'],
+                $_POST['smsapikey'],
+                $_POST['device_id']
+            );
         }
+
+
 
     }
     if (isset($_POST['back'])){
         header("Location: ../administrator_home.php");
         return;
     }
+
+
 
 
 ?>
@@ -38,12 +50,14 @@
 </head>
 <body>
 <form id="returndata" action="../administrator_set_email_settings.php" method="post">
-    <input type="hidden" name="email" value="<?php echo $_POST['email']; ?>">
+    <input type="hidden" name="email" value="<?php echo $_POST['email'] ?>">
     <input type="hidden" name="password" value="<?php echo $_POST['password']; ?>">
     <input type="hidden" name="port" value="<?php echo $_POST['port']; ?>">
+    <input type="hidden" name="smsapikey" value="<?php echo $_POST['smsapikey']; ?>">
+    <input type="hidden" name="device_id" value="<?php echo $_POST['device_id']; ?>">
     <input type="hidden" name="error" value="<?php echo $error; ?>">
 
-<!--    <input type="hidden" name="sub" value="finish">-->
+    <input type="hidden" name="sub" value="finish">
 
 </form>
 <script type="text/javascript">
@@ -51,4 +65,3 @@
 </script>
 </body>
 </html>
-

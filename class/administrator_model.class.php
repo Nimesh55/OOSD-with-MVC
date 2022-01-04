@@ -51,25 +51,29 @@ class Administrator_model extends Dbh
       $row = $stmt->fetch(PDO::FETCH_ASSOC);
       return $row;
   }
-  protected function addNewNotificationConfigSettings($email,$password,$port){
-      $query1 = "INSERT INTO notification_config_data (email_emailAddress,email_password,email_port) VALUES (?, ?, ?);";
+  protected function addNewNotificationConfigSettings($email,$password,$port, $smsapikey, $device_id){
+      $query1 = "INSERT INTO notification_config_data (email_emailAddress,email_password,email_port,sms_Apikey,sms_DeviceId)) VALUES (?, ?, ?, ?, ?);";
       $stmt1 = $this->connect()->prepare($query1);
 
       $stmt1->execute(array(
              htmlentities($email),
              htmlentities($password),
-             htmlentities($port)
+             htmlentities($port),
+             htmlentities($smsapikey),
+             htmlentities($device_id)
       ));
   }
 
-  protected function editNotificationConfigSettings(){
-      echo "Edit action";
-      $sql = "UPDATE notification_config_data SET email_emailAddress = :email, email_password = :password, email_port = :port WHERE row_id = 1";
+  protected function editNotificationConfigSettings($email,$password,$port, $smsapikey, $device_id){
+//      echo "Edit action";
+      $sql = "UPDATE notification_config_data SET email_emailAddress = :email, email_password = :password, email_port = :port, sms_Apikey = :smsapikey, sms_DeviceId = :device_id  WHERE row_id = 1";
       $stmt = $this->connect()->prepare($sql);
       $stmt->execute(array(
-          ':email' => htmlentities($_POST['email']),
-          ':password' => htmlentities($_POST['password']),
-          ':port' => htmlentities($_POST['port'])));
+          ':email' => htmlentities($email),
+          ':password' => htmlentities($password),
+          ':port' => htmlentities($port),
+          ':smsapikey' => htmlentities($smsapikey,),
+            ':device_id' => htmlentities($device_id)));
   }
 
 

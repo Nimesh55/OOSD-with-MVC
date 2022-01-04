@@ -13,12 +13,16 @@ $email = "";
 $password = "";
 $port = "";
 $edit='no';
+$sms_api = "";
+$device_id = "";
 
 if(!empty($details)) {
 //    print_r($details);
     $email = $details['email_emailAddress'];
     $password = $details['email_password'];
     $port = $details['email_port'];
+    $sms_api = $details['sms_ApiKey'] ;
+    $device_id = $details['sms_DeviceId'];
 }else{
     $edit='yes';
 }
@@ -27,6 +31,8 @@ if(isset($_POST['error'])){
     $email = $_POST['email'];
     $password = $_POST['password'];
     $port = $_POST['port'];
+    $sms_api = $_POST['sms_ApiKey'] ;
+    $device_id = $_POST['sms_DeviceId'];
 }
 
 //echo $edit;
@@ -84,14 +90,7 @@ if(isset($_POST['error'])){
     </div>
 
 
-    <ul class="nav nav-tabs">
-        <li class="active"><a href="#link1" data-toggle="tab">Email Configuration</a></li>
-        <li><a href="#link2" data-toggle="tab">SMS Configuration</a></li>
-    </ul>
 
-    <div class="tab-content">
-        <div id="link1" class="tab-pane fade in active">
-            <h3>Email Configuraion</h3>
 
             <div class="container">
                 <div class="row">
@@ -136,67 +135,30 @@ if(isset($_POST['error'])){
                                 <div  class="col-sm-9"><input name="port" type="text" class="form-control" id="port" value="<?php echo $port; ?>"></div>
                             </div>
 
-                            <br>
-                            <div class="btn-group btn-group-lg">
-                                <input type="submit" class="btn btn-primary ctrlbutton" name="save" value="Set">
-                                <input type="submit" class="btn btn-primary ctrlbutton" name="back" value="Back">
-                            </div>
-                            <input type="text" name="edit" value="<?php echo $edit;?>" hidden>
-
-                        </form>
-
-                    </div>
-                    <div class="col-lg-3 orange"></div>
-                </div>
-            </div>
-
-        </div>
-
-        <div id="link2" class="tab-pane fade">
-            <h3>SMS Configuration</h3>
-
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 cyan"></div>
-                    <div class="col-lg-6 pink wrapper">
-
-                        <form class="form-horizontal" role="form" action="includes/administrator_set_email_settings.inc.php" method="post">
-
-                            <?php
-                            if (isset($_POST['error']) && !empty($_POST['error'])) {
-
-                                echo "<div class=\"alert alert-danger\"><strong>".$_POST['error']."</strong></div>";
-                            }
-                            if(isset($_POST['error']) && empty($_POST['error'])){
-                                echo "<div class=\"alert alert-success\"><strong>"."Successfully Updated!!!"."</strong></div>";
-                            }
-                            ?>
-
                             <div class="form-group">
                                 <label for="smsapikey" class="col-sm-3 control-label">SMS Api Key:</label>
                                 <div class="col-sm-9">
 
                                     <div class="input-group">
-                                        <input name="smsapikey" type="password" class="form-control apiKey" id="smsapikey" value="<?php echo $details['sms_ApiKey'] ?>">
+                                        <input name="smsapikey" type="password" class="form-control input1" id="smsapikey" value="<?php echo $sms_api; ?>">
                                         <span class="input-group-btn">
-                                        <button class="btn btn-default reveal" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
+                                        <button class="btn btn-default apiKey" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
                                     </span>
                                     </div>
 
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <label for="device_id" class="col-sm-3 control-label">Device ID:</label>
                                 <div class="col-sm-9">
 
                                     <div class="input-group">
-                                        <input name="device_id" type="password" class="form-control pwd" id="device_id" value="<?php echo $details['sms_DeviceId'] ?>">
+                                        <input name="device_id" type="password" class="form-control input2" id="device_id" value="<?php echo $device_id; ?>">
                                         <span class="input-group-btn">
-                                        <button class="btn btn-default reveal" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
+                                        <button class="btn btn-default deviceId" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
                                     </span>
                                     </div>
-
                                 </div>
                             </div>
 
@@ -213,17 +175,6 @@ if(isset($_POST['error'])){
                     <div class="col-lg-3 orange"></div>
                 </div>
             </div>
-
-        </div>
-    </div>
-
-
-
-
-
-
-
-
 
 <script>
 
@@ -236,8 +187,8 @@ if(isset($_POST['error'])){
         }
     });
 
-    $(".reveal").on('click',function() {
-        var $pwd = $(".apiKey");
+    $(".apiKey").on('click',function() {
+        var $pwd = $(".input1");
         if ($pwd.attr('type') === 'password') {
             $pwd.attr('type', 'text');
         } else {
@@ -245,8 +196,8 @@ if(isset($_POST['error'])){
         }
     });
 
-    $(".reveal").on('click',function() {
-        var $pwd = $(".deviceId");
+    $(".deviceId").on('click',function() {
+        var $pwd = $(".input2");
         if ($pwd.attr('type') === 'password') {
             $pwd.attr('type', 'text');
         } else {
