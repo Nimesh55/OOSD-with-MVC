@@ -35,11 +35,11 @@
                         <?php
                         if($passenger_file==null):
                             ?>
-                            <input name="view" type="text" class="form-control" id="staff_id" readonly value="No file added">
+                            <input name="view" type="text" class="form-control" id="view" readonly value="No file added">
                         <?php
                         else:
                             ?>
-                            <input name="view" type="text" class="form-control" id="staff_id" readonly value="<?= $passenger_file['name'] ?>">
+                            <input name="view" type="text" class="form-control" id="view" readonly value="<?= $passenger_file['name'] ?>">
                             <button class="alert-success"><a href="includes/download.inc.php?name=<?php echo $passenger_file['name'];?>
                                                             &fname=<?php echo $passenger_file['fname'] ?>">Download</a></button>
                         <?php
