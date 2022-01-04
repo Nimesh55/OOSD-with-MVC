@@ -8,6 +8,7 @@ if(!isset($_SESSION['account_no'])){
 }
 $admin_view = new Administrator_view();
 $details = $admin_view->getEmailSettingsDetails();
+// print_r($details);
 $email = "";
 $password = "";
 $port = "";

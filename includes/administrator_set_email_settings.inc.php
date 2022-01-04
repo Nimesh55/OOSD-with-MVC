@@ -4,9 +4,9 @@
     $error = '';
 
     if (isset($_POST['save'])){
-        echo "<pre>";
-        print_r($_POST);
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($_POST);
+        // echo "</pre>";
 
         $addministrator_controller = new Administrator_controller();
         if(strcmp($_POST['edit'],'yes')==0) {

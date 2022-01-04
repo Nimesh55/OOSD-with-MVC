@@ -42,9 +42,9 @@
   public function addAdministratorNewEmailSettings($email,$password,$port){
     $error = '';
     $this->is_email($email);
-    if (empty($password)){
-       $error = "*Password should not be empty!!!";
-    }
+    // if (empty($password)){
+    //    $error = "*Password should not be empty!!!";
+    // }
     if(!is_numeric($port)){
         $error = "*Port number should be a number!";
     }
@@ -59,9 +59,9 @@
   public function editAdministratorEmailSettings($email,$password,$port){
       $error = '';
       $this->is_email($email);
-      if (empty($password)){
-          $error = "*Password should not be empty!!!";
-      }
+      // if (empty($password)){
+      //     $error = "*Password should not be empty!!!";
+      // }
       if(!is_numeric($port)){
           $error = "*Port number should be a number!";
       }
