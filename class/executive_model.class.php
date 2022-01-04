@@ -105,4 +105,27 @@ class Executive_Model extends Dbh
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$service_no]);
     }
+
+    private function getFilesLastFileNo(){
+        $stmt = $this->connect()->prepare("SELECT file_no FROM files ORDER BY file_no DESC ");
+        $stmt->execute();
+        $last_no = $stmt->fetch();
+        return $last_no['file_no'];
+    }
+
+    private function uploadFileToDB(){
+        $stmt = $this->connect()->prepare("INSERT INTO `files` (`file_name`, `file_data`) VALUES (?,?)");
+        $stmt->execute([$_FILES["file"]["name"], file_get_contents($_FILES["file"]["tmp_name"])]);
+        unset($_FILES['file']);
+        return $this->getFilesLastFileNo();
+    }
+
+    protected function setStatePending_using_ServiceNo_FromModel_WithFile($service_no){
+
+        $file_no = $this->uploadFileToDB();
+
+        $sql = "UPDATE executive SET state=1,file_no=? where service_no=?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$file_no, $service_no]);
+    }
 }

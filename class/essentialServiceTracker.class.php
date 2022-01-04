@@ -18,7 +18,7 @@ class EssentialServiceTracker extends Tracker{
     public function createService($service_no){
         $service = new EssentialService($service_no);
         $details = Service_Model::getInstance()->getServiceDetails($service_no);
-        $service->setValues($service_no, $details["id"], $details["name"], $details["state"]);
+        $service->setValues($service_no, $details["id"], $details["name"], $details["state"], $details['file_no']);
         return $service;
     }
 

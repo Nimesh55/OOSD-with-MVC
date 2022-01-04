@@ -7,6 +7,7 @@ class EssentialService{
     private $id;
     private $name;
     private $state;
+    private $file_no;
 
     function __construct($service_no){
 
@@ -33,11 +34,17 @@ class EssentialService{
         return $this->state;
     }
 
-    public function setValues($service_no, $id, $name, $state){
+    public function setValues($service_no, $id, $name, $state, $file_no){
         $this->service_no = $service_no;
         $this->id = $id;
         $this->name = $name;
         $this->state = $state;
+        $this->file_no = $file_no;
+    }
+
+    public function getFileNo()
+    {
+        return $this->file_no;
     }
 
 

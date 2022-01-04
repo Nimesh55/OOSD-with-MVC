@@ -15,6 +15,7 @@ $pass_no = $_POST['pass_no'];
 $execObj = new Executive_View();
 $pass = $execObj->getPassDetailsViewDetails($pass_no); // ## Get Pass Object 
 $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($pass['passenger_no']);
+$pass_file = File_Controller::getInstance()->getFileDetails($pass['file_no']);
 $details = array("name" => $passenger->getFirstName().' '.$passenger->getLastName(), 'route' => $pass['route'], 'time_slot' => $pass['time_slot'], 'reason' => $pass['reason'], 'status' => $pass['status']);
 ///echo $details['status'];
 ?>
@@ -131,6 +132,30 @@ $details = array("name" => $passenger->getFirstName().' '.$passenger->getLastNam
                     <div class="col-sm-3 p-3 bg-primary text-white">
                         <p>: <?= $details['status'] ?>
                         </p>
+                    </div>
+                    <div class="col-sm-3 p-3"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3 p-3"></div>
+                    <div class="col-sm-3 p-3 bg-dark text-white">
+                        <p>Attachments</p>
+                    </div>
+                    <div class="col-sm-3 p-3 bg-primary text-white">
+
+                        <?php
+                        if($pass_file==null):
+                            ?>
+                            <p>: No files added </p>
+                        <?php
+                        else:
+                            ?>
+                            <button class="alert-success"><a href="includes/download.inc.php?name=<?php echo $pass_file['name'];?>
+                                                            &fname=<?php echo $pass_file['fname'] ?>">Download</a></button>
+                        <?php
+                        endif;
+                        ?>
+
                     </div>
                     <div class="col-sm-3 p-3"></div>
                 </div>

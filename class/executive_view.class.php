@@ -48,6 +48,7 @@ class Executive_View extends Executive_Model{
             "route" => $pass->getBusRoute(),
             "time_slot" => $pass->getStartDate()." to ".$pass->getEndDate(),
             "reason" => $pass->getReason(),
+            "file_no" => $pass->getFileNo(),
             "status" => $status);
         return $details;
     }

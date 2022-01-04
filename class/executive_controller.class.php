@@ -156,7 +156,12 @@ class Executive_Controller extends Executive_Model
             $this->setStateUnregistered_using_ServiceNo_FromModel($service_no);
         }
         else if ($state == 1) {
-            $this->setStatePending_using_ServiceNo_FromModel($service_no);
+            if(isset($_FILES["file"]) && $_FILES['file']['name']==null){
+                $this->setStatePending_using_ServiceNo_FromModel($service_no);
+            }
+            else{
+                $this->setStatePending_using_ServiceNo_FromModel_WithFile($service_no);
+            }
         }
         else if($state == 2){
             $this->setStateRegistered_using_ServiceNo_FromModel($service_no);

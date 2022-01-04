@@ -12,6 +12,7 @@ if (!isset($_POST['variablePass1'])) {
 }
 $passenger_no = $_POST['variablePass1'];
 $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($passenger_no);
+$passenger_file = File_Controller::getInstance()->getFileDetails($passenger->getFileNo());
 $row = array('state' => $passenger->getState(), 'first_name' => $passenger->getFirstName(), 'last_name' => $passenger->getLastName(), 'address' => $passenger->getAddress(), 'staff_id' => $passenger->getStaffId(), 'user_id' => $passenger->getUserId(), 'telephone' => $passenger->getTelephone(), 'email' => $passenger->getEmail());
 ?>
 
@@ -130,6 +131,30 @@ $row = array('state' => $passenger->getState(), 'first_name' => $passenger->getF
                     </div>
                     <div class="col-sm-3 p-3 bg-primary text-white">
                         <p>: <?= $row['email'] ?> </p>
+                    </div>
+                    <div class="col-sm-3 p-3"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3 p-3"></div>
+                    <div class="col-sm-3 p-3 bg-dark text-white">
+                        <p>Attachments</p>
+                    </div>
+                    <div class="col-sm-3 p-3 bg-primary text-white">
+
+                        <?php
+                        if($passenger_file==null):
+                            ?>
+                            <p>: No files added </p>
+                        <?php
+                        else:
+                            ?>
+                            <button class="alert-success"><a href="includes/download.inc.php?name=<?php echo $passenger_file['name'];?>
+                                                            &fname=<?php echo $passenger_file['fname'] ?>">Download</a></button>
+                        <?php
+                        endif;
+                        ?>
+
                     </div>
                     <div class="col-sm-3 p-3"></div>
                 </div>
