@@ -58,8 +58,8 @@ if(isset($_POST['error'])){
 
                 <div class="navbar-collapse collapse" id="mobile_menu">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="administrator_set_email_settings.php.php">Email API Settings</a></li>
-                        <li><a href="#">SMS API Settings</a></li>
+<!--                        <li class="active"><a href="administrator_set_email_settings.php.php">Email API Settings</a></li>-->
+<!--                        <li><a href="#">SMS API Settings</a></li>-->
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
@@ -82,65 +82,139 @@ if(isset($_POST['error'])){
 
     </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 cyan"></div>
-            <div class="col-lg-6 pink wrapper">
 
-                <form class="form-horizontal" role="form" action="includes/administrator_set_email_settings.inc.php" method="post">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#link1" data-toggle="tab">Email Configuration</a></li>
+        <li><a href="#link2" data-toggle="tab">SMS Configuration</a></li>
+    </ul>
 
-                    <?php
-                    if (isset($_POST['error']) && !empty($_POST['error'])) {
+    <div class="tab-content">
+        <div id="link1" class="tab-pane fade in active">
+            <h3>Email Configuraion</h3>
 
-                        echo "<div class=\"alert alert-danger\"><strong>".$_POST['error']."</strong></div>";
-                    }
-                    if(isset($_POST['error']) && empty($_POST['error'])){
-                        echo "<div class=\"alert alert-success\"><strong>"."Successfully Updated!!!"."</strong></div>";
-                    }
-                    ?>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 cyan"></div>
+                    <div class="col-lg-6 pink wrapper">
 
-                    <div class="form-group">
-                        <label for="email" class="col-sm-3 control-label">Email:</label>
-                        <div class="col-sm-9">
-                            <input name="email" type="email" class="form-control" id="email" value="<?php echo $email;?>"></div>
-                    </div>
-                    <div class="form-group">
-                        <label for="password" class="col-sm-3 control-label">Password:</label>
-                        <div class="col-sm-9">
+                        <form class="form-horizontal" role="form" action="includes/administrator_set_email_settings.inc.php" method="post">
 
-                            <div class="input-group">
-                                <input name="password" type="password" class="form-control pwd" id="password" value="<?php echo $password;?>">
-                                    <span class="input-group-btn">
+                            <?php
+                            if (isset($_POST['error']) && !empty($_POST['error'])) {
+
+                                echo "<div class=\"alert alert-danger\"><strong>".$_POST['error']."</strong></div>";
+                            }
+                            if(isset($_POST['error']) && empty($_POST['error'])){
+                                echo "<div class=\"alert alert-success\"><strong>"."Successfully Updated!!!"."</strong></div>";
+                            }
+                            ?>
+
+                            <div class="form-group">
+                                <label for="email" class="col-sm-3 control-label">Email:</label>
+                                <div class="col-sm-9">
+                                    <input name="email" type="email" class="form-control" id="email" value="<?php echo $email;?>"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="col-sm-3 control-label">Password:</label>
+                                <div class="col-sm-9">
+
+                                    <div class="input-group">
+                                        <input name="password" type="password" class="form-control pwd" id="password" value="<?php echo $password;?>">
+                                        <span class="input-group-btn">
                                         <button class="btn btn-default reveal" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
                                     </span>
+                                    </div>
+
+                                </div>
                             </div>
 
-                        </div>
+                            <br>
+
+                            <div class="form-group">
+                                <label for="port" class="col-sm-3 control-label">Port:</label>
+                                <div  class="col-sm-9"><input name="port" type="text" class="form-control" id="port" value="<?php echo $port; ?>"></div>
+                            </div>
+
+                            <br>
+                            <div class="btn-group btn-group-lg">
+                                <input type="submit" class="btn btn-primary ctrlbutton" name="save" value="Set">
+                                <input type="submit" class="btn btn-primary ctrlbutton" name="back" value="Back">
+                            </div>
+                            <input type="text" name="edit" value="<?php echo $edit;?>" hidden>
+
+                        </form>
+
                     </div>
-
-                    <br>
-
-                    <div class="form-group">
-                        <label for="port" class="col-sm-3 control-label">Port:</label>
-                        <div  class="col-sm-9"><input name="port" type="text" class="form-control" id="port" value="<?php echo $port; ?>"></div>
-                    </div>
-
-                    <br>
-                    <div class="btn-group btn-group-lg">
-                        <input type="submit" class="btn btn-primary ctrlbutton" name="save" value="Set">
-                        <input type="submit" class="btn btn-primary ctrlbutton" name="back" value="Back">
-                    </div>
-                    <input type="text" name="edit" value="<?php echo $edit;?>" hidden>
-
-                </form>
-
+                    <div class="col-lg-3 orange"></div>
+                </div>
             </div>
-            <div class="col-lg-3 orange"></div>
+
         </div>
 
+        <div id="link2" class="tab-pane fade">
+            <h3>SMS Configuration</h3>
 
 
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 cyan"></div>
+                    <div class="col-lg-6 pink wrapper">
+
+                        <form class="form-horizontal" role="form" action="includes/administrator_set_email_settings.inc.php" method="post">
+
+                            <?php
+                            if (isset($_POST['error']) && !empty($_POST['error'])) {
+
+                                echo "<div class=\"alert alert-danger\"><strong>".$_POST['error']."</strong></div>";
+                            }
+                            if(isset($_POST['error']) && empty($_POST['error'])){
+                                echo "<div class=\"alert alert-success\"><strong>"."Successfully Updated!!!"."</strong></div>";
+                            }
+                            ?>
+
+                            <div class="form-group">
+                                <label for="smsapikey" class="col-sm-3 control-label">Email:</label>
+                                <div class="col-sm-9">
+                                    <input name="smsapikey" type="smsapikey" class="form-control" id="email" value=""></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="device_id" class="col-sm-3 control-label">Device ID:</label>
+                                <div class="col-sm-9">
+
+                                    <div class="input-group">
+                                        <input name="device_id" type="password" class="form-control pwd" id="device_id" value="">
+                                        <span class="input-group-btn">
+                                        <button class="btn btn-default reveal" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
+                                    </span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <br>
+                            <div class="btn-group btn-group-lg">
+                                <input type="submit" class="btn btn-primary ctrlbutton" name="save" value="Set">
+                                <input type="submit" class="btn btn-primary ctrlbutton" name="back" value="Back">
+                            </div>
+                            <input type="text" name="edit" value="<?php echo $edit;?>" hidden>
+
+                        </form>
+
+                    </div>
+                    <div class="col-lg-3 orange"></div>
+                </div>
+            </div>
+
+        </div>
     </div>
+
+
+
+
+
+
+
+
 
 <script>
 
