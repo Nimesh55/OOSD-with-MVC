@@ -7,7 +7,7 @@ require 'PHPMailer-master/src/SMTP.php';
 
 
 
-class Email_Sender{
+class Email_Api{
     private $mail;
     private static $instance;
 
@@ -29,7 +29,7 @@ class Email_Sender{
     public static function getInstance($username,$password,$port)
     {
         if (self::$instance == null) {
-            self::$instance = new Email_Sender($username,$password,$port);
+            self::$instance = new Email_Api($username,$password,$port);
         }
         return self::$instance;
     }
@@ -39,8 +39,8 @@ class Email_Sender{
 
 
         $this->mail->IsHTML(true);
-        $this->mail->AddAddress("{$email->getTo()}", "");
-        $this->mail->SetFrom("{$this->mail->Username}", "safetransit");
+        $this->mail->AddAddress("{$email->getTo()}", $email->getRecipientName());
+        $this->mail->SetFrom("{$this->mail->Username}",$email->getSenderName());
         $this->mail->Subject = "{$email->getSubject()}";
         $content = "{$email->getBody()}";
 

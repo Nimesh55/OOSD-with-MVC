@@ -1,25 +1,26 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/class/email_client.interface.php";
 
-    class Email_Sender_Adapter{
+class Email_Client_Adapter implements Email_Client_interface {
         private $admin_controller;
-        private $email_sender;
+        private $email_api;
         private static $instance;
 
         private function __construct()
         {
             $this->admin_controller = new Administrator_controller();
             $details = $this->admin_controller->getAdministratorEmailSettings();
-            $this->email_sender= Email_Sender::getInstance($details['email'],$details['password'],$details['port']);
+            $this->email_api= Email_Api::getInstance($details['email'],$details['password'],$details['port']);
         }
 
         public function sendEmail(Email $email){
-//            $email_sender = new Email_Sender("safetansit@gmail.com","geniousnimesh");
-            return $this->email_sender->sendEmail($email);
+            return $this->email_api->sendEmail($email);
         }
         public static function getInstance()
         {
             if (self::$instance == null) {
-                self::$instance = new Email_Sender_Adapter();
+                self::$instance = new Email_Client_Adapter();
             }
             return self::$instance;
         }

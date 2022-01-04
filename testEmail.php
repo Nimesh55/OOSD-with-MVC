@@ -9,7 +9,7 @@
                                     );
     foreach ($address_list as $address){
         $email = new Email($address,"test 07","Test: Email Notification");
-        $email_sender_adapter = Email_Sender_Adapter::getInstance();
-        $email_sender_adapter->sendEmail($email);
+        $email_client_adapter = Email_Client_Adapter::getInstance();
+        $email_client_adapter->sendEmail($email);
 //        header("location:test.php");
 }
