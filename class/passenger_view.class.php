@@ -55,6 +55,13 @@
       $details = File_Controller::getInstance()->getFileDetails($this->passenger->getFileNo());
       return $details;
     }
+
+    public function getPassFileDetails(){
+      $pass = Pass_Tracker::getInstance()->getActivePassForPassenger($this->passenger->getPassengerNo());
+      if(pass)
+      $details = File_Controller::getInstance()->getFileDetails($pass->getFileNo());
+      return $details;
+    }
   }
 
  ?>

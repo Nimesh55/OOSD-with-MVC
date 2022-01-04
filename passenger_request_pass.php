@@ -10,7 +10,7 @@
     $button='submit';
     $passengerview = new Passenger_View($_SESSION['user_Id']);
     $row = $passengerview->getDetails();
-    $passenger_file = $passengerview->getPassengerFileDetails();
+    $pass_file = $passengerview->getPassFileDetails();
     $row['user_id']=$_SESSION['user_Id'];
 
     $username = $row['first_name']." ".$row['last_name'];
@@ -167,12 +167,12 @@
                         <div class="col-sm-9">
                             <?php if(strcmp($button,'submit')==0): ?>
                                 <input type="file" id="file" name="file"/>;
-                            <?php elseif($passenger_file==null): ?>
+                            <?php elseif($pass_file==null): ?>
                                 <input name="view" type="text" class="form-control" id="view" readonly value="No file added">
                             <?php else: ?>
-                                <input name="view" type="text" class="form-control" id="view" readonly value="<?= $passenger_file['name'] ?>">
-                                <button class="alert-success"><a href="includes/download.inc.php?name=<?php echo $passenger_file['name'];?>
-                                                                &fname=<?php echo $passenger_file['fname'] ?>">Download</a></button>
+                                <input name="view" type="text" class="form-control" id="view" readonly value="<?= $pass_file['name'] ?>">
+                                <button class="alert-success"><a href="includes/download.inc.php?name=<?php echo $pass_file['name'];?>
+                                                                &fname=<?php echo $pass_file['fname'] ?>">Download</a></button>
                             <?php endif; ?>
                         </div>
                     </div>

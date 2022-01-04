@@ -114,4 +114,9 @@ class Executive_View extends Executive_Model{
         return $this->executivectrl->getServiceStatus($id);
     }
 
+    public function getServiceFileNo(){
+        $service = EssentialServiceTracker::getInstance()->createService($this->executiveobj->getServiceNo());
+        return $service->getFileNo();
+    }
+
 }

@@ -186,4 +186,12 @@ class Pass_Tracker extends Tracker implements Observer
         return $pass_controller->searchForActivePass($passenger_no);
     }
 
+    public function getActivePassForPassenger($passenger_no){
+        $pass_details = $this->searchForActivePass($passenger_no);
+        if($pass_details==null){
+            return null;
+        }
+        return $this->getPass($pass_details['pass_no']);
+    }
+
 }

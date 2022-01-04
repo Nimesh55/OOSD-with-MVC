@@ -48,4 +48,11 @@ class EssentialServiceTracker extends Tracker{
         $ctrl_obj->setState($state, $service_no);
     }
 
+    public function setFileNo($last_no,$service_no){
+        $ctrl_obj = new Service_Controller();
+        $ctrl_obj->setFileNo($last_no,$service_no);
+    }
+
+
+
 }

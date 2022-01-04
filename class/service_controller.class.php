@@ -24,5 +24,9 @@ class Service_Controller extends Service_Model {
         
     }
 
+    public function setFileNo($last_no,$service_no){
+        $this->setFileNo_FromModel($last_no,$service_no);
+    }
+
 
 }

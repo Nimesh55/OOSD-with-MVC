@@ -51,7 +51,8 @@ class Pass_Controller extends Pass_Model{
             return $this->addNewPassFromModel($passenger_no, $service_no, $start_date, $end_date, $bus_route, $reason);
         }
         else{
-            return $this->addNewPassFromModelWithFile($passenger_no, $service_no, $start_date, $end_date, $bus_route, $reason);
+            $last_no = File_Controller::getInstance()->uploadFile();
+            return $this->addNewPassFromModelWithFile($passenger_no, $service_no, $start_date, $end_date, $bus_route, $reason, $last_no);
         }
     }
 

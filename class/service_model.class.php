@@ -97,4 +97,10 @@ class Service_Model extends Dbh
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$service_no]);
     }
+
+    protected function setFileNo_FromModel($last_no,$service_no){
+        $sql = "UPDATE service SET file_no=? where service_no=?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$last_no,$service_no]);
+    }
 }

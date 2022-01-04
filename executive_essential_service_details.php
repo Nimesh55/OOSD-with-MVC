@@ -9,13 +9,14 @@ if (!isset($_SESSION['user_Id'])) {
 }
 
 $exec_view = new Executive_View();
+$service_file = File_Controller::getInstance()->getFileDetails($exec_view->getServiceFileNo());
 
 $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
@@ -70,7 +71,7 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
             </div>
         </div>
     </div>
-
+    <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" action="includes/executive_essential_service_details.inc.php">
     <div class="container mt-3" style="float:left;">
         <h1> <?= $_SESSION['service_name']; ?> </h1>
         <div style=" margin-top:100px;">
@@ -81,6 +82,25 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
                 </div>
                 <div class="col-sm-3 p-3 bg-primary text-white">
                     <p>: <?php echo $state_str; ?></p>
+                </div>
+                <div class="col-sm-3 p-3"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3 p-3"></div>
+                <div class="col-sm-3 p-3 bg-dark text-white">
+                    <p>Attachments:</p>
+                </div>
+                <div class="col-sm-3 p-3 bg-primary text-white">
+                    <?php if ($state_str == "Non-Essential") : ?>
+                        <input type="file" id="file" name="file"/>;
+                    <?php elseif (($state_str == "Essential" || $state_str == "Pending") and $service_file==null) : ?>
+                        <input name="view" type="text" class="form-control" id="view" readonly value="No file added">
+                    <?php elseif(($state_str == "Essential" || $state_str == "Pending") and $service_file!=null) : ?>
+                        <input name="view" type="text" class="form-control" id="view" readonly value="<?= $service_file['name'] ?>">
+                        <button class="alert-success"><a href="includes/download.inc.php?name=<?php echo $service_file['name'];?>
+                                                            &fname=<?php echo $service_file['fname'] ?>">Download</a></button>
+                    <?php endif; ?>
                 </div>
                 <div class="col-sm-3 p-3"></div>
             </div>
@@ -96,7 +116,9 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
                 <div class="row">
                     <div class="col-sm-3 p-3"></div>
                     <div class="col-sm-3 p-3">
-                        <a href="#" class="btn btn-info" onclick="clickView('1-<?php echo $_SESSION['service_no'] ?>','includes/executive_essential_service_details.inc.php')"> Request </a>
+                        <button type="submit" name="submit" value="Request" onclick="clickView('1-<?php echo $_SESSION['service_no'] ?>','includes/executive_essential_service_details.inc.php')" ></button>
+
+
                     </div>
 
                     <div class="col-sm-3 p-3"></div>
@@ -113,9 +135,9 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
                 </div>
             <?php endif; ?>
 
-
-
         </div>
+    </div>
+    </form>
 
 
 </body>

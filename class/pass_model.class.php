@@ -75,23 +75,8 @@ class Pass_Model extends Dbh
         return $last_no['pass_no'];
     }
 
-    private function getFilesLastFileNo(){
-        $stmt = $this->connect()->prepare("SELECT file_no FROM files ORDER BY file_no DESC ");
-        $stmt->execute();
-        $last_no = $stmt->fetch();
-        return $last_no['file_no'];
-    }
-
-    private function uploadFileToDB(){
-        $stmt = $this->connect()->prepare("INSERT INTO `files` (`file_name`, `file_data`) VALUES (?,?)");
-        $stmt->execute([$_FILES["file"]["name"], file_get_contents($_FILES["file"]["tmp_name"])]);
-        unset($_FILES['file']);
-        return $this->getFilesLastFileNo();
-    }
-
-    protected function addNewPassFromModelWithFile($passenger_no, $service_no, $start_date, $end_date, $bus_route, $reason)
+    protected function addNewPassFromModelWithFile($passenger_no, $service_no, $start_date, $end_date, $bus_route, $reason, $last_no)
     {
-        $file_no = $this->uploadFileToDB();
 
         $sql2 = "INSERT INTO Pass(passenger_no, service_no, start_date, end_date, state, bus_route, reason, file_no) VALUES (
                 :passenger_no, :service_no, :start_date, :end_date, :stat, :bus_route, :reason, :file_no)";
@@ -104,7 +89,7 @@ class Pass_Model extends Dbh
             ':stat' => 0,
             ':bus_route' => $bus_route,
             ':reason' => $reason,
-            ':file_no' => $file_no
+            ':file_no' => $last_no
         ));
         return $this->getLastPassNo();
     }
