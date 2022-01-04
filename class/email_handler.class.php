@@ -2,11 +2,13 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/Email/email_sender.class.php";
 
-    class Email{
+    class Email_Handler{
         private $to;
         private $subject;
         private $body;
         private $header;
+        private $admin_controller;
+        private $email_sender;
 
 
         /**
@@ -47,12 +49,16 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/Email/email_sender.clas
             $this->subject = $subject;
             $this->body = $body;
             $this->header = "From: {$from}\r\nContent-Type: text/html;";
+            $this->admin_controller=new Administrator_controller();
+            $details=$this->admin_controller->getAdministratorEmailSettings();
+            $this->email_sender = new Email_Sender($details['email'],$details['password'],$details['port']);
+//            $this->email_sender = new Email_Sender("safetansit@gmail.com","geniousnimesh",587);
         }
 
         //This method use to send email
         public function sendEmail(){
-            $email_sender = new Email_Sender("safetansit@gmail.com","geniousnimesh");
-            return $email_sender->sendEmail($this);
+//            $email_sender = new Email_Sender("safetansit@gmail.com","geniousnimesh",587);
+            return $this->email_sender->sendEmail($this);
         }
 
     }

@@ -10,7 +10,7 @@ require 'PHPMailer-master/src/SMTP.php';
 class Email_Sender{
     private $mail;
 
-    public function __construct($username,$password)
+    public function __construct($username,$password,$port)
     {
         $this->mail = new PHPMailer();
         $this->mail->IsSMTP();
@@ -18,14 +18,14 @@ class Email_Sender{
         $this->mail->SMTPDebug  = 1;
         $this->mail->SMTPAuth   = TRUE;
         $this->mail->SMTPSecure = "tls";
-        $this->mail->Port       = 587;
+        $this->mail->Port       = $port;
         $this->mail->Host       = "smtp.gmail.com";
         $this->mail->Username   = "$username";
         $this->mail->Password   = "$password";
         $this->mail->IsHTML(true);
     }
 
-    public function sendEmail(Email $email){
+    public function sendEmail(Email_Handler $email){
 
 
 

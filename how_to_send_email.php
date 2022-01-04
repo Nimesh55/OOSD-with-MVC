@@ -8,6 +8,6 @@
                             "sathira.19@cse.mrt.ac.lk"
                                     );
     foreach ($address_list as $address){
-        $email = new Email("safetansit@gmail.com",$address,"test 03","Athal ekata ewwe. wadak bala ganin");
+        $email = new Email_Handler("safetansit@gmail.com",$address,"test 05","Athal ekata ewwe. wadak bala ganin");
         $email->sendEmail();
 }
