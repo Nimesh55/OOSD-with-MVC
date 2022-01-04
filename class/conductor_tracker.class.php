@@ -45,14 +45,14 @@ class Conductor_Tracker extends Tracker{
             $valid = true;
             if(!empty($leaves)){
                 foreach ($leaves as $leave) {
-                    if ($leave['date'] >= $start_date && $leave['date'] <= $end_date)
+                    if (strtotime($leave['date']) >= strtotime($start_date) && strtotime($leave['date']) <= strtotime($end_date))
                         $valid = false;
                 }
             }
             $bookings = $this->conductor_controller->getConductorBookings($conductor->getconductor_no());
             foreach ($bookings as $booking) {
-                if (($booking->getStartDate() >= $start_date && $booking->getStartDate() <= $end_date) ||
-                    ($booking->getEndDate() >= $start_date && $booking->getEndDate() <= $end_date)) {
+                if ((strtotime($booking->getStartDate()) >= strtotime($start_date) && strtotime($booking->getStartDate()) <= strtotime($end_date)) ||
+                    (strtotime($booking->getEndDate()) >= strtotime($start_date) && strtotime($booking->getEndDate()) <= strtotime($end_date))) {
                     $valid = false;
                 }
             }
