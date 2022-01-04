@@ -23,6 +23,9 @@
       return $details;
 
     }
+    public function getPassengerNo(){
+      return $this->passenger->getPassengerNo();
+    }
 
     public function getPassState(){
       return $this->passenger->getState();

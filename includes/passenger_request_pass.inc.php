@@ -24,6 +24,16 @@
         }
         header("Location: ../passenger_request_pass.php?{$url_extention}");
     }
+if (isset($_POST['remove'])){
+    echo "<pre>";
+    print_r($_POST);
+    echo "</pre>";
+
+    $pass_tracker = Pass_tracker::getInstance();
+    $pass_tracker->declinePass($_POST['pass_no']);
+    header("Location: ../passenger_request_pass.php?{$url_extention}");
+
+}
 
 
 

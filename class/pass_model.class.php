@@ -205,4 +205,11 @@ class Pass_Model extends Dbh
         $passArray = $stmt->fetchAll();
         return $passArray;
     }
+    protected function searchForActivePassFromModel($passenger_no){
+        $query = "SELECT * FROM pass WHERE (state = 0 OR state = 1 OR state = 2) and passenger_no = {$passenger_no}";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute();
+        $passArray = $stmt->fetch();
+        return $passArray;
+    }
 }

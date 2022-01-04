@@ -178,4 +178,9 @@ class Pass_Tracker extends Tracker implements Observer
         }
         return $change;
     }
+    public function searchForActivePass($passenger_no){
+        $pass_controller = Pass_Controller::getInstance();
+        return $pass_controller->searchForActivePass($passenger_no);
+    }
+
 }

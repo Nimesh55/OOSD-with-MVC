@@ -7,7 +7,7 @@
         return;
     }
     $state=0;
-    $disable ="";
+    $button='submit';
     $passengerview = new Passenger_View($_SESSION['user_Id']);
     $row = $passengerview->getDetails();
     $row['user_id']=$_SESSION['user_Id'];
@@ -24,8 +24,17 @@
         $end_date = $_GET['end_date'];
         $bus_route = $_GET['bus_route'];
         if(strcmp($_GET['error'], "success")== 0){
-            $disable = 'disabled';
+            $button = 'remove';
         }
+    }
+    $pass_tracker = Pass_Tracker::getInstance();
+    $result = $pass_tracker->searchForActivePass($passengerview->getPassengerNo());
+    if (!empty($result)){
+        $reason = $result['reason'];
+        $start_date = $result['start_date'];
+        $end_date = $result['end_date'];
+        $bus_route = $result['bus_route'];
+        $button = 'remove';
     }
 
     if($row['state'] == '0'){
@@ -151,10 +160,21 @@
                         </div>
                     </div>
                     <br>
-                    <div class="btn-group btn-group-lg">
-<!--                        <input type="submit" class="btn btn-primary ctrlbutton" name="cpwd" value="Change Password">-->
-                        <input type="submit" class="btn btn-primary ctrlbutton" name="submit" value="Submit" <?php echo $disable;?>>
-                    </div>
+
+                    <?php
+
+                        if(strcmp($button,'submit')==0){
+
+                            echo "<input type=\"submit\" class=\"btn btn-primary btn-lg ctrlbutton\" name=\"submit\" value=\"Submit\">";
+                        }else{
+                            echo "<input type=\"submit\" class=\"btn btn-primary btn-lg ctrlbutton\" name=\"remove\" value=\"Remove\">";
+                        }
+                        ?>
+                    <input type="text" hidden name="pass_no" value="<?php echo $result['pass_no'] ?>">
+
+
+
+
 
                 </form>
             </div>

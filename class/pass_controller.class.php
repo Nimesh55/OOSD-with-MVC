@@ -75,4 +75,8 @@ class Pass_Controller extends Pass_Model{
     public function getAllPasses_array(){
         return $this->getAllPasses();
     }
+
+    public function searchForActivePass($passenger_no){
+        return $this->searchForActivePassFromModel($passenger_no);
+    }
 }
