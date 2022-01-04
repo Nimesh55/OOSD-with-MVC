@@ -11,12 +11,13 @@ class Pass{
     private $state;
     private $bus_route;
     private $reason;
+    private $file_no;
 
     function __construct(){
 
     }
 
-    public function setValues($pass_no, $passenger_no, $service_no, $start_date, $end_date, $state, $bus_route, $reason){
+    public function setValues($pass_no, $passenger_no, $service_no, $start_date, $end_date, $state, $bus_route, $reason, $file_no){
         $this->pass_no = $pass_no;
         $this->passenger_no = $passenger_no;
         $this->service_no = $service_no;
@@ -25,6 +26,7 @@ class Pass{
         $this->state = $state;
         $this->bus_route = $bus_route;
         $this->reason = $reason;
+        $this->file_no = $file_no;
     }
 
 
@@ -58,6 +60,10 @@ class Pass{
 
     public function getReason(){
         return $this->reason;
+    }
+
+    public function getFileNo(){
+        return $this->file_no;
     }
 
 

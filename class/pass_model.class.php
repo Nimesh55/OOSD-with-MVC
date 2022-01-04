@@ -67,12 +67,46 @@ class Pass_Model extends Dbh
         $stmt->execute();
     }
 
-    protected function getCurrentPassesCountFromModel()
+    protected function getLastPassNo()
     {
-        $stmt = $this->connect()->prepare("SELECT count(*) FROM Pass");
+        $stmt = $this->connect()->prepare("SELECT pass_no FROM Pass ORDER BY pass_no DESC");
         $stmt->execute();
-        $count = $stmt->fetchColumn();
-        return $count;
+        $last_no = $stmt->fetch();
+        return $last_no['pass_no'];
+    }
+
+    private function getFilesLastFileNo(){
+        $stmt = $this->connect()->prepare("SELECT file_no FROM files ORDER BY file_no DESC ");
+        $stmt->execute();
+        $last_no = $stmt->fetch();
+        return $last_no['file_no'];
+    }
+
+    private function uploadFileToDB(){
+        $stmt = $this->connect()->prepare("INSERT INTO `files` (`file_name`, `file_data`) VALUES (?,?)");
+        $stmt->execute([$_FILES["file"]["name"], file_get_contents($_FILES["file"]["tmp_name"])]);
+        unset($_FILES['file']);
+        return $this->getFilesLastFileNo();
+    }
+
+    protected function addNewPassFromModelWithFile($passenger_no, $service_no, $start_date, $end_date, $bus_route, $reason)
+    {
+        $file_no = $this->uploadFileToDB();
+
+        $sql2 = "INSERT INTO Pass(passenger_no, service_no, start_date, end_date, state, bus_route, reason, file_no) VALUES (
+                :passenger_no, :service_no, :start_date, :end_date, :stat, :bus_route, :reason, :file_no)";
+        $stmt2 = $this->connect()->prepare($sql2);
+        $stmt2->execute(array(
+            ':passenger_no' => $passenger_no,
+            ':service_no' => $service_no,
+            ':start_date' => $start_date,
+            ':end_date' => $end_date,
+            ':stat' => 0,
+            ':bus_route' => $bus_route,
+            ':reason' => $reason,
+            ':file_no' => $file_no
+        ));
+        return $this->getLastPassNo();
     }
 
     protected function addNewPassFromModel($passenger_no, $service_no, $start_date, $end_date, $bus_route, $reason)
@@ -90,7 +124,7 @@ class Pass_Model extends Dbh
             ':bus_route' => $bus_route,
             ':reason' => $reason
         ));
-        return $this->getCurrentPassesCountFromModel();
+        return $this->getLastPassNo();
     }
 
 

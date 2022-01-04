@@ -31,7 +31,8 @@ class Pass_Tracker extends Tracker implements Observer
             $details["end_date"],
             $details["state"],
             $details["bus_route"],
-            $details["reason"]
+            $details["reason"],
+            $details["file_no"]
         );
         return $pass;
     }
@@ -56,7 +57,8 @@ class Pass_Tracker extends Tracker implements Observer
             $details['end_date'],
             $details['state'],
             $details['bus_route'],
-            $details['reason']
+            $details['reason'],
+            $details['file_no']
         );
         return $pass;
     }
@@ -141,7 +143,8 @@ class Pass_Tracker extends Tracker implements Observer
             $details["end_date"],
             $details["state"],
             $details["bus_route"],
-            $details["reason"]
+            $details["reason"],
+            $details["file_no"]
         );
 
         $pass_details = array(

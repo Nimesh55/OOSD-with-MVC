@@ -47,7 +47,12 @@ class Pass_Controller extends Pass_Model{
     }
 
     public function addNewPass($passenger_no, $service_no, $start_date, $end_date, $bus_route, $reason){
-        return $this->addNewPassFromModel($passenger_no, $service_no, $start_date, $end_date, $bus_route, $reason);
+        if(isset($_FILES["file"]) && $_FILES['file']['name']==null){
+            return $this->addNewPassFromModel($passenger_no, $service_no, $start_date, $end_date, $bus_route, $reason);
+        }
+        else{
+            return $this->addNewPassFromModelWithFile($passenger_no, $service_no, $start_date, $end_date, $bus_route, $reason);
+        }
     }
 
     public function getPendingPassesSearchArray(){
@@ -62,9 +67,6 @@ class Pass_Controller extends Pass_Model{
         return $this->getPassesArrayForServiceFromModel($service_no);
     }
 
-    public function getCurrentPassesCount(){
-        return $this->getCurrentPassesCountFromModel();
-    }
 
     public function getPassby_passenger_id($passenger_id)
     {
