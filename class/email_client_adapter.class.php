@@ -11,7 +11,8 @@ class Email_Client_Adapter implements Email_Client_interface {
         {
             $this->admin_controller = new Administrator_controller();
             $details = $this->admin_controller->getAdministratorConfigSettings();
-            $this->email_api= Email_Api::getInstance($details['email'],$details['password'],$details['port']);
+            print_r($details);
+            $this->email_api= Email_Api::getInstance($details['email_emailAddress'],$details['email_password'],$details['email_port']);
         }
 
         public function sendEmail(Email $email){
