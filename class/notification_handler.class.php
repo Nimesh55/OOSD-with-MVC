@@ -1,13 +1,16 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
 class notification_handler{
+    private static $admin_controller;
     private static $smsAdapter;
     private static $emailAdapter;
 
-    public static function set_config($apiKey, $deviceId){
+    public static function set_config(){
+        self::$admin_controller = new Administrator_controller();
+        $details = self::$admin_controller->getAdministratorConfigSettings();
         self::$smsAdapter = new Sms_adapter();
-        //## $this->emailAdapter = new Email
-        self::$smsAdapter->setConfig($apiKey, $deviceId);
+        self::$emailAdapter = new Email_Client_Adapter($details);
+        self::$smsAdapter->setConfig($details['sms_ApiKey'], $details['sms_DeviceId']);
     }
 
     /*
