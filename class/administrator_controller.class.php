@@ -39,22 +39,7 @@
   public function getAdministratorConfigSettings(){
       return $this->getNotificationConfigData();
   }
-  public function addAdministratorNewSettings($email, $password, $port, $smsapikey, $device_id){
-    $error = '';
-    $this->is_email($email);
-    // if (empty($password)){
-    //    $error = "*Password should not be empty!!!";
-    // }
-    if(!is_numeric($port)){
-        $error = "*Port number should be a number!";
-    }
 
-    if(empty($error)){
-        $this->addNewNotificationConfigSettings($email,$password,$port, $smsapikey, $device_id);
-    }
-    return $error;
-
-  }
 
   public function editAdministratorConfigSettings($email, $password, $port, $smsapikey, $device_id){
       $error = '';

@@ -51,18 +51,6 @@ class Administrator_model extends Dbh
       $row = $stmt->fetch(PDO::FETCH_ASSOC);
       return $row;
   }
-  protected function addNewNotificationConfigSettings($email,$password,$port, $smsapikey, $device_id){
-      $query1 = "INSERT INTO notification_config_data (email_emailAddress,email_password,email_port,sms_Apikey,sms_DeviceId)) VALUES (?, ?, ?, ?, ?);";
-      $stmt1 = $this->connect()->prepare($query1);
-
-      $stmt1->execute(array(
-             htmlentities($email),
-             htmlentities($password),
-             htmlentities($port),
-             htmlentities($smsapikey),
-             htmlentities($device_id)
-      ));
-  }
 
   protected function editNotificationConfigSettings($email,$password,$port, $smsapikey, $device_id){
 //      echo "Edit action";
