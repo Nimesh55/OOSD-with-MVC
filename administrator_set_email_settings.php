@@ -15,9 +15,9 @@ $edit='no';
 
 if(!empty($details)) {
 //    print_r($details);
-    $email = $details['email'];
-    $password = $details['password'];
-    $port = $details['port'];
+    $email = $details['email_emailAddress'];
+    $password = $details['email_password'];
+    $port = $details['email_port'];
 }else{
     $edit='yes';
 }
@@ -173,16 +173,24 @@ if(isset($_POST['error'])){
                             ?>
 
                             <div class="form-group">
-                                <label for="smsapikey" class="col-sm-3 control-label">Email:</label>
+                                <label for="smsapikey" class="col-sm-3 control-label">SMS Api Key:</label>
                                 <div class="col-sm-9">
-                                    <input name="smsapikey" type="smsapikey" class="form-control" id="email" value=""></div>
+
+                                    <div class="input-group">
+                                        <input name="smsapikey" type="password" class="form-control apiKey" id="smsapikey" value="<?php echo $details['sms_ApiKey'] ?>">
+                                        <span class="input-group-btn">
+                                        <button class="btn btn-default reveal" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
+                                    </span>
+                                    </div>
+
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="device_id" class="col-sm-3 control-label">Device ID:</label>
                                 <div class="col-sm-9">
 
                                     <div class="input-group">
-                                        <input name="device_id" type="password" class="form-control pwd" id="device_id" value="">
+                                        <input name="device_id" type="password" class="form-control pwd" id="device_id" value="<?php echo $details['sms_DeviceId'] ?>">
                                         <span class="input-group-btn">
                                         <button class="btn btn-default reveal" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
                                     </span>
@@ -226,6 +234,25 @@ if(isset($_POST['error'])){
             $pwd.attr('type', 'password');
         }
     });
+
+    $(".reveal").on('click',function() {
+        var $pwd = $(".apiKey");
+        if ($pwd.attr('type') === 'password') {
+            $pwd.attr('type', 'text');
+        } else {
+            $pwd.attr('type', 'password');
+        }
+    });
+
+    $(".reveal").on('click',function() {
+        var $pwd = $(".deviceId");
+        if ($pwd.attr('type') === 'password') {
+            $pwd.attr('type', 'text');
+        } else {
+            $pwd.attr('type', 'password');
+        }
+    });
+
 </script>
 
 </body>

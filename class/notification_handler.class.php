@@ -19,6 +19,7 @@ class notification_handler{
     * @param: $messageBody- The notification text that is needed to be sent
     */
     public static function sendNotification($reciverArray, $messageBody, $emailSubject){
+        //## disable Email when not available.
         $telephone = $reciverArray[0];
         $email = $reciverArray[1];
         self::set_config();
