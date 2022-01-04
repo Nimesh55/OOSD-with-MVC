@@ -23,7 +23,7 @@ class notification_handler{
         $telephone = $reciverArray[0];
         $email = $reciverArray[1];
         self::set_config();
-        self::$smsAdapter->send_Sms($telephone, $messageBody);
+        //self::$smsAdapter->send_Sms($telephone, $messageBody);
         $emailObj = new Email($email,$emailSubject, $messageBody);
         self::$emailAdapter->sendEmail($emailObj);
 
