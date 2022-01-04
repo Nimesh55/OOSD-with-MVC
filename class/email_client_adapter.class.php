@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
 require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/class/email_client.interface.php";
-
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/api/email/email_api.class.php";
 class Email_Client_Adapter implements Email_Client_interface {
         private $email_api;
         private static $instance;
