@@ -9,8 +9,9 @@ require 'PHPMailer-master/src/SMTP.php';
 
 class Email_Sender{
     private $mail;
+    private static $instance;
 
-    public function __construct($username,$password)
+    private function __construct($username,$password,$port)
     {
         $this->mail = new PHPMailer();
         $this->mail->IsSMTP();
@@ -18,11 +19,19 @@ class Email_Sender{
         $this->mail->SMTPDebug  = 1;
         $this->mail->SMTPAuth   = TRUE;
         $this->mail->SMTPSecure = "tls";
-        $this->mail->Port       = 587;
+        $this->mail->Port       = $port;
         $this->mail->Host       = "smtp.gmail.com";
         $this->mail->Username   = "$username";
         $this->mail->Password   = "$password";
         $this->mail->IsHTML(true);
+    }
+
+    public static function getInstance($username,$password,$port)
+    {
+        if (self::$instance == null) {
+            self::$instance = new Email_Sender($username,$password,$port);
+        }
+        return self::$instance;
     }
 
     public function sendEmail(Email $email){

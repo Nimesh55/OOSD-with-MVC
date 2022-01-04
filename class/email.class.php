@@ -9,50 +9,20 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/api/email/email_sender.
         private $header;
 
 
-        /**
-         * @return mixed
-         */
-        public function getTo()
-        {
-            return $this->to;
-        }
 
-        /**
-         * @return mixed
-         */
-        public function getSubject()
-        {
-            return $this->subject;
-        }
+        public function getTo(){return $this->to;}
+        public function getSubject(){return $this->subject;}
+        public function getBody(){return $this->body;}
+        public function getHeader(){return $this->header;}
 
-        /**
-         * @return mixed
-         */
-        public function getBody()
-        {
-            return $this->body;
-        }
-
-        /**
-         * @return string
-         */
-        public function getHeader()
-        {
-            return $this->header;
-        }
-
-        public function __construct($from,$to,$subject,$body)
+        public function __construct($to,$subject,$body)
         {
             $this->to = $to;
             $this->subject = $subject;
             $this->body = $body;
-            $this->header = "From: {$from}\r\nContent-Type: text/html;";
         }
 
         //This method use to send email
-        public function sendEmail(){
-            $email_sender = new Email_Sender("safetansit@gmail.com","geniousnimesh");
-            return $email_sender->sendEmail($this);
-        }
+
 
     }
