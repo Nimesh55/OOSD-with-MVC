@@ -51,7 +51,6 @@ class SmsApi
             $report = 0;
         } catch (Exception $e) {
             $report = -1;
-            echo $report;
         }
         return $report;
     }
