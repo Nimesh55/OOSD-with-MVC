@@ -77,6 +77,14 @@ class Conductor_Model extends Dbh{ // ## make the methods protected
             ':con_no' => htmlentities($details['conductor_no'])));
     }
     
+    protected function remove_conductor_FromModel($conductor_id)
+    {
+        $this->setRecord($conductor_id);
+        $conductor_no = $this->record["conductor_no"];
+        $sql = "UPDATE Conductor SET state=1 WHERE conductor_no = $conductor_no";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+    }
 }
 
 

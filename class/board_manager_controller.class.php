@@ -98,4 +98,9 @@ class Board_Manager_Controller extends Board_Manager_Model
         }
         return $vehicle_no;
     }
+
+    public function remove_Conductor($conductor_id)
+    {
+        $this->conductor_tracker->removeConductor($conductor_id);
+    }
 }

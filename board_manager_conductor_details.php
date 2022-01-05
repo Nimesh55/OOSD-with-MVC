@@ -220,6 +220,15 @@ if ($_GET["show"] == "success") {
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white"></div>
             </div>
+
+
+            <?php 
+            
+            if ($state_query == 1) {
+                echo "<a class=\"btn btn-sm btn-default\" href=\"includes/board_manager_remove_conductor.inc.php?conductor_id={$_GET["conductor_id"]}\">Remove</a>";
+            }
+            
+            ?>
         </div>
     </div>
 

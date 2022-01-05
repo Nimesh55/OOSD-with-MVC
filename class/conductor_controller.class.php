@@ -153,4 +153,10 @@ class Conductor_Controller extends Conductor_Model
             $this->changeDetails($details);
         }
     }
+
+    public function remove_conductor($conductor_id)
+    {
+        $this->remove_conductor_FromModel($conductor_id);
+    }
+
 }

@@ -97,6 +97,10 @@ class Conductor_Tracker extends Tracker{
         return $this->booking_tracker->getBookingsForConductor_FromGivenDate($conductor_no);
     }
 
+    public function removeConductor($conductor_id)
+    {
+        $this->conductor_controller->remove_conductor($conductor_id);
+    }
 }
 
 ?>
