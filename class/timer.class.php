@@ -10,6 +10,7 @@ class Timer implements Observable
 
     private function __construct()
     {
+        self::setTimeZone();
         $this->Observers = array();
         $this->addObservers(Pass_Tracker::getInstance());
         $this->addObservers(Booking_Tracker::getInstance());
@@ -21,6 +22,9 @@ class Timer implements Observable
             self::$instance = new Timer();
         }
         return self::$instance;
+    }
+    public static function setTimeZone(){
+        date_default_timezone_set("Asia/Colombo");
     }
 
     public function addObservers($observer)
@@ -59,9 +63,7 @@ class Timer implements Observable
 
         //Add to a log
         $log  = "Expiration System Ran on : " . date("F j, Y, g:i a") . " ; Passes Changed : " . $passes . " | Bookings Changed : " . $bookings . "\n";
-        file_put_contents('../logs/timerLog.log', $log, FILE_APPEND);
+        file_put_contents('logs/timerLog.log', $log, FILE_APPEND);
     }
 
 }
-
-Timer::getInstance()->update_All_Expire_State(); // Runs Expire method

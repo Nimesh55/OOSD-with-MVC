@@ -36,7 +36,7 @@ class Email_Api{
 
     public function sendEmail(Email $email){
 
-
+        $error = 0;
 
         $this->mail->IsHTML(true);
         $this->mail->AddAddress("{$email->getTo()}", $email->getRecipientName());
@@ -47,13 +47,12 @@ class Email_Api{
         $this->mail->MsgHTML($content);
         if(!$this->mail->Send()) {
             echo "Error while sending Email.";
-            var_dump($this->mail);
+            $error = -1; // If there is an error -1 is returned
         } else {
             echo "Email sent successfully";
         }
+        return $error;
     }
-
-
 }
 ;
 

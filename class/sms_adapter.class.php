@@ -18,6 +18,6 @@ class Sms_adapter implements Sms
     }
 
     public function send_Sms($reciever, $message_body){
-        $this->smsApiObj->sendSms($reciever, $message_body);
+        return $this->smsApiObj->sendSms($reciever, $message_body);
     }
 }
