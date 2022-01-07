@@ -17,7 +17,9 @@ if ($_GET["error"] != "none") {
     $error = $_GET["error"];
 }
 $leaves = $conductorview->getGrantedLeave($_SESSION['account_no']);
-
+//echo "<pre>";
+//print_r($leaves);
+//echo "</pre>";
 //echo date("Y-m-d");
 
 ?>
@@ -72,34 +74,63 @@ $leaves = $conductorview->getGrantedLeave($_SESSION['account_no']);
         </div>
     </div>
 
-    <div class="container mt-3" id="contanier-data">
+    <div class="container mt-3">
         <div class="row">
-            <?php if ($state_query == 1) {
-                echo "<p id=\"error\">{$error}</p>";
-            } ?>
-        </div>
+            <div class="col-lg-5 wrapper">
+                <h3>Granted Leaves</h3>
+                <table class="table ">
+                    <thead>
+                        <tr>
+                            <th>Leave No</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-        <br>;
+                    <?php
+                        foreach($leaves as $leave){
+                            echo "<tr>";
+                            echo "<td>{$leave['leave_no']}</td>";
+                            echo "<td>{$leave['date']}</td>";
+                            echo "</tr>";
+                        }
 
-        <form action="includes/conductor_update_leave.inc.php" method="POST">
-            <div class="row">
-                <div class="col-lg-3">
-                    <label class="control-label col-sm-2" for="leave_date">Leave Date:</label>
+                    ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5 wrapper">
+                <h3>Request New Leave</h3>
+                <br>
+                <div class="row">
+                    <?php if ($state_query == 1) {
+                        echo "<p class=\"alert alert-success\" id='error'>{$error}</p>";
+                    } ?>
                 </div>
-                <div class="col-lg-6">
+                <br>
+                <form class="form-horizontal" action="includes/conductor_update_leave.inc.php" method="POST" role="form">
                     <div class="form-group">
-                        <div class="col-sm-10">
-                            <input type="date" class="form-control" id="leave_date" name="leave_date">
+                        <label for="leave_date" class="col-sm-3 control-label">Leave Date:</label>
+                        <div class="col-sm-6">
+                            <input name="leave_date" type="date" class="form-control" id="leave_date" value="">
+
+
+                        </div>
+                        <div class="col-sm-3">
+                            <button class="btn btn-primary" type="submit" name="submit">Submit</button>
                         </div>
                     </div>
 
-                </div>
-                <div class="col-lg-3"></div>
 
-                <button class="btn btn-primary" type="submit" name="submit">Submit</button>
+
+                </form>
+
             </div>
-        </form>
+        </div>
+
     </div>
+
 
 
 </body>

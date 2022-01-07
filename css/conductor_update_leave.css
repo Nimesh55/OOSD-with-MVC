@@ -5,20 +5,46 @@ body{
     font-size: 16px;
 }
 
-#contanier-data {
-    width: 50%;
+.wrapper{
+    /*background: #e6e6e6;*/
+    /*color: #000000;*/
+    font-weight: bold;
+    /*padding: 10px;*/
+    border-radius: 15px;
+    text-align: center;
+    word-break: break-word;
     background-color: rgb(44, 44, 37);
-    padding: 3%; 
-    
-    margin-top: 8%;
+    color: aliceblue;
+    margin-top:75px;
     border-style: ridge;
     border: 2px solid whitesmoke;
-    border-radius: 10px;
-    opacity: 0.95;
-    
+    /*opacity: 0.95;*/
+}
+th{
+    text-align: center;
+}
+#error{
+    text-align: center;
 }
 
-.row{
-    color: aliceblue;
-    word-spacing: 2x;
-}
+/*#contanier-data {*/
+/*    width: 50%;*/
+/*    background-color: rgb(44, 44, 37);*/
+/*    padding: 3%; */
+/*    */
+/*    margin-top: 8%;*/
+/*    border-style: ridge;*/
+/*    border: 2px solid whitesmoke;*/
+/*    border-radius: 10px;*/
+/*    opacity: 0.95;*/
+/*    */
+/*}*/
+
+/*.row{*/
+/*    color: aliceblue;*/
+/*    word-spacing: 2px;*/
+/*}*/
+
+/*.container{*/
+/*    */
+/*}*/
