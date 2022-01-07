@@ -10,8 +10,6 @@ if (!isset($_SESSION['user_Id'])) {
 $viewobj = new Executive_View();
 $detailsArray = $viewobj->getBookingViewDetails($_GET['booking_no']);
 
-print_r($detailsArray); // ## expand the interface
-
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +59,7 @@ print_r($detailsArray); // ## expand the interface
     </div>
 
     <!-- Details are shown here -->
-    <form action="executive_booking_details.php" method="post">
+    <form action="includes/executive_cancel_booking.inc.php" method="post">
         <div class="container mt-3">
             <h1>Booking <?= $detailsArray['booking_no'] ?></h1>
 
@@ -141,8 +139,12 @@ print_r($detailsArray); // ## expand the interface
 
                 ?>
 
+
+                <input class="btn btn-default" type="submit" value="Cancel Booking" name="cancel" style="color:blue;position:relative;
+                            left:65%;margin-top:10px; width:10%">
                 <input class="btn btn-default" type="submit" value="Exit" name="exit" style="color:blue;position:relative;
                             left:65%;margin-top:10px; width:10%">
+                <input type="hidden" id="booking_no" name="booking_no" value="<?= $_GET['booking_no']?>">
 
             </div>
         </div>

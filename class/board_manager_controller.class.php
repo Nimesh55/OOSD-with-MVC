@@ -96,6 +96,7 @@ class Board_Manager_Controller extends Board_Manager_Model
         }
         if($available){
             $this->allocateConductorForBookingFromModel($booking_no,$conductor_no);
+            $_SESSION['success'] = "Selected vehicle allocated for booking";
         }else{
             $_SESSION["error"] = "This vehicle currently unavailable";
             header("Location: ../board_manager_allocate_vehicle_select.php?booking_no={$_GET['booking_no']}&pickup={$_GET['pickup']}");

@@ -54,6 +54,13 @@ class Booking_Model extends Dbh
         $stmt->execute();
     }
 
+    protected function setStateCompletedFromModel($booking_no)
+    {
+        $sql = "UPDATE booking SET state=4 where booking_no={$booking_no}";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+    }
+
     private function getCurrentBookingsCountFromModel(){
         $stmt = $this->connect()->prepare("SELECT booking_no FROM Booking ORDER BY booking_no DESC ");
         $stmt->execute();
@@ -93,7 +100,7 @@ class Booking_Model extends Dbh
 
 
     protected function getBookingsArrayForServiceFromModel($service_no){
-        $query = "SELECT * FROM booking WHERE service_no={$service_no}";
+        $query = "SELECT * FROM booking WHERE service_no={$service_no} AND state<2";
         $stmt = $this->connect()->prepare($query);
         $stmt->execute();
         $service_bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);

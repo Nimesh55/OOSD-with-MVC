@@ -121,7 +121,10 @@ class Booking_Tracker extends Tracker implements Observer
     public function cancelBooking($booking_no)
     {
         Booking_Controller::getInstance()->cancelBooking($booking_no);
-        return;
+    }
+
+    public function cancelBookingByExecutive($booking_no){
+        Booking_Controller::getInstance()->setStateCompleted($booking_no);
     }
 
     public function update($curDate){
