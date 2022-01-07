@@ -119,12 +119,6 @@ class Pass_Tracker extends Tracker implements Observer
         return $passes_arr;
     }
 
-    public function getPassOwner($pass_no)
-    {
-
-        return "pass owner name/username";
-    }
-
     public function getPass_by_passenger_id($passenger_id)
     {
         $pass = new Pass();

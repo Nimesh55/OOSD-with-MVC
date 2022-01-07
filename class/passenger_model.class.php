@@ -76,4 +76,9 @@
 				':st' 	=> $state,
 				':pas_no' => $passenger_no));
 		}
+
+        protected function getAllPassengersInServiceFromModule($service_no){
+            $stmt = $this->connect()->query("SELECT * FROM passenger WHERE service_no = '$service_no'");
+            return $stmt->fetchAll();
+        }
 	}

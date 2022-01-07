@@ -76,7 +76,7 @@ foreach ($passDetailsArray as $cur) { // Seperated the Passes in to 3 array for 
 
     <!-- List view with  view button -->
 
-    <a href="executive_add_pass_manually.php" class="btn btn-info" name="add_pass" style=""> Add pass </a>
+    <a href="executive_create_pass_manually.php" class="btn btn-info" name="add_pass" style=""> Add pass </a>
 
     <div class="container">
         <ul class="nav nav-tabs">

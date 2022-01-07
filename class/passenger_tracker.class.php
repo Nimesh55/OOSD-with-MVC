@@ -35,5 +35,14 @@
         public function setPassengerState($state, $passenger_no){
             $this->passenger_ctrl->setPassengerState($state, $passenger_no);
         }
+
+        public function getPassengersInService($service_no){
+            $passengers_in_service = array();
+            $passengers_in_company_details = $this->passenger_ctrl->getAllPassengersInService($service_no);
+            foreach ($passengers_in_company_details as $passenger_details){
+                array_push($passengers_in_service,$this->getPassengerByPassengerNo($passenger_details['passenger_no']));
+            }
+            return $passengers_in_service;
+        }
     }
 

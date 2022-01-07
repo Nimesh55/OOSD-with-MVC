@@ -119,4 +119,16 @@ class Executive_View extends Executive_Model{
         return $service->getFileNo();
     }
 
+    public function getPassengersWithoutPassesArray($service_no){
+        $passengers_without_active_passes = array();
+        $passengers_in_service = Passenger_Tracker::getInstance()->getPassengersInService($service_no);
+        foreach ($passengers_in_service as $passenger){
+            if(empty($this->pass_tracker->searchForActivePass($passenger->getPassengerNo()))){
+                array_push($passengers_without_active_passes,$passenger);
+            }
+        }
+        return $passengers_without_active_passes;
+
+    }
+
 }

@@ -8,18 +8,18 @@ if(!isset($_SESSION['user_Id'])){
 }
 
 $executive_view = new Executive_View();
+$passengers_list_without_passes = $executive_view->getPassengersWithoutPassesArray($_SESSION['service_no']);
 
-
-$state=0;
 $button='submit';
-$passengerview = new Passenger_View($_SESSION['user_Id']);
+$row['user_id']=$_SESSION['user_Id'];
 
-$staff_I
 $reason = "";
 $start_date = "";
 $end_date = "";
 $bus_route ="";
-if(isset($_GET['reason'])) {
+
+if(isset($_GET['error'])) {
+    $passenger_no = $_GET['passenger_no'];
     $reason = $_GET['reason'];
     $start_date = $_GET['start_date'];
     $end_date = $_GET['end_date'];
@@ -28,16 +28,9 @@ if(isset($_GET['reason'])) {
         $button = 'remove';
     }
 }
-$pass_tracker = Pass_Tracker::getInstance();
-$result = $pass_tracker->searchForActivePass($passengerview->getPassengerNo());
-if (!empty($result)){
-    $reason = $result['reason'];
-    $start_date = $result['start_date'];
-    $end_date = $result['end_date'];
-    $bus_route = $result['bus_route'];
-    $button = 'remove';
-}
 
+//print_r($_GET);
+//exit();
 
 
 ?>
@@ -72,13 +65,10 @@ if (!empty($result)){
         <div class="col-lg-3 cyan"></div>
         <div class="col-lg-6 pink wrapper">
 
-
-
-            <form class="form-horizontal" role="form" action="includes/passenger_request_pass.inc.php" method="post" enctype="multipart/form-data">
+            <form class="form-horizontal" role="form" action="includes/executive_create_pass.inc.php" method="post" enctype="multipart/form-data">
 
                 <?php
                 if (isset($_GET['error']) && strcmp($_GET['error'],"success")!=0) {
-
                     echo "<div class=\"alert alert-danger\"><strong>".$_GET['error']."</strong></div>";
                 }
                 if(isset($_GET['error']) && strcmp($_GET['error'],"success")==0){
@@ -87,23 +77,37 @@ if (!empty($result)){
                 ?>
 
                 <div class="form-group">
-                    <label for="staff_id" class="col-sm-3 control-label">Staff ID:</label>
+                    <label for="passenger_no" class="col-sm-3 control-label">Staff ID:</label>
                     <div class="col-sm-9">
-                        <input name="staff_id" type="text" class="form-control" id="staff_id" placeholder="Enter staff ID here">
+                        <select name="passenger_no" id="passenger_no" class="form-control">
+
+                            <?php
+                                foreach ($passengers_list_without_passes as $passenger){
+                                    if(isset($passenger_no) and $passenger_no==$passenger->getPassengerNo()){
+                                        echo "<option value=\"{$passenger->getPassengerNo()}\" selected>{$passenger->getUserId()}</option>";
+                                    }else{
+                                        echo "<option value=\"{$passenger->getPassengerNo()}\">{$passenger->getUserId()}</option>";
+                                    }
+                                }
+                            ?>
+
+                        </select>
+
                     </div>
                 </div>
+
 
                 <div class="form-group">
                     <label for="reason" class="col-sm-3 control-label">Reason:</label>
                     <div class="col-sm-9">
-                        <textarea class="form-control" name="reason" rows="5" id="reason" placeholder="Enter reason here"></textarea>
+                        <textarea class="form-control" name="reason" rows="5" id="reason" placeholder="Enter reason here"><?= $reason ?></textarea>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="bus_route" class="col-sm-3 control-label">Bus Route:</label>
                     <div class="col-sm-9">
-                        <input name="bus_route" type="text" class="form-control" id="bus_route" placeholder="Enter bus route here">
+                        <input name="bus_route" type="text" class="form-control" id="bus_route" placeholder="Enter bus route here" value="<?= $bus_route ?>">
                     </div>
                 </div>
 
@@ -115,31 +119,25 @@ if (!empty($result)){
                                 <span class="input-group-addon">
                                     <span aria-hidden="true">From: </span>
                                 </span>
-                            <input type="date" class="form-control" aria-label="from date" placeholder="from" name="from_date" value="Start date here">
+                            <input type="date" class="form-control" aria-label="from date" placeholder="from" name="from_date" value="<?= $start_date ?>">
 
                             <span class="input-group-addon">
                                     <span aria-hidden="true">To: </span>
                                 </span>
-                            <input type="date" class="form-control" aria-label="to date" placeholder="to" name="to_date" value="End date here">
+                            <input type="date" class="form-control" aria-label="to date" placeholder="to" name="to_date" value="<?= $end_date ?>">
                         </div>
                     </div>
                 </div>
                 <br>
 
-
                 <?php
 
                 if(strcmp($button,'submit')==0){
-
                     echo "<input type=\"submit\" class=\"btn btn-primary btn-lg ctrlbutton\" name=\"submit\" value=\"Submit\">";
                 }else{
-
-                    echo "<input type=\"submit\" class=\"btn btn-primary btn-lg ctrlbutton\" name=\"remove\" value=\"Back\">";
+                    echo "<input type=\"submit\" class=\"btn btn-primary btn-lg ctrlbutton\" name=\"exit\" value=\"Exit\">";
                 }
                 ?>
-
-                <input type="text" hidden name="pass_no" value="<?php echo $result['pass_no'] ?>">
-
 
             </form>
         </div>
