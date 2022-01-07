@@ -164,4 +164,9 @@ class Conductor_Controller extends Conductor_Model
         return Conductor_Tracker::getInstance()->getPass_by_passenger_id($passenger_id);
     }
 
+    public function checkCurrentDate($date)
+    {
+        
+    }
+
 }
