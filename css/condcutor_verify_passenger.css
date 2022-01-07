@@ -10,6 +10,7 @@ body{
     width: 50%;
     background-color: rgb(44, 44, 37);
     padding: 5%; 
+    font-weight: bold;
     
     margin-top: 8%;
     border-style: ridge;
