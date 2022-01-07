@@ -9,6 +9,23 @@ if (!isset($_SESSION['user_Id'])) {
 
 $viewobj = new Executive_View();
 $detailsArray = $viewobj->getBookingDetailsDetails();
+$bookings = $detailsArray['service_bookings'];
+
+$pendingBookingsArray = array();
+$acceptedBookingsArray = array();
+$pastBookingsArray = array();
+
+foreach ($bookings as $booking) { // Seperated the Bookings in to 3 array for 3 tabs to display easily
+    if ($booking->getState() == 0) {
+        array_push($pendingBookingsArray, $booking);
+    } elseif ($booking->getState() == 1) {
+        array_push($acceptedBookingsArray, $booking);
+    } else {
+        array_push($pastBookingsArray, $booking);
+    }
+}
+
+
 
 ?>
 
@@ -62,34 +79,127 @@ $detailsArray = $viewobj->getBookingDetailsDetails();
 
 <!--    set booking cancel done status show here-->
 
-    <form action="executive_pass_details_view_page.php" method="POST">
-        <a href="executive_request_booking.php" class="btn btn-info" name="request" style=""> Request Booking </a>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Booking Number</th>
-                    <th scope="col">View Details</th>
+    <a href="executive_request_booking.php" class="btn btn-info" name="request" style=""> Request Booking </a>
 
-                </tr>
-            </thead>
-            <tbody>
-                <?php
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#link1" data-toggle="tab">Pending</a></li>
+            <li><a href="#link2" data-toggle="tab">Approved</a></li>
+            <li><a href="#link3" data-toggle="tab">Booking History</a></li>
+        </ul>
 
+        <div class="tab-content">
+            <div id="link1" class="tab-pane fade in active">
+                <form action="executive_booking_details_view.php" method="POST">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Booking Number</th>
+                            <th scope="col">View Details</th>
 
-                    $bookings = $detailsArray['service_bookings']; //booking rows here from DB via booking tracker
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
 
-                    foreach($bookings as $booking){
-                        $booking_no = $booking->getBookingNo();
-                        echo '<tr>';
-                        echo '<th scope="row">Booking '.$booking_no.'</th>';
-                        echo '<td><a href="executive_booking_details_view.php?booking_no='.$booking_no.'" class="btn btn-info"> View </a></td>';
-                        echo '</tr>';
-                    }
-                ?>
+                        foreach($pendingBookingsArray as $booking){
+                            $booking_no = $booking->getBookingNo();
+                            echo '<tr>';
+                            echo '<th scope="row">Booking '.$booking_no.'</th>';
+                            echo '<td><a href="executive_booking_details_view.php?booking_no='.$booking_no.'" class="btn btn-info"> View </a></td>';
+                            echo '</tr>';
+                        }
+                        ?>
 
-            </tbody>
-        </table>
-    </form>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+
+            <div id="link2" class="tab-pane fade">
+                <form action="executive_booking_details_view.php" method="POST">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Booking Number</th>
+                            <th scope="col">View Details</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+
+                        foreach($acceptedBookingsArray as $booking){
+                            $booking_no = $booking->getBookingNo();
+                            echo '<tr>';
+                            echo '<th scope="row">Booking '.$booking_no.'</th>';
+                            echo '<td><a href="executive_booking_details_view.php?booking_no='.$booking_no.'" class="btn btn-info"> View </a></td>';
+                            echo '</tr>';
+                        }
+                        ?>
+
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+
+            <div id="link3" class="tab-pane fade">
+                <form action="executive_booking_details_view.php" method="POST">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Booking Number</th>
+                            <th scope="col">View Details</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+
+                        foreach($pastBookingsArray as $booking){
+                            $booking_no = $booking->getBookingNo();
+                            echo '<tr>';
+                            echo '<th scope="row">Booking '.$booking_no.'</th>';
+                            echo '<td><a href="executive_booking_details_view.php?booking_no='.$booking_no.'" class="btn btn-info"> View </a></td>';
+                            echo '</tr>';
+                        }
+                        ?>
+
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<!--    <form action="executive_pass_details_view_page.php" method="POST">-->
+<!--        <a href="executive_request_booking.php" class="btn btn-info" name="request" style=""> Request Booking </a>-->
+<!--        <table class="table">-->
+<!--            <thead>-->
+<!--                <tr>-->
+<!--                    <th scope="col">Booking Number</th>-->
+<!--                    <th scope="col">View Details</th>-->
+<!---->
+<!--                </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--                --><?php
+//
+//
+//                    $bookings = $detailsArray['service_bookings']; //booking rows here from DB via booking tracker
+//
+//                    foreach($bookings as $booking){
+//                        $booking_no = $booking->getBookingNo();
+//                        echo '<tr>';
+//                        echo '<th scope="row">Booking '.$booking_no.'</th>';
+//                        echo '<td><a href="executive_booking_details_view.php?booking_no='.$booking_no.'" class="btn btn-info"> View </a></td>';
+//                        echo '</tr>';
+//                    }
+//                ?>
+<!---->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--    </form>-->
 </body>
 
 </html>

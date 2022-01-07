@@ -134,6 +134,7 @@ if(isset($_GET['error'])) {
 
                 if(strcmp($button,'submit')==0){
                     echo "<input type=\"submit\" class=\"btn btn-primary btn-lg ctrlbutton\" name=\"submit\" value=\"Submit\">";
+                    echo "<input type=\"submit\" class=\"btn btn-primary btn-lg ctrlbutton\" name=\"exit\" value=\"Exit\">";
                 }else{
                     echo "<input type=\"submit\" class=\"btn btn-primary btn-lg ctrlbutton\" name=\"exit\" value=\"Exit\">";
                 }

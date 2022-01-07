@@ -13,6 +13,9 @@ class Conductor_Controller extends Conductor_Model
     public function getConductor_by_conductor_no($conductor_no)
     {
         $data = $this->getConductor_ByConductorNo($conductor_no);
+        if($data==null){
+            return null;
+        }
         $conductor_id  = $data["user_id"];
         // echo $conductor_id;
 
