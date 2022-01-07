@@ -11,7 +11,7 @@
     margin-top:75px;
     border-style: ridge;
     border: 2px solid whitesmoke;
-    opacity: 0.95;
+    /*opacity: 0.95;*/
 }
 #heading{
     padding:15px 0;
@@ -21,7 +21,13 @@
     text-align: center;
 }
 body{
-    background-color: #0d1b2d;
+    background: url("../img/background_01.jpg") no-repeat center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    background-color: #560059;
 }
 h1{
     color: antiquewhite;
