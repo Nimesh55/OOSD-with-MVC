@@ -108,6 +108,10 @@ class Conductor_Tracker extends Tracker{
     {
         return $this->pass_tracker->getPass_by_passenger_id($passenger_id);
     }
+
+    public function getConductorCountToday(){
+        return $this->conductor_controller->getConductorCountToday();
+    }
 }
 
 ?>

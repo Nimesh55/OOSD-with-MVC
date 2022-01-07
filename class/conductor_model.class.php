@@ -92,6 +92,27 @@ class Conductor_Model extends Dbh{ // ## make the methods protected
         $record = $stmt->fetchall();
         return $record;
     }
+
+    private function getConductorCountOfAvailable(){
+        $stmt = $this->connect()->prepare("SELECT count(*) FROM conductor WHERE state=0");
+        $stmt->execute();
+        $conductor_nos_count = $stmt->fetchColumn();
+        return $conductor_nos_count;
+    }
+
+    private function getConductorNosLeavedToday(){
+        $stmt = $this->connect()->prepare("SELECT conductor_no from conductor_leave WHERE date=?");
+        $stmt->execute([date("Y-m-d")]);
+        $conductor_nos_leaved_today = $stmt->fetchColumn();
+        if($conductor_nos_leaved_today==null){
+            $conductor_nos_leaved_today = 0;
+        }
+        return $conductor_nos_leaved_today;
+    }
+
+    protected function getConductorCountTodayFromModel(){
+        return $this->getConductorCountOfAvailable() - $this->getConductorNosLeavedToday();
+    }
 }
 
 

@@ -109,8 +109,7 @@ $details = $board_manager_view->getHomeDetails();
                     </div>
                     <div class="col-sm-1 p-3">:</div>
                     <div class="col-sm-5 p-3">
-<!--                        Not completed-->
-                        <p style="color: red;">Complete this</p>
+                    <p><?=$details['available_conductor_cnt_today']?></p>
                     </div>
                 </div>
             </div>
