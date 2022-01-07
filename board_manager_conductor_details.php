@@ -13,12 +13,11 @@ $details = $board_manager_view->getHomeDetails();
 
 $state_query = 0;
 if ($_GET["show"] == "success") {
-    
+
     $state_query = 1;
     $data = $board_manager_view->getConductorDetails($_GET["conductor_id"]);
-    $error="none";
-
-}else{
+    $error = "Conductor account found!!";
+} else {
     $error = $_GET["show"];
 }
 
@@ -79,18 +78,24 @@ if ($_GET["show"] == "success") {
     <div class="container mt-3" id="contanier-data">
 
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
                 <p><?php
-                if($error!='none')
-                    echo $error; ?>
+                    if ($error == 'none') {
+                    } elseif ($error != 'Conductor account found!!')
+                        echo "<div class=\"alert alert-danger\"><strong>" . $error . "</strong></div>";
+                    else
+                        echo "<div class=\"alert alert-success\"><strong>" . $error . "</strong></div>"
+                    ?>
                 </p>
             </div>
+            <div class="col-lg-1"></div>
         </div>
 
         <form action="includes/board_mananger_conductor_details.inc.php" method="POST">
             <div class="row">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-8">
+                <div class="col-sm-1 p-3"></div>
+                <div class="col-sm-10 p-3">
                     <div class="input-group">
                         <input name='conductor_id' type="text" class="form-control" placeholder="Search with Conductor ID" id="txtSearch" />
                         <div class="input-group-btn">
@@ -100,7 +105,7 @@ if ($_GET["show"] == "success") {
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2"></div>
+                <div class="col-sm-1 p-3"></div>
             </div>
         </form>
 
@@ -108,14 +113,14 @@ if ($_GET["show"] == "success") {
 
         <div>
             <div class="row">
-                <div class="col-sm-1 p-3 bg-dark text-white"></div>
+                <div class="col-sm-2 p-3 bg-dark text-white"></div>
                 <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>Name</p>
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white">
                     <p>:</p>
                 </div>
-                <div class="col-sm-6 p-3 bg-primary text-white">
+                <div class="col-sm-5 p-3 bg-dark text-white">
 
 
                     <p> &emsp; <?php
@@ -132,14 +137,14 @@ if ($_GET["show"] == "success") {
             </div>
 
             <div class="row">
-                <div class="col-sm-1 p-3 bg-dark text-white"></div>
+                <div class="col-sm-2 p-3 bg-dark text-white"></div>
                 <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>District</p>
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white">
                     <p>:</p>
                 </div>
-                <div class="col-sm-6 p-3 bg-primary text-white">
+                <div class="col-sm-5 p-3 bg-dark text-white">
 
                     <p> &emsp; <?php
 
@@ -157,14 +162,14 @@ if ($_GET["show"] == "success") {
             </div>
 
             <div class="row">
-                <div class="col-sm-1 p-3 bg-dark text-white"></div>
+                <div class="col-sm-2 p-3 bg-dark text-white"></div>
                 <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>Vehicle No</p>
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white">
                     <p>:</p>
                 </div>
-                <div class="col-sm-6 p-3 bg-primary text-white">
+                <div class="col-sm-5 p-3 bg-dark text-white">
 
                     <p> &emsp; <?php
 
@@ -180,12 +185,12 @@ if ($_GET["show"] == "success") {
             </div>
 
             <div class="row">
-                <div class="col-sm-1 p-3 bg-dark text-white"></div>
+                <div class="col-sm-2 p-3 bg-dark text-white"></div>
                 <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>Telephone</p>
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white">:</div>
-                <div class="col-sm-6 p-3 bg-primary text-white">
+                <div class="col-sm-5 p-3 bg-dark text-white">
 
                     <p> &emsp; <?php
 
@@ -201,12 +206,12 @@ if ($_GET["show"] == "success") {
             </div>
 
             <div class="row">
-                <div class="col-sm-1 p-3 bg-dark text-white"></div>
+                <div class="col-sm-2 p-3 bg-dark text-white"></div>
                 <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>Status</p>
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white">:</div>
-                <div class="col-sm-6 p-3 bg-primary text-white">
+                <div class="col-sm-5 p-3 bg-dark text-white">
 
                     <p> &emsp; <?php
 
@@ -221,14 +226,20 @@ if ($_GET["show"] == "success") {
                 <div class="col-sm-1 p-3 bg-dark text-white"></div>
             </div>
 
+            <div class="row">
+                <div class="col-sm-9 p-3 bg-dark text-white"></div>
+                <div class="col-sm-2 p-3">
+                    <?php
 
-            <?php 
-            
-            if ($state_query == 1) {
-                echo "<a class=\"btn btn-sm btn-default\" href=\"includes/board_manager_remove_conductor.inc.php?conductor_id={$_GET["conductor_id"]}\">Remove</a>";
-            }
-            
-            ?>
+                    if ($state_query == 1) {
+                        echo "<a class=\"btn btn-sm btn-default\" href=\"includes/board_manager_remove_conductor.inc.php?conductor_id={$_GET["conductor_id"]}\">Remove</a>";
+                    }
+
+                    ?>
+                    
+                </div>
+                <div class="col-sm-1 p-3 bg-dark text-white"></div>
+            </div>
         </div>
     </div>
 
