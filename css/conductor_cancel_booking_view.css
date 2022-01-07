@@ -25,3 +25,15 @@ body{
 #error{
     text-align: center;
 }
+
+.link:link {
+    color: rgb(40, 40, 172);
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+ .link:hover {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+  }

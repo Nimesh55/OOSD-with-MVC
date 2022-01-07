@@ -78,7 +78,7 @@ $bookingRecords = $conductorview->showBookings($_SESSION['account_no']);
                         $bookingNo = $bookingRecords[$i-1]->getBookingNo();
                         echo "<th scope=\"row\">$i</th>";
                         echo "<td>"."Booking No. " . $bookingNo . "&nbsp;&nbsp;&nbsp;"."</td>";
-                        echo "<td><a class=\"btn btn-sm btn-default\" id=\"\" href=\"conductor_cancel_booking_view.php?booking_no={$bookingNo}&error=none\">View</a></td>";
+                        echo "<td><a class=\"btn btn-sm btn-primary\" id=\"\" href=\"conductor_cancel_booking_view.php?booking_no={$bookingNo}&error=none\">View</a></td>";
                         echo "</tr>";
 
                         $i++;
