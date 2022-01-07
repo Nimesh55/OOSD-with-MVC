@@ -207,7 +207,7 @@ class Pass_Model extends Dbh
     {
 
         $query = "SELECT * FROM pass JOIN passenger ON pass.passenger_no = passenger.passenger_no JOIN users ON 
-		    passenger.passenger_no=users.account_no JOIN Service ON Service.service_no=pass.service_no WHERE users.user_id=$passenger_id ";
+		    passenger.passenger_no=users.account_no JOIN Service ON Service.service_no=pass.service_no WHERE users.user_id=$passenger_id AND pass.state=2";
         $stmt = $this->connect()->prepare($query);
         $stmt->execute();
         $pass = $stmt->fetch();

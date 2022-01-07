@@ -95,8 +95,8 @@ $username = $_SESSION["username"];
 
         <form action="includes/conductor_verify_passenger.inc.php" method="POST">
             <div class="row">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-8">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
                     <div class="input-group">
                         <input name='passenger_id' type="text" class="form-control" placeholder="Search with Passenger ID" id="txtSearch" />
                         <div class="input-group-btn">
@@ -106,7 +106,7 @@ $username = $_SESSION["username"];
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2"></div>
+                <div class="col-sm-1"></div>
             </div>
         </form>
 
@@ -115,14 +115,14 @@ $username = $_SESSION["username"];
         <div>
 
             <div class="row">
-                <div class="col-sm-1 p-3 bg-dark text-white"></div>
+                <div class="col-sm-2 p-3 bg-dark text-white"></div>
                 <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>Name</p>
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white">
                     <p>:</p>
                 </div>
-                <div class="col-sm-6 p-3 bg-primary text-white">
+                <div class="col-sm-6 p-3 bg-dark text-white">
 
 
                     <p> &emsp; <?php
@@ -135,18 +135,18 @@ $username = $_SESSION["username"];
 
                                 ?></p>
                 </div>
-                <div class="col-sm-1 p-3 bg-dark text-white"></div>
+
             </div>
 
             <div class="row">
-                <div class="col-sm-1 p-3 bg-dark text-white"></div>
+                <div class="col-sm-2 p-3 bg-dark text-white"></div>
                 <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>Company</p>
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white">
                     <p>:</p>
                 </div>
-                <div class="col-sm-6 p-3 bg-primary text-white">
+                <div class="col-sm-6 p-3 bg-dark text-white">
 
                     <p> &emsp; <?php
 
@@ -160,18 +160,17 @@ $username = $_SESSION["username"];
 
                                 ?>
                 </div>
-                <div class="col-sm-1 p-3 bg-dark text-white"></div>
             </div>
 
             <div class="row">
-                <div class="col-sm-1 p-3 bg-dark text-white"></div>
+                <div class="col-sm-2 p-3 bg-dark text-white"></div>
                 <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>Route(s)</p>
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white">
                     <p>:</p>
                 </div>
-                <div class="col-sm-6 p-3 bg-primary text-white">
+                <div class="col-sm-6 p-3 bg-dark text-white">
 
                     <p> &emsp; <?php
 
@@ -183,16 +182,16 @@ $username = $_SESSION["username"];
 
                                 ?></p>
                 </div>
-                <div class="col-sm-1 p-3 bg-dark text-white"></div>
+
             </div>
 
             <div class="row">
-                <div class="col-sm-1 p-3 bg-dark text-white"></div>
+                <div class="col-sm-2 p-3 bg-dark text-white"></div>
                 <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>Time Period</p>
                 </div>
                 <div class="col-sm-1 p-3 bg-dark text-white">:</div>
-                <div class="col-sm-6 p-3 bg-primary text-white">
+                <div class="col-sm-6 p-3 bg-dark text-white">
 
                     <p> &emsp; <?php
 
@@ -204,7 +203,30 @@ $username = $_SESSION["username"];
 
                                 ?></p>
                 </div>
-                <div class="col-sm-1 p-3 bg-dark text-white"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-2 p-3 bg-dark text-white"></div>
+                <div class="col-sm-3 p-3 bg-dark text-white">
+                    <p>Status</p>
+                </div>
+                <div class="col-sm-1 p-3 bg-dark text-white">:</div>
+                <div class="col-sm-6 p-3 bg-dark text-white">
+
+                    <p> &emsp; <?php
+
+                                if ($state_query == 0 || $state_query == 2) {
+                                    echo "No Value";
+                                } elseif ($state_query == 1) {
+                                    $state = $passDetails['state'];
+                                    if($state=="Active")
+                                        echo "<span class=\"label label-success\">$state</span>";
+                                    else
+                                        echo "<span class=\"label label-danger\">$state</span>";
+                                }
+
+                                ?></p>
+                </div>
             </div>
         </div>
     </div>

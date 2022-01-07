@@ -164,10 +164,6 @@ class Conductor_Controller extends Conductor_Model
         return Conductor_Tracker::getInstance()->getPass_by_passenger_id($passenger_id);
     }
 
-    public function checkCurrentDate($date)
-    {
-
-    }
     public function getCurrentDate(){
         return date("Y-m-d");
     }
@@ -190,4 +186,18 @@ class Conductor_Controller extends Conductor_Model
         
     }
 
+    public function checkActiveDate($startDate, $endDate)
+    {
+        
+        $currDate = $this->getCurrentDate();
+        
+        if ($currDate >= date($startDate) && $currDate<=date($endDate)) {
+            return "Active";
+        }elseif(($currDate) > date($endDate)){
+            return "Expired";
+        }else{
+            //echo $startDate;
+            return "Set to a future date";
+        }
+    }
 }

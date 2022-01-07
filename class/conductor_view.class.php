@@ -40,13 +40,15 @@ class Conductor_View extends Conductor_Model
     $pass_details_array = $this->conductor_controller->getPass_by_passenger_id($passenger_id);
 
     $this->conductor_controller->checkPassExist($pass_details_array);
+    $startDate = $pass_details_array["passObj"]->getStartDate();
+    $endDate = $pass_details_array["passObj"]->getEndDate();
 
     $details = array(
       "passenger_name" => $pass_details_array["passenger_name"],
       "company_name" => $pass_details_array["company_name"],
       "route" => $pass_details_array["passObj"]->getBusRoute(),
-      "time_period" => ($pass_details_array["passObj"]->getStartDate()) . " to " . ($pass_details_array["passObj"]->getEndDate()),
-      "state" => $pass_details_array["passObj"]->getState()
+      "time_period" => $startDate . " to " . $endDate,
+      "state" => $this->conductor_controller->checkActiveDate($startDate, $endDate)
     );
 
     return $details;
