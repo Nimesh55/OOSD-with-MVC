@@ -13,10 +13,13 @@
   padding:15px 0;
   /*text-align: center;*/
   font-family: 'Roboto', sans-serif;
+  color: aliceblue;
   /*color:black;*/
 }
 body{
   /*background: #081645 url(../img/login2.jpg);*/
+  background: url("../img/PassBlue.jpg") no-repeat center fixed;
+
   background-size: cover;
   background-attachment: fixed;
   font-family: 'Roboto', sans-serif;
