@@ -80,4 +80,7 @@ class Conductor_View extends Conductor_Model
     
     return $details; 
   }
+
+
+
 }
