@@ -49,7 +49,7 @@ class Notification_handler
     }
 
     // Notification types 
-    private static function notification_passApproved($param)
+    private static function notification_builder($param)
     {
         $msgType = $param[0];
         print_r($param);
@@ -59,17 +59,17 @@ class Notification_handler
                 $msg = "Your Pass is \"Pending\" Approval.\nPass Id: " . $param[1] . "  \nRequested details \nRoutes: " . $param[2] . "\nValid from: " . $param[3] . "\nTo: " . $param[4];
                 $emailSubject = "Pass Pending";
             case $msgType = 1:
-                $msg = "Your Pass is \"Approved\".\nPassenger User ID: ".$param[1]."\nPass Id: ".$param[2]."  \nRoutes: ".$param[3]."\nValid from: ".$param[4]."\nTo: ".$param[5];
+                $msg = "Your Pass is \"Approved\".\nPassenger User ID: " . $param[1] . "\nPass Id: " . $param[2] . "  \nRoutes: " . $param[3] . "\nValid from: " . $param[4] . "\nTo: " . $param[5];
                 $emailSubject = "Pass Approved";
             case $msgType = 2:
-                $msg = "Your Pass is \"Pending\" Approval.\nPass Id: " . $param[1] . "  \nRequested details \nRoutes: " . $param[2] . "\nValid from: " . $param[3] . "\nTo: " . $param[4];
-                $emailSubject = "Pass Pending";
+                $msg = "Your Pass is \"Declined\".\n Pass Id: " . $param[1];
+                $emailSubject = "Pass Declined";
             case $msgType = 3:
-                $msg = "Your Pass is \"Pending\" Approval.\nPass Id: " . $param[1] . "  \nRequested details \nRoutes: " . $param[2] . "\nValid from: " . $param[3] . "\nTo: " . $param[4];
-                $emailSubject = "Pass Pending";
+                $msg = "Your Pass has been \"Declined\" by your Service: " . $param[1] . "\nPass Id: " . $param[2] . " \n Contact your Relevant Service for more details.";
+                $emailSubject = "Pass Declined by Service";
             case $msgType = 4:
-                $msg = "Your Pass is \"Pending\" Approval.\nPass Id: " . $param[1] . "  \nRequested details \nRoutes: " . $param[2] . "\nValid from: " . $param[3] . "\nTo: " . $param[4];
-                $emailSubject = "Pass Pending";
+                $msg = "Your Pass has been \"Expired\" Pass Id: " . $param[1];
+                $emailSubject = "Pass Expired!";
             case $msgType = 5:
                 $msg = "Your Pass is \"Pending\" Approval.\nPass Id: " . $param[1] . "  \nRequested details \nRoutes: " . $param[2] . "\nValid from: " . $param[3] . "\nTo: " . $param[4];
                 $emailSubject = "Pass Pending";
@@ -86,14 +86,6 @@ class Notification_handler
                 $msg = "Your Pass is \"Pending\" Approval.\nPass Id: " . $param[1] . "  \nRequested details \nRoutes: " . $param[2] . "\nValid from: " . $param[3] . "\nTo: " . $param[4];
                 $emailSubject = "Pass Pending";
         }
-        //
-        $rmsg = "Your Pass is \"Declined\".\n Pass Id:  ";
-        $rmsg1 = "Your Pass has been \"Declined\" by your Service: \n Contact your Relevant Service for more details.";
-        $exmsg = "Your Pass has been \"Expired\" Pass Id: ";
-        print_r($msg);
-        //exit();
-
-
         return [$msg, $emailSubject];
     }
 
@@ -126,7 +118,7 @@ class Notification_handler
     public static function setupNotification($email, $telephone, $param)
     {
         $contactArray = [$email, $telephone]; //Contact Details to send Notification
-        $messageBody = self::notification_passApproved($param); // Subject and Body
+        $messageBody = self::notification_builder($param); // Subject and Body
         //self::sendNotification([$telephone, $email], $messageBody[0], $messageBody[1]); //uncomment to send notifications.
     }
 }
