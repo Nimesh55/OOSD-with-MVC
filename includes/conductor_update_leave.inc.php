@@ -1,5 +1,6 @@
 <?php
-
+require_once "../class/dbh.class.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
 if (isset($_POST['submit'])) {
@@ -7,10 +8,7 @@ if (isset($_POST['submit'])) {
     $leave_date = $_POST['leave_date'];
 
     // Instanciate Conductor Controller in MVC
-    require_once "../class/dbh.class.php";
-    require_once "../class/conductor.class.php";
-    require_once "../class/conductor_controller.class.php";
-    require_once "../class/conductor_model.class.php";
+
 
     $conductor_ctrl_obj = new Conductor_Controller();
 

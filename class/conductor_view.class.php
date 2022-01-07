@@ -80,4 +80,9 @@ class Conductor_View extends Conductor_Model
     
     return $details; 
   }
+  public function getleaveDetails($conductor_no){
+      return $this->getConductorLeavesDetails($conductor_no);
+  }
+
+
 }
