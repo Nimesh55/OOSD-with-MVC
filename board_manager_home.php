@@ -67,7 +67,7 @@ $details = $board_manager_view->getHomeDetails();
 
 
     <div class="container">
-        <h1> <?= $details['name']  ?> </h1>
+        <h1 id="heading"> <?= $details['name']  ?> </h1>
 
         <div class="row">
             <div class="col-lg-3"></div>

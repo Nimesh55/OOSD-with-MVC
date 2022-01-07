@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="47bd8e1a-391d-4ea9-bbbf-0a0d2636fcd5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/OOSD-with-MVC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/OOSD-with-MVC.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/class/dbh.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/dbh.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class/email.class.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/class/email_sender.class.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/executive_pass_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/executive_pass_details.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/passenger_home.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/passenger_home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger_home.php" beforeDir="false" afterPath="$PROJECT_DIR$/passenger_home.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,11 +94,26 @@
       <workItem from="1641068322814" duration="7015000" />
       <workItem from="1641204318342" duration="1731000" />
       <workItem from="1641215021207" duration="779000" />
+      <workItem from="1641275434890" duration="17400000" />
+      <workItem from="1641313472962" duration="16575000" />
+      <workItem from="1641386045065" duration="595000" />
+      <workItem from="1641549454805" duration="4008000" />
+      <workItem from="1641553989879" duration="535000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>

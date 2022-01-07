@@ -65,7 +65,7 @@ $numofIssuedPasses = $viewArray["issued"];
 
     <div class="container mt-3">
 <!--        <h1> --><?//= $_SESSION['user_Id'] ?><!-- </h1>-->
-        <h1> <?= 'Administrator'; ?> </h1>
+        <h1 id="heading"> <?= 'Administrator'; ?> </h1>
 
 
         <div class="row">
