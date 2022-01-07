@@ -185,4 +185,9 @@ class Conductor_Controller extends Conductor_Model
         return $selected_leaves;
     }
 
+    public function getConductorCountToday(){
+        return $this->getConductorCountTodayFromModel();
+        
+    }
+
 }

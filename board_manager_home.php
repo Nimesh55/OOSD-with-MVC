@@ -85,7 +85,7 @@ $details = $board_manager_view->getHomeDetails();
 
                 <div class="row">
                     <div class="col-sm-6 p-3 field">
-                        <p>Number of Aprrroved Passes</p>
+                        <p>Number of Approved Passes</p>
                     </div>
                     <div class="col-sm-1 p-3">:</div>
                     <div class="col-sm-5 p-3">
@@ -109,8 +109,7 @@ $details = $board_manager_view->getHomeDetails();
                     </div>
                     <div class="col-sm-1 p-3">:</div>
                     <div class="col-sm-5 p-3">
-<!--                        Not completed-->
-                        <p style="color: red;">Complete this</p>
+                    <p><?=$details['available_conductor_cnt_today']?></p>
                     </div>
                 </div>
             </div>

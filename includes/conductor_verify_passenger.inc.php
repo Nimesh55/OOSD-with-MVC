@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
         return;
     }
     else{
-        header("Location: ../conductor_verify_passenger.php?show='{$error}'");
+        header("Location: ../conductor_verify_passenger.php?show=$error");
         return;
     }
 }

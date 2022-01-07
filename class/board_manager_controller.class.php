@@ -74,9 +74,7 @@ class Board_Manager_Controller extends Board_Manager_Model
         if (empty($conductor_obj->getfirst_name()) && empty($conductor_obj->getlast_name()) )
         {
             $error = "Conductor Account Doesn't Exist!!";
-            header("Location: board_manager_conductor_details.php?show='{$error}'");
-            return;
-            
+            header("Location: board_manager_conductor_details.php?show='$error'");
         }
     }
 
@@ -87,7 +85,22 @@ class Board_Manager_Controller extends Board_Manager_Model
     }
 
     public function allocateConductorForBooking($booking_no, $conductor_no){
-        $this->allocateConductorForBookingFromModel($booking_no,$conductor_no);
+        $bookings_for_conductor = Booking_Tracker::getInstance()->getBookingsForConductor_FromGivenDate($conductor_no);
+        $selected_booking = Booking_Tracker::getInstance()->getBooking($booking_no);
+        $available = true;
+        foreach ($bookings_for_conductor as $booking) {
+            if ((strtotime($booking->getStartDate()) >= strtotime($selected_booking->getStartDate()) && strtotime($booking->getStartDate()) <= strtotime($selected_booking->getStartDate())) ||
+                (strtotime($booking->getEndDate()) >= strtotime($selected_booking->getEndDate()) && strtotime($booking->getEndDate()) <= strtotime($selected_booking->getEndDate()))) {
+                $available = false;
+            }
+        }
+        if($available){
+            $this->allocateConductorForBookingFromModel($booking_no,$conductor_no);
+        }else{
+            $_SESSION["error"] = "This vehicle currently unavailable";
+            header("Location: ../board_manager_allocate_vehicle_select.php?booking_no={$_GET['booking_no']}&pickup={$_GET['pickup']}");
+        }
+
     }
 
     public function getBookedVehicleNo($booking){

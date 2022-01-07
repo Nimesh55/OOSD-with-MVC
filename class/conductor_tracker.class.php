@@ -91,7 +91,6 @@ class Conductor_Tracker extends Tracker{
     public function cancel_Booking($bookingNo)
     {
         $this->booking_tracker->cancelBooking($bookingNo);
-        return;
     }
 
     public function getBookingsFor_ConductorNo_FromGivenDate($conductor_no)
@@ -107,6 +106,10 @@ class Conductor_Tracker extends Tracker{
     public function getPass_by_passenger_id($passenger_id)
     {
         return $this->pass_tracker->getPass_by_passenger_id($passenger_id);
+    }
+
+    public function getConductorCountToday(){
+        return $this->conductor_controller->getConductorCountToday();
     }
 }
 

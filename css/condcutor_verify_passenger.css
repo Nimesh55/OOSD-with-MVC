@@ -10,12 +10,12 @@ body{
     width: 50%;
     background-color: rgb(44, 44, 37);
     padding: 5%; 
+    font-weight: bold;
     
     margin-top: 8%;
     border-style: ridge;
     border: 2px solid whitesmoke;
     border-radius: 10px;
-    opacity: 0.95;
     
 }
 
@@ -26,4 +26,9 @@ body{
 .row{
     color: aliceblue;
     word-spacing: 2x;
+}
+
+.alert{
+    padding: 1%;
+    text-align: center;
 }

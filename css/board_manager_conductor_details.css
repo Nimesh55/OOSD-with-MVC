@@ -1,6 +1,6 @@
 body{
     background-color: violet;
-    background: url("../img/login2.jpg") no-repeat center fixed;
+    background: url("../img/PassBlue.jpg") no-repeat center fixed;
     background-size: cover;
     font-size: 16px;
 }
@@ -15,7 +15,6 @@ body{
     border-style: ridge;
     border: 2px solid whitesmoke;
     border-radius: 10px;
-    opacity: 0.95;
     
 }
 
@@ -26,4 +25,9 @@ body{
 .row{
     color: aliceblue;
     word-spacing: 2x;
+}
+
+.alert{
+    padding: 1%;
+    text-align: center;
 }

@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
         return;
     }
     else{
-        header("Location: ../board_manager_conductor_details.php?show='{$error}'");
+        header("Location: ../board_manager_conductor_details.php?show=$error");
         return;
     }
 

@@ -107,7 +107,7 @@ $details = $board_manager_view->getBookingViewDetails($_GET['booking_no']);
 
 <?php
     if($details['booking_state']==0){
-        echo "<a class=\"btn btn-sm btn-default\" href=\"includes/allocate_vehicle.inc.php?action=1&booking_no={$_GET['booking_no']}\">Accept</a>";
+        echo "<a class=\"btn btn-sm btn-default\" href=\"includes/allocate_vehicle.inc.php?action=1&booking_no={$_GET['booking_no']}&pickup={$details['pickup_district_no']}\">Approve</a>";
         echo "<a class=\"btn btn-sm btn-default\" href=\"includes/allocate_vehicle.inc.php?action=0&booking_no={$_GET['booking_no']}\">Decline</a>";
     }elseif ($details['booking_state']==1 && $details['flag']==1){
         echo "<a class=\"btn btn-sm btn-default\" href=\"includes/allocate_vehicle.inc.php?action=1&booking_no={$_GET['booking_no']}\">Reallocate Conductor</a>";

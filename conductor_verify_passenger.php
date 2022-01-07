@@ -76,18 +76,21 @@ $username = $_SESSION["username"];
 
     <div class="container mt-3" id="contanier-data">
 
-
+        
         <div class="row">
-            <div class="col-sm-3 p-3 bg-dark text-white"></div>
-            <div class="col-sm-6 p-3 bg-dark text-white">
+            <div class="col-sm-1 p-3 bg-dark text-white"></div>
+            <div class="col-sm-10 p-3 bg-dark text-white">
 
                 <?php
                 if ($state_query == 2) {
-                    echo $error;
+                    echo "<div class=\"alert alert-danger\"><strong>".$error."</strong></div>";
+                }elseif($state_query == 1){
+                    echo "<div class=\"alert alert-success\"><strong>"."Passenger pass Found!!"."</strong></div>";
                 }
                 ?>
             </div>
-            <div class="col-sm-3 p-3 bg-dark text-white"></div>
+            <div class="col-sm-1 p-3 bg-dark text-white"></div>
+            
         </div>
 
         <form action="includes/conductor_verify_passenger.inc.php" method="POST">

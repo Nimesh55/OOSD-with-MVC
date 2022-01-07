@@ -26,7 +26,8 @@ class Board_Manager_View extends Board_Manager_Model
             "name" => $this->board_manager->getName(),
             "pending_passes_cnt" => $this->getPendingPassesCnt(),
             "approved_passes_cnt" => $this->getApprovedPassesCount(),
-            "total_conductor_cnt" => $this->getConductorCount()
+            "total_conductor_cnt" => $this->getConductorCount(),
+            "available_conductor_cnt_today" => $this->conductor_tracker->getConductorCountToday()
         );
         return $details;
     }
@@ -107,6 +108,7 @@ class Board_Manager_View extends Board_Manager_Model
             "name" => $this->board_manager->getName(),
             "service_name" => $service->getName(),
             "reason" => $booking->getReason(),
+            "pickup_district_no" => $booking->getPickupDistrict(),
             "pickup_district" => $this->getDistrictName($booking->getPickupDistrict()),
             "pickup_location" => "https://maps.google.com/maps?q=".$booking->getPickupLocation(),
             "destination_district" => $this->getDistrictName($booking->getDestinationDistrict()),
