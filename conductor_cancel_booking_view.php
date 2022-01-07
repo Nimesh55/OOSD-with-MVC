@@ -38,7 +38,7 @@ if ($_GET["error"] != 'none') {
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>Conductor Booking Details</title>
+    <title>Conductor || Booking Details</title>
 </head>
 
 <body>
@@ -91,98 +91,107 @@ if ($_GET["error"] != 'none') {
 
             <div class="row">
                 <div class="col-sm-2 p-2"></div>
-                <div class="col-sm-4 p-3 bg-dark text-white">
+                <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>Booking No</p>
                 </div>
-                <div class="col-sm-4 p-4 bg-primary text-white">
-                    <p>: <?= $bookingDetails['booking_no'] ?> </p>
+                <div class="col-sm-1 p-2">:</div>
+                <div class="col-sm-4 p-4 bg-dark text-white">
+                    <p><?= $bookingDetails['booking_no'] ?> </p>
                 </div>
                 <div class="col-sm-2 p-3"></div>
             </div>
 
             <div class="row">
                 <div class="col-sm-2 p-2"></div>
-                <div class="col-sm-4 p-3 bg-dark text-white">
+                <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>Service Name</p>
                 </div>
-                <div class="col-sm-4 p-4 bg-primary text-white">
-                    <p>: <?= $bookingDetails['service_name']  ?></p>
+                <div class="col-sm-1 p-2">:</div>
+                <div class="col-sm-4 p-4 bg-dark text-white">
+                    <p><?= $bookingDetails['service_name']  ?></p>
                 </div>
                 <div class="col-sm-2 p-3"></div>
             </div>
 
             <div class="row">
                 <div class="col-sm-2 p-2"></div>
-                <div class="col-sm-4 p-3 bg-dark text-white">
+                <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>Start Date and Time</p>
                 </div>
-                <div class="col-sm-4 p-4 bg-primary text-white">
-                    <p>: <?= $bookingDetails['start_date'] . " From " . $bookingDetails['start_time']   ?> </p>
+                <div class="col-sm-1 p-2">:</div>
+                <div class="col-sm-4 p-4 bg-dark text-white">
+                    <p><?= $bookingDetails['start_date'] . " From " . $bookingDetails['start_time']   ?> </p>
                 </div>
                 <div class="col-sm-2 p-3"></div>
             </div>
 
             <div class="row">
                 <div class="col-sm-2 p-2"></div>
-                <div class="col-sm-4 p-3 bg-dark text-white">
+                <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>End Date and Time</p>
                 </div>
-                <div class="col-sm-4 p-4 bg-primary text-white">
-                    <p>: <?= $bookingDetails['end_date'] . " From " . $bookingDetails['end_time'] ?> </p>
+                <div class="col-sm-1 p-2">:</div>
+                <div class="col-sm-4 p-4 bg-dark text-white">
+                    <p><?= $bookingDetails['end_date'] . " From " . $bookingDetails['end_time'] ?> </p>
                 </div>
                 <div class="col-sm-2 p-3"></div>
             </div>
 
             <div class="row">
                 <div class="col-sm-2 p-2"></div>
-                <div class="col-sm-4 p-3 bg-dark text-white">
+                <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>Pickup District</p>
                 </div>
-                <div class="col-sm-4 p-4 bg-primary text-white">
-                    <p>: <?= $bookingDetails['pickup_district'] ?> </p>
+                <div class="col-sm-1 p-2">:</div>
+                <div class="col-sm-4 p-4 bg-dark text-white">
+                    <p><?= $bookingDetails['pickup_district'] ?> </p>
                 </div>
                 <div class="col-sm-2 p-3"></div>
             </div>
 
             <div class="row">
                 <div class="col-sm-2 p-2"></div>
-                <div class="col-sm-4 p-3 bg-dark text-white">
+                <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>Pickup Location</p>
                 </div>
-                <div class="col-sm-4 p-4 bg-primary text-white">
-                    <p>: <a href="<?= $bookingDetails['pickup_location'] ?>" target="_blank">View pickup</a> </p>
+                <div class="col-sm-1 p-2">:</div>
+                <div class="col-sm-4 p-4 bg-dark text-white link">
+                    <p><a href="<?= $bookingDetails['pickup_location'] ?>" target="_blank">View pickup</a> </p>
                 </div>
                 <div class="col-sm-2 p-3"></div>
             </div>
 
             <div class="row">
                 <div class="col-sm-2 p-2"></div>
-                <div class="col-sm-4 p-3 bg-dark text-white">
+                <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>Destination District</p>
                 </div>
-                <div class="col-sm-4 p-4 bg-primary text-white">
-                    <p>: <?= $bookingDetails['destination_district'] ?> </p>
+                <div class="col-sm-1 p-2">:</div>
+                <div class="col-sm-4 p-4 bg-dark text-white">
+                    <p><?= $bookingDetails['destination_district'] ?> </p>
                 </div>
                 <div class="col-sm-2 p-3"></div>
             </div>
             <div class="row">
                 <div class="col-sm-2 p-2"></div>
-                <div class="col-sm-4 p-3 bg-dark text-white">
+                <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>Destination Location</p>
                 </div>
-                <div class="col-sm-4 p-4 bg-primary text-white">
-                    <p>: <a href="<?= $bookingDetails['destination_location'] ?>" target="_blank">View destination</a> </p>
+                <div class="col-sm-1 p-2">:</div>
+                <div class="col-sm-4 p-4 bg-dark text-white link">
+                    <p><a href="<?= $bookingDetails['destination_location'] ?>" target="_blank">View destination</a> </p>
                 </div>
                 <div class="col-sm-2 p-3"></div>
             </div>
 
             <div class="row">
                 <div class="col-sm-2 p-2"></div>
-                <div class="col-sm-4 p-3 bg-dark text-white">
+                <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>Passenger Count</p>
                 </div>
-                <div class="col-sm-4 p-4 bg-primary text-white">
-                    <p>: <?= $bookingDetails['passenger_count'] ?> </p>
+                <div class="col-sm-1 p-2">:</div>
+                <div class="col-sm-4 p-4 bg-dark text-white">
+                    <p><?= $bookingDetails['passenger_count'] ?> </p>
                 </div>
                 <div class="col-sm-2 p-3"></div>
             </div>
@@ -194,13 +203,13 @@ if ($_GET["error"] != 'none') {
                 <div class="col-sm-3 p-2"></div>
                 <div class="col-sm-3 p-3">
                     <?php
-                    echo "<a class=\"btn btn-default\" href=\"conductor_cancel_booking.php\">Back</a>";
+                    echo "<a class=\"btn btn-primary\" href=\"conductor_cancel_booking.php\">Back</a>";
                     ?>
                 </div>
 
                 <?php if ($bookingDetails['flag'] == 0) : ?>
                     <div class="col-sm-4 p-3">
-                        <a class="btn btn-default" href="includes/condcutor_cancel_booking_totally.inc.php?booking_no=<?php echo $bookingNo ?>">Cancel Booking</a>
+                        <a class="btn btn-primary" href="includes/condcutor_cancel_booking_totally.inc.php?booking_no=<?php echo $bookingNo ?>">Cancel Booking</a>
 
                     </div>
                 <?php endif; ?>

@@ -17,10 +17,6 @@ if ($_GET["error"] != "none") {
     $error = $_GET["error"];
 }
 $leaves = $conductorview->getGrantedLeave($_SESSION['account_no']);
-//echo "<pre>";
-//print_r($leaves);
-//echo "</pre>";
-//echo date("Y-m-d");
 
 ?>
 
@@ -105,7 +101,10 @@ $leaves = $conductorview->getGrantedLeave($_SESSION['account_no']);
                 <br>
                 <div class="row">
                     <?php if ($state_query == 1) {
-                        echo "<p class=\"alert alert-success\" id='error'>{$error}</p>";
+                        if($error == "Leave Granted!!")
+                            echo "<p class=\"alert alert-success\" id='error'>$error</p>";
+                        else
+                        echo "<p class=\"alert alert-danger\" id='error'>$error</p>";
                     } ?>
                 </div>
                 <br>
