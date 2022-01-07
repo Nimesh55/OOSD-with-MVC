@@ -232,7 +232,7 @@ if ($_GET["show"] == "success") {
                     <?php
 
                     if ($state_query == 1) {
-                        echo "<a class=\"btn btn-sm btn-default\" href=\"includes/board_manager_remove_conductor.inc.php?conductor_id={$_GET["conductor_id"]}\">Remove</a>";
+                        echo "<a class=\"btn btn-sm btn-primary\" href=\"includes/board_manager_remove_conductor.inc.php?conductor_id={$_GET["conductor_id"]}\">Remove</a>";
                     }
 
                     ?>
