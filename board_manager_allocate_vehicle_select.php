@@ -95,4 +95,5 @@ if($vehicle_cnt == 0){
 
 <?php
 unset($_SESSION['error']);
+unset($_SESSION['success']);
 ?>

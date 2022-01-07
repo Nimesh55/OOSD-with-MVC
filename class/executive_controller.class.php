@@ -176,4 +176,9 @@ class Executive_Controller extends Executive_Model
         }
         
     }
+
+    public function setBookingCompleted($booking_no){
+        Booking_Tracker::getInstance()->cancelBookingByExecutive($booking_no);
+        $_SESSION['success'] = "Booking cancelled";
+    }
 }

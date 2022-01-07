@@ -60,6 +60,8 @@ $detailsArray = $viewobj->getBookingDetailsDetails();
     </div>
 
 
+<!--    set booking cancel done status show here-->
+
     <form action="executive_pass_details_view_page.php" method="POST">
         <a href="executive_request_booking.php" class="btn btn-info" name="request" style=""> Request Booking </a>
         <table class="table">
@@ -91,3 +93,7 @@ $detailsArray = $viewobj->getBookingDetailsDetails();
 </body>
 
 </html>
+
+<?php
+unset($_SESSION['success']);
+?>
