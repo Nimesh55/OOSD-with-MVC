@@ -79,9 +79,9 @@ if ($_GET["error"] != 'none') {
         <div>
             <div class="row" id="error">
                 <div class="col-sm-2 p-2"></div>
-                <div class="col-sm-8 p-4 bg-danger text-danger">
+                <div class="col-sm-8 p-4">
                     <?php if ($state_query == 1) {
-                        echo "<p>$error</p>";
+                       echo "<div class=\"alert alert-danger\"><strong>".$error."</strong></div>";
                     } ?>
                 </div>
                 <div class="col-sm-2 p-3"></div>
