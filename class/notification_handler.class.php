@@ -1,12 +1,12 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
-class notification_handler
+class Notification_handler
 {
     private static $admin_controller;
     private static $smsAdapter;
     private static $emailAdapter;
 
-    public static function set_config()
+    private static function set_config()
     {
         Timer::setTimeZone();
         self::$admin_controller = new Administrator_controller();
@@ -17,11 +17,11 @@ class notification_handler
     }
 
     /*
-    * Call this method from other classes to pass a message to SMS and Email system
-    * @param: $reciverArray- index 0 = telephone number index 1 = email address
+    * Call this method passes a message to SMS and Email system
+    * @param: $reciverArray- index 0 = telephone number, index 1 = email address
     * @param: $messageBody- The notification text that is needed to be sent
     */
-    public static function sendNotification($reciverArray, $messageBody, $emailSubject)
+    private static function sendNotification($reciverArray, $messageBody, $emailSubject)
     {
         self::set_config();
 
@@ -46,5 +46,87 @@ class notification_handler
             }
             file_put_contents('logs/smsLog.Log', $log, FILE_APPEND);
         }
+    }
+
+    // Notification types 
+    private static function notification_passApproved($param)
+    {
+        $msgType = $param[0];
+        print_r($param);
+        // exit();
+        switch ($msgType) {
+            case $msgType = 0:
+                $msg = "Your Pass is \"Pending\" Approval.\nPass Id: " . $param[1] . "  \nRequested details \nRoutes: " . $param[2] . "\nValid from: " . $param[3] . "\nTo: " . $param[4];
+                $emailSubject = "Pass Pending";
+            case $msgType = 1:
+                $msg = "Your Pass is \"Approved\".\nPassenger User ID: ".$param[1]."\nPass Id: ".$param[2]."  \nRoutes: ".$param[3]."\nValid from: ".$param[4]."\nTo: ".$param[5];
+                $emailSubject = "Pass Approved";
+            case $msgType = 2:
+                $msg = "Your Pass is \"Pending\" Approval.\nPass Id: " . $param[1] . "  \nRequested details \nRoutes: " . $param[2] . "\nValid from: " . $param[3] . "\nTo: " . $param[4];
+                $emailSubject = "Pass Pending";
+            case $msgType = 3:
+                $msg = "Your Pass is \"Pending\" Approval.\nPass Id: " . $param[1] . "  \nRequested details \nRoutes: " . $param[2] . "\nValid from: " . $param[3] . "\nTo: " . $param[4];
+                $emailSubject = "Pass Pending";
+            case $msgType = 4:
+                $msg = "Your Pass is \"Pending\" Approval.\nPass Id: " . $param[1] . "  \nRequested details \nRoutes: " . $param[2] . "\nValid from: " . $param[3] . "\nTo: " . $param[4];
+                $emailSubject = "Pass Pending";
+            case $msgType = 5:
+                $msg = "Your Pass is \"Pending\" Approval.\nPass Id: " . $param[1] . "  \nRequested details \nRoutes: " . $param[2] . "\nValid from: " . $param[3] . "\nTo: " . $param[4];
+                $emailSubject = "Pass Pending";
+            case $msgType = 6:
+                $msg = "Your Pass is \"Pending\" Approval.\nPass Id: " . $param[1] . "  \nRequested details \nRoutes: " . $param[2] . "\nValid from: " . $param[3] . "\nTo: " . $param[4];
+                $emailSubject = "Pass Pending";
+            case $msgType = 7:
+                $msg = "Your Pass is \"Pending\" Approval.\nPass Id: " . $param[1] . "  \nRequested details \nRoutes: " . $param[2] . "\nValid from: " . $param[3] . "\nTo: " . $param[4];
+                $emailSubject = "Pass Pending";
+            case $msgType = 8:
+                $msg = "Your Pass is \"Pending\" Approval.\nPass Id: " . $param[1] . "  \nRequested details \nRoutes: " . $param[2] . "\nValid from: " . $param[3] . "\nTo: " . $param[4];
+                $emailSubject = "Pass Pending";
+            case $msgType = 9:
+                $msg = "Your Pass is \"Pending\" Approval.\nPass Id: " . $param[1] . "  \nRequested details \nRoutes: " . $param[2] . "\nValid from: " . $param[3] . "\nTo: " . $param[4];
+                $emailSubject = "Pass Pending";
+        }
+        //
+        $rmsg = "Your Pass is \"Declined\".\n Pass Id:  ";
+        $rmsg1 = "Your Pass has been \"Declined\" by your Service: \n Contact your Relevant Service for more details.";
+        $exmsg = "Your Pass has been \"Expired\" Pass Id: ";
+        print_r($msg);
+        //exit();
+
+
+        return [$msg, $emailSubject];
+    }
+
+    private static function notification_ServiceConfirmation($email, $telephone, $param)
+    {
+        $msg = "Your service is Approved. \n Your Service Details are, \n Service Name:____ \n Service Id: \n";
+        $rmsg = "Your Service is Removed by the Safe Transit Administration. \n Your Service Details are, \n Service Name:____ \n Service Id: \n";
+    }
+
+    private static function notification_Allocation($email, $telephone, $param)
+    {
+        $msg = "A vehicle is allocated to your Service:______ \n Booking Id:____ \n Vechicle No:_______ \n Number of seats:_____ \n PickUp Point: _____\n Destination:_______\n ";
+    }
+
+    private static function notification_ConductorAccountRemoved($email, $telephone, $param)
+    {
+        $msg = "Your Conductor Account Has been Removed. Your Account Details\n Conductor Id: \n Vehicle Number: ";
+    }
+
+    private static function notification_PassengerAccount($email, $telephone, $param)
+    {
+        $msg = "Your Passenger Account has been Approved and you have been Verified as a service member of :\n Your details are,\n User Id: \n Fullname: \n Staff Id: \n ";
+    }
+
+    private static function notification_ConductorCancleBooking($email, $telephone, $param)
+    {
+        $msg = "Your booking Has been Cancled. \n Booking Details,\n Booking Id: \n Vehicle Number: \n ";
+    }
+
+    public static function setupNotification($email, $telephone, $param)
+    {
+        $contactArray = [$email, $telephone]; //Contact Details to send Notification
+        $messageBody = self::notification_passApproved($param); // Subject and Body
+        //self::sendNotification([$telephone, $email], $messageBody[0], $messageBody[1]); //uncomment to send notifications.
     }
 }

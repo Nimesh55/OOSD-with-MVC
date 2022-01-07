@@ -20,7 +20,9 @@
         $url_extention .= "bus_route={$details['bus_route']}&";
         $url_extention .= "error={$errors}";
         if (!strcmp($errors, "success") != 0) {
-            $pass_tracker->createPass($details);
+            $pass = $pass_tracker->createPass($details);
+            // Pass Pending Notification##
+            Notification_handler::setupNotification($passenger->getEmail(), $passenger->getTelephone(),[0,$pass->getPassNo(), $pass->getBusRoute(), $pass->getStartDate(), $pass->getEndDate()]);
         }
         header("Location: ../passenger_request_pass.php?{$url_extention}");
     }
