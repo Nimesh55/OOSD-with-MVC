@@ -166,7 +166,22 @@ class Conductor_Controller extends Conductor_Model
 
     public function checkCurrentDate($date)
     {
-        
+
+    }
+    public function getCurrentDate(){
+        return date("Y-m-d");
+}
+
+    public function getGrantedLeaveDetails($conductor_no){
+        $selected_leaves = array();
+        $leaves= $this->getAllLeavesDetails($conductor_no);
+        foreach($leaves as $leave){
+            $date = $leave['date'];
+            if($date>$this->getCurrentDate()){
+                $selected_leaves[] = $leave;
+            }
+
+        }
     }
 
 }

@@ -85,11 +85,11 @@ class Conductor_Model extends Dbh{ // ## make the methods protected
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
     }
-    protected function getConductorLeavesDetails($conductor_no){
+    protected function getAllLeavesDetails($conductor_no){
         $sql = "SELECT * FROM conductor_leave WHERE conductor_no = {$conductor_no}";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
-        $record = $stmt->fetch();
+        $record = $stmt->fetchall();
         return $record;
     }
 }

@@ -16,10 +16,10 @@ if ($_GET["error"] != "none") {
     $state_query = 1;
     $error = $_GET["error"];
 }
-$leaveDetails = $conductorview->getleaveDetails($_SESSION['account_no']);
-echo "<pre>";
-print_r($leaveDetails);
-echo "</pre>";
+$conductor_controller = new Conductor_Controller();
+//$conductorview->getleaveDetails($_SESSION['account_no']);
+$conductor_controller->getGrantedLeaveDetails($_SESSION['account_no']);
+//echo date("Y-m-d");
 
 ?>
 
