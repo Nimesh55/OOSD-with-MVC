@@ -139,9 +139,10 @@ $detailsArray = $viewobj->getBookingViewDetails($_GET['booking_no']);
 
                 ?>
 
-
-                <input class="btn btn-default" type="submit" value="Cancel Booking" name="cancel" style="color:blue;position:relative;
+                <?php if($detailsArray['state'] <= 1):?>
+                    <input class="btn btn-default" type="submit" value="Cancel Booking" name="cancel" style="color:blue;position:relative;
                             left:65%;margin-top:10px; width:10%">
+                <?php endif; ?>
                 <input class="btn btn-default" type="submit" value="Exit" name="exit" style="color:blue;position:relative;
                             left:65%;margin-top:10px; width:10%">
                 <input type="hidden" id="booking_no" name="booking_no" value="<?= $_GET['booking_no']?>">

@@ -100,7 +100,7 @@ class Booking_Model extends Dbh
 
 
     protected function getBookingsArrayForServiceFromModel($service_no){
-        $query = "SELECT * FROM booking WHERE service_no={$service_no} AND state<2";
+        $query = "SELECT * FROM booking WHERE service_no={$service_no}";
         $stmt = $this->connect()->prepare($query);
         $stmt->execute();
         $service_bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);

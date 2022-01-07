@@ -94,7 +94,8 @@ class Executive_Controller extends Executive_Model
         $bus_no = "";
         if ($booking->getState()>0){
             $conductor = Conductor_Tracker::getInstance()->getConductorByNumber($booking->getBookedConductorNo());
-            $bus_no = $conductor->getvehicle_no();
+            if($conductor!=null)
+                $bus_no = $conductor->getvehicle_no();
         }
         return $bus_no;
     }
