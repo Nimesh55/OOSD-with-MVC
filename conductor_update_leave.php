@@ -16,9 +16,8 @@ if ($_GET["error"] != "none") {
     $state_query = 1;
     $error = $_GET["error"];
 }
-$conductor_controller = new Conductor_Controller();
-//$conductorview->getleaveDetails($_SESSION['account_no']);
-$conductor_controller->getGrantedLeaveDetails($_SESSION['account_no']);
+$leaves = $conductorview->getGrantedLeave($_SESSION['account_no']);
+
 //echo date("Y-m-d");
 
 ?>

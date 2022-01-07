@@ -80,6 +80,9 @@ class Conductor_View extends Conductor_Model
     
     return $details; 
   }
+  public function getGrantedLeave($conductor_no){
+      return $this->conductor_controller->getGrantedLeaveDetails($conductor_no);
+  }
 
 
 
