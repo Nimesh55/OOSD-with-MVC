@@ -8,13 +8,18 @@ if (isset($_POST['submit'])) {
     $leave_date = $_POST['leave_date'];
 
     // Instanciate Conductor Controller in MVC
-
+    
 
     $conductor_ctrl_obj = new Conductor_Controller();
+    $currDate = $conductor_ctrl_obj->getCurrentDate();
 
     if ($conductor_ctrl_obj->checkEmpty($leave_date) == false) {
         $error = "Empty Field. Please Select a date!!";
-        header("Location: ../conductor_update_leave.php?error='{$error}'");
+        header("Location: ../conductor_update_leave.php?error=$error");
+        return;
+    }elseif($leave_date<$currDate){
+        $error = "Date has already passed!!";
+        header("Location: ../conductor_update_leave.php?error=$error");
         return;
     }
     //echo $_SESSION['account_no'];
