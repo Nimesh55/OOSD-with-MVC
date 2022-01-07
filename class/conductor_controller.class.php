@@ -77,16 +77,16 @@ class Conductor_Controller extends Conductor_Model
 
         if (!empty($isLeaveExist)) {
             $error = "Leave Already Created with that Date!!";
-            header("Location: ../conductor_update_leave.php?error='{$error}'");
+            header("Location: ../conductor_update_leave.php?error=$error");
             return;
         } elseif ($isBooked == true && empty($isLeaveExist)) {
             $error = "Booking has been made. Try another date!!";
-            header("Location: ../conductor_update_leave.php?error='{$error}'");
+            header("Location: ../conductor_update_leave.php?error=$error");
             return;
         } elseif ($isBooked == false && empty($isLeaveExist)) {
             $this->updateLeaveFromModel($conductor_no, $date);
             $error = "Leave Granted!!";
-            header("Location: ../conductor_update_leave.php?error='{$error}'");
+            header("Location: ../conductor_update_leave.php?error=$error");
             return;
         }
     }
@@ -170,7 +170,7 @@ class Conductor_Controller extends Conductor_Model
     }
     public function getCurrentDate(){
         return date("Y-m-d");
-}
+    }
 
     public function getGrantedLeaveDetails($conductor_no){
         $selected_leaves = array();
