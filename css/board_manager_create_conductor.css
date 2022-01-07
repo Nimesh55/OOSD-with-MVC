@@ -1,0 +1,23 @@
+body{
+    background-color: violet;
+    background: url("../img/PassBlue.jpg") no-repeat center fixed;
+    background-size: cover;
+    font-size: 16px;
+}
+
+.container{
+    width: 53%;
+    background-color: rgb(44, 44, 37);
+    padding: 3%; 
+    
+    margin-top: 2%;
+    border-style: ridge;
+    border: 2px solid whitesmoke;
+    border-radius: 10px;
+}
+
+.control-label{
+    color: aliceblue;
+    word-spacing: 2x;
+}
+
