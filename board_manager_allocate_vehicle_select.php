@@ -9,7 +9,7 @@ if(!isset($_SESSION['user_Id'])){
 }
 
 $board_manager_view = new Board_Manager_View();
-$details = $board_manager_view->getSelectVehicleDetails($_GET['booking_no'],1);
+$details = $board_manager_view->getSelectVehicleDetails($_GET['booking_no'],$_GET['pickup']);
 
 $available_vehicles = $details['vehicle_list'];
 $vehicle_cnt = count($available_vehicles);
