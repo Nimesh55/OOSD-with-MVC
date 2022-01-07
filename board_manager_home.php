@@ -63,53 +63,62 @@ $details = $board_manager_view->getHomeDetails();
     </div>
 
     <div class="container mt-3">
+
+
+
+    <div class="container">
         <h1> <?= $details['name']  ?> </h1>
-        <div style="margin-top:100px;">
-            <div class="row">
-                <div class="col-sm-3 p-3"></div>
-                <div class="col-sm-3 p-3 bg-dark text-white">
-                    <p>Number of Pending Passes</p>
-                </div>
-                <div class="col-sm-3 p-3 bg-primary text-white">
-                    <p>: <?=$details['pending_passes_cnt']?></p>
-                </div>
-                <div class="col-sm-3 p-3"></div>
-            </div>
 
-            <div class="row">
-                <div class="col-sm-3 p-3"></div>
-                <div class="col-sm-3 p-3 bg-dark text-white">
-                    <p>Number of Approved Passes</p>
-                </div>
-                <div class="col-sm-3 p-3 bg-primary text-white">
-                    <p>: <?=$details['approved_passes_cnt']?></p>
-                </div>
-                <div class="col-sm-3 p-3"></div>
-            </div>
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6 wrapper">
 
-            <div class="row">
-                <div class="col-sm-3 p-3"></div>
-                <div class="col-sm-3 p-3 bg-dark text-white">
-                    <p>Number of Conductors</p>
+                <div class="row">
+                    <div class="col-sm-6 p-3 field">
+                        <p>Number of Pending Passes</p>
+                    </div>
+                    <div class="col-sm-1 p-3">:</div>
+                    <div class="col-sm-5 p-3">
+                        <p><?=$details['pending_passes_cnt']?></p>
+                    </div>
                 </div>
-                <div class="col-sm-3 p-3 bg-primary text-white">
-                    <p>: <?=$details['total_conductor_cnt']?></p>
-                </div>
-                <div class="col-sm-3 p-3"></div>
-            </div>
 
-            <div class="row">
-                <div class="col-sm-3 p-3"></div>
-                <div class="col-sm-3 p-3 bg-dark text-white">
-                    <p>Number of Available Conductors </p>
+                <div class="row">
+                    <div class="col-sm-6 p-3 field">
+                        <p>Number of Aprrroved Passes</p>
+                    </div>
+                    <div class="col-sm-1 p-3">:</div>
+                    <div class="col-sm-5 p-3">
+                        <p><?=$details['approved_passes_cnt']?></p>
+                    </div>
                 </div>
-                <div class="col-sm-3 p-3 bg-primary text-white">
-                    <p>: Number of Available Conductors </p>
+
+                <div class="row">
+                    <div class="col-sm-6 p-3 field">
+                        <p>Number of Conductors</p>
+                    </div>
+                    <div class="col-sm-1 p-3">:</div>
+                    <div class="col-sm-5 p-3">
+                        <p><?=$details['total_conductor_cnt']?></p>
+                    </div>
                 </div>
-                <div class="col-sm-3 p-3"></div>
+
+                <div class="row">
+                    <div class="col-sm-6 p-3 field">
+                        <p>Number of Available Conductors</p>
+                    </div>
+                    <div class="col-sm-1 p-3">:</div>
+                    <div class="col-sm-5 p-3">
+<!--                        Not completed-->
+                        <p style="color: red;">Complete this</p>
+                    </div>
+                </div>
             </div>
+            <div class="col-lg-3"></div>
+
         </div>
     </div>
+
 
 </body>
 

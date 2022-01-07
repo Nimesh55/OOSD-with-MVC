@@ -49,7 +49,7 @@ $numofIssuedPasses = $viewArray["issued"];
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['user_Id'] ?> <span class="caret"></span></a>
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo 'Administrator'; ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="administrator_configuration_settings.php">Settings</a></li>
                                     <li><a href="change_password.php">Change Password</a></li>
@@ -64,42 +64,48 @@ $numofIssuedPasses = $viewArray["issued"];
     </div>
 
     <div class="container mt-3">
-        <h1> <?= $_SESSION['user_Id'] ?> </h1>
-        <div style="margin-top:100px;">
-            <div class="row">
-                <div class="col-sm-3 p-3"></div>
-                <div class="col-sm-3 p-3 bg-dark text-white">
-                    <p>Number of Pending Companies</p>
-                </div>
-                <div class="col-sm-3 p-3 bg-primary text-white">
-                    <p>: <?php echo $numofpendingCompanies ?></p>
-                </div>
-                <div class="col-sm-3 p-3"></div>
-            </div>
+<!--        <h1> --><?//= $_SESSION['user_Id'] ?><!-- </h1>-->
+        <h1> <?= 'Administrator'; ?> </h1>
 
-            <div class="row">
-                <div class="col-sm-3 p-3"></div>
-                <div class="col-sm-3 p-3 bg-dark text-white">
-                    <p>Number of Approved Companies</p>
-                </div>
-                <div class="col-sm-3 p-3 bg-primary text-white">
-                    <p>: <?php echo $numofServicesApproved ?> </p>
-                </div>
-                <div class="col-sm-3 p-3"></div>
-            </div>
 
-            <div class="row">
-                <div class="col-sm-3 p-3"></div>
-                <div class="col-sm-3 p-3 bg-dark text-white">
-                    <p>Number of Issued Passes</p>
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6 wrapper">
+
+                <div class="row">
+                    <div class="col-sm-6 p-3 field">
+                        <p>Number of Pending Companies</p>
+                    </div>
+                    <div class="col-sm-1 p-3">:</div>
+                    <div class="col-sm-5 p-3">
+                        <p><?php echo $numofpendingCompanies ?></p>
+                    </div>
                 </div>
-                <div class="col-sm-3 p-3 bg-primary text-white">
-                    <p>: <?php echo $numofIssuedPasses ?> </p>
+
+                <div class="row">
+                    <div class="col-sm-6 p-3 field">
+                        <p>Number of Aprrroved Companies</p>
+                    </div>
+                    <div class="col-sm-1 p-3">:</div>
+                    <div class="col-sm-5 p-3">
+                        <p><?php echo $numofServicesApproved ?></p>
+                    </div>
                 </div>
-                <div class="col-sm-3 p-3"></div>
+
+                <div class="row">
+                    <div class="col-sm-6 p-3 field">
+                        <p>Number of Issued Passes</p>
+                    </div>
+                    <div class="col-sm-1 p-3">:</div>
+                    <div class="col-sm-5 p-3">
+                        <p><?php echo $numofIssuedPasses ?></p>
+                    </div>
+                </div>
             </div>
+            <div class="col-lg-3"></div>
 
         </div>
+
     </div>
 </body>
 

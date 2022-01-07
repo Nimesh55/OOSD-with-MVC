@@ -8,13 +8,21 @@
     word-break: break-word;
     background-color: rgb(44, 44, 37);
     color: aliceblue;
-    opacity: 0.95;
     margin-top:75px;
+    border-style: ridge;
+    border: 2px solid whitesmoke;
+    opacity: 0.95;
 }
 #heading{
     padding:15px 0;
     font-family: 'Roboto', sans-serif;
 }
 .field{
-    text-align: right;
+    text-align: center;
+}
+body{
+    background-color: #095946;
+}
+h1{
+    color: antiquewhite;
 }
