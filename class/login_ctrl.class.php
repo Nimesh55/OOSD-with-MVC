@@ -17,7 +17,7 @@ class Login_Controller extends Login
         // check for all the errors using the helper functions
         if ($this->emptyField() == false) {
             // error msg here
-            header("location: ../test.php?error=emptyfield");
+            header("location: ../login.php?error=emptyfield");
             exit();
         }
 
@@ -28,7 +28,12 @@ class Login_Controller extends Login
                 header("location: ../passenger_home.php");
                 break;
             case '1':
-                header("location: ../conductor_home.php");
+                if ($this->getUserConductorState($this->uid)==1) { // If the conductor account has been removed THe login is not allowed
+                    header("location: ../login.php?error=nouser");
+                }
+                else{
+                    header("location: ../conductor_home.php");
+                }
                 break;
             case '2':
                 header("location: ../executive_home.php");
@@ -40,7 +45,7 @@ class Login_Controller extends Login
                 header("location: ../administrator_home.php");
                 break;
             default:
-                header("location: ../test.php?error=nouser");
+                header("location: ../login.php?error=nouser");
                 break;
         }
     }

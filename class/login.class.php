@@ -61,4 +61,12 @@ class Login extends Dbh{
         }
         return -1;
     }
+
+    protected function getUserConductorState($uid){
+        $query = "SELECT state FROM users JOIN conductor ON users.account_no = conductor.conductor_no WHERE user_Id=?";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute([$uid]);
+        $result = $stmt->fetch();
+        return $result['state'];
+    }
 }
