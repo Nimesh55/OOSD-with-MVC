@@ -72,30 +72,8 @@ $leaves = $conductorview->getGrantedLeave($_SESSION['account_no']);
 
     <div class="container mt-3">
         <div class="row">
-            <div class="col-lg-5 wrapper">
-                <h3>Granted Leaves</h3>
-                <table class="table ">
-                    <thead>
-                        <tr>
-                            <th>Leave No</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                    <?php
-                        foreach($leaves as $leave){
-                            echo "<tr>";
-                            echo "<td>{$leave['leave_no']}</td>";
-                            echo "<td>{$leave['date']}</td>";
-                            echo "</tr>";
-                        }
-
-                    ?>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-lg-1"></div>
+            
+            
             <div class="col-lg-5 wrapper">
                 <h3>Request New Leave</h3>
                 <br>
@@ -122,6 +100,30 @@ $leaves = $conductorview->getGrantedLeave($_SESSION['account_no']);
                     </div>
                 </form>
 
+            </div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5 wrapper">
+                <h3>Granted Leaves</h3>
+                <table class="table ">
+                    <thead>
+                        <tr>
+                            <th>Leave No</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    <?php
+                        foreach($leaves as $leave){
+                            echo "<tr>";
+                            echo "<td>{$leave['leave_no']}</td>";
+                            echo "<td>{$leave['date']}</td>";
+                            echo "</tr>";
+                        }
+
+                    ?>
+                    </tbody>
+                </table>
             </div>
         </div>
 
