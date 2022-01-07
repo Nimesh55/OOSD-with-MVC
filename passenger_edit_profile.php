@@ -80,7 +80,6 @@
           echo "<div class=\"alert alert-success\"><strong>"."Successfully Updated!!!"."</strong></div>";
         }
         ?>
-
 				<form class="form-horizontal" role="form" action="includes/passenger_edit_profile.inc.php" method="post">
 					<div class="form-group">
 						<label for="fname" class="col-sm-3 control-label">First Name:</label>

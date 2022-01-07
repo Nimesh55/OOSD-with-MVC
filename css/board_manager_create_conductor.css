@@ -5,19 +5,29 @@ body{
     font-size: 16px;
 }
 
-.container{
-    width: 53%;
+.wrapper{
+    /*width: 53%;*/
     background-color: rgb(44, 44, 37);
-    padding: 3%; 
+    /*padding: 0.5%;*/
     
-    margin-top: 2%;
+    margin-top: 1%;
     border-style: ridge;
     border: 2px solid whitesmoke;
     border-radius: 10px;
+
+    text-align: center;
+
+
 }
 
 .control-label{
     color: aliceblue;
-    word-spacing: 2x;
 }
+#heading{
+    font-weight: bold;
+    color: aliceblue;
+}
+/*.navigation{*/
+/*    position: fixed;*/
+/*}*/
 

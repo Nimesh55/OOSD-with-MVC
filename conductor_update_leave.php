@@ -121,9 +121,6 @@ $leaves = $conductorview->getGrantedLeave($_SESSION['account_no']);
                             <button class="btn btn-primary" type="submit" name="submit">Submit</button>
                         </div>
                     </div>
-
-
-
                 </form>
 
             </div>

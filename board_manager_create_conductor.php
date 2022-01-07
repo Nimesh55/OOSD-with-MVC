@@ -28,6 +28,7 @@ $details = $board_manager_view->getCreateConductorDetails();
 </head>
 
 <body>
+    <div class="navigation">
     <div class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="row">
@@ -61,98 +62,93 @@ $details = $board_manager_view->getCreateConductorDetails();
             </div>
         </div>
     </div>
+    </div>
 
-    <div class="container mt-3">
-
-        <form method="POST" class="form-horizontal" action="includes/signup.inc.php?account_type=1" style="width: 700px;">
-
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="first_name">First Name:</label>
-                <div class="col-sm-6">
-                    <input name="Firstname" type="text" class="form-control" id="first_name" placeholder="Enter First Name" ">
-            </div>
-        </div>
-
-        <div class=" form-group">
-                    <label class="control-label col-sm-2" for="last_name">Last Name:</label>
-                    <div class="col-sm-6">
-                        <input name="Lastname" type="text" class="form-control" id="last_name" placeholder="Enter Last Name">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="address">Address:</label>
-                    <div class="col-sm-6">
-                        <input name="Address" type="text" class="form-control" id="address" placeholder="Enter Addres">
-                    </div>
-                </div>
-
-                <div class="form-group col1">
-                    <label class="control-label col-sm-2" for="telephone">Telephone:</label>
-                    <div class="col-sm-6">
-                        <input name="Telephone" type="text" class="form-control" id="telephone" placeholder="Enter Telephone">
-                    </div>
-                </div>
-
-                <div class="form-group col2">
-                    <label class="control-label col-sm-2" for="vehical_no">Vehicle No:</label>
-                    <div class="col-sm-6">
-                        <input name="vehicle_no" type="text" class="form-control" id="vehical_no" placeholder="Enter Vehicle No">
-                    </div>
-                </div>
-
-                <div class="form-group col1">
-
-                </div>
-
-                <div class="form-group col2">
-
-
-                </div>
-
-                <div class="form-group">
-
-                    <div class="col-sm-12">
-                        <div class="input-group input-group-sm">
-                            <label class="control-label col-sm-3" for="bus_id">District:</label>
-                            <?php
-                                echo '<div class="col-sm-3">';
-                                echo '<select name="district" id="district" class="form-control">';
-
-                                $districts = $details['districtArray'];
-
-                                foreach ($districts as $district) {
-                                    echo "<option value='" . $district['district_no'] . "' >" . $district['name'] . "</option>";
-                                }
-
-                                echo '</select>';
-                                echo '</div>';
-                            ?>
-
-                            <label class="control-label col-sm-3" for="conductor_id">NIC:</label>
-                            <div class="col-sm-3">
-                                <input name="ID" type="text" class="form-control" id="conductor_id" placeholder="Enter NIC number">
-                            </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8 wrapper">
+                <form method="POST" class="form-horizontal" action="includes/signup.inc.php?account_type=1">
+                    <h3 id="heading">Conductor Registration</h3>
+                    <br>
+                    <div class="form-group">
+        <!--                <input type="text" class="form-control">-->
+                        <label class="control-label col-sm-3" for="first_name">First Name:</label>
+                        <div class="col-sm-9">
+                            <input name="Firstname" type="text" class="form-control" id="first_name" placeholder="Enter First Name" ">
                         </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="email">Email:</label>
-                    <div class="col-sm-6">
-                        <input name="email" type="text" class="form-control" placeholder="Enter email" id="email">
+                    <div class=" form-group">
+                        <label class="control-label col-sm-3" for="last_name">Last Name:</label>
+                        <div class="col-sm-9">
+                            <input name="Lastname" type="text" class="form-control" id="last_name" placeholder="Enter Last Name">
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button name='submit' type="submit" class="btn btn-primary" style="margin-right:15px;" ;">Creat Account</button>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="address">Address:</label>
+                            <div class="col-sm-9">
+        <!--                        <input name="Address" type="text" class="form-control" id="address">-->
+                                <textarea name="Address" class="form-control" name="address" rows="3" id="address" placeholder="Enter Addres"></textarea>
+                            </div>
+                        </div>
 
-                    </div>
-                </div>
-        </form>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="telephone">Telephone:</label>
+                            <div class="col-sm-9">
+                                <input name="Telephone" type="text" class="form-control" id="telephone" placeholder="Enter Telephone">
+                            </div>
+                        </div>
 
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="vehical_no">Vehicle No:</label>
+                            <div class="col-sm-9">
+                                <input name="vehicle_no" type="text" class="form-control" id="vehical_no" placeholder="Enter Vehicle No">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="bus_id">District:</label>
+                            <div class="col-sm-9">
+                                <select name="district" id="district" class="form-control">
+                                        <?php
+                                            $districts = $details['districtArray'];
+                                            foreach ($districts as $district) {
+                                                echo "<option value='" . $district['district_no'] . "' >" . $district['name'] . "</option>";
+                                            }
+                                        ?>
+                                </select>
+                            </div>
+                        </div>
+
+                            <div class="form-group">
+                                    <label class="control-label col-sm-3" for="conductor_id">NIC:</label>
+                                <div class="col-sm-9">
+                                    <input name="ID" type="text" class="form-control" id="conductor_id" placeholder="Enter NIC number">
+                                </div>
+                            </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="email">Email:</label>
+                            <div class="col-sm-9">
+                                <input name="email" type="text" class="form-control" placeholder="Enter email" id="email">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <button name='submit' type="submit" class="btn btn-primary btn-lg" style="margin-right:15px;" ;">Creat Account</button>
+                        </div>
+
+
+                    </form>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
     </div>
+
 </body>
 
 </html>
