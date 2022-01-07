@@ -1,9 +1,9 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
-if(!isset($_SESSION['user_Id'])){
+if (!isset($_SESSION['user_Id'])) {
     header("Location: login.php");
     return;
 }
@@ -23,7 +23,7 @@ $details = $board_manager_view->getApprovedPassesDetails();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/passenger_home.css">
+    <link rel="stylesheet" href="css/board_manager_pass_details.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Board Manager Pass Details</title>
@@ -63,40 +63,54 @@ $details = $board_manager_view->getApprovedPassesDetails();
             </div>
         </div>
     </div>
-
-    <!-- SearchBar -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-    <form action="board_manager_pass_details.php" method="GET">
-        <div class="row">
-            <div class="col-xs-6 col-md-4">
-                <div class="input-group">
-                    <input name="search" type="text" class="form-control" placeholder="Search with NIC Number" id="txtSearch" />
-                    <div class="input-group-btn">
-                        <button class="btn btn-primary" type="submit">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
+    <div class="container mt-3" id="contanier-data">
+        <!-- SearchBar -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+        <form action="board_manager_pass_details.php" method="GET">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <input name="search" type="text" class="form-control" placeholder="Search with NIC Number" id="txtSearch" />
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary" type="submit">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </div>
                     </div>
                 </div>
+                <div class="col-sm-1"></div>
             </div>
-        </div>
-    </form>
-    <br>
-    <!-- List view and redirected Page button -->
-    <div class="List of info">
-        <ul class="list-group action-list-group">
-            <?php
-            $approvedPasses = $details['approvedPassesArray'];
-            foreach($approvedPasses as $pass) {
-                $name = $board_manager_view->getPassengerName($pass->getPassengerNo());
-                if($name){
-                    echo "<li class=\"list-group-item\">";
-                    echo "{$name} ";
-                    echo "<a class=\"btn btn-sm btn-default\" href=\"board_manager_view_pass_details.php?pass_no={$pass->getPassNo()}\">View</a>";
-                    echo "</li>";
+        </form>
+        <br>
+        <!-- List view and redirected Page button -->
+
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Passenger No.</th>
+                    <th scope="col">Click Here to View</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <?php
+                $approvedPasses = $details['approvedPassesArray'];
+                foreach ($approvedPasses as $pass) {
+                    $name = $board_manager_view->getPassengerName($pass->getPassengerNo());
+                    if ($name) {
+                        echo "<tr>";
+                        echo "<th scope=\"row\">>></th>";
+                        echo "<td>{$name}</td>";
+                        echo "<td><a class=\"btn btn-sm btn-default\" href=\"board_manager_view_pass_details.php?pass_no={$pass->getPassNo()}\">View</a></td>";
+                        echo "</tr>";
+                    }
                 }
-            }
-            ?>`
-        </ul>
+                ?>`
+
+            </tbody>
+        </table>
     </div>
 
 </body>
