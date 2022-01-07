@@ -6,14 +6,12 @@ class Conductor_View extends Conductor_Model
 {
   private $conductor;
   private $conductor_controller;
-  private $pass_tracker;
 
   public function __construct($conductor_no)
   {
 
     $this->conductor = new Conductor($conductor_no);
     $this->conductor_controller = new Conductor_Controller();
-    $this->pass_tracker = Pass_Tracker::getInstance();
   }
 
   public function getDetails()
@@ -39,7 +37,7 @@ class Conductor_View extends Conductor_Model
   {
 
     //$passengerObj = $this->passenger_tracker->getPassenger($passenger_id);
-    $pass_details_array = $this->pass_tracker->getPass_by_passenger_id($passenger_id);
+    $pass_details_array = $this->conductor_controller->getPass_by_passenger_id($passenger_id);
 
     $this->conductor_controller->checkPassExist($pass_details_array);
 

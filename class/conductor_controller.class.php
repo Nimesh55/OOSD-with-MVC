@@ -159,4 +159,9 @@ class Conductor_Controller extends Conductor_Model
         $this->remove_conductor_FromModel($conductor_id);
     }
 
+    public function getPass_by_passenger_id($passenger_id)
+    {
+        return Conductor_Tracker::getInstance()->getPass_by_passenger_id($passenger_id);
+    }
+
 }

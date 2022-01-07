@@ -8,12 +8,14 @@ class Conductor_Tracker extends Tracker{
     private $conductor_controller;
     private $booking_tracker;
     private $essentialService_tracker;
+    private $pass_tracker;
 
     public function __construct()
     {
         $this->conductor_controller = new Conductor_Controller();
         $this->booking_tracker = Booking_Tracker::getInstance();
         $this->essentialService_tracker = EssentialServiceTracker::getInstance();
+        $this->pass_tracker = Pass_Tracker::getInstance();
     }
 
     public static function getInstance(){
@@ -100,6 +102,11 @@ class Conductor_Tracker extends Tracker{
     public function removeConductor($conductor_id)
     {
         $this->conductor_controller->remove_conductor($conductor_id);
+    }
+
+    public function getPass_by_passenger_id($passenger_id)
+    {
+        return $this->pass_tracker->getPass_by_passenger_id($passenger_id);
     }
 }
 
