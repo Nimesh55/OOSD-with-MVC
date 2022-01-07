@@ -8,7 +8,6 @@
         return;
     }
 
-
     $passengerview = new Passenger_View($_SESSION['user_Id']);
     $pass_state = $passengerview->getPassState();
     $username = $passengerview->getUserName();
@@ -38,7 +37,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passenger Profile Edit</title>
+    <title>Passenger || Register in Company</title>
 
     <link rel="stylesheet" href="css/passenger_register_in_company.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
