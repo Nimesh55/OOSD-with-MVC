@@ -86,13 +86,12 @@ foreach ($bookings as $booking){
         </div>
     </div>
 </div>
-
+<div class="container">
 <form action="board_manager_allocate_vehicle.php" method="GET">
     <div class="row">
-        <div class="col-xs-6 col-md-4">
+<!--        <div class="col-xs-6 col-md-4">-->
             <div class="input-group">
 
-                <label for="district" class="col-sm-3 control-label">District:</label>
                 <select name="district_no" id="district" class="form-control">
 
 
@@ -111,21 +110,18 @@ foreach ($bookings as $booking){
                     }
                     ?>
                 </select>
-
-
                 <div class="input-group-btn">
                     <button class="btn btn-primary" type="submit">
                         <span class="glyphicon glyphicon-search"></span>
                     </button>
                 </div>
             </div>
-
-        </div>
+<!--        </div>-->
 
 
     </div>
 </form>
-
+</div>
 <div class="container">
     <h2>Allocate Vehicle</h2>
     <ul class="nav nav-tabs">
