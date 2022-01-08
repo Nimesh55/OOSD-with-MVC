@@ -1,9 +1,9 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
-if(!isset($_GET['pass_no'])){
+if (!isset($_GET['pass_no'])) {
     header("Location: board_manager_pending_passes.php");
     return;
 }
@@ -22,10 +22,10 @@ $details = $board_manager_view->viewPassDetails($pass_no);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-<!--    <link rel="stylesheet" href="css/passenger_home.css">-->
-<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
-<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <!--    <link rel="stylesheet" href="css/passenger_home.css">-->
+    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+    <!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
@@ -35,7 +35,7 @@ $details = $board_manager_view->viewPassDetails($pass_no);
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-
+    <link rel="stylesheet" href="css/board_manager_pass_details_view.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
@@ -57,9 +57,9 @@ $details = $board_manager_view->viewPassDetails($pass_no);
                     <div class="navbar-collapse collapse" id="mobile_menu">
                         <ul class="nav navbar-nav">
                             <?php
-                            if($details['state']==1){
+                            if ($details['state'] == 1) {
                                 echo '<li class="active"><a href="board_manager_pending_passes.php">Back</a></li>';
-                            }else{
+                            } else {
                                 echo '<li class="active"><a href="board_manager_pass_details.php">Back</a></li>';
                             }
                             ?>
@@ -80,57 +80,89 @@ $details = $board_manager_view->viewPassDetails($pass_no);
         </div>
     </div>
 
-    <!-- List view and redirected Page button -->
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Email Address</th>
-                <th scope="col">Name</th>
-                <th scope="col">Company</th>
-                <th scope="col">Date and Time</th>
-                <th scope="col">Reason</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row"><?= $details['passenger_email'] ?></th>
-                <td><?= $details['passenger_name'] ?></td>
-                <td><?= $details['service_name'] ?></td>
-                <td><?= $details['time_slot'] ?></td>
-                <td><?= $details['reason'] ?></td>
-            </tr>
-        </tbody>
-    </table>
+    <h1 id="heading"> <?= $details['passenger_name']." :: Pass Details"  ?> </h1>
+
+    <div class="container">
+        
+
+        <div class="row">
+            
+            <div class="col-lg-12 wrapper">
+
+                <div class="row">
+                    <div class="col-sm-5 p-3 field">
+                        <p>Email Address</p>
+                    </div>
+                    <div class="col-sm-2 p-3">:</div>
+                    <div class="col-sm-5 p-3">
+                        <p><?= $details['passenger_email'] ?></p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-5 p-3 field">
+                        <p>Passenger Name</p>
+                    </div>
+                    <div class="col-sm-2 p-3">:</div>
+                    <div class="col-sm-5 p-3">
+                        <p><?= $details['passenger_name'] ?></p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-5 p-3 field">
+                        <p>Company</p>
+                    </div>
+                    <div class="col-sm-2 p-3">:</div>
+                    <div class="col-sm-5 p-3">
+                        <p><?= $details['service_name'] ?></p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-5 p-3 field">
+                        <p>Date and Time</p>
+                    </div>
+                    <div class="col-sm-2 p-3">:</div>
+                    <div class="col-sm-5 p-3">
+                        <p><?= $details['time_slot'] ?></p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-5 p-3 field">
+                        <p>Reason</p>
+                    </div>
+                    <div class="col-sm-2 p-3">:</div>
+                    <div class="col-sm-5 p-3">
+                        <p><?= $details['reason'] ?> </p>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-8 p-3 field"></div>
+                    <div class="col-sm-4 p-3 field">
+                        <?php 
+                        echo "<form class=\"form-horizontal\" action=\"board_manager_view_pass_details.php?pass_no={$pass_no}\"  method=\"POST\">";
+                
+                        if ($details['state'] == 1) {
+                            echo "<a class=\"btn btn-primary\" href=\"includes/view_pass.inc.php?action=accept&pass_no={$pass_no}\">Accept</a>";
+                            echo "<a class=\"btn btn-primary\" href=\"includes/view_pass.inc.php?action=decline&pass_no={$pass_no}\">Decline</a>";
+                        } else {
+                            echo "<a class=\"btn btn-primary\" href=\"includes/view_pass.inc.php?action=remove&pass_no={$pass_no}\">Remove</a>";
+                        }echo "</form>";
+                        
+                        ?>
+                    </div>
+                </div>
+            </div>
+            
+            
+
+        </div>
+    </div>
 
 
-
-    <?php
-    
-        echo "<div class=\"container mt-3\" style=\"float:left;\">";
-        echo "<div style=\" margin-top:100px;\">";
-        echo "<div class=\"row\">";
-        echo "<div class=\"col-sm-3 p-3\"></div>";
-        echo "<div class=\"col-sm-3 p-3\"></div>";
-        echo "<div class=\"col-sm-3 p-3\"></div>";
-        echo "<div class=\"col-sm-3 p-3\">";
-        echo "<form class=\"form-horizontal\" action=\"board_manager_view_pass_details.php?pass_no={$pass_no}\" style=\"width: 600px;\" method=\"POST\">";
-        echo "<div class=\"form-group\">";
-        echo "<div class=\"col-sm-offset-2 col-sm-10\">";
-        if($details['state']==1){
-            echo "<a class=\"btn btn-default\" href=\"includes/view_pass.inc.php?action=accept&pass_no={$pass_no}\">Accept</a>";
-            echo "<a class=\"btn btn-default\" href=\"includes/view_pass.inc.php?action=decline&pass_no={$pass_no}\">Decline</a>";
-        }else{
-            echo "<a class=\"btn btn-default\" href=\"includes/view_pass.inc.php?action=remove&pass_no={$pass_no}\">Remove</a>";
-        }
-        echo "</div>";
-        echo "</div>";
-        echo "</form>";
-        echo "</div>";
-        echo "</div>";
-        echo "</div>";
-    
-
-    ?>
 </body>
 
 </html>
