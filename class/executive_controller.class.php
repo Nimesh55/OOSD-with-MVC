@@ -182,4 +182,9 @@ class Executive_Controller extends Executive_Model
         Booking_Tracker::getInstance()->cancelBookingByExecutive($booking_no);
         $_SESSION['success'] = "Booking cancelled";
     }
+
+    public function checkExecutivePassword($user_id,$password){
+//        $this->checkPassword($password);
+        return $this->checkPassword($user_id,$password);
+    }
 }

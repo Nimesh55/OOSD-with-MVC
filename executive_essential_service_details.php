@@ -7,11 +7,15 @@ if (!isset($_SESSION['user_Id'])) {
     header("Location: login.php");
     return;
 }
-
 $exec_view = new Executive_View();
+$details = $exec_view->getHomeDetails();
 $service_file = File_Controller::getInstance()->getFileDetails($exec_view->getServiceFileNo());
 
 $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
+
+echo "<pre>";
+print_r($details);
+echo "</pre>";
 
 ?>
 
@@ -72,71 +76,92 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
         </div>
     </div>
     <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" action="includes/executive_essential_service_details.inc.php">
-    <div class="container mt-3" style="float:left;">
+    <div class="container">
         <h1> <?= $_SESSION['service_name']; ?> </h1>
-        <div style=" margin-top:100px;">
-            <div class="row">
-                <div class="col-sm-3 p-3"></div>
-                <div class="col-sm-3 p-3 bg-dark text-white">
-                    <p>Essential Service Status</p>
-                </div>
-                <div class="col-sm-3 p-3 bg-primary text-white">
-                    <p>: <?php echo $state_str; ?></p>
-                </div>
-                <div class="col-sm-3 p-3"></div>
-            </div>
 
-            <div class="row">
-                <div class="col-sm-3 p-3"></div>
-                <div class="col-sm-3 p-3 bg-dark text-white">
-                    <p>Attachments:</p>
-                </div>
-                <div class="col-sm-3 p-3 bg-primary text-white">
-                    <?php if ($state_str == "Non-Essential") : ?>
-                        <input type="file" id="file" name="file"/>;
-                    <?php elseif (($state_str == "Essential" || $state_str == "Pending") and $service_file==null) : ?>
-                        <input name="view" type="text" class="form-control" id="view" readonly value="No file added">
-                    <?php elseif(($state_str == "Essential" || $state_str == "Pending") and $service_file!=null) : ?>
-                        <input name="view" type="text" class="form-control" id="view" readonly value="<?= $service_file['name'] ?>">
-                        <button class="alert-success"><a href="includes/download.inc.php?name=<?php echo $service_file['name'];?>&fname=<?php echo $service_file['fname'] ?>">Download</a></button>
-                    <?php endif; ?>
-                </div>
-                <div class="col-sm-3 p-3"></div>
-            </div>
+        <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6 wrapper">
 
-
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <?php if ($state_str == "Non-Essential") : ?>
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3">
-                        <form action="includes/executive_essential_service_details.inc.php" method="POST">
-                            <input type="hidden" name="variablePass1" value="1-<?php echo $_SESSION['service_no'] ?>">
-                        <button class="btn btn-info" type="submit" name="submit" value="Request" onclick="clickView('1-<?php echo $_SESSION['service_no'] ?>','includes/executive_essential_service_details.inc.php')" >Request</button>
-                        </form>
-                        
+                    <div class="row">
+                        <div class="col-sm-4 p-3 field">
+                            <p>Service Name</p>
+                        </div>
+                        <div class="col-sm-1 p-3">:</div>
+                        <div class="col-sm-7 p-3 data">
+                            <p><?= $details['service_name']?> </p>
+                        </div>
                     </div>
 
-                    <div class="col-sm-3 p-3"></div>
-                </div>
-            <?php endif; ?>
-            <?php if ($state_str == "Essential" || $state_str == "Pending") : ?>
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3">
-                        <a href="#" class="btn btn-info" onclick="clickView('0-<?php echo $_SESSION['service_no'] ?>','executive_remove_essetial_service_verification.php')"> Remove </a>
+                    <div class="row">
+                        <div class="col-sm-4 p-3 field">
+                            <p>Essential Service Status</p>
+                        </div>
+                        <div class="col-sm-1 p-3">:</div>
+                        <div class="col-sm-7 p-3 data">
+                            <p><?= $state_str?> </p>
+                        </div>
                     </div>
 
-                    <div class="col-sm-3 p-3"></div>
-                </div>
-            <?php endif; ?>
+                    <div class="row">
+                        <div class="col-sm-4 p-3 field">
+                            <p>Address</p>
+                        </div>
+                        <div class="col-sm-1 p-3">:</div>
+                        <div class="col-sm-7 p-3 data">
+                            <p><?= $details['address']?> </p>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="col-sm-4 p-3 field">
+                            <p>Telephone NO</p>
+                        </div>
+                        <div class="col-sm-1 p-3">:</div>
+                        <div class="col-sm-7 p-3 data">
+                            <p><?= $details['telephone_no']?> </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4 p-3 field">
+                            <p>Attachments</p>
+                        </div>
+                        <div class="col-sm-1 p-3">:</div>
+                        <div class="col-sm-7 p-3 data">
+                            <?php if ($state_str == "Non-Essential") : ?>
+                                <input type="file" id="file" name="file"/>
+                            <?php elseif (($state_str == "Essential" || $state_str == "Pending") and $service_file==null) : ?>
+                                <input name="view" type="text" class="form-control" id="view" readonly value="No file added">
+                            <?php elseif(($state_str == "Essential" || $state_str == "Pending") and $service_file!=null) : ?>
+                                <input name="view" type="text" class="form-control" id="view" readonly value="<?= $service_file['name'] ?>">
+                                <button class="alert-success"><a href="includes/download.inc.php?name=<?php echo $service_file['name'];?>&fname=<?php echo $service_file['fname'] ?>">Download</a></button>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="ctrlbutton">
+                        <?php if ($state_str == "Non-Essential") : ?>
+
+                            <form action="includes/executive_essential_service_details.inc.php" method="POST">
+                                <input type="hidden" name="variablePass1" value="1-<?php echo $_SESSION['service_no'] ?>">
+                                <button class="btn btn-info" type="submit" name="submit" value="Request" onclick="clickView('1-<?php echo $_SESSION['service_no'] ?>','includes/executive_essential_service_details.inc.php')" >Request</button>
+                            </form>
+
+                        <?php endif; ?>
+
+                        <?php if ($state_str == "Essential" || $state_str == "Pending") : ?>
+                            <a href="#" class="btn btn-info" onclick="clickView('0-<?php echo $_SESSION['service_no'] ?>','executive_remove_essetial_service_verification.php')"> Remove </a>
+                        <?php endif; ?>
+                    </div>
+
+
+                </div>
+                <div class="col-lg-3"></div>
+
+            </div>
         </div>
+
     </div>
     </form>
 

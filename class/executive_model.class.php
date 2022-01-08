@@ -1,5 +1,4 @@
 <?php
-
 require_once "dbh.class.php";
 class Executive_Model extends Dbh
 {
@@ -128,9 +127,11 @@ class Executive_Model extends Dbh
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$file_no, $service_no]);
     }
-    protected function checkPassword($password){
+    protected function checkPassword($user_id,$password){
+//        print_r($_SESSION);
         $query = "SELECT password FROM users WHERE user_Id=?";
         $stmt = $this->connect()->prepare($query);
+        $stmt->execute([$user_id]);
         $pwdHashed = $stmt->fetch();
         return password_verify($password, $pwdHashed["password"]);
     }
