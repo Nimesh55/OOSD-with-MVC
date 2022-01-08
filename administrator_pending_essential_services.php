@@ -20,7 +20,7 @@ $rows = $view->getPendingRows(); // getpending rows
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/passenger_home.css">
+    <link rel="stylesheet" href="css/administrator_pending_essensial_services.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Administrator Pending Essential Services</title>
@@ -60,9 +60,11 @@ $rows = $view->getPendingRows(); // getpending rows
     </div>
 
     <!-- List Viw with two buttons -->
-    <ul class="list-group action-list-group">
-        <table class="table">
-            <thead>
+    <div class="container">
+        <div class="wrapper">
+
+            <table class="table">
+                <thead>
                 <tr>
                     <th scope="col"></th>
                     <th scope="col">Service ID</th>
@@ -70,8 +72,8 @@ $rows = $view->getPendingRows(); // getpending rows
                     <th scope="col"></th>
 
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 <?php
                 $i = 0;
                 while ($i < count($rows)) :  ?>
@@ -83,12 +85,15 @@ $rows = $view->getPendingRows(); // getpending rows
                             <a href="#" class="btn btn-info" onclick="clickView(<?php echo $rows[$i]['service_no'];  ?>)"> view </a>
                         </td>
                     </tr>
-                <?php $i++;
+                    <?php $i++;
                 endwhile; ?>
 
-            </tbody>
-        </table>
-    </ul>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
     <script type="text/javascript">
         // Onclick function for the relavant button
         function clickView(arg) {
