@@ -15,7 +15,7 @@
             elseif(empty($details['end_date'])){
                 $this->error="*Enter the end date!!!";
             }
-            elseif($details['start_date']<date("y-m-d") or $details['end_date']<$details['start_date']){
+            elseif(strtotime($details['start_date'])<strtotime(date("Y-m-d")) or strtotime($details['end_date'])<strtotime($details['start_date'])){
                 $this->error="*Dates are invalid. Check your dates and try again!!!";
             }
             else{
