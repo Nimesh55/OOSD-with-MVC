@@ -8,25 +8,35 @@ class Board_Manager_Controller extends Board_Manager_Model
     private $pass_tracker;
     private $booking_tracker;
     private $conductor_tracker;
+    private $passenger_tracker;
 
     public function __construct()
     {
         $this->pass_tracker = Pass_Tracker::getInstance();
         $this->booking_tracker = Booking_Tracker::getInstance();
         $this->conductor_tracker = Conductor_Tracker::getInstance();
+        $this->passenger_tracker = Passenger_Tracker::getInstance();
     }
 
     public function approvePass($pass_no)
     {
-        $this->pass_tracker->upgradePassState($pass_no);
         $_SESSION['success'] = "Pass approved successfully";
+        $pass = $this->pass_tracker->upgradePassState($pass_no);
+        $passenger = $this->passenger_tracker->getPassengerByPassengerNo($pass->getPassengerNo());
+        $param = [1,$passenger->getUserId(),$pass->getPassNo(),$pass->getBusRoute(), $pass->getStartDate(), $pass->getEndDate()];
+        // Final Approval Notification
+        Notification_handler::setupNotification($passenger->getEmail(),$passenger->getTelephone(),$param);
         header("Location: ../board_manager_pending_passes.php");
     }
 
     public function declinePass($pass_no)
     {
-        $this->pass_tracker->declinePass($pass_no);
         $_SESSION['success'] = "Pass declined successfully";
+        $pass = $this->pass_tracker->declinePass($pass_no);
+        $passenger = $this->passenger_tracker->getPassengerByPassengerNo($pass->getPassengerNo());
+        $param = [2,$pass->getPassNo()];
+        // Final Decline Approval Notification
+        Notification_handler::setupNotification($passenger->getEmail(),$passenger->getTelephone(),$param);
         header("Location: ../board_manager_pending_passes.php");
     }
 
