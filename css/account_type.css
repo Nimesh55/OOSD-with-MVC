@@ -1,5 +1,5 @@
 body {
-    background: url(../img/login2.jpg);
+    background: url(../img/PassBlue.jpg);
     background-size: cover;
     background-attachment: fixed;
     font-family: 'Roboto', sans-serif;
@@ -8,23 +8,26 @@ body {
   }
 
 .main-win form{
-    background-color: rgba(24, 24, 102, 0.918);
+    background-color: rgb(0, 0, 0);
     width: 40%;
     display: inline-block;
     margin-top: 10%;
-    padding: 50px;
-    border-radius: 1cm;
-
+    padding: 3%;
+    border-radius: 3%;
+    border-color: aliceblue;
+    border-width: 1cm;
 }
 
 .button01, .button02{
     height: 180px;
     width: 180px;
-    background-color: blue;
+    background-color: #2961aa;
     margin: 20px;
     color: white;
     font-size: medium;
     border-color: rgb(13, 13, 71);
+    border-radius: 3%;
+
 }
 
 .button01:hover, .button02:hover{

@@ -11,7 +11,7 @@
 
 <div class="main-win">
     <form method="post">
-        <h1 class="title">Select account type for sign up</h1>
+        <h1 class="title">Select Account type for Sign Up</h1>
         <div class="main-buttons">
             <input type="button" value="Executive" onclick="location.href='executive_signup.php'" class="button01">
             <input type="button" value="Passenger" onclick="location.href='passenger_signup.php'" class="button02">
