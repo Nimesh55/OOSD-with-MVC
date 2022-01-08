@@ -83,7 +83,7 @@ $rows = $view->getApprovedRows(); // getpending rows
                         <td><?php echo $rows[$i]["id"]; ?></td>
                         <td><?php echo $rows[$i]["name"]; ?></td>
                         <td>
-                            <a href="#" class="btn btn-info" onclick="clickView(<?php echo $rows[$i]['service_no'];  ?>)"> View </a>
+                            <a href="#" class="btn btn-primary" onclick="clickView(<?php echo $rows[$i]['service_no'];  ?>)"> View </a>
                         </td>
                     </tr>
                 <?php $i++;
