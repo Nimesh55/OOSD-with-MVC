@@ -59,6 +59,22 @@ $passengers = $execObj->getPassengerAll($_SESSION['service_no']);
         </div>
     </div>
 
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <form action="executive_passenger_details.php" method="GET">
+        <div class="row">
+            <div class="col-xs-6 col-md-4">
+                <div class="input-group">
+                    <input name="search" type="text" class="form-control" placeholder="Search with staff ID" id="txtSearch" />
+                    <div class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
 
     <div class="container mt-3">
 

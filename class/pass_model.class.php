@@ -117,11 +117,12 @@ class Pass_Model extends Dbh
     private function getPendingPassesSearchQuery()
     {
         if (isset($_GET['search'])) {
-            // Handle sql injection in following query when add get value in search
-            $query = "SELECT * FROM users WHERE account_type=0 AND (user_id Like '%{$_GET['search']}%')  ORDER BY user_no";
+            $input = $_GET['search'];
+
+            $query = "SELECT * FROM users WHERE account_type=0 AND (user_id Like CONCAT( '%',?,'%'))  ORDER BY user_no";
             $stmt = $this->connect()->prepare($query);
 
-            if ($stmt->execute()) {
+            if ($stmt->execute([$input])) {
                 $pending_passes = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 $record_count = count($pending_passes);
 
@@ -157,14 +158,14 @@ class Pass_Model extends Dbh
     private function getApprovedPassesSearchQuery()
     {
         if (isset($_GET['search'])) {
-            // Handle sql injection in following query when add get value in search
-            $query = "SELECT * FROM users WHERE account_type=0 AND (user_id Like '%{$_GET['search']}%')  ORDER BY user_no";
+            $input = $_GET['search'];
+
+            $query = "SELECT * FROM users WHERE account_type=0 AND (user_id Like CONCAT( '%',?,'%'))  ORDER BY user_no";
             $stmt = $this->connect()->prepare($query);
 
-            if ($stmt->execute()) {
-                $pending_passes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if ($stmt->execute([$input])) {
+                $pending_passes = $stmt->fetchAll();
                 $record_count = count($pending_passes);
-
                 $query = "SELECT * FROM pass WHERE state=2 AND (";
                 for ($i = 0; $i < $record_count; $i++) {
                     $record = $pending_passes[$i];

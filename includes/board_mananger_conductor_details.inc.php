@@ -1,18 +1,14 @@
 <?php 
 
 session_start();
-
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
 
 if (isset($_POST['submit'])) {
     
     // fetch conductor id
     $conductor_id = htmlentities($_POST['conductor_id']);
 
-    // Instanciate Passenger Controller in MVC
-    require_once "../class/dbh.class.php";
-    require_once "../class/board_manager.class.php";
-    require_once "../class/board_manager_controller.class.php";
-    require_once "../class/board_manager_model.class.php";
+    
 
     $ctrl_obj = new Board_Manager_Controller();
 

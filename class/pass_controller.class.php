@@ -61,6 +61,7 @@ class Pass_Controller extends Pass_Model{
     }
 
     public function getApprovedPassesSearchArray(){
+
         return $this->getApprovedPassesSearchArrayFromModel();
     }
 

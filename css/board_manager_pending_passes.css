@@ -6,7 +6,7 @@ body{
 }
 
 #contanier-data {
-    width: 50%;
+    width: 45%;
     background-color: rgb(39, 39, 32);
     padding: 3%; 
     color: aliceblue;
@@ -19,11 +19,9 @@ body{
 
 #btn-primary-Not{
     width: 55%;
-
 }
 
 .alert{
     text-align: center;
-    margin-top: 0%;
     padding: 1%;
 }

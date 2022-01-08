@@ -137,6 +137,7 @@ if (isset($_POST['view'])) {
                     <div class="col-sm-3 p-3">
                         <?php $_SESSION['decline'] = $service_id ?>
                         <a href="includes/serviceFunction_Decline.inc.php?x=r" class="btn btn-info"> Remove </a>
+                        <a href="administrator_approved_essential_services.php" class="btn btn-default"> Exit </a>
                     </div>
 
                     <div class="col-sm-3 p-3"></div>
