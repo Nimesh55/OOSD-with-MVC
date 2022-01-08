@@ -61,6 +61,8 @@ $rows = $view->getPendingRows(); // getpending rows
 
     <!-- List Viw with two buttons -->
     <div class="container">
+        <h1 id="heading">Pending Essential Services</h1>
+
         <div class="wrapper">
 
             <table class="table">
