@@ -114,6 +114,7 @@ $details = $board_manager_view->getApprovedPassesDetails();
 
                 if(empty($approvedPasses) and isset($_GET['search'])){
                     echo "No matches found";
+                    
                 }
 
                 ?>`
