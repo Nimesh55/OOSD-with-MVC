@@ -52,6 +52,7 @@ class Notification_handler
     private static function notification_builder($param)
     {
         $msgType = $param[0];
+        print_r($msgType);
         switch ($msgType) {
                 // Pass Related Notifications.
             case 0: {
