@@ -172,34 +172,6 @@ foreach ($bookings as $booking) { // Seperated the Bookings in to 3 array for 3 
         </div>
     </div>
 
-<!--    <form action="executive_pass_details_view_page.php" method="POST">-->
-<!--        <a href="executive_request_booking.php" class="btn btn-info" name="request" style=""> Request Booking </a>-->
-<!--        <table class="table">-->
-<!--            <thead>-->
-<!--                <tr>-->
-<!--                    <th scope="col">Booking Number</th>-->
-<!--                    <th scope="col">View Details</th>-->
-<!---->
-<!--                </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--                --><?php
-//
-//
-//                    $bookings = $detailsArray['service_bookings']; //booking rows here from DB via booking tracker
-//
-//                    foreach($bookings as $booking){
-//                        $booking_no = $booking->getBookingNo();
-//                        echo '<tr>';
-//                        echo '<th scope="row">Booking '.$booking_no.'</th>';
-//                        echo '<td><a href="executive_booking_details_view.php?booking_no='.$booking_no.'" class="btn btn-info"> View </a></td>';
-//                        echo '</tr>';
-//                    }
-//                ?>
-<!---->
-<!--            </tbody>-->
-<!--        </table>-->
-<!--    </form>-->
 </body>
 
 </html>

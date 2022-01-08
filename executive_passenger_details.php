@@ -8,6 +8,18 @@ if (!isset($_SESSION['user_Id'])) {
 }
 $execObj = new Executive_View();
 $passengers = $execObj->getPassengerAll($_SESSION['service_no']);
+
+$pendingPassengers = array();
+$appprovedPassengers = array();
+
+foreach ($passengers as $passenger){
+    if($passenger->getState()==1){
+        array_push($pendingPassengers,$passenger);
+    }elseif ($passenger->getState()==2){
+        array_push($appprovedPassengers,$passenger);
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -75,6 +87,72 @@ $passengers = $execObj->getPassengerAll($_SESSION['service_no']);
         </div>
     </form>
 
+    <div class="container mt-3">
+
+        <div style="margin-top:100px;">
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#link1" data-toggle="tab">Pending</a></li>
+            <li><a href="#link2" data-toggle="tab">Approved</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="link1" class="tab-pane fade in active">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Staff ID</th>
+                        <th scope="col">Passenger Name</th>
+                        <th scope="col">View Details</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    foreach($pendingPassengers as $passenger){
+                        echo '<tr>';
+                        echo '<th scope="row">'.$passenger->getStaffId().'</th>';
+                        echo '<td>'.'</td>';
+                        echo '<td><a href="executive_booking_details_view.php?booking_no='.$booking_no.'" class="btn btn-info"> View </a></td>';
+                        echo '</tr>';
+
+                        echo '<li class="list-group-item">';
+                        echo '<p '.'style="display: inline-block"'.' >'. $passenger->getFirstName() .' '.$passenger->getLastName().'</p>';
+                        echo '<a class="btn btn-sm btn-default" href="#" onclick="clickView('.$passenger->getPassengerNo().',\'executive_passenger_details_view_page.php\')" style="float: right"'.'>View</a>';
+                        echo '</li>';
+                    }
+                    ?>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="link2" class="tab-pane fade">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Booking Number</th>
+                        <th scope="col">View Details</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    foreach($appprovedPassengers as $passenger){
+                        echo '<li class="list-group-item">';
+                        echo '<p '.'style="display: inline-block"'.' >'. $passenger->getFirstName() .' '.$passenger->getLastName().'</p>';
+                        echo '<a class="btn btn-sm btn-default" href="#" onclick="clickView('.$passenger->getPassengerNo().',\'executive_passenger_details_view_page.php\')" style="float: right"'.'>View</a>';
+                        echo '</li>';
+                    }
+                    ?>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
 
     <div class="container mt-3">
 
@@ -83,7 +161,7 @@ $passengers = $execObj->getPassengerAll($_SESSION['service_no']);
             <a class="btn btn-sm btn-default" href="passenger_signup.php?src=1">Create passenger account</a>
 
             <!-- List view with  view button -->
-            
+
             <div class="col-sm-8">
                 <ul class="list-group action-list-group">
                     <?php
@@ -93,6 +171,9 @@ $passengers = $execObj->getPassengerAll($_SESSION['service_no']);
                             echo '<a class="btn btn-sm btn-default" href="#" onclick="clickView('.$cur->getPassengerNo().',\'executive_passenger_details_view_page.php\')" style="float: right"'.'>View</a>';
                             echo '</li>';
                         }
+
+                        if(empty($passengers))
+                            echo "No matches found";
                     ?>
                 </ul>
             </div>

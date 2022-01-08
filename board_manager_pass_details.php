@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_Id'])) {
 $board_manager_view = new Board_Manager_View();
 $details = $board_manager_view->getApprovedPassesDetails();
 
-
+$approvedPasses = $details['approvedPassesArray'];
 ?>
 
 <!DOCTYPE html>
@@ -107,7 +107,7 @@ $details = $board_manager_view->getApprovedPassesDetails();
 
             <tbody>
                 <?php
-                $approvedPasses = $details['approvedPassesArray'];
+
                 foreach ($approvedPasses as $pass) {
                     $name = $board_manager_view->getPassengerName($pass->getPassengerNo());
                     if ($name) {
