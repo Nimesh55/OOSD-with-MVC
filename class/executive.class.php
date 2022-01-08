@@ -5,6 +5,7 @@ class Executive extends User
     private $service_no;
     private $state;
 
+
     public function setValues($uid, $executive_no, $first_name, $last_name, $address, $telephone, $service_no, $email, $state){
         parent::setUserId($uid);
         parent::setAccountNo($executive_no);

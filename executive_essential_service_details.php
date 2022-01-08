@@ -9,13 +9,15 @@ if (!isset($_SESSION['user_Id'])) {
 }
 $exec_view = new Executive_View();
 $details = $exec_view->getHomeDetails();
+$exec_control = new Executive_Controller();
+$contactdetails = $exec_control->getExecutiveNumberFromService_no($details['service_number']);
 $service_file = File_Controller::getInstance()->getFileDetails($exec_view->getServiceFileNo());
 
 $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
 
-echo "<pre>";
-print_r($details);
-echo "</pre>";
+//echo "<pre>";
+//print_r($contactdetails);
+//echo "</pre>";
 
 ?>
 
@@ -84,51 +86,51 @@ echo "</pre>";
                 <div class="col-lg-6 wrapper">
 
                     <div class="row">
-                        <div class="col-sm-4 p-3 field">
+                        <div class="col-sm-5 p-3 field">
                             <p>Service Name</p>
                         </div>
                         <div class="col-sm-1 p-3">:</div>
-                        <div class="col-sm-7 p-3 data">
+                        <div class="col-sm-6 p-3 data">
                             <p><?= $details['service_name']?> </p>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-4 p-3 field">
+                        <div class="col-sm-5 p-3 field">
                             <p>Essential Service Status</p>
                         </div>
                         <div class="col-sm-1 p-3">:</div>
-                        <div class="col-sm-7 p-3 data">
+                        <div class="col-sm-6 p-3 data">
                             <p><?= $state_str?> </p>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-4 p-3 field">
+                        <div class="col-sm-5 p-3 field">
                             <p>Address</p>
                         </div>
                         <div class="col-sm-1 p-3">:</div>
-                        <div class="col-sm-7 p-3 data">
-                            <p><?= $details['address']?> </p>
+                        <div class="col-sm-6 p-3 data">
+                            <p><?= $contactdetails->getAddress();?> </p>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-4 p-3 field">
+                        <div class="col-sm-5 p-3 field">
                             <p>Telephone NO</p>
                         </div>
                         <div class="col-sm-1 p-3">:</div>
-                        <div class="col-sm-7 p-3 data">
-                            <p><?= $details['telephone_no']?> </p>
+                        <div class="col-sm-6 p-3 data">
+                            <p><?= $contactdetails->getTelephone();?> </p>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-4 p-3 field">
+                        <div class="col-sm-5 p-3 field">
                             <p>Attachments</p>
                         </div>
                         <div class="col-sm-1 p-3">:</div>
-                        <div class="col-sm-7 p-3 data">
+                        <div class="col-sm-6 p-3 data">
                             <?php if ($state_str == "Non-Essential") : ?>
                                 <input type="file" id="file" name="file"/>
                             <?php elseif (($state_str == "Essential" || $state_str == "Pending") and $service_file==null) : ?>
@@ -139,7 +141,8 @@ echo "</pre>";
                             <?php endif; ?>
                         </div>
                     </div>
-
+                    <br>
+                    <br>
                     <div class="ctrlbutton">
                         <?php if ($state_str == "Non-Essential") : ?>
 
