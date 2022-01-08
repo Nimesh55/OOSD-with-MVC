@@ -3,21 +3,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc
 class Board_Manager_View extends Board_Manager_Model
 {
     private $board_manager;
-    private $pass_tracker;
-    private $essential_service_tracker;
-    private $booking_tracker;
-    private $passenger_tracker;
-    private $conductor_tracker;
     private $board_manager_controller;
 
     public function __construct()
     {
         $this->board_manager = new Board_Manager($_SESSION['user_Id']);
-        $this->pass_tracker = Pass_Tracker::getInstance();
-        $this->essential_service_tracker = EssentialServiceTracker::getInstance();
-        $this->booking_tracker = Booking_Tracker::getInstance();
-        $this->passenger_tracker = Passenger_Tracker::getInstance();
-        $this->conductor_tracker = Conductor_Tracker::getInstance();
         $this->board_manager_controller = new Board_Manager_Controller();
     }
     public function getHomeDetails()
@@ -27,7 +17,7 @@ class Board_Manager_View extends Board_Manager_Model
             "pending_passes_cnt" => $this->getPendingPassesCnt(),
             "approved_passes_cnt" => $this->getApprovedPassesCount(),
             "total_conductor_cnt" => $this->getConductorCount(),
-            "available_conductor_cnt_today" => $this->conductor_tracker->getConductorCountToday()
+            "available_conductor_cnt_today" => Conductor_Tracker::getInstance()->getConductorCountToday()
         );
         return $details;
     }
@@ -36,16 +26,16 @@ class Board_Manager_View extends Board_Manager_Model
     {
         $details = array(
             "name" => $this->board_manager->getName(),
-            "pendingPassesArray" => $this->pass_tracker->getPendingPassesSearchArray()
+            "pendingPassesArray" => Pass_Tracker::getInstance()->getPendingPassesSearchArray()
         );
         return $details;
     }
 
     public function viewPassDetails($pass_no)
     {
-        $pass = $this->pass_tracker->getPass($pass_no);
-        $service = $this->essential_service_tracker->createService($pass->getServiceNo());
-        $passenger = $this->passenger_tracker->getPassengerByPassengerNo($pass->getPassengerNo());
+        $pass = Pass_Tracker::getInstance()->getPass($pass_no);
+        $service = EssentialServiceTracker::getInstance()->createService($pass->getServiceNo());
+        $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($pass->getPassengerNo());
 
         $details = array(
             "name" => $this->board_manager->getName(),
@@ -63,7 +53,7 @@ class Board_Manager_View extends Board_Manager_Model
     {
         $details = array(
             "name" => $this->board_manager->getName(),
-            "approvedPassesArray" => $this->pass_tracker->getApprovedPassesSearchArray()
+            "approvedPassesArray" => Pass_Tracker::getInstance()->getApprovedPassesSearchArray()
         );
         return $details;
     }
@@ -83,7 +73,7 @@ class Board_Manager_View extends Board_Manager_Model
     {
         $details = array(
             "name" => $this->board_manager->getName(),
-            "bookingsArray" => $this->booking_tracker->getBookingsArray()
+            "bookingsArray" => Booking_Tracker::getInstance()->getBookingsArray()
         );
         return $details;
     }
@@ -92,7 +82,7 @@ class Board_Manager_View extends Board_Manager_Model
     {
         $details = array(
             "name" => $this->board_manager->getName(),
-            "bookingsArray" => $this->booking_tracker->getBookingsForDistrict($district_no),
+            "bookingsArray" => Booking_Tracker::getInstance()->getBookingsForDistrict($district_no),
             "districts" => $this->board_manager_controller->getDistrictArray()
         );
         return $details;
@@ -100,8 +90,8 @@ class Board_Manager_View extends Board_Manager_Model
 
     public function getBookingViewDetails($booking_no)
     {
-        $booking = $this->booking_tracker->getBooking($booking_no);
-        $service = $this->essential_service_tracker->createService($booking->getServiceNo());
+        $booking = Booking_Tracker::getInstance()->getBooking($booking_no);
+        $service = EssentialServiceTracker::getInstance()->createService($booking->getServiceNo());
 
         $vehicle_no = $this->board_manager_controller->getBookedVehicleNo($booking);
         $details = array(
@@ -125,21 +115,19 @@ class Board_Manager_View extends Board_Manager_Model
         return $details;
     }
 
-    // Change this
     public function getSelectVehicleDetails($booking_no, $district_no)
     {
         $date_range = $this->board_manager_controller->getBookingDateRange($booking_no);
         $details = array(
             "name" => $this->board_manager->getName(),
-            "vehicle_list" => $this->conductor_tracker->getAvailableConductors($district_no, $date_range['start_date'], $date_range['end_date'])
+            "vehicle_list" => Conductor_Tracker::getInstance()->getAvailableConductors($district_no, $date_range['start_date'], $date_range['end_date'])
         );
         return $details;
     }
 
     public function getConductorDetails($conductor_id)
     {
-        $conductor_obj = $this->conductor_tracker->getConductor($conductor_id);
-
+        $conductor_obj = Conductor_Tracker::getInstance()->getConductor($conductor_id);
         $this->board_manager_controller->checkConductorAccountExist($conductor_obj);
 
         $status = $conductor_obj->getState();
@@ -154,7 +142,6 @@ class Board_Manager_View extends Board_Manager_Model
             "vehicle_no" => $conductor_obj->getVehicleNo(),
             "telephone_no" => $conductor_obj->getTelephone(),
             "status" => $state
-
         );
 
         return $details;
