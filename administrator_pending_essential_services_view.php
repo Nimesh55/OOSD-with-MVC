@@ -26,7 +26,7 @@ if (isset($_POST['view'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/passenger_home.css">
+    <link rel="stylesheet" href="css/administrator_pending_essensial_services.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Administrator Approved Essential Services</title>
@@ -66,82 +66,81 @@ if (isset($_POST['view'])) {
     </div>
         <input type="hidden" name="pass_no" value="<?php echo $pass_no ?>">
         <!-- Details of A single pass -->
-        <div class="container mt-3">
 
-            <div style="margin-top:100px;">
 
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>Service ID</p>
-                    </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?php echo $service_id ?></p>
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
-                </div>
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6 wrapper">
 
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>Service Name</p>
+                    <div class="row">
+                        <div class="col-sm-5 field">
+                            <p>Service ID</p>
+                        </div>
+                        <div class="col-sm-2">:</div>
+                        <div class="col-sm-5 data">
+                            <p><?= $service_id ?> </p>
+                        </div>
                     </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?php echo $service_name ?></p>
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
-                </div>
 
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>Status</p>
+                    <div class="row">
+                        <div class="col-sm-5 field">
+                            <p>Service Name</p>
+                        </div>
+                        <div class="col-sm-2">:</div>
+                        <div class="col-sm-5 data">
+                            <p><?= $service_name ?> </p>
+                        </div>
                     </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?php echo $status ?></p>
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
-                </div>
 
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>Attachments</p>
+                    <div class="row">
+                        <div class="col-sm-5 field">
+                            <p>Status</p>
+                        </div>
+                        <div class="col-sm-2">:</div>
+                        <div class="col-sm-5 data">
+                            <p><?= $status ?> </p>
+                        </div>
                     </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
 
-                        <?php
-                        if($service_file==null):
+                    <div class="row">
+                        <div class="col-sm-5 field">
+                            <p>Attachments</p>
+                        </div>
+                        <div class="col-sm-2">:</div>
+                        <div class="col-sm-5 data">
+
+                            <?php
+                            if($service_file==null):
+                                ?>
+                                <p>: No files added </p>
+                            <?php
+                            else:
+                                ?>
+                                <button class="alert-success"><a href="includes/download.inc.php?name=<?php echo $service_file['name'];?>
+                                                            &fname=<?php echo $service_file['fname'] ?>">Download</a></button>
+                            <?php
+                            endif;
                             ?>
-                            <p>: No files added </p>
-                        <?php
-                        else:
-                            ?>
-                            <button class="alert-success"><a href="includes/download.inc.php?name=<?php echo $service_file['name'];?>&fname=<?php echo $service_file['fname'] ?>">Download</a></button>
-                        <?php
-                        endif;
-                        ?>
 
+
+                        </div>
                     </div>
-                    <div class="col-sm-3 p-3"></div>
-                </div>
-
-
-                <br>
-                <br>
-
-                <!-- accept and decline buttons -->
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3">
-                        <a href="includes/serviceFunction_Approve.inc.php" class="btn btn-info" onclick="<?php $_SESSION['approve'] = $service_id ?>"> Approve </a>
-                        <a href="includes/serviceFunction_Decline.inc.php?x=d" class="btn btn-danger" onclick="<?php $_SESSION['decline'] = $service_id ?>"> Decline </a>
-                        <a href="administrator_pending_essential_services.php" class="btn btn-default"> Exit </a>
+                    <br>
+                    <br>
+                    <div class="btn-group btn-group-md">
+                        <a href="includes/serviceFunction_Approve.inc.php" class="btn btn-info ctrlbutton" onclick="<?php $_SESSION['approve'] = $service_id ?>"> Approve </a>
+                        <a href="includes/serviceFunction_Decline.inc.php?x=d" class="btn btn-danger ctrlbutton" onclick="<?php $_SESSION['decline'] = $service_id ?>"> Decline </a>
+                        <a href="administrator_pending_essential_services.php" class="btn btn-default ctrlbutton"> Exit </a>
                     </div>
 
-                    <div class="col-sm-3 p-3"></div>
+
                 </div>
+                <div class="col-lg-3"></div>
+
             </div>
+
+
+
         </div>
 </body>
 

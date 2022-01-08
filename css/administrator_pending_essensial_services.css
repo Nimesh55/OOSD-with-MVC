@@ -41,3 +41,6 @@ h1{
 table,tr,th,td{
     text-align: center;
 }
+.ctrlbutton{
+    width: 100px;
+}

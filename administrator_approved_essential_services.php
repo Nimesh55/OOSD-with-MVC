@@ -21,7 +21,7 @@ $rows = $view->getApprovedRows(); // getpending rows
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/passenger_home.css">
+    <link rel="stylesheet" href="css/administrator_pending_essensial_services.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Administrator Approved Essential Services</title>
@@ -61,7 +61,9 @@ $rows = $view->getApprovedRows(); // getpending rows
     </div>
 
     <!-- List Viw with two buttons -->
-    <ul class="list-group action-list-group">
+    <div class="container">
+        <h1 id="heading">Approved Essential Services</h1>
+        <div class="wrapper">
         <table class="table">
             <thead>
                 <tr>
@@ -89,7 +91,9 @@ $rows = $view->getApprovedRows(); // getpending rows
 
             </tbody>
         </table>
-    </ul>
+        </div>
+    </div>
+
     <script type="text/javascript">
         // Onclick function for the relavant button
         function clickView(arg) {
