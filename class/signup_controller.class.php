@@ -80,10 +80,14 @@ class Signup_Controller extends Signup{
             exit();
         }
 
-        if ($this->isTelephoneValidInput() == false) {
-            // error msg here
-            header("location: ../".$this->page_name."_signup.php?error=invalidtelephone&src=".$src);
-            exit();
+//        if ($this->isTelephoneValidInput() == false) {
+//            // error msg here
+//            header("location: ../".$this->page_name."_signup.php?error=enterstrongpassword&src=".$src);
+//            exit();
+//        }
+
+        if($this->isValidPassword($this->password)){
+            header("Location: ");
         }
 
         $this->addToUser( $this->uid , $this->password, $this->firstname, $this->lastname, $this->address, $this->telephone, $this->email, $this->company_name, $this->company_Id, $this->vehicle_no, $this->district, $this->account_type);
@@ -137,9 +141,47 @@ class Signup_Controller extends Signup{
     }
 
     private function isTelephoneValidInput(){
-        if (!is_numeric($this->telephone)) {
+        if (!is_numeric($this->telephone) or strlen($this->telephone) != 10) {
             return false;
         }
         return true;
     }
+
+    private function isValidPassword($password){
+        $number = preg_match('@[0-9]@', $password);
+        $uppercase = preg_match('@[A-Z]@', $password);
+        $lowercase = preg_match('@[a-z]@', $password);
+        $specialChars = preg_match('@[^\w]@', $password);
+
+        if(strlen($password) >= 8 && $number && $uppercase && $lowercase && $specialChars) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+//    //Validate NIC
+//
+//    private function isValidNIC($nic)
+//    {
+//        $result = true;
+//        if ($nic != "") {
+//            if (strlen($nic) <> 10) {
+//                $result = FALSE;
+//            }
+//
+//            $nic_9 = substr($nic, 0, 9);
+//
+//            if (!is_numeric($nic_9)) {
+//                $result = false;
+//            }
+//
+//            $nic_v = substr($nic, 9, 1);
+//            if (is_numeric($nic_v)) {
+//                $result = false;
+//            }
+//        }
+//        return $result?"":'*Please Enter Valid NIC!!! ';
+//
+//    }
 }
