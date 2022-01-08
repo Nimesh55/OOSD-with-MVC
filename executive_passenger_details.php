@@ -87,6 +87,11 @@ foreach ($passengers as $passenger){
         </div>
     </form>
 
+    <?php
+    if(empty($passengers))
+        echo "No matches found";
+    ?>
+
     <div class="container mt-3">
 
         <div style="margin-top:100px;">
@@ -104,7 +109,6 @@ foreach ($passengers as $passenger){
                         <th scope="col">Staff ID</th>
                         <th scope="col">Passenger Name</th>
                         <th scope="col">View Details</th>
-
                     </tr>
                     </thead>
                     <tbody>
@@ -112,14 +116,9 @@ foreach ($passengers as $passenger){
                     foreach($pendingPassengers as $passenger){
                         echo '<tr>';
                         echo '<th scope="row">'.$passenger->getStaffId().'</th>';
-                        echo '<td>'.'</td>';
-                        echo '<td><a href="executive_booking_details_view.php?booking_no='.$booking_no.'" class="btn btn-info"> View </a></td>';
+                        echo '<td>'.$passenger->getFirstName() .' '.$passenger->getLastName().'</td>';
+                        echo '<td><a class="btn btn-sm btn-default" href="#" onclick="clickView('.$passenger->getPassengerNo().',\'executive_passenger_details_view_page.php\')" style="float: center"'.'>View</a></td>';
                         echo '</tr>';
-
-                        echo '<li class="list-group-item">';
-                        echo '<p '.'style="display: inline-block"'.' >'. $passenger->getFirstName() .' '.$passenger->getLastName().'</p>';
-                        echo '<a class="btn btn-sm btn-default" href="#" onclick="clickView('.$passenger->getPassengerNo().',\'executive_passenger_details_view_page.php\')" style="float: right"'.'>View</a>';
-                        echo '</li>';
                     }
                     ?>
 
@@ -131,18 +130,19 @@ foreach ($passengers as $passenger){
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">Booking Number</th>
+                        <th scope="col">Staff ID</th>
+                        <th scope="col">Passenger Name</th>
                         <th scope="col">View Details</th>
-
                     </tr>
                     </thead>
                     <tbody>
                     <?php
                     foreach($appprovedPassengers as $passenger){
-                        echo '<li class="list-group-item">';
-                        echo '<p '.'style="display: inline-block"'.' >'. $passenger->getFirstName() .' '.$passenger->getLastName().'</p>';
-                        echo '<a class="btn btn-sm btn-default" href="#" onclick="clickView('.$passenger->getPassengerNo().',\'executive_passenger_details_view_page.php\')" style="float: right"'.'>View</a>';
-                        echo '</li>';
+                        echo '<tr>';
+                        echo '<th scope="row">'.$passenger->getStaffId().'</th>';
+                        echo '<td>'.$passenger->getFirstName() .' '.$passenger->getLastName().'</td>';
+                        echo '<td><a class="btn btn-sm btn-default" href="#" onclick="clickView('.$passenger->getPassengerNo().',\'executive_passenger_details_view_page.php\')" style="float: center"'.'>View</a></td>';
+                        echo '</tr>';
                     }
                     ?>
 
@@ -154,30 +154,5 @@ foreach ($passengers as $passenger){
     </div>
 
 
-    <div class="container mt-3">
-
-        <div style="margin-top:100px;">
-            <!-- Create new account -->
-            <a class="btn btn-sm btn-default" href="passenger_signup.php?src=1">Create passenger account</a>
-
-            <!-- List view with  view button -->
-
-            <div class="col-sm-8">
-                <ul class="list-group action-list-group">
-                    <?php
-                        foreach($passengers as $cur){
-                            echo '<li class="list-group-item">';
-                            echo '<p '.'style="display: inline-block"'.' >'. $cur->getFirstName() .' '.$cur->getLastName().'</p>';
-                            echo '<a class="btn btn-sm btn-default" href="#" onclick="clickView('.$cur->getPassengerNo().',\'executive_passenger_details_view_page.php\')" style="float: right"'.'>View</a>';
-                            echo '</li>';
-                        }
-
-                        if(empty($passengers))
-                            echo "No matches found";
-                    ?>
-                </ul>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
