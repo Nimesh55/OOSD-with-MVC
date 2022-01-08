@@ -36,6 +36,7 @@ foreach ($bookings as $booking) { // Seperated the Bookings in to 3 array for 3 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/executive_pass_details.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -79,9 +80,12 @@ foreach ($bookings as $booking) { // Seperated the Bookings in to 3 array for 3 
 
 <!--    set booking cancel done status show here-->
 
-    <a href="executive_request_booking.php" class="btn btn-info" name="request" style=""> Request Booking </a>
 
     <div class="container">
+        <div class="wrapper">
+        <div class="row addpass">
+        <a href="executive_request_booking.php" class="btn btn-info addnewpass" name="request" style=""> Request Booking </a>
+        </div>
         <ul class="nav nav-tabs">
             <li class="active"><a href="#link1" data-toggle="tab">Pending</a></li>
             <li><a href="#link2" data-toggle="tab">Approved</a></li>
@@ -169,6 +173,7 @@ foreach ($bookings as $booking) { // Seperated the Bookings in to 3 array for 3 
                     </table>
                 </form>
             </div>
+        </div>
         </div>
     </div>
 

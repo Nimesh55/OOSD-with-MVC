@@ -30,7 +30,8 @@ foreach ($passengers as $passenger){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/passenger_home.css">
+    <link rel="stylesheet" href="css/executive_pass_details.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/buttons.js"></script>
@@ -38,7 +39,7 @@ foreach ($passengers as $passenger){
 </head>
 
 <body>
-    <div class="navbar navbar-inverse">
+<div class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
@@ -71,21 +72,6 @@ foreach ($passengers as $passenger){
         </div>
     </div>
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-    <form action="executive_passenger_details.php" method="GET">
-        <div class="row">
-            <div class="col-xs-6 col-md-4">
-                <div class="input-group">
-                    <input name="search" type="text" class="form-control" placeholder="Search with staff ID" id="txtSearch" />
-                    <div class="input-group-btn">
-                        <button class="btn btn-primary" type="submit">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
 
     <?php
     if(empty($passengers))
@@ -94,14 +80,31 @@ foreach ($passengers as $passenger){
 
     <div class="container mt-3">
 
-        <div style="margin-top:100px;">
+        <div class="wrapper">
+            <div class="row addpass">
+                <form action="executive_passenger_details.php" method="GET">
+                    <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="input-group col-sm-4">
+                                <input name="search" type="text" class="form-control" placeholder="Search with staff ID" id="txtSearch" />
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary" type="submit">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-sm-4"></div>
+                    </div>
+                </form>
+            </div>
+            <br>
 
-        <ul class="nav nav-tabs">
+            <ul class="nav nav-tabs">
             <li class="active"><a href="#link1" data-toggle="tab">Pending</a></li>
             <li><a href="#link2" data-toggle="tab">Approved</a></li>
         </ul>
 
-        <div class="tab-content">
+            <div class="tab-content">
             <div id="link1" class="tab-pane fade in active">
                 <table class="table">
                     <thead>
@@ -117,7 +120,7 @@ foreach ($passengers as $passenger){
                         echo '<tr>';
                         echo '<th scope="row">'.$passenger->getStaffId().'</th>';
                         echo '<td>'.$passenger->getFirstName() .' '.$passenger->getLastName().'</td>';
-                        echo '<td><a class="btn btn-sm btn-default" href="#" onclick="clickView('.$passenger->getPassengerNo().',\'executive_passenger_details_view_page.php\')" style="float: center"'.'>View</a></td>';
+                        echo '<td><a class="btn btn-sm btn-primary" href="#" onclick="clickView('.$passenger->getPassengerNo().',\'executive_passenger_details_view_page.php\')" style="float: center"'.'>View</a></td>';
                         echo '</tr>';
                     }
                     ?>
@@ -141,7 +144,7 @@ foreach ($passengers as $passenger){
                         echo '<tr>';
                         echo '<th scope="row">'.$passenger->getStaffId().'</th>';
                         echo '<td>'.$passenger->getFirstName() .' '.$passenger->getLastName().'</td>';
-                        echo '<td><a class="btn btn-sm btn-default" href="#" onclick="clickView('.$passenger->getPassengerNo().',\'executive_passenger_details_view_page.php\')" style="float: center"'.'>View</a></td>';
+                        echo '<td><a class="btn btn-sm btn-primary" href="#" onclick="clickView('.$passenger->getPassengerNo().',\'executive_passenger_details_view_page.php\')" style="float: center"'.'>View</a></td>';
                         echo '</tr>';
                     }
                     ?>
@@ -151,7 +154,7 @@ foreach ($passengers as $passenger){
             </div>
 
         </div>
-    </div>
+        </div>
 
 
 </body>

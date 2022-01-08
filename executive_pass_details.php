@@ -34,7 +34,7 @@ foreach ($passDetailsArray as $cur) { // Seperated the Passes in to 3 array for 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/passenger_home.css">
+    <link rel="stylesheet" href="css/executive_pass_details.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Executive Pass Details</title>
@@ -76,10 +76,14 @@ foreach ($passDetailsArray as $cur) { // Seperated the Passes in to 3 array for 
 
     <!-- List view with  view button -->
 
-    <a href="executive_create_pass_manually.php" class="btn btn-info" name="add_pass" style=""> Add pass </a>
 
     <div class="container">
-        <ul class="nav nav-tabs">
+        <div class="wrapper">
+            <div class="row addpass">
+            <a href="executive_create_pass_manually.php" class="btn btn-info addnewpass" name="add_pass" > +Add pass </a>
+            </div>
+
+            <ul class="nav nav-tabs">
             <li class="active"><a href="#link1" data-toggle="tab">Pending</a></li>
             <li><a href="#link2" data-toggle="tab">Approved</a></li>
             <li><a href="#link3" data-toggle="tab">Confirmed</a></li>
@@ -191,6 +195,7 @@ foreach ($passDetailsArray as $cur) { // Seperated the Passes in to 3 array for 
                 </form>
             </div>
         </div>
+    </div>
     </div>
 
     <script type="text/javascript">
