@@ -65,27 +65,29 @@ if($vehicle_cnt == 0){
     </div>
 </div>
 
-
 <!-- List view with buttons -->
 <h1>Available Vehicle List</h1>
 
 
 
 <!--Show error in $_SESSION['error'] here-->
-
-
-
+<?php
+    if(isset($_SESSION['error'])){
+        echo $_SESSION['error'];
+    }
+?>
 
 
 <div class="list-group">
+
     <?php
         $index =0;
         while ($index<$vehicle_cnt):
     ?>
-    <a class="list-group-item list-group-item-action" href="includes/allocate_vehicle.inc.php?action=2&booking_no=<?= $_GET['booking_no']?>&conductor_no=<?= $available_vehicles[$index]->getconductor_no() ?>"><?= $available_vehicles[$index]->getvehicle_no() ?></a>
+        <a class="list-group-item list-group-item-action" href="includes/allocate_vehicle.inc.php?action=2&booking_no=<?= $_GET['booking_no']?>&conductor_no=<?= $available_vehicles[$index]->getConductorNo() ?>"><?= $available_vehicles[$index]->getVehicleNo() ?></a>
     <?php
             $index++;
-        endwhile;
+            endwhile;
     ?>
 </div>
 
