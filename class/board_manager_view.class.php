@@ -151,4 +151,23 @@ class Board_Manager_View extends Board_Manager_Model
         $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($passenger_no);
         return $passenger->getFirstName()." ".$passenger->getLastName();
     }
+
+    public function showError_CreateConductorAccount($error)
+    {
+        if ($error == "emptyfield") {
+            return "Empty Field. Enter Again!"; 
+        }elseif($error == "passwordmismatch"){
+            return "Password Mismatched!";
+        }elseif($error == "user_exist"){
+            return "User Account Exist!";
+        }elseif($error == "emailWrong"){
+            return "Invalid Email!";
+        }elseif($error == "invalidusername"){
+            return "Invalid Username!";
+        }elseif($error == "invalidtelephone"){
+            return "Invalid Telephone Number!";
+        }elseif($error == "none"){
+            return "none";
+        }
+    }
 }

@@ -2,7 +2,6 @@ body{
     background-color: violet;
     background: url("../img/PassBlue.jpg") no-repeat center fixed;
     background-size: cover;
-    font-size: 16px;
 }
 
 #contanier-data {
@@ -23,5 +22,5 @@ body{
 
 .alert{
     text-align: center;
-    padding: 1%;
+    padding: 0.5%;
 }

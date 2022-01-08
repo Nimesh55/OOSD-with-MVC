@@ -69,7 +69,13 @@ $approvedPasses = $details['approvedPassesArray'];
 
     <div class="container mt-3" id="contanier-data">
         <!-- SearchBar -->
-    
+        <?php 
+        if(empty($approvedPasses) and isset($_GET['search'])){
+            echo "<div class=\"alert alert-danger\"><strong>" . "No matches found" . "</strong></div>";
+            
+        }
+        ?>
+        
         <form action="board_manager_pass_details.php" method="GET">
             <div class="row">
                 <div class="col-sm-1 p-3"></div>
@@ -88,13 +94,6 @@ $approvedPasses = $details['approvedPassesArray'];
         </form>
         <br>
         <!-- List view and redirected Page button -->
-
-        <?php 
-        if(empty($approvedPasses) and isset($_GET['search'])){
-            echo "<div class=\"alert alert-danger\"><strong>" . "No matches found" . "</strong></div>";
-            
-        }
-        ?>
 
         <table class="table table-dark">
             <thead>

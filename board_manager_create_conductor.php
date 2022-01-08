@@ -11,6 +11,10 @@ if (!isset($_SESSION['user_Id'])) {
 $board_manager_view = new Board_Manager_View();
 $details = $board_manager_view->getCreateConductorDetails();
 
+if(isset($_GET['error'])){
+    $error = $board_manager_view->showError_CreateConductorAccount($_GET['error']);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -70,7 +74,14 @@ $details = $board_manager_view->getCreateConductorDetails();
             <div class="col-sm-8 wrapper">
                 <form method="POST" class="form-horizontal" action="includes/signup.inc.php?account_type=1">
                     <h3 id="heading">Conductor Registration</h3>
-                    <br>
+                    <?php 
+                        if(isset($_GET['error'])){
+                            if($error == 'none')
+                                echo "<div class=\"alert alert-success\"><strong>" . "Conductor Account Created Successfully!" . "</strong></div>";
+                            else
+                                echo "<div class=\"alert alert-danger\"><strong>" . $error . "</strong></div>";
+                        }
+                    ?>
                     <div class="form-group">
         <!--                <input type="text" class="form-control">-->
                         <label class="control-label col-sm-3" for="first_name">First Name:</label>
