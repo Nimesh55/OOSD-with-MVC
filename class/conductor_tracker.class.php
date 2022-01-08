@@ -43,7 +43,7 @@ class Conductor_Tracker extends Tracker{
 
         foreach ($conductor_arr as $conductor_data) {
             $conductor = $this->getConductorbyNumber($conductor_data['conductor_no']);
-            $leaves = $this->conductor_controller->getConductorLeavesArray($conductor->getconductor_no());
+            $leaves = $this->conductor_controller->getConductorLeavesArray($conductor->getConductorNo());
             $valid = true;
             if(!empty($leaves)){
                 foreach ($leaves as $leave) {
@@ -51,7 +51,7 @@ class Conductor_Tracker extends Tracker{
                         $valid = false;
                 }
             }
-            $bookings = $this->conductor_controller->getConductorBookings($conductor->getconductor_no());
+            $bookings = $this->conductor_controller->getConductorBookings($conductor->getConductorNo());
             foreach ($bookings as $booking) {
                 if ((strtotime($booking->getStartDate()) >= strtotime($start_date) && strtotime($booking->getStartDate()) <= strtotime($end_date)) ||
                     (strtotime($booking->getEndDate()) >= strtotime($start_date) && strtotime($booking->getEndDate()) <= strtotime($end_date))) {

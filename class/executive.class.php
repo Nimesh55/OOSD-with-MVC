@@ -5,56 +5,26 @@ class Executive extends User
     private $service_no;
     private $state;
 
-    function __construct()
-    {
-
-    }
-
     public function setValues($uid, $executive_no, $first_name, $last_name, $address, $telephone, $service_no, $email, $state){
-        $this->setUserIdInUser($uid);
-        $this->setAccountNoInUser($executive_no);
-        $this->setFirstNameInUser($first_name);
-        $this->setLastNameInUser($last_name);
-        $this->setAddressInUser($address);
-        $this->setTelephoneInUser($telephone);
+        parent::setUserId($uid);
+        parent::setAccountNo($executive_no);
+        parent::setFirstName($first_name);
+        parent::setLastName($last_name);
+        parent::setAddress($address);
+        parent::setTelephone($telephone);
         $this->service_no = $service_no;
-        $this->setEmailInUser($email);
+        parent::setEmail($email);
         $this->state=$state;
     }
 
     public function getExecutiveNo()
     {
-        return $this->getAccountNoFromUser();
-    }
-
-    public function getFirstName()
-    {
-        return $this->getFirstNameFromUser();
-    }
-
-    public function getLastName()
-    {
-        return $this->getLastNameFromUser();
-    }
-
-    public function getAddress()
-    {
-        return $this->getAddressFromUser();
-    }
-
-    public function getTelephone()
-    {
-        return $this->getTelephoneFromUser();
+        return parent::getAccountNo();
     }
 
     public function getServiceNo()
     {
         return $this->service_no;
-    }
-
-    public function getEmail()
-    {
-        return $this->getEmailFromUser();
     }
 
     public function getState()

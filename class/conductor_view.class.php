@@ -18,15 +18,15 @@ class Conductor_View extends Conductor_Model
   {
     $details = array(
 
-      "first_name" => $this->conductor->getfirst_name(),
-      "last_name" => $this->conductor->getlast_name(),
-      "address" => $this->conductor->getaddress(),
-      "telephone" => $this->conductor->gettelephone(),
-      "vehicle_no" => $this->conductor->getvehicle_no(),
-      "district_no" => $this->conductor->getdistrict_no(),
-      "email" => $this->conductor->getemail(),
-      "state" => $this->conductor->getstate(),
-      "district_name" => $this->conductor->getdistric_name()
+      "first_name" => $this->conductor->getFirstName(),
+      "last_name" => $this->conductor->getLastName(),
+      "address" => $this->conductor->getAddress(),
+      "telephone" => $this->conductor->getTelephone(),
+      "vehicle_no" => $this->conductor->getVehicleNo(),
+      "district_no" => $this->conductor->getDistrictNo(),
+      "email" => $this->conductor->getEmail(),
+      "state" => $this->conductor->getState(),
+      "district_name" => $this->conductor->getDistricName()
     );
     //print_r($details);
     return $details;

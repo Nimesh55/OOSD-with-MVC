@@ -142,17 +142,17 @@ class Board_Manager_View extends Board_Manager_Model
 
         $this->board_manager_controller->checkConductorAccountExist($conductor_obj);
 
-        $status = $conductor_obj->getstate();
+        $status = $conductor_obj->getState();
         $state = "Unavailable";
         if ($status == 0)
             $state = "Available";
 
         $details = array(
-            "fname" => $conductor_obj->getfirst_name(),
-            "lname" => $conductor_obj->getlast_name(),
-            "district" => $conductor_obj->getdistric_name(),
-            "vehicle_no" => $conductor_obj->getvehicle_no(),
-            "telephone_no" => $conductor_obj->gettelephone(),
+            "fname" => $conductor_obj->getFirstName(),
+            "lname" => $conductor_obj->getLastName(),
+            "district" => $conductor_obj->getDistricName(),
+            "vehicle_no" => $conductor_obj->getVehicleNo(),
+            "telephone_no" => $conductor_obj->getTelephone(),
             "status" => $state
 
         );

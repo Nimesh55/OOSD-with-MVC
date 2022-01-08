@@ -108,7 +108,7 @@ class Board_Manager_Controller extends Board_Manager_Model
         $vehicle_no ="-";
         if($booking->getState()==1){
             $conductor_obj = $this->conductor_tracker->getConductorbyNumber($booking->getBookedConductorNo());
-            $vehicle_no = $conductor_obj->getvehicle_no();
+            $vehicle_no = $conductor_obj->getVehicleNo();
         }
         return $vehicle_no;
     }

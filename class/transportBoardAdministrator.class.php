@@ -1,6 +1,5 @@
 <?php
-class TransportBoardAdministrator{
-    private $uid;
+class TransportBoardAdministrator extends Transport_Board_User{
     private $numPendingCompany;
     private $numApprovedService;
     private $numIssuedPasses;
@@ -10,13 +9,12 @@ class TransportBoardAdministrator{
     }
 
     public function setValues($uid, $pending, $approved, $issued){
-        $this->uid = $uid;
+        parent::setUid($uid);
         $this->numPendingCompany = $pending;
         $this->numApprovedService = $approved;
         $this->numIssuedPasses = $issued;
     }
 
-    public function getUid(){return $this->uid;}
     public function getnumPendingCompany(){return $this->numPendingCompany;}
     public function getnumApprovedService(){return $this->numApprovedService;}
     public function getnumIssuedPasses(){return $this->numIssuedPasses;}

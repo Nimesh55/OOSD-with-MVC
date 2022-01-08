@@ -9,33 +9,22 @@
     private static $instances = array();
 
     //getters
-    public function getUserId(){return $this->getUserIdFromUser();}
-    public function getPassengerNo(){return $this->getAccountNoFromUser();}
-    public function getFirstName(){return $this->getFirstNameFromUser();}
-    public function getLastName(){return $this->getLastNameFromUser();}
-    public function getAddress(){return $this->getAddressFromUser();}
-    public function getTelephone(){return $this->getTelephoneFromUser();}
+    public function getPassengerNo(){return parent::getAccountNo();}
     public function getServiceNo(){return $this->service_no;}
     public function getStaffId(){return $this->staff_id;}
-    public function getEmail(){return $this->getEmailFromUser();}
     public function getState(){return $this->state;}
     public function getFileNo(){return $this->file_no;}
 
-    public function setUserId($user_id){$this->setUserIdInUser($user_id);}
-    public function setPassengerNo($passenger_no){$this->setAccountNoInUser($passenger_no);}
-    public function setFirstName($first_name){$this->setFirstNameInUser($first_name);}
-    public function setLastName($last_name){$this->setLastNameInUser($last_name);}
-    public function setAddress($address){$this->setAddressInUser($address);}
-    public function setTelephone($telephone){$this->setTelephoneInUser($telephone);}
+
+    public function setPassengerNo($passenger_no){parent::setAccountNo($passenger_no);}
     public function setServiceNo($service_no){$this->service_no=$service_no;}
     public function setStaffId($staff_id){$this->staff_id=$staff_id;}
-    public function setEmail($email){$this->setEmailInUser($email);}
     public function setState($state){$this->state=$state;}
     public function setFileNo($file_no){$this->file_no = $file_no;}
 
     private function __construct($user_id)
     {
-      $this->setUserIdInUser($user_id);
+      parent::setUserId($user_id);
     }
 
   public static function getInstance($user_id)
