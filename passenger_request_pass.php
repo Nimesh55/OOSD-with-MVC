@@ -171,8 +171,7 @@
                                 <input name="view" type="text" class="form-control" id="view" readonly value="No file added">
                             <?php else: ?>
                                 <input name="view" type="text" class="form-control" id="view" readonly value="<?= $pass_file['name'] ?>">
-                                <button class="alert-success"><a href="includes/download.inc.php?name=<?php echo $pass_file['name'];?>
-                                                                &fname=<?php echo $pass_file['fname'] ?>">Download</a></button>
+                                <button class="alert-success"><a href="includes/download.inc.php?name=<?php echo $pass_file['name'];?>&fname=<?php echo $pass_file['fname'] ?>">Download</a></button>
                             <?php endif; ?>
                         </div>
                     </div>
