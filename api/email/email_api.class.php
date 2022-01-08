@@ -42,7 +42,7 @@ class Email_Api{
         $this->mail->AddAddress("{$email->getTo()}", $email->getRecipientName());
         $this->mail->SetFrom("{$this->mail->Username}",$email->getSenderName());
         $this->mail->Subject = "{$email->getSubject()}";
-        $content = "{$email->getBody()}";
+        $content = nl2br($email->getBody());
 
         $this->mail->MsgHTML($content);
         if(!$this->mail->Send()) {
