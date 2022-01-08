@@ -54,67 +54,110 @@ class Notification_handler
         $msgType = $param[0];
         switch ($msgType) {
                 // Pass Related Notifications.
-            case $msgType = 0:
-                $msg = "Your Pass is \"Pending\" Approval.\nPass Id: " . $param[1] . "  \nRequested details \nRoutes: " . $param[2] . "\nValid from: " . $param[3] . "\nTo: " . $param[4];
-                $emailSubject = "Pass Pending";
+            case 0: {
+                    $msg = "Your Pass is \"Pending\" Approval.\nPass Id: " . $param[1] . "  \nRequested details \nRoutes: " . $param[2] . "\nValid from: " . $param[3] . "\nTo: " . $param[4];
+                    $emailSubject = "Pass Pending";
+                    break;
+                }
 
-            case $msgType = 1:
-                $msg = "Your Pass is \"Confirmed\" and Valid to Use.\nPassenger User ID: " . $param[1] . "\nPass Id: " . $param[2] . "  \nRoutes: " . $param[3] . "\nValid from: " . $param[4] . "\nTo: " . $param[5];
-                $emailSubject = "Pass Approved";
 
-            case $msgType = 2:
-                $msg = "Your Pass is \"Declined\".\n Pass Id: " . $param[1];
-                $emailSubject = "Pass Declined";
+            case 1: {
+                    $msg = "Your Pass is \"Confirmed\" and Valid to Use.\nPassenger User ID: " . $param[1] . "\nPass Id: " . $param[2] . "  \nRoutes: " . $param[3] . "\nValid from: " . $param[4] . "\nTo: " . $param[5];
+                    $emailSubject = "Pass Approved";
+                    break;
+                }
 
-            case $msgType = 3:
-                $msg = "Your Pass has been \"Declined\" by your Service: " . $param[1] . "\nPass Id: " . $param[2] . " \n Contact your Relevant Service for more details.";
-                $emailSubject = "Pass Declined by Service";
 
-            case $msgType = 4:
-                $msg = "Your Pass is \"Accepted\" by the service, " . $param[1] . " and being Processed for Confirmation.\nYour pass Id: " . $param[2];
-                $emailSubject = "Pass Accepted and processing";
+            case 2: {
+                    $msg = "Your Pass is \"Declined\".\n Pass Id: " . $param[1];
+                    $emailSubject = "Pass Declined";
+                    break;
+                }
 
-            case $msgType = 5:
-                $msg = "Your Pass has been \"Expired\" . \nPass Id: " . $param[1] . " is No Longer Valid. \nPlease use Request Pass Tab to apply for a New Pass";
-                $emailSubject = "Pass Expired!";
+
+            case 3: {
+                    $msg = "Your Pass has been \"Declined\" by your Service: " . $param[1] . "\nPass Id: " . $param[2] . " \n Contact your Relevant Service for more details.";
+                    $emailSubject = "Pass Declined by Service";
+                    break;
+                }
+
+
+            case  4: {
+                    $msg = "Your Pass is \"Accepted\" by the service, " . $param[1] . " and being Processed for Confirmation.\nYour pass Id: " . $param[2];
+                    $emailSubject = "Pass Accepted and processing";
+                    break;
+                }
+
+
+            case 5: {
+                    $msg = "Your Pass has been \"Expired\" . \nPass Id: " . $param[1] . " is No Longer Valid. \nPlease use Request Pass Tab to apply for a New Pass";
+                    $emailSubject = "Pass Expired!";
+                    break;
+                }
+
 
                 //Service Related Notifications
-            case $msgType = 6:
-                $msg = "Your Service is Approved. \nYour Service Details are, \nService Name: " . $param[1] . "\nService Id: " . $param[2] . "\nYou are now Authorised to issue Passes and Use Safe Transit Services on Behalf of your Essential Service. \n\nThank you!";
-                $emailSubject = "Your Service is Approved";
+            case  6: {
+                    $msg = "Your Service is Approved. \nYour Service Details are, \nService Name: " . $param[1] . "\nService Id: " . $param[2] . "\nYou are now Authorised to issue Passes and Use Safe Transit Services on Behalf of your Essential Service. \n\nThank you!";
+                    $emailSubject = "Your Service is Approved";
+                    break;
+                }
 
-            case $msgType = 7:
-                $msg = "Your Service is Removed by the Safe Transit Administration. \nYour Service Details are, \n Service Name: " . $param[1] . " \n Service Id: " . $param[2] . "\nContact Safe Transit Administration via Email or Re-apply the Approval request for Authorization functionality";
-                $emailSubject = "Your Service is Removed";
 
-            case $msgType = 8:
-                $msg = "A vehicle is allocated to your Service: " . $param[1] . "\nBooking Id: " . $param[2] . "\nVechicle No: " . $param[3] . "\nNumber of seats: " . $param[4] . "\nPickUp Point: " . $param[5] . "\nDestination: " . $param[6];
-                $emailSubject = "Booking Confirmed";
+            case 7: {
+                    $msg = "Your Service is Removed by the Safe Transit Administration. \nYour Service Details are, \n Service Name: " . $param[1] . " \n Service Id: " . $param[2] . "\nContact Safe Transit Administration via Email or Re-apply the Approval request for Authorization functionality";
+                    $emailSubject = "Your Service is Removed";
+                    break;
+                }
 
-            case $msgType = 9:
-                $msg = "Your booking Has been Cancled. \nBooking Details,\nBooking Id: " . $param[1] . "\nVehicle Number: " . $param[2];
-                $emailSubject = "Booking Canclled";
+
+            case 8: {
+                    $msg = "A vehicle is allocated to your Service: " . $param[1] . "\nBooking Id: " . $param[2] . "\nVechicle No: " . $param[3] . "\nNumber of seats: " . $param[4] . "\nPickUp Point: " . $param[5] . "\nDestination: " . $param[6];
+                    $emailSubject = "Booking Confirmed";
+                }
+
+
+            case 9: {
+                    $msg = "Your booking Has been Cancled. \nBooking Details,\nBooking Id: " . $param[1] . "\nVehicle Number: " . $param[2];
+                    $emailSubject = "Booking Canclled";
+                    break;
+                }
+
 
                 // Conductor Account
-            case $msgType = 10:
-                $msg = "Your Conductor Account Has been Removed. Your Account Details are,\nConductor Id: " . $param[1] . "\n Vehicle Number: " . $param[2] . "\nPlease Contact your Board Manager For More Information";
-                $emailSubject = "Your Conductor Account Has been Removed";
+            case 10: {
+                    $msg = "Your Conductor Account Has been Removed. Your Account Details are,\nConductor Id: " . $param[1] . "\n Vehicle Number: " . $param[2] . "\nPlease Contact your Board Manager For More Information";
+                    $emailSubject = "Your Conductor Account Has been Removed";
+                    break;
+                }
+
 
                 // Passenger Account
-            case $msgType = 11:
-                $msg = "Your Passenger Account has been \"Approved\" and you have been Verified as a service member of : " . $param[1] . "\nYour details are,\nUser Id: " . $param[2] . " \nFullname: " . $param[3] . "\nStaff Id: " . $param[4];
-                $emailSubject = "Your Passenger Account Has been Approved!";
+            case 11: {
+                    $msg = "Your Passenger Account has been \"Approved\" and you have been Verified as a service member of : " . $param[1] . "\nYour details are,\nUser Id: " . $param[2] . " \nFullname: " . $param[3] . "\nStaff Id: " . $param[4];
+                    $emailSubject = "Your Passenger Account Has been Approved!";
+                    break;
+                }
 
-            case $msgType = 12:
-                $msg = "Your Passenger Account has been \"Declined\"\nYour added details are,\nUser Id: " . $param[1] . " \nFullname: " . $param[2] . "\nStaff Id: " . $param[3];
+
+            case 12: {
+                    $msg = "Your Passenger Account has been \"Declined\"\nYour added details are,\nUser Id: " . $param[1] . " \nFullname: " . $param[2] . "\nStaff Id: " . $param[3];
+                    $emailSubject = "Your Passenger Account Has been Approved!";
+                    break;
+                }
+            default:{
+                $msg = "";
+                $emailSubject = "";
+                break;
+            }
         }
         return [$msg, $emailSubject];
     }
 
     public static function setupNotification($email, $telephone, $param)
     {
-        $contactArray = [$email, $telephone]; //Contact Details to send Notification
+        $contactArray = [$telephone, $email]; //Contact Details to send Notification
         $messageBody = self::notification_builder($param); // Subject and Body
-        self::sendNotification([$telephone, $email], $messageBody[0], $messageBody[1]); //uncomment to send notifications.
+        self::sendNotification($contactArray, $messageBody[0], $messageBody[1]); //uncomment to send notifications.
     }
 }
