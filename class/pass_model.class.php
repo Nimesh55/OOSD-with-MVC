@@ -118,7 +118,7 @@ class Pass_Model extends Dbh
     {
         if (isset($_GET['search'])) {
             $input = $_GET['search'];
-            // Handle sql injection in following query when add get value in search
+
             $query = "SELECT * FROM users WHERE account_type=0 AND (user_id Like CONCAT( '%',?,'%'))  ORDER BY user_no";
             $stmt = $this->connect()->prepare($query);
 
@@ -159,8 +159,7 @@ class Pass_Model extends Dbh
     {
         if (isset($_GET['search'])) {
             $input = $_GET['search'];
-            
-            // Handle sql injection in following query when add get value in search
+
             $query = "SELECT * FROM users WHERE account_type=0 AND (user_id Like CONCAT( '%',?,'%'))  ORDER BY user_no";
             $stmt = $this->connect()->prepare($query);
 

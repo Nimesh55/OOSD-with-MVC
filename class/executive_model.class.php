@@ -65,8 +65,12 @@ class Executive_Model extends Dbh
     // }
 
     protected function getPassengerNumbers_inService($service_no){
-        $stmt = $this->connect()->prepare("SELECT passenger_no FROM passenger where service_no = ? AND (state =1 OR state = 2) ORDER BY state"); //only in pending or approved state. Adjust the order as neccessary
-        $stmt->execute(array($service_no));
+        $input = "";
+        if(isset($_GET['search'])){
+            $input = $_GET['search'];
+        }
+        $stmt = $this->connect()->prepare("SELECT passenger_no FROM passenger where service_no = ? AND (state =1 OR state = 2)  AND (staff_id Like CONCAT( '%',?,'%')) ORDER BY state"); //only in pending or approved state. Adjust the order as neccessary
+        $stmt->execute(array($service_no,$input));
         $passengers_in_service = $stmt->fetchAll();
         return $passengers_in_service;
     }
