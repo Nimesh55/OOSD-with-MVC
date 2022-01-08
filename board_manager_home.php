@@ -1,9 +1,9 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
-if(!isset($_SESSION['user_Id'])){
+if (!isset($_SESSION['user_Id'])) {
     header("Location: login.php");
     return;
 }
@@ -66,58 +66,58 @@ $details = $board_manager_view->getHomeDetails();
 
 
 
-    <div class="container">
-        <h1 id="heading"> <?= $details['name']  ?> </h1>
+        <div class="container">
+            <h1 id="heading"> <?= $details['name']  ?> </h1>
 
-        <div class="row">
-            <div class="col-lg-3"></div>
-            <div class="col-lg-6 wrapper">
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6 wrapper">
 
-                <div class="row">
-                    <div class="col-sm-6 p-3 field">
-                        <p>Number of Pending Passes</p>
+                    <div class="row">
+                        <div class="col-sm-6 p-3 field">
+                            <p>Number of Pending Passes</p>
+                        </div>
+                        <div class="col-sm-1 p-3">:</div>
+                        <div class="col-sm-5 p-3">
+                            <p><?= $details['pending_passes_cnt'] ?></p>
+                        </div>
                     </div>
-                    <div class="col-sm-1 p-3">:</div>
-                    <div class="col-sm-5 p-3">
-                        <p><?=$details['pending_passes_cnt']?></p>
+
+                    <div class="row">
+                        <div class="col-sm-6 p-3 field">
+                            <p>Number of Approved Passes</p>
+                        </div>
+                        <div class="col-sm-1 p-3">:</div>
+                        <div class="col-sm-5 p-3">
+                            <p><?= $details['approved_passes_cnt'] ?></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6 p-3 field">
+                            <p>Number of Conductors</p>
+                        </div>
+                        <div class="col-sm-1 p-3">:</div>
+                        <div class="col-sm-5 p-3">
+                            <p><?= $details['total_conductor_cnt'] ?></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6 p-3 field">
+                            <p>Number of Available Conductors</p>
+                        </div>
+                        <div class="col-sm-1 p-3">:</div>
+                        <div class="col-sm-5 p-3">
+                            <p><?= $details['available_conductor_cnt_today'] ?></p>
+                        </div>
                     </div>
                 </div>
+                <div class="col-lg-3"></div>
 
-                <div class="row">
-                    <div class="col-sm-6 p-3 field">
-                        <p>Number of Approved Passes</p>
-                    </div>
-                    <div class="col-sm-1 p-3">:</div>
-                    <div class="col-sm-5 p-3">
-                        <p><?=$details['approved_passes_cnt']?></p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-6 p-3 field">
-                        <p>Number of Conductors</p>
-                    </div>
-                    <div class="col-sm-1 p-3">:</div>
-                    <div class="col-sm-5 p-3">
-                        <p><?=$details['total_conductor_cnt']?></p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-6 p-3 field">
-                        <p>Number of Available Conductors</p>
-                    </div>
-                    <div class="col-sm-1 p-3">:</div>
-                    <div class="col-sm-5 p-3">
-                    <p><?=$details['available_conductor_cnt_today']?></p>
-                    </div>
-                </div>
             </div>
-            <div class="col-lg-3"></div>
-
         </div>
     </div>
-
 
 </body>
 
