@@ -98,8 +98,8 @@ class Board_Manager_Controller extends Board_Manager_Model
     }
 
     public function allocateConductorForBooking($booking_no, $conductor_no){
-        $bookings_for_conductor = Booking_Tracker::getInstance()->getBookingsForConductor_FromGivenDate($conductor_no);
-        $selected_booking = Booking_Tracker::getInstance()->getBooking($booking_no);
+        $bookings_for_conductor = $this->booking_tracker->getBookingsForConductor_FromGivenDate($conductor_no);
+        $selected_booking = $this->booking_tracker->getBooking($booking_no);
         $available = true;
         foreach ($bookings_for_conductor as $booking) {
             if ((strtotime($booking->getStartDate()) >= strtotime($selected_booking->getStartDate()) && strtotime($booking->getStartDate()) <= strtotime($selected_booking->getStartDate())) ||
@@ -128,6 +128,11 @@ class Board_Manager_Controller extends Board_Manager_Model
 
     public function remove_Conductor($conductor_id)
     {
+        $conductor = $this->conductor_tracker->getConductor($conductor_id);
+        $bookings = $this->booking_tracker->getBookingsForConductor_FromGivenDate($conductor->getConductorNo());
+        foreach ($bookings as $booking){
+            $this->conductor_tracker->cancel_Booking($booking->getBookingNo());
+        }
         $this->conductor_tracker->removeConductor($conductor_id);
     }
 }

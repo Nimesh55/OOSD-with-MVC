@@ -34,45 +34,45 @@ $details = $execObj->getRequestBookingDetails();
 				<form class="form-horizontal" method="post" action="includes/request_booking.inc.php">
 
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="reason" >Reason: </label>
-                        <div class="col-sm-10">
+                        <label class="control-label col-sm-4" for="reason" >Reason: </label>
+                        <div class="col-sm-8">
                             <input type="text" class="form-control" id="reason" name="reason">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="start_date" >Start Date:</label>
-                        <div class="col-sm-10">
+                        <label class="control-label col-sm-4" for="start_date" >Start Date:</label>
+                        <div class="col-sm-8">
                             <input type="date" class="form-control" id="start_date" name="start_date">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="end_date">End Date:</label>
-                        <div class="col-sm-10">
+                        <label class="control-label col-sm-4" for="end_date">End Date:</label>
+                        <div class="col-sm-8">
                             <input type="date" class="form-control" id="end_date" name="end_date">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="start_time" >Start Time:</label>
-                        <div class="col-sm-10">
+                        <label class="control-label col-sm-4" for="start_time" >Start Time:</label>
+                        <div class="col-sm-8">
                             <input type="time" class="form-control" id="start_time" name="start_time">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="end_time">End Time:</label>
-                        <div class="col-sm-10">
+                        <label class="control-label col-sm-4" for="end_time">End Time:</label>
+                        <div class="col-sm-8">
                             <input type="time" class="form-control" id="end_time" name="end_time">
                         </div>
                     </div>
 
 
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="start_dist">Pickup District:</label>
+                        <label class="control-label col-sm-4" for="start_dist">Pickup District:</label>
                         <?php
-                            echo '<div class="col-sm-10">';
+                            echo '<div class="col-sm-8">';
                             echo '<select name="start_dist" id="start_dist" class="form-control">';
 //                            $stmt = $pdo->query("SELECT * FROM district ");
 
@@ -88,17 +88,17 @@ $details = $execObj->getRequestBookingDetails();
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="pickup_loc" >Pickup location: </label>
-                        <div class="col-sm-10">
+                        <label class="control-label col-sm-4" for="pickup_loc" >Pickup location: </label>
+                        <div class="col-sm-8">
                             <input type="text" class="form-control" id="pickup_loc" name="pickup_loc">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="end_dist">Destination District:</label>
+                        <label class="control-label col-sm-4" for="end_dist">Destination District:</label>
 
                         <?php
-                            echo '<div class="col-sm-10">';
+                            echo '<div class="col-sm-8">';
                             echo '<select name="end_dist" id="district" class="form-control">';
 //                            $districts = ["x","y"];
                             $districts = $details['districts'];
@@ -112,15 +112,15 @@ $details = $execObj->getRequestBookingDetails();
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="destination_loc" >Destination location: </label>
-                        <div class="col-sm-10">
+                        <label class="control-label col-sm-4" for="destination_loc" >Destination location: </label>
+                        <div class="col-sm-8">
                             <input type="text" class="form-control" id="destination_loc" name="destination_loc">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="passenger_count" >Passenger count: </label>
-                        <div class="col-sm-10">
+                        <label class="control-label col-sm-4" for="passenger_count" >Passenger count: </label>
+                        <div class="col-sm-8">
                             <input type="text" class="form-control" id="passenger_count" name="passenger_count">
                         </div>
                     </div>
