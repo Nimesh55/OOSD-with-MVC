@@ -21,8 +21,9 @@
         $url_extention .= "error={$errors}";
         if (!strcmp($errors, "success") != 0) {
             $pass = $pass_tracker->createPass($details);
+            $param = [0,$pass->getPassNo(), $pass->getBusRoute(), $pass->getStartDate(), $pass->getEndDate()];
             // Pass Pending Notification##
-            Notification_handler::setupNotification($passenger->getEmail(), $passenger->getTelephone(),[0,$pass->getPassNo(), $pass->getBusRoute(), $pass->getStartDate(), $pass->getEndDate()]);
+            Notification_handler::setupNotification($passenger->getEmail(), $passenger->getTelephone(), $param);
         }
         header("Location: ../passenger_request_pass.php?{$url_extention}");
     }

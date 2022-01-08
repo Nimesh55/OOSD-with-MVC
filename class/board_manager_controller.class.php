@@ -109,6 +109,14 @@ class Board_Manager_Controller extends Board_Manager_Model
         }
         if($available){
             $this->allocateConductorForBookingFromModel($booking_no,$conductor_no);
+            
+            $booking = Booking_Tracker::getInstance()->getBooking($booking_no);
+            $executive = Booking_Tracker::getInstance()->getExecutiveFromBookingNumber($booking_no);
+            $service = Booking_Tracker::getInstance()->getServiceFromBookingNumber($booking_no);
+            $param = [8,$service->getName(), $booking->getBookingNo(), $this->getBookedVehicleNo($booking),"#seats placeholder#", $booking->getPickupLocation(), $booking->getDestinationLocation()];
+            // Allocated Booking Notification
+            Notification_handler::setupNotification($executive->getEmail(),$executive->getTelephone(),$param);
+
             $_SESSION['success'] = "Selected vehicle allocated for booking";
         }else{
             $_SESSION["error"] = "This vehicle currently unavailable";

@@ -19,7 +19,7 @@ class Booking_Tracker extends Tracker implements Observer
         return self::$instance;
     }
 
-    //returns a booking object
+    //returns a booking object with booking_no
     public function getBooking($booking_no){
         $booking = new Booking();
         $details = Booking_Controller::getInstance()->getBookingDetails($booking_no);
@@ -30,7 +30,7 @@ class Booking_Tracker extends Tracker implements Observer
         return $booking;
     }
 
-    //create a new pass
+    //create a booking and return a booking object
     public function createBooking($details){
         $booking_no = Booking_Controller::getInstance()->addNewBooking(
             $details['service_no'],
@@ -121,10 +121,28 @@ class Booking_Tracker extends Tracker implements Observer
     public function cancelBooking($booking_no)
     {
         Booking_Controller::getInstance()->cancelBooking($booking_no);
+
+        $executive = $this->getExecutiveFromBookingNumber($booking_no);
+        $booking = $this->getBooking($booking_no);
+        $conductor = Conductor_Tracker::getInstance()->getConductorbyNumber($booking->getBookedConductorNo());
+        $param = [9, $booking->getBookingNo(), $conductor->getVehicleNo()];
+        //Cancel Booking Notifiction
+        Notification_handler::setupNotification($executive->getEmail(),$executive->getTelephone(),$param);
     }
 
     public function cancelBookingByExecutive($booking_no){
         Booking_Controller::getInstance()->setStateCompleted($booking_no);
+    }
+
+    // Used for Notification parameter Processing
+    public function getExecutiveFromBookingNumber($booking_no){
+        $service_no = $this->getBooking($booking_no)->getServiceNo();
+        return EssentialServiceTracker::getInstance()->getExecutiveByServiceNo($service_no);
+    }
+
+    public function getServiceFromBookingNumber($booking_no){
+        $service_no = $this->getBooking($booking_no)->getServiceNo();
+        return EssentialServiceTracker::getInstance()->createService($service_no);
     }
 
     public function update($curDate){

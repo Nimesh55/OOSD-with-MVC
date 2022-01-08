@@ -122,14 +122,6 @@ class Conductor_Controller extends Conductor_Model
 
     public function cancelBooking($bookingNo)
     {
-        $contactDetailsArray = array();
-        array_push($contactDetailsArray, "+94778665718");
-        array_push($contactDetailsArray, "sathira.19@cse.mrt.ac.lk");
-        $mesb = "This is to inform you that Boooking No.".$bookingNo." has been cancelled by the Conductor!";
-        $ems = "Cancellation of Booking No.".$bookingNo;
-
-        notification_handler::sendNotification($contactDetailsArray, $mesb, $ems);
-
         Conductor_Tracker::getInstance()->cancel_Booking($bookingNo);
         return;
     }
@@ -159,6 +151,10 @@ class Conductor_Controller extends Conductor_Model
     public function remove_conductor($conductor_id)
     {
         $this->remove_conductor_FromModel($conductor_id);
+        $conductor = Conductor_Tracker::getInstance()->getConductor($conductor_id);
+        $param = [10, $conductor->getUserId(), $conductor->getVehicleNo()];
+        //Remove conductor notification
+        Notification_handler::setupNotification($conductor->getEmail(), $conductor->getTelephone(),$param);
     }
 
     public function getPass_by_passenger_id($passenger_id)

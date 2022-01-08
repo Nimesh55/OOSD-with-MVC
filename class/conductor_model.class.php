@@ -114,6 +114,3 @@ class Conductor_Model extends Dbh{ // ## make the methods protected
         return $this->getConductorCountOfAvailable() - $this->getConductorNosLeavedToday();
     }
 }
-
-
-?>
