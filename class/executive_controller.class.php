@@ -42,7 +42,7 @@ class Executive_Controller extends Executive_Model
     public function approvePass($pass_no){
         $pass = Pass_Tracker::getInstance()->upgradePassState($pass_no);
         $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($pass->getPassengerNo());
-        $service = EssentialServiceTracker::getInstance()->createService($this->executive->getServiceNo());
+        $service = EssentialServiceTracker::getInstance()->createService($pass->getServiceNo());
         $param = [4, $service->getName() ,$pass->getPassNo()];
         //Approved by Service Notification
         Notification_handler::setupNotification($passenger->getEmail(),$passenger->getTelephone(),$param);
@@ -52,7 +52,7 @@ class Executive_Controller extends Executive_Model
     public function declinePass($pass_no){
         $pass = Pass_Tracker::getInstance()->declinePass($pass_no);
         $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($pass->getPassengerNo());
-        $service = EssentialServiceTracker::getInstance()->createService($this->executive->getServiceNo());
+        $service = EssentialServiceTracker::getInstance()->createService($pass->getServiceNo());
         $param = [3, $service->getName() ,$pass->getPassNo()];
         //Declined by Service Notification
         Notification_handler::setupNotification($passenger->getEmail(),$passenger->getTelephone(),$param);
