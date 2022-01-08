@@ -15,6 +15,13 @@ class Executive_Controller extends Executive_Model
         return $this->executive;
     }
 
+    public function getExecutiveNumberFromService_no($service_no){
+        $details = $this->getServiceToExecutivedetails($service_no);
+        $execObj = new Executive();
+        $execObj->setValues($details['user_id'], $details['executive_no'], $details['first_name'], $details['last_name'], $details['address'], $details['telephone'], $details['service_no'], $details['email'], $details['state']);
+        return $execObj;
+    }
+
     public function validatedetails($details)
     {
         //validate details and give feedback
@@ -33,12 +40,22 @@ class Executive_Controller extends Executive_Model
     }
 
     public function approvePass($pass_no){
-        Pass_Tracker::getInstance()->upgradePassState($pass_no);
+        $pass = Pass_Tracker::getInstance()->upgradePassState($pass_no);
+        $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($pass->getPassengerNo());
+        $service = EssentialServiceTracker::getInstance()->createService($this->executive->getServiceNo());
+        $param = [4, $service->getName() ,$pass->getPassNo()];
+        //Approved by Service Notification
+        Notification_handler::setupNotification($passenger->getEmail(),$passenger->getTelephone(),$param);
         header("Location: ../executive_pass_details.php");
     }
 
     public function declinePass($pass_no){
-        Pass_Tracker::getInstance()->declinePass($pass_no);
+        $pass = Pass_Tracker::getInstance()->declinePass($pass_no);
+        $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($pass->getPassengerNo());
+        $service = EssentialServiceTracker::getInstance()->createService($this->executive->getServiceNo());
+        $param = [3, $service->getName() ,$pass->getPassNo()];
+        //Declined by Service Notification
+        Notification_handler::setupNotification($passenger->getEmail(),$passenger->getTelephone(),$param);
         header("Location: ../executive_pass_details.php");
     }
 

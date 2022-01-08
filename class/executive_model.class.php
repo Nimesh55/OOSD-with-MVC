@@ -11,6 +11,14 @@ class Executive_Model extends Dbh
         return $record;
     }
 
+    protected function getServiceToExecutivedetails($service_no){
+        $sql = "SELECT * FROM users JOIN executive ON Executive.executive_no = Users.account_no JOIN service ON service.service_no = executive.service_no WHERE service.service_no = '{$service_no}' AND users.account_type = 2";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+        $record = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $record;
+    }
+
     protected function changeDetails($details)
     {
         $stmt = $this->connect()->prepare("UPDATE Executive SET first_name = :fn, last_name = :ln,

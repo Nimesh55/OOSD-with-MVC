@@ -66,16 +66,21 @@ class Pass_Tracker extends Tracker implements Observer
     //Approve an Essential Service
     public function upgradePassState($pass_no)
     {
-        $state = Pass_Controller::getInstance()->getPassState($pass_no);
+        //$state = Pass_Controller::getInstance()->getPassState($pass_no);
+        $passObj = $this->getPass($pass_no);
+        $state = $passObj->getState();
         if ($state == 0)
-            Pass_Controller::getInstance()->setPassStateAccept_oneCtrl($pass_no);
+            Pass_Controller::getInstance()->setPassStateAccept_oneCtrl($passObj->getPassNo());
         elseif ($state == 1)
-            Pass_Controller::getInstance()->setPassStateAccept_twoCtrl($pass_no);
+            Pass_Controller::getInstance()->setPassStateAccept_twoCtrl($passObj->getPassNo());
+        return $passObj; //used in Notifications
     }
 
     public function declinePass($pass_no)
     {
-        Pass_Controller::getInstance()->setStateDeclined($pass_no);
+        $passObj = $this->getPass($pass_no);
+        Pass_Controller::getInstance()->setStateDeclined($passObj->getPassNo());
+        return $passObj;
     }
 
     //called by timer
@@ -170,6 +175,10 @@ class Pass_Tracker extends Tracker implements Observer
             $passEndDate = $pass->getEndDate();
             if ($curDate > $passEndDate) {
                 $this->setPassStateExpired($pass->getPassNo());
+                //Expire Pass Notification
+                $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($pass->getPassengerNo());
+                $param = [5, $pass->getPassNo()];
+                Notification_handler::setupNotification($passenger->getEmail(),$passenger->getTelephone(),$param);
                 $change++;
             }
         }
@@ -187,5 +196,4 @@ class Pass_Tracker extends Tracker implements Observer
         }
         return $this->getPass($pass_details['pass_no']);
     }
-
 }

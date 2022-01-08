@@ -24,12 +24,20 @@ class EssentialServiceTracker extends Tracker{
 
     //Approve an Essential Service
     public function approveService($service_no){
-        Service_Model::getInstance()->setStateEssential($service_no); // fix MVC make these methods protected
+        Service_Model::getInstance()->setStateEssential($service_no);
+        $service = $this->createService($service_no);
+        $param = [6, $service->getName(),$service->getId()];
+        $executiveObj = $this->getExecutiveByServiceNo($service_no);
+        Notification_handler::setupNotification($executiveObj->getEmail() , $executiveObj->getTelephone() , $param); 
     }
 
     //Decline an Essential Service
     public function declineService($service_no){
         Service_Model::getInstance()->setStateNonEssential($service_no);
+        $service = $this->createService($service_no);
+        $param = [7, $service->getName(),$service->getId()];
+        $executiveObj = $this->getExecutiveByServiceNo($service_no);
+        Notification_handler::setupNotification($executiveObj->getEmail() , $executiveObj->getTelephone() , $param); 
     }
 
     public function getServiceStatus($serviceId){
@@ -53,6 +61,9 @@ class EssentialServiceTracker extends Tracker{
         $ctrl_obj->setFileNo($last_no,$service_no);
     }
 
-
+    public function getExecutiveByServiceNo($service_no){
+        $exec_ctrl = new Executive_Controller();
+        return $exec_ctrl->getExecutiveNumberFromService_no($service_no);
+    }
 
 }
