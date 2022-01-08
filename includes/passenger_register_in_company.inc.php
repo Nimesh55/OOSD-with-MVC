@@ -18,6 +18,9 @@ if(isset($_POST['remove'])){
     $passenger_controller->unSetPassengerCompanyDetails();
     header("Location:../passenger_register_in_company.php");
 }
+if(isset($_POST['home'])){
+    header("Location:../passenger_home.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">

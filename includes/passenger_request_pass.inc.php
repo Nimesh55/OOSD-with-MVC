@@ -37,5 +37,9 @@ if (isset($_POST['remove'])){
 
 }
 
+if(isset($_POST['home'])){
+    header("Location:../passenger_home.php");
+}
+
 
 

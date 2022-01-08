@@ -188,7 +188,7 @@
                             echo "<input type=\"submit\" class=\"btn btn-primary btn-lg ctrlbutton\" name=\"remove\" value=\"Remove\">";
                         }
                         ?>
-
+                    <input type="submit" class="btn btn-primary btn-lg" value="Back to Home" name="home">
                     <input type="text" hidden name="pass_no" value="<?php echo $result['pass_no'] ?>">
 
 

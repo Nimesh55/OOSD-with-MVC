@@ -45,6 +45,7 @@
                 <br>
 
                 <input type="submit" class="btn btn-primary btn-lg" value="Request" name="request">
+                <input type="submit" class="btn btn-primary btn-lg" value="Back to Home" name="home">
 
             </form>
 

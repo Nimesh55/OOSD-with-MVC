@@ -51,6 +51,7 @@
                 <br>
 
                 <input type="submit" class="btn btn-primary btn-lg" value="Remove" name="remove">
+                <input type="submit" class="btn btn-primary btn-lg" value="Back to Home" name="home">
 
             </form>
 
