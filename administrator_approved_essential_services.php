@@ -46,7 +46,7 @@ $rows = $view->getApprovedRows(); // getpending rows
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['user_Id'] ?> <span class="caret"></span></a>
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo "Administrator" ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="administrator_configuration_settings.php">Settings</a></li>
                                     <li><a href="change_password.php">Change Password</a></li>
@@ -83,7 +83,7 @@ $rows = $view->getApprovedRows(); // getpending rows
                         <td><?php echo $rows[$i]["id"]; ?></td>
                         <td><?php echo $rows[$i]["name"]; ?></td>
                         <td>
-                            <a href="#" class="btn btn-info" onclick="clickView(<?php echo $rows[$i]['service_no'];  ?>)"> view </a>
+                            <a href="#" class="btn btn-info" onclick="clickView(<?php echo $rows[$i]['service_no'];  ?>)"> View </a>
                         </td>
                     </tr>
                 <?php $i++;

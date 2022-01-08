@@ -45,7 +45,7 @@ $rows = $view->getPendingRows(); // getpending rows
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['user_Id'] ?> <span class="caret"></span></a>
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo "Administrator" ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="administrator_configuration_settings.php">Settings</a></li>
                                     <li><a href="change_password.php">Change Password</a></li>

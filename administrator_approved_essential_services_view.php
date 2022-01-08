@@ -27,7 +27,7 @@ if (isset($_POST['view'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/passenger_home.css">
+    <link rel="stylesheet" href="css/administrator_approved_essential_services_view.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Administrator Approved Essential Services</title>
@@ -52,7 +52,7 @@ if (isset($_POST['view'])) {
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['user_Id'] ?> <span class="caret"></span></a>
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php echo "Administrator" ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="administrator_configuration_settings.php">Settings</a></li>
                                     <li><a href="change_password.php">Change Password</a></li>
@@ -68,16 +68,14 @@ if (isset($_POST['view'])) {
     <form action="administrator_approved_essential_services_view.php" method="POST">
         <input type="hidden" name="pass_no" value="<?php echo $pass_no ?>">
         <!-- Details of A single pass -->
-        <div class="container mt-3">
-
-            <div style="margin-top:100px;">
+        <div class="container mt-3">s
 
                 <div class="row">
                     <div class="col-sm-3 p-3"></div>
                     <div class="col-sm-3 p-3 bg-dark text-white">
                         <p>Service ID</p>
                     </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
+                    <div class="col-sm-3 p-3 bg-dark text-white">
                         <p>: <?php echo $service_id ?></p>
                     </div>
                     <div class="col-sm-3 p-3"></div>
@@ -88,7 +86,7 @@ if (isset($_POST['view'])) {
                     <div class="col-sm-3 p-3 bg-dark text-white">
                         <p>Service Name</p>
                     </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
+                    <div class="col-sm-3 p-3 bg-dark text-white">
                         <p>: <?php echo $service_name ?></p>
                     </div>
                     <div class="col-sm-3 p-3"></div>
@@ -99,7 +97,7 @@ if (isset($_POST['view'])) {
                     <div class="col-sm-3 p-3 bg-dark text-white">
                         <p>Status</p>
                     </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
+                    <div class="col-sm-3 p-3 bg-dark text-white">
                         <p>: <?php echo $status ?></p>
                     </div>
                     <div class="col-sm-3 p-3"></div>
@@ -110,7 +108,7 @@ if (isset($_POST['view'])) {
                     <div class="col-sm-3 p-3 bg-dark text-white">
                         <p>Attachments</p>
                     </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
+                    <div class="col-sm-3 p-3 bg-dark text-white">
 
                         <?php
                         if($service_file==null):
@@ -119,8 +117,8 @@ if (isset($_POST['view'])) {
                         <?php
                         else:
                             ?>
-                            <button class="alert-success"><a href="includes/download.inc.php?name=<?php echo $service_file['name'];?>
-                                                            &fname=<?php echo $service_file['fname'] ?>">Download</a></button>
+                            <a class="btn btn-primary" href="includes/download.inc.php?name=<?php echo $service_file['name'];?>
+                                                            &fname=<?php echo $service_file['fname'] ?>">Download</a>
                         <?php
                         endif;
                         ?>
@@ -135,10 +133,10 @@ if (isset($_POST['view'])) {
                 <!-- accept and decline buttons -->
                 <div class="row">
                     <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3">
+                    <div class="col-sm-6 p-3">
                         <?php $_SESSION['decline'] = $service_no ?>
                         <a href="includes/serviceFunction_Decline.inc.php?x=r" class="btn btn-info"> Remove </a>
-                        <a href="administrator_approved_essential_services.php" class="btn btn-default"> Exit </a>
+                        <a href="administrator_approved_essential_services.php" class="btn btn-danger"> Exit </a>
                     </div>
 
                     <div class="col-sm-3 p-3"></div>
