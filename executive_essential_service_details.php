@@ -89,8 +89,8 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
                         <div class="col-sm-5 p-3 field">
                             <p>Service Name</p>
                         </div>
-                        <div class="col-sm-1 p-3">:</div>
-                        <div class="col-sm-6 p-3 data">
+                        <div class="col-sm-2 semicolen p-3">:</div>
+                        <div class="col-sm-5 p-3 data">
                             <p><?= $details['service_name']?> </p>
                         </div>
                     </div>
@@ -99,8 +99,8 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
                         <div class="col-sm-5 p-3 field">
                             <p>Essential Service Status</p>
                         </div>
-                        <div class="col-sm-1 p-3">:</div>
-                        <div class="col-sm-6 p-3 data">
+                        <div class="col-sm-2 semicolen p-3">:</div>
+                        <div class="col-sm-5 p-3 data">
                             <p><?= $state_str?> </p>
                         </div>
                     </div>
@@ -109,8 +109,8 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
                         <div class="col-sm-5 p-3 field">
                             <p>Address</p>
                         </div>
-                        <div class="col-sm-1 p-3">:</div>
-                        <div class="col-sm-6 p-3 data">
+                        <div class="col-sm-2 semicolen p-3">:</div>
+                        <div class="col-sm-5 p-3 data">
                             <p><?= $contactdetails->getAddress();?> </p>
                         </div>
                     </div>
@@ -119,8 +119,8 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
                         <div class="col-sm-5 p-3 field">
                             <p>Telephone NO</p>
                         </div>
-                        <div class="col-sm-1 p-3">:</div>
-                        <div class="col-sm-6 p-3 data">
+                        <div class="col-sm-2 semicolen p-3">:</div>
+                        <div class="col-sm-5 p-3 data">
                             <p><?= $contactdetails->getTelephone();?> </p>
                         </div>
                     </div>
@@ -129,8 +129,8 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
                         <div class="col-sm-5 p-3 field">
                             <p>Attachments</p>
                         </div>
-                        <div class="col-sm-1 p-3">:</div>
-                        <div class="col-sm-6 p-3 data">
+                        <div class="col-sm-2 semicolen p-3">:</div>
+                        <div class="col-sm-5 p-3 data">
                             <?php if ($state_str == "Non-Essential") : ?>
                                 <input type="file" id="file" name="file"/>
                             <?php elseif (($state_str == "Essential" || $state_str == "Pending") and $service_file==null) : ?>
@@ -148,13 +148,13 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
 
                             <form action="includes/executive_essential_service_details.inc.php" method="POST">
                                 <input type="hidden" name="variablePass1" value="1-<?php echo $_SESSION['service_no'] ?>">
-                                <button class="btn btn-info" type="submit" name="submit" value="Request" onclick="clickView('1-<?php echo $_SESSION['service_no'] ?>','includes/executive_essential_service_details.inc.php')" >Request</button>
+                                <button class="btn btn-info btn-lg" type="submit" name="submit" value="Request" onclick="clickView('1-<?php echo $_SESSION['service_no'] ?>','includes/executive_essential_service_details.inc.php')" >Request</button>
                             </form>
 
                         <?php endif; ?>
 
                         <?php if ($state_str == "Essential" || $state_str == "Pending") : ?>
-                            <a href="#" class="btn btn-info" onclick="clickView('0-<?php echo $_SESSION['service_no'] ?>','executive_remove_essetial_service_verification.php')"> Remove </a>
+                            <a href="#" class="btn btn-info btn-lg" onclick="clickView('0-<?php echo $_SESSION['service_no'] ?>','executive_remove_essetial_service_verification.php')"> Remove </a>
                         <?php endif; ?>
                     </div>
 
