@@ -62,6 +62,11 @@ class Signup_Controller extends Signup{
             exit();
         }
 
+        if (!$this->isValidNIC($this->uid)) {
+            header("location: ../".$this->page_name."_signup.php?error=InvalidUserId&src=".$src);
+            exit();
+        }
+
         if ($this->user_exist()) {
             // error msg here
             header("location: ../".$this->page_name."_signup.php?error=user_exist&src=".$src);
@@ -74,17 +79,22 @@ class Signup_Controller extends Signup{
             exit();
         }
 
+        if ($this->emailAlreadyExist()) {
+            header("location: ../".$this->page_name."_signup.php?error=emailExist&src=".$src);
+            exit();
+        }
+
         if ($this->isUserValidInput() == false) {
             // error msg here
             header("location: ../".$this->page_name."_signup.php?error=invalidusername&src=".$src);
             exit();
         }
 
-//        if ($this->isTelephoneValidInput() == false) {
-//            // error msg here
-//            header("location: ../".$this->page_name."_signup.php?error=enterstrongpassword&src=".$src);
-//            exit();
-//        }
+       if ($this->isTelephoneValidInput() == false) {
+           // error msg here
+           header("location: ../".$this->page_name."_signup.php?error=enterstrongpassword&src=".$src);
+           exit();
+       }
 
         if($this->isValidPassword($this->password)){
             header("Location: ");
@@ -109,6 +119,13 @@ class Signup_Controller extends Signup{
             $result = false;
         }
         return $result;
+    }
+
+    private function emailAlreadyExist(){
+        if ($this->isEmailExist($this->email)>0) {
+            return true;
+        }
+        return false;
     }
 
     private function password_match(){
@@ -141,10 +158,22 @@ class Signup_Controller extends Signup{
     }
 
     private function isTelephoneValidInput(){
-        if (!is_numeric($this->telephone) or strlen($this->telephone) != 10) {
-            return false;
+        if (strlen($this->telephone) == 10 or strlen($this->telephone) == 12) {
+            if (strlen($this->telephone) == 10) {
+                if (!is_numeric($this->telephone)) {
+                    return false;
+                }
+                return true;
+            }
+            else{
+                $firstChar = substr($this->telephone, 0, 1);
+                $numeric = substr($this->telephone, 1);
+                if (strcmp($firstChar,"+") == 0 && is_numeric($numeric)) {
+                    return true;
+                }
+            }
         }
-        return true;
+        return false;
     }
 
     private function isValidPassword($password){
@@ -160,28 +189,24 @@ class Signup_Controller extends Signup{
         }
     }
 
-//    //Validate NIC
-//
-//    private function isValidNIC($nic)
-//    {
-//        $result = true;
-//        if ($nic != "") {
-//            if (strlen($nic) <> 10) {
-//                $result = FALSE;
-//            }
-//
-//            $nic_9 = substr($nic, 0, 9);
-//
-//            if (!is_numeric($nic_9)) {
-//                $result = false;
-//            }
-//
-//            $nic_v = substr($nic, 9, 1);
-//            if (is_numeric($nic_v)) {
-//                $result = false;
-//            }
-//        }
-//        return $result?"":'*Please Enter Valid NIC!!! ';
-//
-//    }
+   //Validate NIC
+
+   private function isValidNIC($nic)
+   {
+       $result = true;
+       if ($nic != "") {
+           if (strlen($nic) < 8 || strlen($nic)>16 ) {
+               $result = false;
+           }
+
+           $nic_9 = substr($nic, 0, 9);
+
+           if (!is_numeric($nic_9)) {
+               $result = false;
+           }
+       }
+    //    return $result?"":'*Please Enter Valid NIC ';
+    return $result;
+
+   }
 }

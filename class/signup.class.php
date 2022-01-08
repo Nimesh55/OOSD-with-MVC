@@ -45,7 +45,7 @@ class Signup extends Dbh{
 
           if (!$stmt0->execute(array($company_Id, $company_name, 0))) {
               $stmt0 = null;
-              header("location: ../test.php?error=query_error");
+              header("location: ../login.php?error=error1");
               exit();
           }
           $stmt0 = null;
@@ -60,7 +60,7 @@ class Signup extends Dbh{
         }
 
         if ($query_error) {
-            header("location: ../test.php?error=query_error");
+            header("location: ../login.php?error=error1");
             exit();
         }
 
@@ -79,6 +79,31 @@ class Signup extends Dbh{
             exit();
         }
         $stmt2 = null;
+    }
+
+    protected function isEmailExist($email){
+      $matchFound = 0;
+      $query2 = "SELECT COUNT(*) FROM passenger WHERE email = ?";
+      $stmt2 = $this->connect()->prepare($query2);
+      $stmt2->execute([$email]);
+      $matchFound += $stmt2->fetchColumn();
+
+      $query2 = "SELECT COUNT(*) FROM executive WHERE email = ?";
+      $stmt2 = $this->connect()->prepare($query2);
+      $stmt2->execute([$email]);
+      $matchFound += $stmt2->fetchColumn();
+
+      $query2 = "SELECT COUNT(*) FROM conductor WHERE email = ?";
+      $stmt2 = $this->connect()->prepare($query2);
+      $stmt2->execute([$email]);
+      $matchFound += $stmt2->fetchColumn();
+
+      $query2 = "SELECT COUNT(*) FROM notification_config_data WHERE email_emailAddress = ?";
+      $stmt2 = $this->connect()->prepare($query2);
+      $stmt2->execute([$email]);
+      $matchFound += $stmt2->fetchColumn();
+
+      return $matchFound;
     }
 
     private function getLastAccountNo($account_type){
