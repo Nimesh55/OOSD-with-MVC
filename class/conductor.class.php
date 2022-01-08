@@ -3,7 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.p
 
 class Conductor extends User
 {
-    private $vehicle_no;
+    private $vehicle_no; // try to make a class
     private $district_no;
     private $state;
     private $district_name;
