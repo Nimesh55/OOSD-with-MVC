@@ -146,4 +146,9 @@ class Board_Manager_View extends Board_Manager_Model
 
         return $details;
     }
+
+    public function getPassengerName($passenger_no){
+        $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($passenger_no);
+        return $passenger->getFirstName()." ".$passenger->getLastName();
+    }
 }

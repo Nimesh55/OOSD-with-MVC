@@ -24,22 +24,6 @@ class Board_Manager_Model extends Dbh
         return $count3;
     }
 
-    // Load first name and last name of passenger from given passenger_no
-    // This must be done using Passenger object
-    public function getPassengerName($passenger_no){
-
-        $name = null;
-        $query = "SELECT first_name,last_name FROM passenger WHERE passenger_no={$passenger_no}";
-
-        $stmt = $this->connect()->prepare($query);
-
-        if ($stmt->execute()) {
-            $passengerDetails = $stmt->fetch(PDO::FETCH_ASSOC);
-            $name = $passengerDetails['first_name'] . " " . $passengerDetails['last_name'];
-        }
-        return $name;
-    }
-
     public function getDistrictArray(){
         $query = "SELECT * FROM district";
         $stmt = $this->connect()->prepare($query);
@@ -47,21 +31,6 @@ class Board_Manager_Model extends Dbh
         $district_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         return $district_list;
-    }
-
-    //Remove this after passenger class created
-    public function getPassengerEmail($passenger_no){
-
-        $email = null;
-        $query = "SELECT email FROM passenger WHERE passenger_no={$passenger_no}";
-
-        $stmt = $this->connect()->prepare($query);
-
-        if ($stmt->execute()) {
-            $passengerDetails = $stmt->fetch(PDO::FETCH_ASSOC);
-            $email = $passengerDetails['email'];
-        }
-        return $email;
     }
 
     protected function getDistrictName($district_no){

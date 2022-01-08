@@ -107,6 +107,7 @@ $details = $board_manager_view->getApprovedPassesDetails();
                         echo "</tr>";
                     }
                 }
+
                 ?>`
 
             </tbody>

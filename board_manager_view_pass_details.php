@@ -104,8 +104,6 @@ $details = $board_manager_view->viewPassDetails($pass_no);
 
 
 
-
-    <!-- Deleting should be implemented later -->
     <?php
     
         echo "<div class=\"container mt-3\" style=\"float:left;\">";
