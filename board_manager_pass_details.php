@@ -107,7 +107,7 @@ $details = $board_manager_view->getApprovedPassesDetails();
                         echo "<tr>";
                         echo "<th scope=\"row\">>></th>";
                         echo "<td>{$name}</td>";
-                        echo "<td><a class=\"btn btn-sm btn-default\" href=\"board_manager_view_pass_details.php?pass_no={$pass->getPassNo()}\">View</a></td>";
+                        echo "<td><a class=\"btn btn-sm btn-primary\" href=\"board_manager_view_pass_details.php?pass_no={$pass->getPassNo()}\">View</a></td>";
                         echo "</tr>";
                     }
                 }
