@@ -7,6 +7,9 @@ if(!isset($_SESSION['account_no'])){
     header("Location: login.php");
     return;
 }
+echo "<pre>";
+print_r($_POST);
+echo "</pre>";
 
 
 ?>
@@ -45,27 +48,19 @@ if(!isset($_SESSION['account_no'])){
     <div class="row">
         <div class="col-lg-3 cyan"></div>
         <div class="col-lg-6 pink wrapper">
-
-<!--            --><?php
-//            if (isset($_POST['error_str']) && strcmp($_POST['error_str'],"Success")!=0) {
-//
-//                echo "<div class=\"alert alert-danger\"><strong>".$error_str."</strong></div>";
-//            }
-//            if(isset($_POST['error_str']) && strcmp($_POST['error_str'],"Success")==0){
-//                echo "<div class=\"alert alert-success\"><strong>"."Successfully Updated!!!"."</strong></div>";
-//            }
-//            ?>
             <form class="form-horizontal" role="form" action="includes/passenger_edit_profile.inc.php" method="post">
                 <div class="form-group">
                     <label for="password" class="col-sm-3 control-label">Password:</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-8">
                         <input name="password" type="password" class="form-control" id="password" value="">
+                        <input name="variablePass1" value="<?php echo $_POST['variablePass1']; ?>" hidden>
                     </div>
+                    <div class="col-sm-1"></div>
                 </div>
 
                 <div class="btn-group btn-group-lg">
 <!--                    <input type="submit" class="btn btn-primary ctrlbutton" name="cpwd" value="Change Password">-->
-                    <input type="submit" class="btn btn-primary ctrlbutton" name="save" value="Save">
+                    <input type="submit" class="btn btn-primary ctrlbutton" name="enter" value="Enter">
                     <input type="submit" class="btn btn-primary ctrlbutton" name="back" value="Back">
                 </div>
 

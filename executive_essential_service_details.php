@@ -129,7 +129,7 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
                 <div class="row">
                     <div class="col-sm-3 p-3"></div>
                     <div class="col-sm-3 p-3">
-                        <a href="#" class="btn btn-info" onclick="clickView('0-<?php echo $_SESSION['service_no'] ?>','includes/executive_essential_service_details.inc.php')"> Remove </a>
+                        <a href="#" class="btn btn-info" onclick="clickView('0-<?php echo $_SESSION['service_no'] ?>','executive_remove_essetial_service_verification.php')"> Remove </a>
                     </div>
 
                     <div class="col-sm-3 p-3"></div>
