@@ -11,6 +11,7 @@ if (isset($_POST['view'])) {
     $id =$_POST['view'];
     $view = new Administrator_view();
     $rows = $view->fetchDetails($id);
+    $service_no = $rows['service_no'];
     $service_id = $rows['id'];
     $service_name = $rows['name'];
     $status = $rows['state'];
@@ -135,7 +136,7 @@ if (isset($_POST['view'])) {
                 <div class="row">
                     <div class="col-sm-3 p-3"></div>
                     <div class="col-sm-3 p-3">
-                        <?php $_SESSION['decline'] = $service_id ?>
+                        <?php $_SESSION['decline'] = $service_no ?>
                         <a href="includes/serviceFunction_Decline.inc.php?x=r" class="btn btn-info"> Remove </a>
                         <a href="administrator_approved_essential_services.php" class="btn btn-default"> Exit </a>
                     </div>
