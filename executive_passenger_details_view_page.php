@@ -149,8 +149,7 @@ $row = array('state' => $passenger->getState(), 'first_name' => $passenger->getF
                         <?php
                         else:
                             ?>
-                            <button class="alert-success"><a href="includes/download.inc.php?name=<?php echo $passenger_file['name'];?>
-                                                            &fname=<?php echo $passenger_file['fname'] ?>">Download</a></button>
+                            <a href="includes/download.inc.php?name=<?php echo $passenger_file['name'];?>&fname=<?php echo $passenger_file['fname'] ?>">Download</a>
                         <?php
                         endif;
                         ?>

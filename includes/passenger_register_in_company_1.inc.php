@@ -40,8 +40,7 @@
                         else:
                             ?>
                             <input name="view" type="text" class="form-control" id="view" readonly value="<?= $passenger_file['name'] ?>">
-                            <button class="alert-success"><a href="includes/download.inc.php?name=<?php echo $passenger_file['name'];?>
-                                                            &fname=<?php echo $passenger_file['fname'] ?>">Download</a></button>
+                            <a href="includes/download.inc.php?name=<?php echo $passenger_file['name'];?>&fname=<?php echo $passenger_file['fname'] ?>">Download</a>
                         <?php
                         endif;
                         ?>
