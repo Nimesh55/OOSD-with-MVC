@@ -4,20 +4,15 @@ body{
     background-size: cover;
 }
 
-#contanier-data {
+
+.container{
     width: 50%;
-    background-color: rgb(44, 44, 37);
+    background-color: rgb(39, 39, 32);
     padding: 3%; 
     color: aliceblue;
-    margin-top: 8%;
+    margin-top: 3%;
     border-style: ridge;
     border: 2px solid whitesmoke;
     border-radius: 10px;
-    opacity: 0.95;
     
-}
-
-.row{
-    color: aliceblue;
-    word-spacing: 2x;
 }

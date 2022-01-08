@@ -31,6 +31,7 @@
     public function fetchDetails($service_no){
       $row = $this->adminctrl->formatForView($service_no);
       $details=array(
+        "service_no"=> $row['service_no'],
         "id"=> $row['id'],
         "name"=> $row['name'],
         "state"=> $row['state'],

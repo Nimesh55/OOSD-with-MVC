@@ -33,7 +33,15 @@ class EssentialServiceTracker extends Tracker{
 
     //Decline an Essential Service
     public function declineService($service_no){
+        $bookings = Booking_Tracker::getInstance()->getBookingsArrayForService($service_no);
+        foreach ($bookings as $booking){
+            if($booking->getState()<2){
+                Booking_Tracker::getInstance()->setbookingStateExpired($booking->getBookingNo());
+            }
+        }
+
         Service_Model::getInstance()->setStateNonEssential($service_no);
+
         $service = $this->createService($service_no);
         $param = [7, $service->getName(),$service->getId()];
         $executiveObj = $this->getExecutiveByServiceNo($service_no);

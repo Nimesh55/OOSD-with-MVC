@@ -36,7 +36,7 @@ class Service_Model extends Dbh
     }
 
     public function setStateNonEssential($service_no){
-        $sql = "UPDATE service SET state=0 where id=?";
+        $sql = "UPDATE service SET state=0 where service_no=?";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$service_no]);
     }

@@ -29,6 +29,7 @@
       $state = 'Removed';
     }
     $details=array(
+      "service_no"=>$ServiceObj->getServiceNo(),
       "id"=> $ServiceObj->getId(),
       "name"=> $ServiceObj->getName(),
       "state"=> $state,
