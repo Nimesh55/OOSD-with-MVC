@@ -8,7 +8,6 @@ if (!isset($_SESSION['user_Id'])) {
     return;
 }
 
-
 $board_manager_view = new Board_Manager_View();
 $details = $board_manager_view->getApprovedPassesDetails();
 
@@ -63,6 +62,11 @@ $details = $board_manager_view->getApprovedPassesDetails();
             </div>
         </div>
     </div>
+
+    <?php if(isset($_SESSION['success'])): ?>
+        <div class="alert alert-success"><strong><?= $_SESSION['success'] ?></strong></div>
+    <?php endif; ?>
+
     <div class="container mt-3" id="contanier-data">
         <!-- SearchBar -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
@@ -108,6 +112,10 @@ $details = $board_manager_view->getApprovedPassesDetails();
                     }
                 }
 
+                if(empty($approvedPasses) and isset($_GET['search'])){
+                    echo "No matches found";
+                }
+
                 ?>`
 
             </tbody>
@@ -115,5 +123,8 @@ $details = $board_manager_view->getApprovedPassesDetails();
     </div>
 
 </body>
-
 </html>
+
+<?php
+unset($_SESSION['success']);
+?>

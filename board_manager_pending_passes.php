@@ -8,7 +8,6 @@ if(!isset($_SESSION['user_Id'])){
     return;
 }
 
-
 $board_manager_view = new Board_Manager_View();
 $details = $board_manager_view->getPendingPassesDetails();
 
@@ -64,6 +63,10 @@ $details = $board_manager_view->getPendingPassesDetails();
         </div>
     </div>
 
+    <?php if(isset($_SESSION['success'])): ?>
+        <div class="alert alert-success"><strong><?= $_SESSION['success'] ?></strong></div>
+    <?php endif; ?>
+
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
     <form action="board_manager_pending_passes.php" method="GET">
         <div class="row">
@@ -81,7 +84,6 @@ $details = $board_manager_view->getPendingPassesDetails();
     </form>
     <br>
 
-
     <!-- List view and redirected Page button -->
     <ul class="list-group action-list-group">
 
@@ -97,8 +99,16 @@ $details = $board_manager_view->getPendingPassesDetails();
             }
         }
 
+        if(empty($pendingPasses) and isset($_GET['search'])){
+            echo "No matches found";
+        }
+
         ?>`
     </ul>
 </body>
 
 </html>
+
+<?php
+unset($_SESSION['success']);
+?>

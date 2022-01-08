@@ -19,18 +19,21 @@ class Board_Manager_Controller extends Board_Manager_Model
     public function approvePass($pass_no)
     {
         $this->pass_tracker->upgradePassState($pass_no);
+        $_SESSION['success'] = "Pass approved successfully";
         header("Location: ../board_manager_pending_passes.php");
     }
 
     public function declinePass($pass_no)
     {
         $this->pass_tracker->declinePass($pass_no);
+        $_SESSION['success'] = "Pass declined successfully";
         header("Location: ../board_manager_pending_passes.php");
     }
 
     public function removePass($pass_no)
     {
         $this->pass_tracker->declinePass($pass_no);
+        $_SESSION['success'] = "Pass removed successfully";
         header("Location: ../board_manager_pass_details.php");
     }
 
