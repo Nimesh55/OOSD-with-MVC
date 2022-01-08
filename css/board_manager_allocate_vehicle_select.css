@@ -1,0 +1,20 @@
+body{
+    background-color: violet;
+    background: url("../img/PassBlue.jpg") no-repeat center fixed;
+    background-size: cover;
+    color: aliceblue;
+}
+
+.container{
+    padding: 2%;
+    width: 50%;
+    background-color: black;
+    border-radius: 15px;
+    text-align: center;
+    border-style: ridge;
+    border: 2px solid whitesmoke;
+}
+
+.btn-primary{
+    width: 50%;
+}
