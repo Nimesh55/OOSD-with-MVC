@@ -54,10 +54,7 @@ if ($_GET["error"] != 'none') {
 
                     <div class="navbar-collapse collapse" id="mobile_menu">
                         <ul class="nav navbar-nav">
-                            <li><a href="conductor_home.php">Home</a></li>
-                            <li><a href="conductor_verify_passenger.php?show=false">Verify Passenger</a></li>
-                            <li><a href="conductor_update_leave.php?error=none">Update Leave</a></li>
-                            <li class="active"><a href="conductor_cancel_booking.php">Booking View</a></li>
+                            <li class=""><a href="conductor_cancel_booking.php">Back</a></li>
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
@@ -200,12 +197,7 @@ if ($_GET["error"] != 'none') {
             <br>
 
             <div class="row">
-                <div class="col-sm-3 p-2"></div>
-                <div class="col-sm-3 p-3">
-                    <?php
-                    echo "<a class=\"btn btn-primary\" href=\"conductor_cancel_booking.php\">Back</a>";
-                    ?>
-                </div>
+                <div class="col-sm-6 p-2"></div>
 
                 <?php if ($bookingDetails['flag'] == 0) : ?>
                     <div class="col-sm-4 p-3">
