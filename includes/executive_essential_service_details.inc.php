@@ -6,6 +6,9 @@ echo "<pre>";
 print_r($_POST);
 echo "<pre>";
 
+if(isset($_SESSION['enter'])){
+
+}
 
 if (isset($_POST['variablePass1'])) {
     $str =  $_POST['variablePass1'];

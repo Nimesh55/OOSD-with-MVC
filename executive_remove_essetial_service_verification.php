@@ -48,7 +48,7 @@ echo "</pre>";
     <div class="row">
         <div class="col-lg-3 cyan"></div>
         <div class="col-lg-6 pink wrapper">
-            <form class="form-horizontal" role="form" action="includes/passenger_edit_profile.inc.php" method="post">
+            <form class="form-horizontal" role="form" action="includes/executive_essential_service_details.inc.php" method="post">
                 <div class="form-group">
                     <label for="password" class="col-sm-3 control-label">Password:</label>
                     <div class="col-sm-8">

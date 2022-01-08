@@ -128,4 +128,10 @@ class Executive_Model extends Dbh
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$file_no, $service_no]);
     }
+    protected function checkPassword($password){
+        $query = "SELECT password FROM users WHERE user_Id=?";
+        $stmt = $this->connect()->prepare($query);
+        $pwdHashed = $stmt->fetch();
+        return password_verify($password, $pwdHashed["password"]);
+    }
 }
