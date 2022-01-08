@@ -7,8 +7,9 @@ class Conductor extends User
     private $district_no;
     private $state;
     private $district_name;
+    private static $instances = array();
 
-    public function __construct($conductor_id)
+    private function __construct($conductor_id)
     {
         parent::setUserId($conductor_id);
         $conductor_model = new Conductor_Model();
@@ -51,5 +52,13 @@ class Conductor extends User
     public function getConductorNo()
     {
         return parent::getAccountNo();
+    }
+
+    public static function getInstance($user_id)
+    {
+        if(!array_key_exists($user_id, self::$instances)) {
+            self::$instances[$user_id] = new self($user_id);
+        }
+        return self::$instances[$user_id];
     }
 }

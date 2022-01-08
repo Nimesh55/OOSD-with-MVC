@@ -17,9 +17,8 @@ class Conductor_Controller extends Conductor_Model
             return null;
         }
         $conductor_id  = $data["user_id"];
-        // echo $conductor_id;
 
-        $condObject = new Conductor($conductor_id);
+        $condObject = Conductor::getInstance($conductor_id);
         return $condObject;
     }
 

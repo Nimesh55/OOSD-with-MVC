@@ -4,10 +4,6 @@ class TransportBoardAdministrator extends Transport_Board_User{
     private $numApprovedService;
     private $numIssuedPasses;
 
-    public function __construct(){
-
-    }
-
     public function setValues($uid, $pending, $approved, $issued){
         parent::setUid($uid);
         $this->numPendingCompany = $pending;

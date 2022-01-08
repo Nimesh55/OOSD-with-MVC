@@ -12,7 +12,7 @@ class Board_Manager_View extends Board_Manager_Model
 
     public function __construct()
     {
-        $this->board_manager = new Board_Manager();
+        $this->board_manager = new Board_Manager($_SESSION['user_Id']);
         $this->pass_tracker = Pass_Tracker::getInstance();
         $this->essential_service_tracker = EssentialServiceTracker::getInstance();
         $this->booking_tracker = Booking_Tracker::getInstance();

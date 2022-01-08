@@ -27,7 +27,7 @@ class Conductor_Tracker extends Tracker{
 
     // create conductor account by conductor ID
     public function getConductor($conductor_id){
-        $conductorObj = new Conductor($conductor_id);
+        $conductorObj = Conductor::getInstance($conductor_id);
         return $conductorObj;
     }
 

@@ -10,7 +10,7 @@ class Conductor_View extends Conductor_Model
   public function __construct($conductor_no)
   {
 
-    $this->conductor = new Conductor($conductor_no);
+    $this->conductor = Conductor::getInstance($conductor_no);
     $this->conductor_controller = new Conductor_Controller();
   }
 
