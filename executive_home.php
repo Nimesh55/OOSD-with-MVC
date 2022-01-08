@@ -73,7 +73,7 @@ $state_str = $executive_view->getEssentialServiceDetails($_SESSION['service_no']
     </div>
 </div>
 
-<div class="container mt-3">
+<div class="container">
     <h1> <?= $details['name'] ?> </h1>
     <div style="margin-top:100px;">
         <div class="row">
@@ -122,6 +122,77 @@ $state_str = $executive_view->getEssentialServiceDetails($_SESSION['service_no']
     </div>
     <br>
     <br>
+
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6 wrapper">
+
+            <div class="row">
+                <div class="col-sm-4 p-3 field">
+                    <p>First Name</p>
+                </div>
+                <div class="col-sm-1 p-3">:</div>
+                <div class="col-sm-7 p-3">
+                    <p><?= $row['first_name'] ?> </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 p-3 field">
+                    <p>Last Name</p>
+                </div>
+                <div class="col-sm-1 p-3">:</div>
+                <div class="col-sm-7 p-3">
+                    <p><?= $row['last_name'] ?></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 p-3 field">
+                    <p>Address</p>
+                </div>
+                <div class="col-sm-1 p-3">:</div>
+                <div class="col-sm-7 p-3">
+                    <p><?= $row['address'] ?> </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 p-3 field">
+                    <p>NIC</p>
+                </div>
+                <div class="col-sm-1 p-3">:</div>
+                <div class="col-sm-7 p-3">
+                    <p><?= $row['user_id'] ?> </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 p-3 field">
+                    <p>Telephone NO</p>
+                </div>
+                <div class="col-sm-1 p-3">:</div>
+                <div class="col-sm-7 p-3">
+                    <p><?= $row['telephone'] ?> </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 p-3 field">
+                    <p>Email</p>
+                </div>
+                <div class="col-sm-1 p-3">:</div>
+                <div class="col-sm-7 p-3">
+                    <p><?= $row['email'] ?> </p>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-lg-3"></div>
+
+    </div>
 
 </div>
 </body>

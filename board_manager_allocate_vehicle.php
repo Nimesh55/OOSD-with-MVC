@@ -91,6 +91,7 @@ foreach ($bookings as $booking){
     <div class="row">
 <!--        <div class="col-xs-6 col-md-4">-->
             <div class="input-group">
+                
 
                 <select name="district_no" id="district" class="form-control">
 
