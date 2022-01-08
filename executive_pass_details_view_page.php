@@ -150,8 +150,7 @@ $details = array("name" => $passenger->getFirstName().' '.$passenger->getLastNam
                         <?php
                         else:
                             ?>
-                            <button class="alert-success"><a href="includes/download.inc.php?name=<?php echo $pass_file['name'];?>
-                                                            &fname=<?php echo $pass_file['fname'] ?>">Download</a></button>
+                            <a href="includes/download.inc.php?name=<?php echo $pass_file['name'];?>&fname=<?php echo $pass_file['fname'] ?>">Download</a>
                         <?php
                         endif;
                         ?>

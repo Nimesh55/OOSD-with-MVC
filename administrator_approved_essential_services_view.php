@@ -56,7 +56,7 @@ if (isset($_POST['view'])) {
                                 <ul class="dropdown-menu">
                                     <li><a href="administrator_configuration_settings.php">Settings</a></li>
                                     <li><a href="change_password.php">Change Password</a></li>
-                                    <li><a href="logout.php">Log out</a></li>
+                                    <li><a href="includes/logout.inc.php">Log out</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -117,8 +117,7 @@ if (isset($_POST['view'])) {
                         <?php
                         else:
                             ?>
-                            <a class="btn btn-primary" href="includes/download.inc.php?name=<?php echo $service_file['name'];?>
-                                                            &fname=<?php echo $service_file['fname'] ?>">Download</a>
+                            <a href="includes/download.inc.php?name=<?php echo $service_file['name'];?>&fname=<?php echo $service_file['fname'] ?>">Download</a>
                         <?php
                         endif;
                         ?>
