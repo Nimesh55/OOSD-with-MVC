@@ -62,7 +62,7 @@ $details = $board_manager_view->getApprovedPassesDetails();
             </div>
         </div>
     </div>
-
+    
     <?php if(isset($_SESSION['success'])): ?>
         <div class="alert alert-success"><strong><?= $_SESSION['success'] ?></strong></div>
     <?php endif; ?>
@@ -89,6 +89,13 @@ $details = $board_manager_view->getApprovedPassesDetails();
         <br>
         <!-- List view and redirected Page button -->
 
+        <?php 
+        if(empty($approvedPasses) and isset($_GET['search'])){
+            echo "<div class=\"alert alert-danger\"><strong>" . "No matches found" . "</strong></div>";
+            
+        }
+        ?>
+
         <table class="table table-dark">
             <thead>
                 <tr>
@@ -107,15 +114,12 @@ $details = $board_manager_view->getApprovedPassesDetails();
                         echo "<tr>";
                         echo "<th scope=\"row\">>></th>";
                         echo "<td>{$name}</td>";
-                        echo "<td><a class=\"btn btn-sm btn-primary\" href=\"board_manager_view_pass_details.php?pass_no={$pass->getPassNo()}\">View</a></td>";
+                        echo "<td><a class=\"btn btn-sm btn-primary\" id=\"btn-primary-Not\" href=\"board_manager_view_pass_details.php?pass_no={$pass->getPassNo()}\">View</a></td>";
                         echo "</tr>";
                     }
                 }
 
-                if(empty($approvedPasses) and isset($_GET['search'])){
-                    echo "No matches found";
-                    
-                }
+                
 
                 ?>
 
