@@ -205,7 +205,7 @@ foreach ($bookings as $booking) {
                                         <td><?= $service ?></td>
                                         <td><?= $passenger_cnt ?></td>
                                         <td>
-                                            <a class="btn btn-info" href="board_manager_allocate_vehicle_view.php?booking_no=<?= $booking->getBookingNo() ?>">View</a>
+                                            <a class="btn btn-primary" href="board_manager_allocate_vehicle_view.php?booking_no=<?= $booking->getBookingNo() ?>">View</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -246,7 +246,7 @@ foreach ($bookings as $booking) {
                                         <td><?= $service ?></td>
                                         <td><?= $passenger_cnt ?></td>
                                         <td>
-                                            <a class="btn btn-info" href="board_manager_allocate_vehicle_view.php?booking_no=<?= $booking->getBookingNo() ?>">View</a>
+                                            <a class="btn btn-primary" href="board_manager_allocate_vehicle_view.php?booking_no=<?= $booking->getBookingNo() ?>">View</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -287,7 +287,7 @@ foreach ($bookings as $booking) {
                                         <td><?= $service ?></td>
                                         <td><?= $passenger_cnt ?></td>
                                         <td>
-                                            <a class="btn btn-info" href="board_manager_allocate_vehicle_view.php?booking_no=<?= $booking->getBookingNo() ?>">View</a>
+                                            <a class="btn btn-primary" href="board_manager_allocate_vehicle_view.php?booking_no=<?= $booking->getBookingNo() ?>">View</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
