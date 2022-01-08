@@ -88,57 +88,48 @@ foreach ($bookings as $booking) {
             </div>
         </div>
     </div>
-</div>
-<div class="container">
-<form action="board_manager_allocate_vehicle.php" method="GET">
-    <div class="row">
-<!--        <div class="col-xs-6 col-md-4">-->
-            <div class="input-group">
-                
+    </div>
 
-                <select name="district_no" id="district" class="form-control">
+    <div class="container">
+        <form action="board_manager_allocate_vehicle.php" method="GET">
+            <div class="row">
+                <!--        <div class="col-xs-6 col-md-4">-->
+                <div class="input-group">
 
 
-                            <option value="0">All</option>
-                            <?php
+                    <select name="district_no" id="district" class="form-control">
 
 
-                            foreach ($districts as $district) {
+                        <option value="0">All</option>
+                        <?php
 
-                                if (isset($_GET['district_no']) and $_GET['district_no'] == $district['district_no']) {
-                                    echo "<option value=\"{$district['district_no']}\" selected>{$district['name']}</option>";
-                                } else {
-                                    echo "<option value=\"{$district['district_no']}\">{$district['name']}</option>";
-                                }
+
+                        foreach ($districts as $district) {
+
+                            if (isset($_GET['district_no']) and $_GET['district_no'] == $district['district_no']) {
+                                echo "<option value=\"{$district['district_no']}\" selected>{$district['name']}</option>";
+                            } else {
+                                echo "<option value=\"{$district['district_no']}\">{$district['name']}</option>";
                             }
-                            ?>
-                        </select>
+                        }
+                        ?>
+                    </select>
 
-                    }
-                    ?>
-                </select>
-                <div class="input-group-btn">
-                    <button class="btn btn-primary" type="submit">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </button>
+                    <div class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </div>
                 </div>
             </div>
-<!--        </div>-->
-
-            </div>
         </form>
-
-    </div>
-</form>
-</div>
-<div class="container">
-    <h2>Allocate Vehicle</h2>
-    <ul class="nav nav-tabs">
-        <li class="active"><a href="#pending" data-toggle="tab">Pending</a></li>
-        <li><a href="#approved" data-toggle="tab">Approved</a></li>
-        <li><a href="#expired" data-toggle="tab">Expired/Declined</a></li>
-        <li><a href="#declined" data-toggle="tab">Cancelled Bookings</a></li>
-    </ul>
+        <br>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#pending" data-toggle="tab">Pending</a></li>
+            <li><a href="#approved" data-toggle="tab">Approved</a></li>
+            <li><a href="#expired" data-toggle="tab">Expired/Declined</a></li>
+            <li><a href="#declined" data-toggle="tab">Cancelled Bookings</a></li>
+        </ul>
 
 
         <div class="tab-content">
