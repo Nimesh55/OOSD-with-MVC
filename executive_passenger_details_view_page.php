@@ -23,6 +23,7 @@ $row = array('state' => $passenger->getState(), 'first_name' => $passenger->getF
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/executive_passenger_details_view_page.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -66,114 +67,113 @@ $row = array('state' => $passenger->getState(), 'first_name' => $passenger->getF
 
     <!-- Details are shown here -->
     <form method="post">
-        <div class="container mt-3">
+        <div class="container">
 
-            <div style="margin-top:100px;">
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>Name</p>
-                    </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?= $row['first_name'] . ' ' . $row['last_name'] ?> </p>
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
-                </div>
 
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>Address</p>
-                    </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?= $row['address'] ?> </p>
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
-                </div>
 
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>Staff ID</p>
-                    </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?= $row['staff_id'] ?> </p>
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
-                </div>
+            <div class="row">
 
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>NIC</p>
-                    </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?= $row['user_id'] ?> </p>
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
-                </div>
+                <div class="col-lg-3"></div>
 
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>Telephone No.</p>
-                    </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?= $row['telephone'] ?> </p>
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
-                </div>
+                <div class="col-lg-6 wrapper">
 
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>Email</p>
+                    <div class="row">
+                        <div class="col-sm-5  field">
+                            <p>Name</p>
+                        </div>
+                        <div class="col-sm-2 ">:</div>
+                        <div class="col-sm-5 data">
+                            <p><?= $row['first_name'] . ' ' . $row['last_name'] ?> </p>
+                        </div>
                     </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?= $row['email'] ?> </p>
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
-                </div>
 
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>Attachments</p>
+                    <div class="row">
+                        <div class="col-sm-5  field">
+                            <p>Address</p>
+                        </div>
+                        <div class="col-sm-2 ">:</div>
+                        <div class="col-sm-5 data">
+                            <p><?= $row['address'] ?></p>
+                        </div>
                     </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
 
-                        <?php
-                        if($passenger_file==null):
+                    <div class="row">
+                        <div class="col-sm-5  field">
+                            <p>Staff ID</p>
+                        </div>
+                        <div class="col-sm-2 ">:</div>
+                        <div class="col-sm-5 data">
+                            <p><?= $row['staff_id'] ?> </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-5  field">
+                            <p>Telephone NO</p>
+                        </div>
+                        <div class="col-sm-2 ">:</div>
+                        <div class="col-sm-5 data">
+                            <p><?= $row['telephone'] ?> </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-5  field">
+                            <p>Email</p>
+                        </div>
+                        <div class="col-sm-2 ">:</div>
+                        <div class="col-sm-5 data">
+                            <p><?= $row['email'] ?> </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-5  field">
+                            <p>Attachments</p>
+                        </div>
+                        <div class="col-sm-2 ">:</div>
+                        <div class="col-sm-5 data">
+
+                            <?php
+                            if($passenger_file==null):
+                                ?>
+                                <p>No files added </p>
+                            <?php
+                            else:
+                                ?>
+                                <a class="btn btn-primary btn-sm" href="includes/download.inc.php?name=<?php echo $passenger_file['name'];?>&fname=<?php echo $passenger_file['fname'] ?>">Download</a>
+                            <?php
+                            endif;
                             ?>
-                            <p>: No files added </p>
-                        <?php
-                        else:
-                            ?>
-                            <a href="includes/download.inc.php?name=<?php echo $passenger_file['name'];?>&fname=<?php echo $passenger_file['fname'] ?>">Download</a>
-                        <?php
-                        endif;
-                        ?>
 
+
+                        </div>
                     </div>
-                    <div class="col-sm-3 p-3"></div>
+
+                    <br>
+                    <br>
+
+                    <div class="btn-group btn-group-lg">
+                    <?php
+                    if ($row['state'] == 1) {
+                        echo '<a class="btn btn-default ctrlbutton" type="submit" value="Accept" name="decline" onclick="clickView(\'2-'.$passenger_no.'\',\'includes/executive_passenger_view.inc.php\')">Accept</a>';
+                        echo '<a class="btn btn-default ctrlbutton" type="submit" value="Decline" name="decline" onclick="clickView(\'0-'.$passenger_no.'\',\'includes/executive_passenger_view.inc.php\')">Decline</a>';
+                    } elseif ($row['state'] == 2) {
+                        echo '<a class="btn btn-default ctrlbutton" type="submit" value="Remove" name="decline" onclick="clickView(\'0-'.$passenger_no.'\',\'includes/executive_passenger_view.inc.php\')">Remove</a>';
+                    }
+                    ?>
+
+                    <input class="btn btn-default ctrlbutton" type="submit" value="Exit" name="exit">
+                    </div>
+
+
+
+
                 </div>
-
-                <?php
-                if ($row['state'] == 1) {
-                    echo '<a class="btn btn-default" type="submit" value="Accept" name="decline" onclick="clickView(\'2-'.$passenger_no.'\',\'includes/executive_passenger_view.inc.php\')" style="color:blue;position:relative;
-                    left:65%;margin-top:10px; width:10%">Accept</a>';
-                    echo '<a class="btn btn-default" type="submit" value="Decline" name="decline" onclick="clickView(\'0-'.$passenger_no.'\',\'includes/executive_passenger_view.inc.php\')" style="color:blue;position:relative;
-                    left:65%;margin-top:10px; width:10%">Decline</a>';
-                } elseif ($row['state'] == 2) {
-                    echo '<a class="btn btn-default" type="submit" value="Remove" name="decline" onclick="clickView(\'0-'.$passenger_no.'\',\'includes/executive_passenger_view.inc.php\')" style="color:blue;position:relative;
-                        left:65%;margin-top:10px; width:10%">Remove</a>';
-                }
-                ?>
-
-                <input class="btn btn-default" type="submit" value="Exit" name="exit" style="color:blue;position:relative;
-                            left:65%;margin-top:10px; width:10%">
+                <div class="col-lg-3"></div>
 
             </div>
+
         </div>
     </form>
 

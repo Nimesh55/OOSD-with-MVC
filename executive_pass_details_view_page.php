@@ -28,7 +28,7 @@ $details = array("name" => $passenger->getFirstName().' '.$passenger->getLastNam
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/passenger_home.css">
+<!--    <link rel="stylesheet" href="css/passenger_home.css">-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/buttons.js"></script>
@@ -70,7 +70,7 @@ $details = array("name" => $passenger->getFirstName().' '.$passenger->getLastNam
     </div>
 
     <form action="executive_pass_details_view_page.php" method="GET">
-        <input type="hidden" name="pass_no" value="<?= $_GET['pass_no'] ?>">
+<!--        <input type="hidden" name="pass_no" value="--><?//= $pass_no ?><!--">-->
         <!-- Details of A single pass -->
         <div class="container mt-3">
 
