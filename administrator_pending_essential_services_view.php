@@ -116,8 +116,7 @@ if (isset($_POST['view'])) {
                             <?php
                             else:
                                 ?>
-                                <button class="alert-success"><a href="includes/download.inc.php?name=<?php echo $service_file['name'];?>
-                                                            &fname=<?php echo $service_file['fname'] ?>">Download</a></button>
+                                <a href="includes/download.inc.php?name=<?php echo $service_file['name'];?>&fname=<?php echo $service_file['fname'] ?>">Download</a>
                             <?php
                             endif;
                             ?>
