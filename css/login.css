@@ -1,27 +1,29 @@
 body{
-  background: url('../img/login2.jpg') no-repeat center fixed;
+  background: url('../img/PassBlue.jpg') no-repeat center fixed;
   background-size: cover;
+} 
+::placeholder{
+  color: whitesmoke;
+  font-weight: bold;
 }
-  
+
   .login-dark form {
     max-width:320px;
     width:90%;
-    background-color:#162941;
+    background-color:#03060D;
     padding:40px;
-    border-radius:4px;
-    transform:translate(-50%, -50%);
+    transform:translate(-50%, 10%);
     position:absolute;
     top:50%;
     left:50%;
-    color:#fff;
-    box-shadow:3px 3px 4px rgba(0,0,0,0.2);
+    border-radius: 4%;
   }
   
   .login-dark .illustration {
     text-align:center;
     padding:15px 0 20px;
     font-size:100px;
-    color:#2980ef;
+    color:#00D2DC;
   }
   
   .login-dark form .form-control {
@@ -31,7 +33,7 @@ body{
     border-radius:0;
     box-shadow:none;
     outline:none;
-    color:inherit;
+    color: whitesmoke;
   }
   
   .login-dark form .btn-primary {
@@ -52,11 +54,12 @@ body{
   
   .login-dark form .signup {
     display:block;
-    font-size:12px;
-    color:#6f7a85;
-    opacity:0.9;
+    font-size:15px;
+    color:#2961aa;
+    text-shadow: none;
     text-decoration:none;
     float: right;
+    font-weight: bold;
   }
 
 
@@ -73,22 +76,27 @@ body{
   .login-dark form .sign_up{
     font-size: 14px;
     text-align: left;
-    color: #4f9afc;
+    color: #e2e8f0;
     float: left;
-}
+  }
+
+  .login-dark form .sign_up .a{
+    color: #2961aa;
+  }
 
 img {
-  width: 70%;
-  height: 70%;
+  width: 90%;
+  height: 90%;
 }
 
 h1{
-  background: transparent;
-  color: rgb(99, 74, 243);
+  padding: 1%;
+  float: left;
+  color: aliceblue;
   font-size:80px;
-  background-color: transparent;
-  text-shadow: 2px 2px 2px #b9b9f8;
+  text-shadow: 2px 2px 2px rgb(12, 11, 11);
+  transform:translate(-10%, 250%);
+  background-color: #03060D;
+  border-radius: 3%;
 
 }
-  
-  
