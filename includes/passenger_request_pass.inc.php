@@ -25,7 +25,7 @@
             // Pass Pending Notification##
             Notification_handler::setupNotification($passenger->getEmail(), $passenger->getTelephone(), $param);
         }
-        header("Location: ../passenger_request_pass.php?{$url_extention}");
+//        header("Location: ../passenger_request_pass.php?{$url_extention}");
     }
 if (isset($_POST['remove'])){
     echo "<pre>";
@@ -41,6 +41,30 @@ if (isset($_POST['remove'])){
 if(isset($_POST['home'])){
     header("Location:../passenger_home.php");
 }
+?>
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
+<form id="returndata" action="../passenger_request_pass.php" method="post">
+    <input type="hidden" name="reason" value="<?php echo $details['reason']; ?>">
+    <input type="hidden" name="start_date" value="<?php echo $details['start_date']; ?>">
+    <input type="hidden" name="end_date" value="<?php echo $details['end_date']; ?>">
+    <input type="hidden" name="bus_route" value="<?php echo $details['bus_route']; ?>">
+    <input type="hidden" name="error" value="<?php echo $errors; ?>">
+<!--    <input type="hidden" name="error_str" value="--><?php //echo $errors_str; ?><!--">-->
+    <input type="hidden" name="sub" value="finish">
+
+</form>
+<script type="text/javascript">
+    document.getElementById('returndata').submit();
+</script>
+</body>
+</html>
 
 
 

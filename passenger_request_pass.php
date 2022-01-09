@@ -15,27 +15,69 @@
 
     $username = $row['first_name']." ".$row['last_name'];
 
+    $pass_state=-1;
     $reason = "";
     $start_date = "";
     $end_date = "";
     $bus_route ="";
-    if(isset($_GET['reason'])) {
-        $reason = $_GET['reason'];
-        $start_date = $_GET['start_date'];
-        $end_date = $_GET['end_date'];
-        $bus_route = $_GET['bus_route'];
-        if(strcmp($_GET['error'], "success")== 0){
+
+
+    if(isset($_POST['error'])){
+        $reason = $_POST['reason'];
+        $start_date = $_POST['start_date'];
+        $end_date = $_POST['end_date'];
+        $bus_route = $_POST['bus_route'];
+        if(strcmp($_POST['error'], "success")== 0){
             $button = 'remove';
         }
     }
+//    if(isset($_GET['reason'])) {
+//
+//    }
     $pass_tracker = Pass_Tracker::getInstance();
+//    $pass = $pass_tracker->getPass_by_passenger_id($_SESSION['user_Id']);
+//    echo "<pre>";
+//    print_r($pass['passenger_name']);
+//    print_r($_SESSION['user_Id']);
+//    echo "</pre>";
+
+
     $result = $pass_tracker->searchForActivePass($passengerview->getPassengerNo());
+
+//    echo "<pre>";
+//    print_r($result);
+////    print_r($_SESSION['user_Id']);
+//    echo "</pre>";
+
     if (!empty($result)){
+        $pass_state = $result['state'];
         $reason = $result['reason'];
         $start_date = $result['start_date'];
         $end_date = $result['end_date'];
         $bus_route = $result['bus_route'];
         $button = 'remove';
+    }
+
+    if($pass_state==-1){
+        $reason = "";
+        $start_date = "";
+        $end_date = "";
+        $bus_route ="";
+        $button = 'submit';
+
+    }
+    $pass_state_str = '';
+    $style = '';
+    if($pass_state==-1){
+        $pass_state_str = "Not Requested";
+    }
+    elseif($pass_state==0){
+        $pass_state_str = "Pending";
+    }elseif($pass_state==1){
+        $pass_state_str = "Accepted";
+        $style='alert alert-success';
+    }elseif($pass_state==2){
+        $pass_state_str = "Confirmed";
     }
 
     if($row['state'] == '0'){
@@ -45,6 +87,7 @@
     }else{
         $state = 2;
     }
+
 
 ?>
 <!DOCTYPE html>
@@ -129,6 +172,15 @@
                     }
                     ?>
 
+
+                    <div class="form-group">
+                        <label for="bus_route" class="col-sm-3 control-label">Pass State:</label>
+                        <div class="col-sm-9">
+<!--                            have to set css-->
+                            <input id="Accepted" disabled name="bus_route" type="text" class="form-control" id="" value="<?php echo $pass_state_str;?>">
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label for="reason" class="col-sm-3 control-label">Reason:</label>
                         <div class="col-sm-9">
@@ -166,7 +218,7 @@
                         <label for="file" class="col-sm-3 control-label">Attachments:</label>
                         <div class="col-sm-9">
                             <?php if(strcmp($button,'submit')==0): ?>
-                                <input type="file" id="file" name="file"/>;
+                                <input type="file" id="file" name="file"/>
                             <?php elseif($pass_file==null): ?>
                                 <input name="view" type="text" class="form-control" id="view" readonly value="No file added">
                             <?php else: ?>
