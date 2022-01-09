@@ -90,6 +90,10 @@ foreach ($bookings as $booking) {
     </div>
     </div>
 
+    <?php if(isset($_SESSION['success'])): ?>
+        <div class="alert alert-success"><strong><?= $_SESSION['success'] ?></strong></div>
+    <?php endif; ?>
+
     <div class="container">
         <form action="board_manager_allocate_vehicle.php" method="GET">
             <div class="row">

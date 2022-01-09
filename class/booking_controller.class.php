@@ -36,6 +36,7 @@ class Booking_Controller extends Booking_Model{
 
     public function setStateCanelled($booking_no){
         $this->setStateCanelledFromModel($booking_no);
+        $_SESSION['success'] = "Booking removed successfully";
     }
 
     public function setStateCompleted($booking_no){
