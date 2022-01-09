@@ -2,6 +2,8 @@
 
 require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
 
+session_start();
+
 if($_GET['action'] == 0){
     Booking_Controller::getInstance()->setStateCanelled($_GET['booking_no']);
     header("Location: ../board_manager_allocate_vehicle.php");

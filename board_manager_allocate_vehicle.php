@@ -97,7 +97,6 @@ foreach ($bookings as $booking) {
     <div class="container">
         <form action="board_manager_allocate_vehicle.php" method="GET">
             <div class="row">
-                <!--        <div class="col-xs-6 col-md-4">-->
                 <div class="input-group">
 
 
