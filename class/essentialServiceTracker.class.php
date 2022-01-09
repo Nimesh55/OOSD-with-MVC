@@ -24,8 +24,9 @@ class EssentialServiceTracker extends Tracker{
 
     //Approve an Essential Service
     public function approveService($service_no){
-        Service_Model::getInstance()->setStateEssential($service_no);
         $service = $this->createService($service_no);
+        Service_Model::getInstance()->setStateEssential($service->getId());
+        
         $param = [6, $service->getName(),$service->getId()];
         $executiveObj = $this->getExecutiveByServiceNo($service_no);
         Notification_handler::setupNotification($executiveObj->getEmail() , $executiveObj->getTelephone() , $param); 
@@ -40,9 +41,8 @@ class EssentialServiceTracker extends Tracker{
             }
         }
 
-        Service_Model::getInstance()->setStateNonEssential($service_no);
-
         $service = $this->createService($service_no);
+        Service_Model::getInstance()->setStateNonEssential($service->getId());
         $param = [7, $service->getName(),$service->getId()];
         $executiveObj = $this->getExecutiveByServiceNo($service_no);
         Notification_handler::setupNotification($executiveObj->getEmail() , $executiveObj->getTelephone() , $param); 
