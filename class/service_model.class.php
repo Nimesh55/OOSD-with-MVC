@@ -61,7 +61,7 @@ class Service_Model extends Dbh
         $stmt->execute([$service_no]);
     }
     public function getServiceNames(){
-        $sql="SELECT * FROM service";
+        $sql="SELECT * FROM service WHERE state=2";
         $stmt = $this->connect()->query($sql);
         $services = $stmt->fetchAll();
         return $services;

@@ -170,13 +170,17 @@
                             <?php elseif($pass_file==null): ?>
                                 <input name="view" type="text" class="form-control" id="view" readonly value="No file added">
                             <?php else: ?>
+                            <div class="input-group">
                                 <input name="view" type="text" class="form-control" id="view" readonly value="<?= $pass_file['name'] ?>">
-                                <a href="includes/download.inc.php?name=<?php echo $pass_file['name'];?>&fname=<?php echo $pass_file['fname'] ?>">Download</a>
+                                <div class="input-group-btn">
+                                <a class="btn btn-primary" href="includes/download.inc.php?name=<?php echo $pass_file['name'];?>&fname=<?php echo $pass_file['fname'] ?>">Download</a>
+                                </div>
+                            </div>
                             <?php endif; ?>
                         </div>
                     </div>
 
-
+                    <div class="btn-group btn-group-lg">
                     <?php
 
                         if(strcmp($button,'submit')==0){
@@ -187,7 +191,8 @@
                             echo "<input type=\"submit\" class=\"btn btn-primary btn-lg ctrlbutton\" name=\"remove\" value=\"Remove\">";
                         }
                         ?>
-                    <input type="submit" class="btn btn-primary btn-lg" value="Back to Home" name="home">
+                    <input type="submit" class="btn btn-primary btn-lg ctrlbutton" value="Back to Home" name="home">
+                    </div>
                     <input type="text" hidden name="pass_no" value="<?php echo $result['pass_no'] ?>">
 
 

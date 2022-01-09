@@ -106,8 +106,8 @@ class Notification_handler
 
 
             case 7: {
-                    $msg = "Your Service is Removed by the Safe Transit Administration. \nYour Service Details are, \n Service Name: " . $param[1] . " \n Service Id: " . $param[2] . "\nContact Safe Transit Administration via Email or Re-apply the Approval request for Authorization functionality";
-                    $emailSubject = "Your Service is Removed";
+                    $msg = "Your Service is Delined by the Safe Transit Administration. \nYour Service Details are, \n Service Name: " . $param[1] . " \n Service Id: " . $param[2] . "\nContact Safe Transit Administration via Email or Re-apply the Approval request for Authorization functionality";
+                    $emailSubject = "Your Service is Declined";
                     break;
                 }
 
@@ -143,7 +143,7 @@ class Notification_handler
 
             case 12: {
                     $msg = "Your Passenger Account has been \"Declined\"\nYour added details are,\nUser Id: " . $param[1] . " \nFullname: " . $param[2] . "\nStaff Id: " . $param[3];
-                    $emailSubject = "Your Passenger Account Has been Approved!";
+                    $emailSubject = "Your Passenger Account Has been Declined!";
                     break;
                 }
             default:{

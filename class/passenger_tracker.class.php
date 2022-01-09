@@ -41,7 +41,7 @@ class Passenger_Tracker extends Tracker
         //Accept/Decline Passenger Account Notification
         if ($state == 2) {
             $service = EssentialServiceTracker::getInstance()->getServiceName($passenger->getServiceNo());
-            $param = [11, $service['name'], $passenger->getUserId(), $passenger->getFirstName() . " " . $passenger->getLastName(), $passenger->getStaffId()];
+            $param = [11, $service, $passenger->getUserId(), $passenger->getFirstName() . " " . $passenger->getLastName(), $passenger->getStaffId()];
             Notification_handler::setupNotification($passenger->getEmail(), $passenger->getTelephone(), $param);
         } else if ($state == 0) {
             $param = [12, $passenger->getUserId(), $passenger->getFirstName() . " " . $passenger->getLastName(), $passenger->getStaffId()];

@@ -33,6 +33,11 @@ $details = $execObj->getRequestBookingDetails();
 			<div class="col-sm-8 wrapper">
 				<form class="form-horizontal" method="post" action="includes/request_booking.inc.php">
 
+                    <?php
+                    if(isset($_SESSION['error']))
+                        echo '<div name="error" class="alert alert-danger" id="error" >' ."{$_SESSION['error']}".'</div>';
+                    ?>
+
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="reason" >Reason: </label>
                         <div class="col-sm-8">
@@ -125,13 +130,11 @@ $details = $execObj->getRequestBookingDetails();
                         </div>
                     </div>
 
-                    <input type="submit" name= "request" value="Request" id="request" class="btn btn-primary btn-lg">
-                    <input type="submit" name= "request" value="Cancel" id="cancel_request" class="btn btn-primary btn-lg">
+                    <div class="btn-group btn-group-primary">
+                    <input type="submit" name= "request" value="Request" id="request" class="btn btn-primary btn-lg ctrlbutton">
+                    <input type="submit" name= "request" value="Cancel" id="cancel_request" class="btn btn-primary btn-lg ctrlbutton">
+                    </div>
 
-                    <?php
-                        if(isset($_SESSION['error']))
-                            echo '<label name="error" id="error" style="color:#ff0000; float:none;">' ."{$_SESSION['error']}".'</label>';
-                    ?>
 				</form>
 			</div>
         <div class="col-sm-2"></div>

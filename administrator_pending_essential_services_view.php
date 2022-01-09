@@ -11,6 +11,7 @@ if (isset($_POST['view'])) {
     $id =$_POST['view'];
     $view = new Administrator_view();
     $rows = $view->fetchDetails($id);
+    $service_no = $rows['service_no'];
     $service_id = $rows['id'];
     $service_name = $rows['name'];
     $status = $rows['state'];
@@ -116,8 +117,7 @@ if (isset($_POST['view'])) {
                             <?php
                             else:
                                 ?>
-                                <button class="alert-success"><a href="includes/download.inc.php?name=<?php echo $service_file['name'];?>
-                                                            &fname=<?php echo $service_file['fname'] ?>">Download</a></button>
+                                <a href="includes/download.inc.php?name=<?php echo $service_file['name'];?>&fname=<?php echo $service_file['fname'] ?>">Download</a>
                             <?php
                             endif;
                             ?>
@@ -128,8 +128,8 @@ if (isset($_POST['view'])) {
                     <br>
                     <br>
                     <div class="btn-group btn-group-md">
-                        <a href="includes/serviceFunction_Approve.inc.php" class="btn btn-info ctrlbutton" onclick="<?php $_SESSION['approve'] = $service_id ?>"> Approve </a>
-                        <a href="includes/serviceFunction_Decline.inc.php?x=d" class="btn btn-danger ctrlbutton" onclick="<?php $_SESSION['decline'] = $service_id ?>"> Decline </a>
+                        <a href="includes/serviceFunction_Approve.inc.php" class="btn btn-info ctrlbutton" onclick="<?php $_SESSION['approve'] = $service_no ?>"> Approve </a>
+                        <a href="includes/serviceFunction_Decline.inc.php?x=d" class="btn btn-danger ctrlbutton" onclick="<?php $_SESSION['decline'] = $service_no ?>"> Decline </a>
                         <a href="administrator_pending_essential_services.php" class="btn btn-default ctrlbutton"> Exit </a>
                     </div>
 
