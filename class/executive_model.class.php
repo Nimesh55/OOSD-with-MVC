@@ -34,7 +34,7 @@ class Executive_Model extends Dbh
 
     protected function getServiceName($service_no){
         $stmt = $this->connect()->prepare("SELECT * FROM service where service_no = ?");
-        $stmt->execute(array('{$service_no}'));
+        $stmt->execute([$service_no]);
         $service = $stmt->fetch();
         return $service['name'];
     }
