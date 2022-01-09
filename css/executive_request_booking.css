@@ -29,6 +29,7 @@ body{
 
     background-color: #560059;
 }
-.control-label{
-    /*text-align: left;*/
+.ctrlbutton{
+    width: 185px;
 }
+

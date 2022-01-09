@@ -130,6 +130,7 @@ if(isset($_GET['error'])) {
                 </div>
                 <br>
 
+                <div class="btn-group btn-group-lg">
                 <?php
 
                 if(strcmp($button,'submit')==0){
@@ -139,6 +140,7 @@ if(isset($_GET['error'])) {
                     echo "<input type=\"submit\" class=\"btn btn-primary btn-lg ctrlbutton\" name=\"exit\" value=\"Exit\">";
                 }
                 ?>
+                </div>
 
             </form>
         </div>

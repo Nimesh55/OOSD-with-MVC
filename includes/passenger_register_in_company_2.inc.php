@@ -38,14 +38,15 @@
                 <div class="form-group">
                     <label for="file" class="col-sm-3 control-label">Select a file:</label>
                     <div class="col-sm-9">
-                        <input type="file" id="file" name="file"/>
+                        <input type="file" id="file" class="form-control" name="file"/>
                     </div>
                 </div>
 
                 <br>
-
-                <input type="submit" class="btn btn-primary btn-lg" value="Request" name="request">
-                <input type="submit" class="btn btn-primary btn-lg" value="Back to Home" name="home">
+                <div class="btn-group btn-group-lg">
+                    <input type="submit" class="btn btn-primary btn-lg ctrlbutton" value="Request" name="request">
+                    <input type="submit" class="btn btn-primary btn-lg ctrlbutton" value="Back to Home" name="home">
+                </div>
 
             </form>
 

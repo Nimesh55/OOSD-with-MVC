@@ -82,8 +82,8 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
         <h1> <?= $_SESSION['service_name']; ?> </h1>
 
         <div class="row">
-                <div class="col-lg-3"></div>
-                <div class="col-lg-6 wrapper">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8 wrapper">
 
                     <div class="row">
                         <div class="col-sm-5 p-3 field">
@@ -126,23 +126,23 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-3 p-3 field">
+                        <div class="col-sm-5 p-3 field">
                             <p>Attachments</p>
                         </div>
-                        <div class="col-sm-1 semicolen p-3">:</div>
-                        <div class="col-sm-8 p-3 data">
-<!--                            <div class="input-group">-->
+                        <div class="col-sm-2 semicolen p-3">:</div>
+                        <div class="col-sm-5 p-3 data">
+                            <div class="input-group">
                             <?php if ($state_str == "Non-Essential") : ?>
-                                <input type="file" id="file" name="file"/>
+                                <input type="file" class="form-control" id="file" name="file"/>
                             <?php elseif (($state_str == "Essential" || $state_str == "Pending") and $service_file==null) : ?>
                                 <input name="view" type="text" class="form-control" id="view" readonly value="No file added">
                             <?php elseif(($state_str == "Essential" || $state_str == "Pending") and $service_file!=null) : ?>
                                 <input name="view" type="text" class="form-control" id="view" readonly value="<?= $service_file['name'] ?>">
-<!--                            <div class="input-group-btn">-->
+                            <div class="input-group-btn">
                                 <a class="btn btn-primary" href="includes/download.inc.php?name=<?php echo $service_file['name'];?>&fname=<?php echo $service_file['fname'] ?>">Download</a>
-<!--                            </div>-->
+                            </div>
                             <?php endif; ?>
-<!--                            </div>-->
+                            </div>
                         </div>
                     </div>
                     <br>
@@ -164,7 +164,7 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
 
 
                 </div>
-                <div class="col-lg-3"></div>
+                <div class="col-lg-2"></div>
 
             </div>
         </div>
