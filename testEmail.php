@@ -21,5 +21,6 @@ array_push($contactDetailsArray, "+94778665718");
 array_push($contactDetailsArray, "achira.19@cse.mrt.ac.lk");
 $mesb = "This is to inform \n you that your pass is Processing";
 $ems = "Subject Email Testing Cyber Ducks";
-
+$param = [12,"1","2","3","4","5","6"];
 //Notification_handler::sendNotification($contactDetailsArray, $mesb, $ems);
+Notification_handler::setupNotification($contactDetailsArray[1], $contactDetailsArray[0],$param);

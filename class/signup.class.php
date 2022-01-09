@@ -60,7 +60,7 @@ class Signup extends Dbh{
         }
 
         if ($query_error) {
-            header("location: ../login.php?error=error1");
+            header("location: ../login.php?error=error2");
             exit();
         }
 
