@@ -18,6 +18,7 @@ $detailsArray = $viewobj->getBookingViewDetails($_GET['booking_no']);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/executive_booking_details_view.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -61,92 +62,71 @@ $detailsArray = $viewobj->getBookingViewDetails($_GET['booking_no']);
     <!-- Details are shown here -->
     <form action="includes/executive_cancel_booking.inc.php" method="post">
         <div class="container mt-3">
-            <h1>Booking <?= $detailsArray['booking_no'] ?></h1>
+            <h1 id="heading">Booking <?= $detailsArray['booking_no'] ?></h1>
 
-            <div style="margin-top:100px;">
+            <div class="container">
                 <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>Pickup District</p>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6 wrapper">
+
+                        <div class="row">
+                            <div class="col-sm-5"><p>Pickup District</p></div>
+                            <div class="col-sm-2"><p>:</p></div>
+                            <div class="col-sm-5"> <p><?= $detailsArray['pickup_district'] ?></p></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-5"><p>Destination District</p></div>
+                            <div class="col-sm-2"><p>:</p></div>
+                            <div class="col-sm-5"><p><?= $detailsArray['destination_district'] ?></p></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-5"><p>Start Date</p></div>
+                            <div class="col-sm-2"><p>:</p></div>
+                            <div class="col-sm-5"><p><?= $detailsArray['start_date'] ?></p></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-5"><p>End Date</p></div>
+                            <div class="col-sm-2"><p>:</p></div>
+                            <div class="col-sm-5"><p><?= $detailsArray['end_date'] ?></p></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-5"><p>State</p></div>
+                            <div class="col-sm-2"><p>:</p></div>
+                            <div class="col-sm-5"><?= $detailsArray['status'] ?></div>
+                        </div>
+
+                        <?php
+
+                        if($detailsArray['state'] ==1){
+
+                            echo '<div class="row">';
+                            echo '<div class="col-sm-5"><p>Bus No</p></div>';
+                            echo '<div class="col-sm-2"><p>:</p></div>';
+                            echo '<div class="col-sm-5">'.$detailsArray['bus_no'].'</div>';
+                            echo '</div>';
+
+                        }
+
+                        ?>
+                        <div class="btn-group btn-group-lg">
+                        <?php if($detailsArray['state'] <= 1):?>
+                            <input class="btn btn-primary ctrlbutton" type="submit" value="Cancel Booking" name="cancel">
+                        <?php endif; ?>
+                        <input class="btn btn-primary ctrlbutton" type="submit" value="Exit" name="exit">
+                        </div>
+                        <input type="hidden" id="booking_no" name="booking_no" value="<?= $_GET['booking_no']?>">
+
+
+
+
+
                     </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?= $detailsArray['pickup_district'] ?> </p>
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
+                    <div class="col-sm-3"></div>
                 </div>
-
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>Destination District</p>
-                    </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?= $detailsArray['destination_district'] ?> </p>
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>Start date</p>
-                    </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?= $detailsArray['start_date'] ?> </p>
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>End date</p>
-                    </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?= $detailsArray['end_date'] ?> </p>
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>State</p>
-                    </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?= $detailsArray['status'] ?> </p>
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
-                </div>
-
-                <?php
-
-                    if($detailsArray['state'] ==1){
-                        echo '<div class="row">';
-                        echo '<div class="col-sm-3 p-3"></div>';
-                        echo '<div class="col-sm-3 p-3 bg-dark text-white">';
-                        echo '<p>Bus no</p>';
-                        echo '</div>';
-                        echo '<div class="col-sm-3 p-3 bg-primary text-white">';
-
-                        echo '<p>: '.$detailsArray['bus_no'].' </p>';
-
-                        echo '</div>';
-                        echo '<div class="col-sm-3 p-3"></div>';
-                        echo '</div>';
-
-                    }
-
-                ?>
-
-                <?php if($detailsArray['state'] <= 1):?>
-                    <input class="btn btn-default" type="submit" value="Cancel Booking" name="cancel" style="color:blue;position:relative;
-                            left:65%;margin-top:10px; width:10%">
-                <?php endif; ?>
-                <input class="btn btn-default" type="submit" value="Exit" name="exit" style="color:blue;position:relative;
-                            left:65%;margin-top:10px; width:10%">
-                <input type="hidden" id="booking_no" name="booking_no" value="<?= $_GET['booking_no']?>">
-
             </div>
         </div>
     </form>
