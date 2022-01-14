@@ -126,7 +126,7 @@ class Executive_Model extends Dbh
 
     private function uploadFileToDB(){
         $stmt = $this->connect()->prepare("INSERT INTO `files` (`file_name`, `file_data`) VALUES (?,?)");
-        $stmt->execute([$_FILES["file"]["name"], file_get_contents($_FILES["file"]["tmp_name"])]);
+        $stmt->execute([$_FILES["file"]["name"], file_get_contents($_FILES["file"]["tmp_name"])]); // check this ##
         unset($_FILES['file']);
         return $this->getFilesLastFileNo();
     }

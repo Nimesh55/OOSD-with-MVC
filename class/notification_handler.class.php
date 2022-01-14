@@ -142,7 +142,7 @@ class Notification_handler
 
 
             case 12: {
-                    $msg = "Your Passenger Account has been \"Declined\"\nYour added details are,\nUser Id: " . $param[1] . " \nFullname: " . $param[2] . "\nStaff Id: " . $param[3];
+                    $msg = "Your Passenger Account has been \"Declined\"\nYour added details are,\nUser Id: " . $param[1] . " \nFullname: " . $param[2] . "\nStaff Id: " . $param[3] ."\nNote: All the Active Passes currently in use for your account will be Removed";
                     $emailSubject = "Your Passenger Account Has been Declined!";
                     break;
                 }

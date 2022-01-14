@@ -131,6 +131,7 @@
                             if($state>1){
                                 echo'<li class="active"><a href="passenger_request_pass.php">Request pass</a></li>';
                             }else{
+                                header("location:passenger_home.php");
                                 echo '<li class="disabled"><a>Request pass</a></li>';
                             }
                             ?>

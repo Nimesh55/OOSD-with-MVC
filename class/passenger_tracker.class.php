@@ -46,6 +46,9 @@ class Passenger_Tracker extends Tracker
         } else if ($state == 0) {
             $param = [12, $passenger->getUserId(), $passenger->getFirstName() . " " . $passenger->getLastName(), $passenger->getStaffId()];
             Notification_handler::setupNotification($passenger->getEmail(), $passenger->getTelephone(), $param);
+            //Remove passes related to this passenger
+            $pass = Pass_Tracker::getInstance()->getActivePassForPassenger($passenger_no);
+            Pass_Tracker::getInstance()->declinePass($pass->getPassNo());
         }
     }
 

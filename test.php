@@ -10,7 +10,7 @@ $current = date('Y-m-d');
 echo $current;
 $s = array();
 array_push($s,"0778665718");
-notification_handler::sendNotification($s,"www.google.com","");
+// notification_handler::sendNotification($s,"www.google.com","");
 ?>
 
 
