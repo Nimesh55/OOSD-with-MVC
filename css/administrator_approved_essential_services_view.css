@@ -18,3 +18,14 @@ body{
 .btn{
     color: white;
 }
+.buttons{
+    text-align: center;
+}
+.ctrlbutton{
+    width: 185px;
+}
+
+.col-sm-2{
+    text-align: center;
+}
+
