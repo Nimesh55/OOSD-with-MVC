@@ -67,17 +67,20 @@
 
     }
     $pass_state_str = '';
-    $style = '';
+    $html = '<div class="state alert alert-info">'.'No Requests'.'</div>';
     if($pass_state==-1){
         $pass_state_str = "Not Requested";
     }
     elseif($pass_state==0){
         $pass_state_str = "Pending";
+        $html ='<div class="state alert alert-info">'.$pass_state_str.'</div>';
+
     }elseif($pass_state==1){
         $pass_state_str = "Accepted";
-        $style='alert alert-success';
+        $html ='<div class="state alert alert-success">'.$pass_state_str.'</div>';
     }elseif($pass_state==2){
         $pass_state_str = "Confirmed";
+        $html ='<div class="state alert alert-success">'.$pass_state_str.'</div>';
     }
 
     if($row['state'] == '0'){
@@ -98,10 +101,12 @@
     <title>Passenger Profile Edit</title>
 
     <link rel="stylesheet" href="css/passenger_profile_edit.css">
+    <link rel="stylesheet" href="css/upload.css">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="js/upload.js"></script>
 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -178,7 +183,10 @@
                         <label for="bus_route" class="col-sm-3 control-label">Pass State:</label>
                         <div class="col-sm-9">
 <!--                            have to set css-->
-                            <input id="Accepted" disabled name="bus_route" type="text" class="form-control" id="" value="<?php echo $pass_state_str;?>">
+<!--                            <input id="Accepted" disabled name="bus_route" type="text" class="form-control" id="" value="--><?php //echo $pass_state_str;?><!--">-->
+                            <?php echo $html; ?>
+
+
                         </div>
                     </div>
 
@@ -219,7 +227,17 @@
                         <label for="file" class="col-sm-3 control-label">Attachments:</label>
                         <div class="col-sm-9">
                             <?php if(strcmp($button,'submit')==0): ?>
-                                <input type="file" id="file" name="file"/>
+<!--                                <input type="file" id="file" name="file"/>-->
+
+                                <div class="input-group">
+                                    <input type="text" class="form-control" readonly>
+                                    <label class="input-group-btn">
+                                <span class="btn btn-primary">
+                                    Browse File <input type="file" id="file" name="file" style="display: none;">
+                                </span>
+                                    </label>
+                                </div>
+
                             <?php elseif($pass_file==null): ?>
                                 <input name="view" type="text" class="form-control" id="view" readonly value="No file added">
                             <?php else: ?>
