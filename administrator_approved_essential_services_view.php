@@ -68,78 +68,74 @@ if (isset($_POST['view'])) {
     <form action="administrator_approved_essential_services_view.php" method="POST">
         <input type="hidden" name="pass_no" value="<?php echo $pass_no ?>">
         <!-- Details of A single pass -->
-        <div class="container mt-3">s
+        <div class="container">
+
+
+
 
                 <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>Service ID</p>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6 wrapper">
+
+                        <div class="row">
+                            <div class="col-sm-5"><p>Service ID:</p></div>
+                            <div class="col-sm-2"><p>:</p></div>
+                            <div class="col-sm-5"><?php echo $service_id ?></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-5"><p>Service Name:</p></div>
+                            <div class="col-sm-2"><p>:</p></div>
+                            <div class="col-sm-5"><?php echo $service_name ?></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-5"><p>Status:</p></div>
+                            <div class="col-sm-2"><p>:</p></div>
+                            <div class="col-sm-5"><?php echo $status ?></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-5"><p>Attachments:</p></div>
+                            <div class="col-sm-2"><p>:</p></div>
+                            <div class="col-sm-5">
+
+                                <?php
+                                if($service_file==null):
+                                    ?>
+                                    <p>No files added </p>
+                                <?php
+                                else:
+                                    ?>
+                                    <a class="btn btn-primary" href="includes/download.inc.php?name=<?php echo $service_file['name'];?>&fname=<?php echo $service_file['fname'] ?>">Download</a>
+                                <?php
+                                endif;
+                                ?>
+
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>: <?php echo $service_id ?></p>
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
+                    <div class="col-sm-3"></div>
                 </div>
 
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>Service Name</p>
-                    </div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>: <?php echo $service_name ?></p>
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>Status</p>
-                    </div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>: <?php echo $status ?></p>
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>Attachments</p>
-                    </div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-
-                        <?php
-                        if($service_file==null):
-                            ?>
-                            <p>: No files added </p>
-                        <?php
-                        else:
-                            ?>
-                            <a class="btn btn-primary" href="includes/download.inc.php?name=<?php echo $service_file['name'];?>&fname=<?php echo $service_file['fname'] ?>">Download</a>
-                        <?php
-                        endif;
-                        ?>
-
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
-                </div>
 
                 <br>
                 <br>
-
                 <!-- accept and decline buttons -->
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-6 p-3">
-                        <?php $_SESSION['decline'] = $service_no ?>
-                        <a href="includes/serviceFunction_Decline.inc.php?x=r" class="btn btn-info"> Remove </a>
-                        <a href="administrator_approved_essential_services.php" class="btn btn-danger"> Exit </a>
-                    </div>
 
-                    <div class="col-sm-3 p-3"></div>
-                </div>
+
+                <?php $_SESSION['decline'] = $service_no ?>
+            <div class="buttons">
+            <div class="btn-group btn-group-lg">
+                <a href="includes/serviceFunction_Decline.inc.php?x=r" class="btn btn-primary ctrlbutton"> Remove </a>
+                <a href="administrator_approved_essential_services.php" class="btn btn-primary ctrlbutton"> Exit </a>
+            </div>
+            </div>
+
+
+
+
 
 
             </div>
