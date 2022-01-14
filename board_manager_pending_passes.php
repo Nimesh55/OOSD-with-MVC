@@ -26,6 +26,7 @@ $pendingPasses = $details['pendingPassesArray'];
     <link rel="stylesheet" href="css/board_manager_pending_passes.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src = "js/buttons.js"></script>
     <title>Board Manager Pending Passes</title>
 </head>
 
@@ -111,14 +112,15 @@ $pendingPasses = $details['pendingPassesArray'];
                 <?php
 
 
-
+                $i = 0;
                 foreach ($pendingPasses as $pass) {
                     $name = $board_manager_view->getPassengerName($pass->getPassengerNo());
                     if ($name) {
+                        $i++;
                         echo "<tr>";
-                        echo "<th scope=\"row\">>></th>";
+                        echo "<th scope=\"row\">{$i}</th>";
                         echo "<td>{$name}</td>";
-                        echo "<td><a class=\"btn btn-sm btn-primary\" id=\"btn-primary-Not\" href=\"board_manager_view_pass_details.php?pass_no={$pass->getPassNo()}\">View</a></td>";
+                        echo "<td><a class=\"btn btn-sm btn-primary\" id=\"btn-primary-Not\" href=\"#\" onclick = \" clickView({$pass->getPassNo()},'board_manager_view_pass_details.php') \">View</a></td>";
                         echo "</tr>";
                     }
                 }
