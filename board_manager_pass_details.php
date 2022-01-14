@@ -107,14 +107,14 @@ $approvedPasses = $details['approvedPassesArray'];
 
             <tbody>
                 <?php
-
+                $i = 0;
                 foreach ($approvedPasses as $pass) {
                     $name = $board_manager_view->getPassengerName($pass->getPassengerNo());
                     if ($name) {
+                        $i++;
                         echo "<tr>";
-                        echo "<th scope=\"row\">>></th>";
+                        echo "<th scope=\"row\">{$i}</th>";
                         echo "<td>{$name}</td>";
-                        // echo "<td><a class=\"btn btn-sm btn-primary\" id=\"btn-primary-Not\" href=\"board_manager_view_pass_details.php?pass_no={$pass->getPassNo()}\">View</a></td>";
                         echo "<td><a class=\"btn btn-sm btn-primary\" id=\"btn-primary-Not\" href=\"#\" onclick = \" clickView({$pass->getPassNo()},'board_manager_view_pass_details.php') \">View</a></td>";
                         echo "</tr>";
                     }

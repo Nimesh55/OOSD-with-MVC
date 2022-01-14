@@ -44,6 +44,13 @@ class Board_Manager_Controller extends Board_Manager_Model
     {
         $this->pass_tracker->declinePass($pass_no);
         $_SESSION['success'] = "Pass removed successfully";
+
+        $pass = $this->pass_tracker->declinePass($pass_no);
+        $passenger = $this->passenger_tracker->getPassengerByPassengerNo($pass->getPassengerNo());
+        $param = [2,$pass->getPassNo()];
+        // Final Decline Approval Notification
+        Notification_handler::setupNotification($passenger->getEmail(),$passenger->getTelephone(),$param);
+
         header("Location: ../board_manager_pass_details.php");
     }
 
