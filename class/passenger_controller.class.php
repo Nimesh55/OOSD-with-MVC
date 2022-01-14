@@ -75,6 +75,10 @@ class Passenger_Controller extends Passenger_Model
         $this->setPassengerStateinTable($state, $passenger_no);
     }
 
+    public function setPassengerServiceNo($service_no, $passengerObj){
+        $this->setPassengerServiceNo_model($service_no, $passengerObj->getPassengerNo());
+    }
+
     public function getAllPassengersInService($service_no){
         return $this->getAllPassengersInServiceFromModule($service_no);
     }

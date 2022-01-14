@@ -81,4 +81,12 @@
             $stmt = $this->connect()->query("SELECT * FROM passenger WHERE service_no = '$service_no'");
             return $stmt->fetchAll();
         }
+
+		protected function setPassengerServiceNo_model($service_no, $passenger_No){
+			$sql = "UPDATE Passenger SET service_no= :sno WHERE passenger_no = :pas_no";
+			$stmt = $this->connect()->prepare($sql);
+			$stmt->execute(array(
+				':sno' 	=> $service_no,
+				':pas_no' => $passenger_No));
+		}
 	}

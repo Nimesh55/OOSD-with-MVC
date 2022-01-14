@@ -64,4 +64,8 @@ class Passenger_Tracker extends Tracker
         }
         return $passengers_in_service;
     }
+
+    public function setPassengerServiceNo($service_no, $passengerObj){
+        $this->passenger_ctrl->setPassengerServiceNo($service_no, $passengerObj);
+    }
 }

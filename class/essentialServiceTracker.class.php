@@ -48,7 +48,8 @@ class EssentialServiceTracker extends Tracker
         }
 
         $service = $this->createService($service_no);
-        Service_Model::getInstance()->setStateNonEssential($service->getId());
+        Service_Model::getInstance()->setStateNonEssential($service->getServiceNo()); // Changed to Service_no from Service_Id
+
         $param = [7, $service->getName(), $service->getId()];
         $executiveObj = $this->getExecutiveByServiceNo($service_no);
         Notification_handler::setupNotification($executiveObj->getEmail(), $executiveObj->getTelephone(), $param);
@@ -71,11 +72,12 @@ class EssentialServiceTracker extends Tracker
         if ($state == 0) {
             //Remove Passengers
             $passengerArray = Passenger_Tracker::getInstance()->getPassengersInService($service_no);
-            foreach($passengerArray as $passenger){
-                Passenger_Tracker::getInstance()->setPassengerState(0,$passenger->getPassengerNo());
+            foreach ($passengerArray as $passenger) {
+                Passenger_Tracker::getInstance()->setPassengerState(0, $passenger->getPassengerNo());
+                Passenger_Tracker::getInstance()->setPassengerServiceNo(0, $passenger);
             }
             $bookingArray = Booking_Tracker::getInstance()->getBookingsArrayForService($service_no);
-                Booking_Tracker::getInstance()->cancelBookingBulk($bookingArray);// test this
+            Booking_Tracker::getInstance()->cancelBookingBulk($bookingArray); // test this
         }
 
         $ctrl_obj = new Service_Controller();
