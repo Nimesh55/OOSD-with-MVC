@@ -18,13 +18,11 @@ class Change_Password_Controller extends Password_Changer{
             exit();
         }
 
-//        This is for check strength of the new entered password. Uncomment after finalized
-
-//        if(!$this->checkPasswordStrength($new_password)){
-//            $_SESSION['error'] = "Enter strong password";
-//            header("location: ../change_password.php");
-//            exit();
-//        }
+       if(!$this->checkPasswordStrength($new_password)){
+           $_SESSION['error'] = "Enter strong password";
+           header("location: ../change_password.php");
+           exit();
+       }
 
         $hashed_pwd = $this->getPassword();
         if(password_verify($current_password,$hashed_pwd)){
