@@ -30,9 +30,11 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/passenger_home.css">
+    <link rel="stylesheet" href="css/upload.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/buttons.js"></script>
+    <script src="js/upload.js"></script>
     <title>Executive Essential Service Details</title>
 </head>
 
@@ -133,7 +135,17 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
                         <div class="col-sm-5 p-3 data">
                             <div class="input-group">
                             <?php if ($state_str == "Non-Essential") : ?>
-                                <input type="file" class="form-control" id="file" name="file"/>
+<!--                                <input type="file" class="form-control" id="file" name="file"/>-->
+
+                                <div class="input-group">
+                                    <input type="text" class="form-control" readonly>
+                                    <label class="input-group-btn">
+                                <span class="btn btn-primary">
+                                    Browse File <input type="file" id="file" name="file" style="display: none;">
+                                </span>
+                                    </label>
+                                </div>
+
                             <?php elseif (($state_str == "Essential" || $state_str == "Pending") and $service_file==null) : ?>
                                 <input name="view" type="text" class="form-control" id="view" readonly value="No file added">
                             <?php elseif(($state_str == "Essential" || $state_str == "Pending") and $service_file!=null) : ?>
