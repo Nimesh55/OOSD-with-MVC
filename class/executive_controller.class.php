@@ -64,9 +64,9 @@ class Executive_Controller extends Executive_Model
         if ($state == 0) {
             $status = "Pending";
         } elseif ($state == 1) {
-            $status = "Accepted-1";
+            $status = "Accepted";
         } elseif ($state == 2) {
-            $status = "Accepted-2";
+            $status = "Confirmed";
         } else {
             $status = "Declined";
         }

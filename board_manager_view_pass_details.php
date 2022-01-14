@@ -3,12 +3,12 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
-if (!isset($_GET['pass_no'])) {
+if (!isset($_POST['variablePass1'])) {
     header("Location: board_manager_pending_passes.php");
     return;
 }
 
-$pass_no = $_GET['pass_no'];
+$pass_no = $_POST['variablePass1'];
 
 $board_manager_view = new Board_Manager_View();
 $details = $board_manager_view->viewPassDetails($pass_no);
