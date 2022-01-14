@@ -25,6 +25,7 @@ $approvedPasses = $details['approvedPassesArray'];
     <link rel="stylesheet" href="css/board_manager_pass_details.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/buttons.js"></script>
     <title>Board Manager Pass Details</title>
 </head>
 
@@ -113,7 +114,8 @@ $approvedPasses = $details['approvedPassesArray'];
                         echo "<tr>";
                         echo "<th scope=\"row\">>></th>";
                         echo "<td>{$name}</td>";
-                        echo "<td><a class=\"btn btn-sm btn-primary\" id=\"btn-primary-Not\" href=\"board_manager_view_pass_details.php?pass_no={$pass->getPassNo()}\">View</a></td>";
+                        // echo "<td><a class=\"btn btn-sm btn-primary\" id=\"btn-primary-Not\" href=\"board_manager_view_pass_details.php?pass_no={$pass->getPassNo()}\">View</a></td>";
+                        echo "<td><a class=\"btn btn-sm btn-primary\" id=\"btn-primary-Not\" href=\"#\" onclick = \" clickView({$pass->getPassNo()},'board_manager_view_pass_details.php') \">View</a></td>";
                         echo "</tr>";
                     }
                 }
