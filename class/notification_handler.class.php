@@ -106,7 +106,7 @@ class Notification_handler
 
 
             case 7: {
-                    $msg = "Your Service is Delined by the Safe Transit Administration. \nYour Service Details are, \n Service Name: " . $param[1] . " \n Service Id: " . $param[2] . "\nContact Safe Transit Administration via Email or Re-apply the Approval request for Authorization functionality";
+                    $msg = "Your Service is Declined by the Safe Transit Administration. \nYour Service Details are, \n Service Name: " . $param[1] . " \n Service Id: " . $param[2] . "\nContact Safe Transit Administration via Email or Re-apply the Approval request for Authorization functionality";
                     $emailSubject = "Your Service is Declined";
                     break;
                 }

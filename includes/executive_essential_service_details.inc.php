@@ -33,7 +33,7 @@ function requestOrRemove()
         $button_state = $seperatedButtonInput[0];
         $button_service_no = $seperatedButtonInput[1];
 
-        echo $button_service_no;
+        //echo $button_service_no;
 
         $ctrl_obj = new Executive_Controller();
         if ($button_state == 0) {
@@ -43,6 +43,7 @@ function requestOrRemove()
             // echo $button_service_no;
             $ctrl_obj->setEssentialServiceState(0, $button_service_no);
             $ctrl_obj->setExecutiveState(0, $button_service_no);
+            // Remove Passengers
         } elseif ($button_state == 1) {
             //echo "No= ".$button_service_no;
 //            print_r($_FILES);

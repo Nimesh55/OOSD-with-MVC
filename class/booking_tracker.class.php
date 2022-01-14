@@ -130,6 +130,13 @@ class Booking_Tracker extends Tracker implements Observer
         Notification_handler::setupNotification($executive->getEmail(),$executive->getTelephone(),$param);
     }
 
+    public function cancelBookingBulk($bookingArray)
+    {
+        foreach($bookingArray as $booking){
+            Booking_Controller::getInstance()->cancelBooking($booking);
+        }
+    }
+
     public function cancelBookingByExecutive($booking_no){
         Booking_Controller::getInstance()->setStateCompleted($booking_no);
     }
