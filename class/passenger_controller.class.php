@@ -67,8 +67,9 @@ class Passenger_Controller extends Passenger_Model
         //Removes related Passes
         $passengerObj = Passenger_Tracker::getInstance()->getPassenger($_SESSION['user_Id']);
         $passObj = Pass_Tracker::getInstance()->getActivePassForPassenger($passengerObj->getPassengerNo());
-        Pass_Tracker::getInstance()->declinePass($passObj->getPassNo());
-
+        if (isset($passObj)) {
+            Pass_Tracker::getInstance()->declinePass($passObj->getPassNo());
+        }
     }
     public function setPassengerState($state, $passenger_no){
         $this->setPassengerStateinTable($state, $passenger_no);

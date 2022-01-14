@@ -48,7 +48,10 @@ class Passenger_Tracker extends Tracker
             Notification_handler::setupNotification($passenger->getEmail(), $passenger->getTelephone(), $param);
             //Remove passes related to this passenger
             $pass = Pass_Tracker::getInstance()->getActivePassForPassenger($passenger_no);
-            Pass_Tracker::getInstance()->declinePass($pass->getPassNo());
+            if (isset($pass)) {
+                Pass_Tracker::getInstance()->declinePass($pass->getPassNo());
+            }
+            
         }
     }
 
