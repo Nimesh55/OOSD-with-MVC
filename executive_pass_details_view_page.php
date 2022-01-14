@@ -28,7 +28,7 @@ $details = array("name" => $passenger->getFirstName().' '.$passenger->getLastNam
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!--    <link rel="stylesheet" href="css/passenger_home.css">-->
+    <link rel="stylesheet" href="css/executive_passenger_details_view_page.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/buttons.js"></script>
@@ -72,114 +72,76 @@ $details = array("name" => $passenger->getFirstName().' '.$passenger->getLastNam
     <form action="executive_pass_details_view_page.php" method="GET">
 <!--        <input type="hidden" name="pass_no" value="--><?//= $pass_no ?><!--">-->
         <!-- Details of A single pass -->
-        <div class="container mt-3">
-
-            <div style="margin-top:100px;">
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>Requested by</p>
-                    </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>:
-                            <?php
-                            $name = $details['name'];
-                            echo $name;
-                            ?>
-                        </p>
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>Route</p>
-                    </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?= $details['route'] ?></p>
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>Time Slot</p>
-                    </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?= $details['time_slot'] ?></p>
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>Reason</p>
-                    </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?= $details['reason'] ?></p>
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>Status</p>
-                    </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
-                        <p>: <?= $details['status'] ?>
-                        </p>
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3 bg-dark text-white">
-                        <p>Attachments</p>
-                    </div>
-                    <div class="col-sm-3 p-3 bg-primary text-white">
-
-                        <?php
-                        if($pass_file==null):
-                            ?>
-                            <p>: No files added </p>
-                        <?php
-                        else:
-                            ?>
-                            <a href="includes/download.inc.php?name=<?php echo $pass_file['name'];?>&fname=<?php echo $pass_file['fname'] ?>">Download</a>
-                        <?php
-                        endif;
-                        ?>
-
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
-                </div>
-
-                <br>
-                <br>
-
-                <!-- accept and decline buttons -->
-                <?php if(strcmp($details['status'],"Pending")==0): ?>
-                <div class="row">
-                    <div class="col-sm-3 p-3"></div>
-                    <div class="col-sm-3 p-3">
-                        <a href="#" class="btn btn-info" onclick="clickView('1-<?php echo $pass_no ?>','includes/executive_pass_view.inc.php')"> Accept </a>
-                    </div>
-                    <div class="col-sm-3 p-3">
-                        <a href="#" class="btn btn-info" onclick="clickView('4-<?php echo $pass_no ?>','includes/executive_pass_view.inc.php')"> Decline </a>
-                    </div>
-                    <div class="col-sm-3 p-3"></div>
-                </div>
-                <?php endif;?>
-
-            </div>
-        </div>
 
         <div class="container">
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6 wrapper">
+
+                    <div class="row">
+                        <div class="col-sm-5"><p>Requested by</p></div>
+                        <div class="col-sm-2"><p>:</p></div>
+                        <div class="col-sm-5"><p><?php echo $details['name']; ?>
+                        </p></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-5"><p>Route</p></div>
+                        <div class="col-sm-2"><p>:</p></div>
+                        <div class="col-sm-5"><p><?= $details['route'] ?></p></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-5"><p>Time Slote</p></div>
+                        <div class="col-sm-2"><p>:</p></div>
+                        <div class="col-sm-5"><p><?= $details['time_slot'] ?></p></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-5"><p>Reason</p></div>
+                        <div class="col-sm-2"><p>:</p></div>
+                        <div class="col-sm-5"><p><?= $details['reason'] ?></p></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-5"><p>Status</p></div>
+                        <div class="col-sm-2"><p>:</p></div>
+                        <div class="col-sm-5"><p><?= $details['status'] ?></p></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-5"><p>Attachments</p></div>
+                        <div class="col-sm-2"><p>:</p></div>
+                        <div class="col-sm-5">
+                            <?php
+                            if($pass_file==null):
+                                ?>
+                                <p>: No files added </p>
+                            <?php
+                            else:
+                                ?>
+                                <a class="btn btn-primary" href="includes/download.inc.php?name=<?php echo $pass_file['name'];?>&fname=<?php echo $pass_file['fname'] ?>">Download</a>
+                            <?php
+                            endif;
+                            ?>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <?php if(strcmp($details['status'],"Pending")==0): ?>
+                        <div class="btn-group btn-group-lg">
+                            <a href="#" class="btn btn-primary ctrlbutton" onclick="clickView('1-<?php echo $pass_no ?>','includes/executive_pass_view.inc.php')"> Accept </a>
+                            <a href="#" class="btn btn-primary ctrlbutton" onclick="clickView('4-<?php echo $pass_no ?>','includes/executive_pass_view.inc.php')"> Decline </a>
+                        </div>
+                    <?php endif;?>
+
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+            <br>
+            <br>
+
+
 
         </div>
 
