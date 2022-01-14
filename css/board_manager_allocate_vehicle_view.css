@@ -7,11 +7,21 @@ body{
 .container{
     width: 50%;
     background-color: rgb(44, 44, 37);
-    padding: 1%; 
+    padding: 1%;
     color: aliceblue;
     margin-top: 8%;
     border-style: ridge;
     border: 2px solid whitesmoke;
     border-radius: 10px;
     
+}
+.ctrlbutton{
+    width: 185px;
+}
+
+.buttons{
+    text-align: center;
+}
+.col-sm-2{
+    text-align: center;
 }
