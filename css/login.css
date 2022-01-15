@@ -12,10 +12,7 @@ body{
     width:90%;
     background-color:#03060D;
     padding:40px;
-    /*transform:translate(-50%, 10%);*/
     position:absolute;
-    /*top:50%;*/
-    /*left:50%;*/
     border-radius: 4%;
     opacity: 0.96;
 
@@ -93,14 +90,13 @@ img {
 
 h1{
   padding: 1%;
-  /*float: left;*/
   color: aliceblue;
   font-size:80px;
   text-shadow: 2px 2px 2px rgb(12, 11, 11);
-  /*transform:translate(-10%, 250%);*/
   background-color: #03060D;
-  border-radius: 15px;
-  opacity: 0.90;
+  border: 3px solid aliceblue !important;
+  border-radius: 1.5% !important;
+  opacity: 0.94;
 
 }
 .wrapper{
