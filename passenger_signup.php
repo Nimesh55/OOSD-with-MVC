@@ -4,6 +4,29 @@ if (isset($_GET['src'])) {
 } else {
 	$src = 0;
 }
+
+if (isset($_GET['error'])) {
+	$error = $_GET['error'];
+	if ($error == "emptyfield")
+		$error_str = 'Empty Field!';
+	else if ($error == "passwordmismatch")
+		$error_str = 'Password is Incorrect!';
+	else if ($error == "InvalidUserId")
+		$error_str = 'User ID is Invalid!';
+	else if ($error == "user_exist")
+		$error_str = 'User exist!';
+	else if ($error == "emailWrong")
+		$error_str = 'Invalid Email!';
+	else if ($error == "emailExist")
+		$error_str = 'Email Exist!';
+	else if ($error == "invalidusername")
+		$error_str = 'Invalid Username!';
+	else if ($error == "enterstrongpassword")
+		$error_str = 'Please Enter a Strong Password!';
+	else if ($error == "none")
+		$error_str = 'Accound successfully created!';
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -45,8 +68,10 @@ if (isset($_GET['src'])) {
 			<div class="col-sm-12">
 				<?php
 				if (isset($_GET["error"])) {
-					$error = $_GET["error"];
-					echo "<p class=\"error\">$error</p>";
+					if ($_GET["error"] == 'none')
+						echo "<p class=\"success\">$error_str</p>";
+					else
+						echo "<p class=\"error\">$error_str</p>";
 				}
 				?>
 			</div>

@@ -2,49 +2,46 @@ body {
     background: url(../img/PassBlue.jpg);
     background-size: cover;
     background-attachment: fixed;
-    color: #fff;
-    text-align: center;
-  }
-
-.wrapper{
-    background-color: rgb(0, 0, 0);
-    width: 50%;
-    display: inline-block;
-    margin-top: 0.5%;
-    padding: 0.5%;
-    border-radius: 3%;
-    border-color: aliceblue;
-    border-width: 1cm;
+    color: aliceblue !important;
+    
 }
 
-.text{
-    width: 80%;
+.container{
+    width: 50% !important;
+    background-color: rgb(0, 0, 0);
+    margin-top: 4%;
     padding: 1%;
-    margin-top: 1.2%;
+    border: 3px solid aliceblue !important;
+    border-radius: 1.5% !important;
+    opacity: 0.94;
+}
+
+.row{
+    padding: 0.5%;
+    padding-left: 2%;
+    margin-top: 1%;
     text-align: center;
     font-weight: bold;
-    text-transform: capitalize;
+    border-radius: 2%;
+    width: 100%;
+  }
+
+.text{
+    text-align: center;
 }
 
 .btn{
+    font-weight: bold;
     margin-top: 3%;
     width: 20%;
+    border-radius: 2%;
     color: aliceblue;
     padding: 1.1%;
     background:#2961aa;
-    border:none;
-    border-radius:4px;
-    padding:11px;
-    box-shadow:none;
-    margin-top:26px;
-    text-shadow:none;
-    outline:none;
-    font-weight: bold;
-
 }
 
 .btn:hover, .btn:active {
-    background:#0e376d;
+    background:#08274e;
     outline:none;
   }
 
@@ -58,4 +55,16 @@ body {
 #link:hover, #link:active{
     color:#0e376d;
     outline:none;
+}
+
+.error{
+    background-color: red;
+    color: aliceblue;
+    padding: 1.5%;
+}
+
+.success{
+    background-color: rgb(136, 255, 0);
+    color: aliceblue;
+    padding: 1.5%;
 }

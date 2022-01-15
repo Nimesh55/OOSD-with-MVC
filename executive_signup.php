@@ -1,3 +1,29 @@
+<?php
+
+if (isset($_GET['error'])) {
+	$error = $_GET['error'];
+	if ($error == "emptyfield")
+		$error_str = 'Empty Field!';
+	else if ($error == "passwordmismatch")
+		$error_str = 'Password is Incorrect!';
+	else if ($error == "InvalidUserId")
+		$error_str = 'User ID is Invalid!';
+	else if ($error == "user_exist")
+		$error_str = 'User exist!';
+	else if ($error == "emailWrong")
+		$error_str = 'Invalid Email!';
+	else if ($error == "emailExist")
+		$error_str = 'Email Exist!';
+	else if ($error == "invalidusername")
+		$error_str = 'Invalid Username!';
+	else if ($error == "enterstrongpassword")
+		$error_str = 'Please Enter a Strong Password!';
+	else if ($error == "none")
+		$error_str = 'Accound successfully created!';
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -16,30 +42,97 @@
 	</script>
 	<link rel="stylesheet" href="css/executive_signup.css">
 	<link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-	<div class="main-w3layouts wrapper">
-		<h1>Executive SignUp Form</h1>
-		<div class="main-agileinfo">
-			<div class="agileits-top">
-				<form action="includes/signup.inc.php?account_type=2" method="post">
-					<input class="text" type="text" name="Firstname" placeholder="First name">
-					<input class="text" type="text" name="Lastname" placeholder="Last name">
-					<input class="text" type="text" name="ID" placeholder="Employee ID">
-					<input class="text" type="text" name="Address" placeholder="Address">
-					<input class="text" type="text" name="Companyname" placeholder="Company Name">
-					<input class="text" type="text" name="Companyid" placeholder="Company ID">
-					<input class="text email" type="email" name="email" placeholder="Email">
-					<input class="text" type="text" name="Telephone" placeholder="Telephone number">
-					<input class="text" type="password" name="password" placeholder="Password">
-					<input class="text w3lpass" type="password" name="passwordrepeat" placeholder="Confirm Password">
-					<br>
-					<input class="btn btn-primary" type="submit" name="submit" value="SIGNUP">
-				</form>
-				<p>Do you have an Account? <a id="link" href="login.php"> Login Now!</a></p>
+	<div class="container">
+	
+		<div class="row">
+			<div class="col-sm-12">
+				<h1>Executive SignUp Form</h1>
 			</div>
 		</div>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<?php
+				if (isset($_GET["error"])) {
+					if ($_GET["error"] == 'none')
+						echo "<p class=\"success\">$error_str</p>";
+					else
+						echo "<p class=\"error\">$error_str</p>";
+				}
+				?>
+			</div>
+		</div>
+
+
+		<form action="includes/signup.inc.php?account_type=2" method="post">
+			<div class="row">
+				<div class="col-sm-6">
+					<input class="text form-control" type="text" name="Firstname" placeholder="First name">
+				</div>
+				<div class="col-sm-6">
+					<input class="text form-control" type="text" name="Lastname" placeholder="Last name">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-6">
+					<input class="text form-control" type="text" name="ID" placeholder="Employee ID">
+				</div>
+				<div class="col-sm-6">
+					<input class="text form-control" type="text" name="Telephone" placeholder="Telephone number">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<input class="text form-control" type="text" name="Address" placeholder="Address">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-6">
+					<input class="text form-control" type="text" name="Companyname" placeholder="Company Name">
+				</div>
+				<div class="col-sm-6">
+					<input class="text form-control" type="text" name="Companyid" placeholder="Company ID">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<input class="text email form-control" type="email" name="email" placeholder="Email">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-6">
+					<input class="text form-control" type="password" name="password" placeholder="Password">
+				</div>
+				<div class="col-sm-6">
+					<input class="text w3lpass form-control" type="password" name="passwordrepeat" placeholder="Confirm Password">
+				</div>
+			</div>
+
+			<div class="row">
+
+				<input class="btn btn-primary" type="submit" name="submit" value="SIGNUP">
+
+			</div>
+
+		</form>
+		<div class="row">
+			<p>Do you have an Account? <a id="link" href="login.php"> Login Now!</a></p>
+
+		</div>
+
+
 	</div>
 </body>
 
