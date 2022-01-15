@@ -3,7 +3,6 @@ require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.p
 
 class Conductor extends User
 {
-    private $vehicle_no; // try to make a class
     private $vehicle;
     private $district_no;
     private $state;
@@ -23,21 +22,24 @@ class Conductor extends User
             parent::setLastName($row['last_name']);
             parent::setAddress($row['address']);
             parent::setTelephone($row['telephone']);
-            //$this->vehicle_no = $row['vehicle_no'];
             $this->district_no = $row['district_no'];
             parent::setEmail($row['email']);
             $this->state = $row['state'];
             $this->district_name = $row['name'];
-            $this->vehicle = new Vehicle($row['vehicle_no'], "24");
+            $this->vehicle = new Vehicle($row['vehicle_no'], $row['seats']);
         }
     }
 
 
     public function getVehicleNo()
     {
-        // return $this->vehicle_no;
         return $this->vehicle->get_Vehicle_no();
     }
+
+    public function getSeatNo(){
+        return $this->vehicle->get_Seat_no();
+    }
+
     public function getDistrictNo()
     {
         return $this->district_no;
