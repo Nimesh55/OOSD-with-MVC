@@ -133,16 +133,16 @@ foreach ($passengers as $passenger){
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">Staff ID</th>
-                        <th scope="col">Passenger Name</th>
-                        <th scope="col">View Details</th>
+                        <th>Staff ID</th>
+                        <th>Passenger Name</th>
+                        <th>View Details</th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php
                     foreach($appprovedPassengers as $passenger){
                         echo '<tr>';
-                        echo '<td scope="row">'.$passenger->getStaffId().'</td>';
+                        echo '<td>'.$passenger->getStaffId().'</td>';
                         echo '<td>'.$passenger->getFirstName() .' '.$passenger->getLastName().'</td>';
                         echo '<td><a class="btn btn-sm btn-primary" href="#" onclick="clickView('.$passenger->getPassengerNo().',\'executive_passenger_details_view_page.php\')" style="float: center"'.'>View</a></td>';
                         echo '</tr>';

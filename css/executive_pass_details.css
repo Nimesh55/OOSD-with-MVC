@@ -3,7 +3,7 @@
     /*color: #000000;*/
     padding: 5%;
     border-radius: 15px;
-    /*text-align: center;*/
+    text-align: center;
     word-break: break-word;
     background-color: rgb(44, 44, 37);
     color: aliceblue;
@@ -43,4 +43,7 @@ h1{
 }
 .addnewpass{
     width: 15%;
+}
+table,tr,th,td{
+    text-align: left;
 }

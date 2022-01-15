@@ -95,9 +95,9 @@ foreach ($passDetailsArray as $cur) { // Seperated the Passes in to 3 array for 
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">Pass Number</th>
-                                <th scope="col">Passenger Name</th>
-                                <th scope="col">View Details</th>
+                                <th>Pass Number</th>
+                                <th>Passenger Name</th>
+                                <th>View Details</th>
 
                             </tr>
                         </thead>
@@ -112,7 +112,7 @@ foreach ($passDetailsArray as $cur) { // Seperated the Passes in to 3 array for 
                             ?>
                                 <tr>
 
-                                    <th scope="row"><?php echo $row; ?></th>
+                                    <td ><?php echo $row; ?></td>
                                     <td><?php echo $names["first_name"] . " " . $names["last_name"]; ?></td>
                                     <td>
                                         <a href="#" class="btn btn-info" onclick="clickView(<?php echo $pass_no ?>)"> View </a>
@@ -130,9 +130,9 @@ foreach ($passDetailsArray as $cur) { // Seperated the Passes in to 3 array for 
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">Pass Number</th>
-                                <th scope="col">Passenger Name</th>
-                                <th scope="col">View Details</th>
+                                <th>Pass Number</th>
+                                <th>Passenger Name</th>
+                                <th>View Details</th>
 
                             </tr>
                         </thead>
@@ -147,7 +147,7 @@ foreach ($passDetailsArray as $cur) { // Seperated the Passes in to 3 array for 
                             ?>
                                 <tr>
 
-                                    <th scope="row"><?php echo $row; ?></th>
+                                    <td><?php echo $row; ?></td>
                                     <td><?php echo $names["first_name"] . " " . $names["last_name"]; ?></td>
                                     <td>
                                         <a href="#" class="btn btn-info" onclick="clickView(<?php echo $pass_no ?>)"> View </a>
@@ -165,9 +165,9 @@ foreach ($passDetailsArray as $cur) { // Seperated the Passes in to 3 array for 
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">Pass Number</th>
-                                <th scope="col">Passenger Name</th>
-                                <th scope="col">View Details</th>
+                                <th>Pass Number</th>
+                                <th>Passenger Name</th>
+                                <th>View Details</th>
 
                             </tr>
                         </thead>
@@ -182,7 +182,7 @@ foreach ($passDetailsArray as $cur) { // Seperated the Passes in to 3 array for 
                             ?>
                                 <tr>
 
-                                    <th scope="row"><?php echo $row; ?></th>
+                                    <td><?php echo $row; ?></td>
                                     <td><?php echo $names["first_name"] . " " . $names["last_name"]; ?></td>
                                     <td>
                                         <a href="#" class="btn btn-info" onclick="clickView(<?php echo $pass_no ?>)"> View </a>
