@@ -35,9 +35,9 @@
 					<input class="text" type="password" name="password" placeholder="Password">
 					<input class="text w3lpass" type="password" name="passwordrepeat" placeholder="Confirm Password">
 					<br>
-					<input class="btn" type="submit" name="submit" value="SIGNUP">
+					<input class="btn btn-primary" type="submit" name="submit" value="SIGNUP">
 				</form>
-				<p>Don't have an Account? <a href="login.php"> Login Now!</a></p>
+				<p>Don't have an Account? <a id="link" href="login.php"> Login Now!</a></p>
 			</div>
 		</div>
 	</div>
