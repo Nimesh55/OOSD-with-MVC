@@ -1,9 +1,15 @@
+<?php
+echo "<pre>";
+print_r($_POST);
+echo "</pre>";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forget Password</title>
+    <title>Verification</title>
 
     <link rel="stylesheet" href="css/passenger_profile_edit.css">
 
@@ -27,35 +33,28 @@
 <body>
 
 <div class="container heading">
-    <h1>Forget Password?</h1>
 </div>
 <div class="container">
     <div class="row">
         <div class="col-lg-3 cyan"></div>
-        <div class="col-lg-6 pink wrapper">
+        <div class="col-lg-6 wrapper">
 
-<!--            use this php block if you want to display some alert-->
-<!--            --><?php
-//            if (isset($_POST['error_str']) && strcmp($_POST['error_str'],"Success")!=0) {
-//
-//                echo "<div class=\"alert alert-danger\"><strong>".$error_str."</strong></div>";
-//            }
-//            if(isset($_POST['error_str']) && strcmp($_POST['error_str'],"Success")==0){
-//                echo "<div class=\"alert alert-success\"><strong>"."Successfully Updated!!!"."</strong></div>";
-//            }
-//            ?>
-            <form class="form-horizontal" role="form" action="includes/passenger_edit_profile.inc.php" method="post">
+<!--                        use this php block if you want to display some alert-->
+
+            <form class="form-horizontal" role="form" action="includes/verify_user.inc.php" method="post">
                 <div class="form-group">
-                    <label for="fname" class="col-sm-3 control-label">User ID:</label>
+                    <label for="code" class="col-sm-3 control-label">Verfication Code:</label>
                     <div class="col-sm-9">
-                        <input name="fname" type="text" class="form-control" id="user_id">
+                        <input name="code" type="text" class="form-control" id="code">
                     </div>
                 </div>
                 <br>
                 <div class="btn-group btn-group-lg">
-                    <input type="submit" class="btn btn-primary ctrlbutton" name="submit" value="Submit">
+                    <input type="submit" class="btn btn-primary ctrlbutton" name="verify" value="Verify">
                     <input type="submit" class="btn btn-primary ctrlbutton" name="exit" value="Exit">
                 </div>
+                <input type="text" name="user_id" value="<?php echo $_POST['user_id'] ?>" hidden>
+                <input type="text" name="verification_code" value="<?php echo $_POST['verification_code'] ?>" hidden>
 
             </form>
 

@@ -4,9 +4,9 @@ session_start();
 
 class Change_Password_Controller extends Password_Changer{
 
-    public function updatePassword($current_password, $new_password, $password_repeat){
+    public function updatePassword($current_password, $new_password, $password_repeat,$forget=0){
 
-        if(empty($current_password) || empty($new_password) || empty($password_repeat)){
+        if($forget==0 && (empty($current_password) || empty($new_password) || empty($password_repeat))){
             $_SESSION['error'] = "Fill all fields and try again";
             header("location: ../change_password.php");
             exit();
@@ -25,12 +25,20 @@ class Change_Password_Controller extends Password_Changer{
        }
 
         $hashed_pwd = $this->getPassword();
-        if(password_verify($current_password,$hashed_pwd)){
+        if((password_verify($current_password,$hashed_pwd))||$forget==1){
             $new_hashedpwd = password_hash($new_password, PASSWORD_DEFAULT);
 
             if(!$this->changePassword($new_hashedpwd)){
                 $_SESSION['error'] = "Error occured in the system";
-                header("location: ../change_password.php");
+                if($forget==0){
+                    header("location: ../change_password.php");
+                }else{
+                    header("location: ../forget_password_reset.php");
+                }
+                exit();
+            }
+            if($forget==1){
+                header("location: ../login.php?error=none");
                 exit();
             }
 
