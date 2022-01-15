@@ -20,11 +20,17 @@ body{
     width: 55%;
 }
 
-.alert{
-    text-align: center;
-    padding: 0.5%;
-}
+/*.alert{*/
+/*    text-align: center;*/
+/*    padding: 0.5%;*/
+/*}*/
 .tob_bar_alert{
     padding: 5px !important;
     margin-bottom: 0px !important;
+}
+
+.alert{
+    text-align: center !important;
+    margin-top: 0% !important;
+    padding: 1% !important;
 }
