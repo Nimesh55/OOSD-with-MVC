@@ -77,7 +77,7 @@
 
     }elseif($pass_state==1){
         $pass_state_str = "Accepted";
-        $html ='<div class="state alert alert-success">'.$pass_state_str.'</div>';
+        $html ='<div class="state alert alert-success accepted">'.$pass_state_str.'</div>';
     }elseif($pass_state==2){
         $pass_state_str = "Confirmed";
         $html ='<div class="state alert alert-success">'.$pass_state_str.'</div>';

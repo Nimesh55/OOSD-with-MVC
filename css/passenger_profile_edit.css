@@ -27,10 +27,8 @@ body{
 .ctrlbutton{
   width: 185px;
 }
-#Accepted{
-  /*text-align: center;*/
-  /*background-color: #91ea91;*/
-  /*color: black;*/
+.accepted{
+  background-color: #e1e990 !important;
 }
 .state{
   height: 34px !important;
