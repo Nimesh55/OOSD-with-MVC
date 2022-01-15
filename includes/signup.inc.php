@@ -18,7 +18,13 @@ if(isset($_POST['submit'])){
     if($_GET['account_type']==0){
         $password = htmlentities($_POST["password"]);
         $password_repeat = htmlentities($_POST["passwordrepeat"]);
-        $signupctrlobj = new Signup_Controller($firstname, $lastname, $uid, $address, $email, $telephone, $password, $password_repeat, NULL,NULL, NULL, NULL, 0,NULL);
+        $company = 0;
+        $staffId = 0;
+        if(isset($_POST['variable2'])){
+            $company = $_POST['variable2'];
+            $staffId = htmlentities($_POST["staffId"]);
+        }
+        $signupctrlobj = new Signup_Controller($firstname, $lastname, $uid, $address, $email, $telephone, $password, $password_repeat, $company,$staffId, NULL, NULL, 0,NULL);
     }elseif ($_GET['account_type']==1) {
         $vehicle_no = htmlentities($_POST["vehicle_no"]);
         $district = htmlentities($_POST["district"]);

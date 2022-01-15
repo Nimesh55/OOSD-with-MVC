@@ -1,4 +1,5 @@
 <?php
+session_start();
 if (isset($_GET['src'])) {
 	$src = $_GET['src'];
 } else {
@@ -96,6 +97,14 @@ if (isset($_GET['error'])) {
 				</div>
 			</div>
 
+			<?php if (isset($_GET['src']) && $_GET['src'] == 1) : ?>
+				<div class="row">
+					<div class="col-sm-12">
+						<input class="text form-control" type="text" name="staffId" placeholder="Staff Id">
+					</div>
+				</div>
+			<?php endif; ?>
+
 			<div class="row">
 				<div class="col-sm-12">
 					<input class="text form-control" type="text" name="Address" placeholder="Address">
@@ -124,7 +133,10 @@ if (isset($_GET['error'])) {
 				</div>
 				<div class="col-sm-4"></div>
 			</div>
-
+			<?php if (isset($_GET['src']) && $_GET['src'] == 1) : ?>
+				<? $service_no = $_SESSION['service_no']; ?>
+				<input type="hidden" name="variable2" value="<? echo $service_no ?>">
+			<?php endif; ?>
 		</form>
 
 		<div class="row end">

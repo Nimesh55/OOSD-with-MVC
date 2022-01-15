@@ -86,6 +86,9 @@ foreach ($passengers as $passenger) {
                                     <span class="glyphicon glyphicon-search"></span>
                                 </button>
                             </div>
+                            <div class="">
+                                <a href="#" onclick="clickView('<? echo $_SESSION['service_no']?>','passenger_signup.php?src=1')">Create Passenger Acoount</a>
+                            </div>
                         </div>
                         <div class="col-sm-4"></div>
                     </div>
@@ -122,7 +125,7 @@ foreach ($passengers as $passenger) {
                         </tbody>
                     </table>
                     <tr><?php if (empty($pendingPassengers) && isset($_GET['search']))
-                                        echo "No matches found";?></tr>
+                            echo "No matches found"; ?></tr>
                 </div>
 
                 <div id="link2" class="tab-pane fade">
@@ -148,7 +151,7 @@ foreach ($passengers as $passenger) {
                         </tbody>
                     </table>
                     <tr><?php if (empty($appprovedPassengers) && isset($_GET['search']))
-                                        echo "No matches found";?></tr>
+                            echo "No matches found"; ?></tr>
                 </div>
 
             </div>

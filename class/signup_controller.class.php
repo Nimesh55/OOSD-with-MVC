@@ -75,13 +75,13 @@ class Signup_Controller extends Signup{
             exit();
         }
 
-        if (!$this->isValidEmail()) {
+        if ($this->email!=NULL && !$this->isValidEmail()) {
             // error msg here
             header("location: ../".$this->page_name."_signup.php?error=emailWrong&src=".$src);
             exit();
         }
 
-        if ($this->emailAlreadyExist()) {
+        if ($this->email!=NULL && $this->emailAlreadyExist()) {
             header("location: ../".$this->page_name."_signup.php?error=emailExist&src=".$src);
             exit();
         }
@@ -112,7 +112,11 @@ class Signup_Controller extends Signup{
         $this->addToUser( $this->uid , $this->password, $this->firstname, $this->lastname, $this->address, $this->telephone, $this->email, $this->company_name, $this->company_Id, $this->vehicle_no, $this->district, $this->account_type, $this->seats);
         if($this->account_type==1){
             header("location: ../board_manager_create_conductor.php?error=none&src=".$src);
-        }else{
+        }
+        else if($this->account_type==0 && $this->company_name>0){
+            header("location: ../executive_passenger_details.php");
+        }
+        else{
             header("location: ../login.php?error=none");
         }
     }
@@ -120,11 +124,14 @@ class Signup_Controller extends Signup{
     // Error handling methods
     private function emptyField(){
         $result = true;
-        if (($this->account_type==0)&&(empty($this->firstname)||empty($this->lastname)||empty($this->uid)||empty($this->address)||empty($this->email)||empty($this->telephone)||empty($this->password)||empty($this->password_repeat))) {
+        if (($this->account_type==0)&&(empty($this->firstname)||empty($this->lastname)||empty($this->uid)||empty($this->address)||empty($this->telephone)||empty($this->password)||empty($this->password_repeat))) {
             $result = false;
-        }elseif (($this->account_type==1)&&(empty($this->firstname)||empty($this->lastname)||empty($this->uid)||empty($this->address)||empty($this->vehicle_no)||empty($this->district)||empty($this->email)||empty($this->telephone))) {
+        }elseif (($this->account_type==1)&&(empty($this->firstname)||empty($this->lastname)||empty($this->uid)||empty($this->address)||empty($this->vehicle_no)||empty($this->district)||empty($this->telephone))) {
             $result = false;
         }elseif (($this->account_type==2)&&(empty($this->firstname)||empty($this->lastname)||empty($this->uid)||empty($this->address)||empty($this->company_name)||empty($this->company_Id)||empty($this->email)||empty($this->telephone)||empty($this->password)||empty($this->password_repeat))) {
+            $result = false;
+        }
+        elseif(($this->account_type==0) && !empty($this->company_name) && empty($this->company_Id)){
             $result = false;
         }
         return $result;

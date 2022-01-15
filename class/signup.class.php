@@ -25,7 +25,14 @@ class Signup extends Dbh{
           //Add passenger to the passenger table
           $query1 = "INSERT INTO passenger (first_name, last_name, address, telephone, service_no, staff_id, email, state) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
           $stmt1 = $this->connect()->prepare($query1);
-          if (!$stmt1->execute(array($firstname, $lastname, $address, $telephone, 0, 0, $email, 0))) {
+          $state = 0;
+          $staffId = 0;
+          if($company_name>0){
+            $staffId = $company_Id;
+            $state = 2;
+          }
+
+          if (!$stmt1->execute(array($firstname, $lastname, $address, $telephone, $company_name, $staffId, $email, $state))) {
             $query_error = true;
           }
           $stmt1 = null;
