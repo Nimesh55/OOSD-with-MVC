@@ -167,7 +167,12 @@ class Booking_Model extends Dbh
         return $conductor_bookings;
     }
 
-
+    protected function getDistrictName_model($district_no){
+        $query = "SELECT * FROM district WHERE district_no=?";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute([$district_no]);
+        $result = $stmt->fetch();
+        return $result['name'];
+    }
 }
-
 ?>
