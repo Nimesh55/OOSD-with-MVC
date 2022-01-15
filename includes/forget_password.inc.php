@@ -8,7 +8,7 @@
     $varification_num = rand(1000,10000);
     //send verification number via sms and email
 
-
+    //##fetch user contacts
     $email_address = "yheshan1@gmail.com";
     $telephone = "0714748483";
     $msg = "Safe Transit: Your verification code is {$varification_num}";
