@@ -22,8 +22,9 @@ if (isset($_POST['submit']) && $_POST['submit']=='Submit') {
     $url_extention .= "error={$errors}";
     if (!strcmp($errors, "success") != 0) {
         $pass = $pass_tracker->createPass($details);
+        $pass_tracker->upgradePassState($pass->getPassNo());
     }
-    $pass_tracker->upgradePassState($pass->getPassNo());
+    
     header("Location: ../executive_create_pass_manually.php?{$url_extention}");
 }
 if (isset($_POST['exit'])){
