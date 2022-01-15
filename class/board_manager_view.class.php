@@ -162,8 +162,8 @@ class Board_Manager_View extends Board_Manager_Model
             return "User Account Exist!";
         }elseif($error == "emailWrong"){
             return "Invalid Email!";
-        }elseif($error == "invalidusername"){
-            return "Invalid Username!";
+        }elseif($error == "InvalidUserId"){
+            return "Invalid User ID!";
         }elseif($error == "invalidtelephone"){
             return "Invalid Telephone Number!";
         }elseif($error == "emailExist"){

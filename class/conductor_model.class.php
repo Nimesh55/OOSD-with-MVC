@@ -8,7 +8,7 @@ class Conductor_Model extends Dbh{ // ## make the methods protected
 
     public function setRecord($conductor_id){
         $stmt1 = $this->connect()->query("SELECT * FROM users JOIN conductor ON Conductor.conductor_no = Users.account_no
-            JOIN district ON Conductor.district_no = District.district_no WHERE Users.user_id = $conductor_id ");
+            JOIN district ON Conductor.district_no = District.district_no WHERE Users.user_id = '{$conductor_id}' ");
         $this->record = $stmt1->fetch();
     }
 
