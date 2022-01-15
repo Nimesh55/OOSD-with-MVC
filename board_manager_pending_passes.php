@@ -31,6 +31,10 @@ $pendingPasses = $details['pendingPassesArray'];
 </head>
 
 <body>
+
+    <?php if (isset($_SESSION['success'])) : ?>
+        <div class="alert alert-success tob_bar_alert"><strong><?= $_SESSION['success'] ?></strong></div>
+    <?php endif; ?>
     <div class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="row">
@@ -65,9 +69,7 @@ $pendingPasses = $details['pendingPassesArray'];
         </div>
     </div>
 
-    <?php if (isset($_SESSION['success'])) : ?>
-        <div class="alert alert-success"><strong><?= $_SESSION['success'] ?></strong></div>
-    <?php endif; ?>
+
 
     <div class="container mt-3" id="contanier-data">
 
