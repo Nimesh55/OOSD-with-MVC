@@ -37,6 +37,7 @@ body {
 a{
     color: rgb(100, 131, 226);
     font-weight: bold;
+    text-decoration:  none;
 }
 
 a:hover{
