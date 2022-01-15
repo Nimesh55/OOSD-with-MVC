@@ -15,8 +15,9 @@ class Signup_Controller extends Signup{
     private $page_name;
     private $vehicle_no;
     private $district;
+    private $seats;
 
-    public function __construct($firstname, $lastname, $uid, $address, $email, $telephone, $password, $password_repeat, $company_name, $company_Id, $vehicle_no, $district, $account_type)
+    public function __construct($firstname, $lastname, $uid, $address, $email, $telephone, $password, $password_repeat, $company_name, $company_Id, $vehicle_no, $district, $account_type, $seats)
     {
         $this->firstname = $firstname;
         $this->lastname = $lastname;
@@ -31,6 +32,7 @@ class Signup_Controller extends Signup{
         $this->account_type = $account_type;
         $this->vehicle_no = $vehicle_no;
         $this->district = $district;
+        $this->seats = $seats;
         if($account_type==0){
           $this->page_name="passenger";
         }elseif ($account_type==1) {
@@ -100,7 +102,14 @@ class Signup_Controller extends Signup{
             header("Location: ");
         }
 
-        $this->addToUser( $this->uid , $this->password, $this->firstname, $this->lastname, $this->address, $this->telephone, $this->email, $this->company_name, $this->company_Id, $this->vehicle_no, $this->district, $this->account_type);
+        if ($this->account_type==1) {
+            if (!is_numeric($this->seats)) {
+                header("location: ../".$this->page_name."_signup.php?error=enterValidSeatNumber&src=".$src);
+                exit();
+            }
+        }
+
+        $this->addToUser( $this->uid , $this->password, $this->firstname, $this->lastname, $this->address, $this->telephone, $this->email, $this->company_name, $this->company_Id, $this->vehicle_no, $this->district, $this->account_type, $this->seats);
         if($this->account_type==1){
             header("location: ../board_manager_create_conductor.php?error=none&src=".$src);
         }else{

@@ -17,9 +17,6 @@ $vehicle_cnt = count($available_vehicles);
 if ($vehicle_cnt == 0) {
     $_SESSION['error'] = "No vehicles available";
 }
-echo "<pre>";
-print_r($available_vehicles);
-echo "</pre>";
 ?>
 
 <!DOCTYPE html>
