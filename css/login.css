@@ -12,10 +12,10 @@ body{
     width:90%;
     background-color:#03060D;
     padding:40px;
-    transform:translate(-50%, 10%);
+    /*transform:translate(-50%, 10%);*/
     position:absolute;
-    top:50%;
-    left:50%;
+    /*top:50%;*/
+    /*left:50%;*/
     border-radius: 4%;
   }
   
@@ -91,12 +91,15 @@ img {
 
 h1{
   padding: 1%;
-  float: left;
+  /*float: left;*/
   color: aliceblue;
   font-size:80px;
   text-shadow: 2px 2px 2px rgb(12, 11, 11);
-  transform:translate(-10%, 250%);
+  /*transform:translate(-10%, 250%);*/
   background-color: #03060D;
-  border-radius: 3%;
+  border-radius: 15px;
 
+}
+.wrapper{
+  margin-top:100px !important;
 }

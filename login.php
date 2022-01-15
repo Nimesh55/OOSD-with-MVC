@@ -15,11 +15,13 @@
 
 <body>
     <div class="container">
-        <div class="row">
+
+        <div class="row wrapper">
             <div class="col-sm-6 head-text">
                 <h1>SAFE TRANSIT</h1>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-5">
             <div class="login-dark">
                 <div class="background-image"></div>
                 <form action="includes/login.inc.php" method="post">
