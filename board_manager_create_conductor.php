@@ -120,6 +120,13 @@ if(isset($_GET['error'])){
                         </div>
 
                         <div class="form-group">
+                            <label class="control-label col-sm-3" for="seats">Seats:</label>
+                            <div class="col-sm-9">
+                                <input name="seats" type="text" class="form-control" id="seats" placeholder="Enter Seat Number">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label class="control-label col-sm-3" for="bus_id">District:</label>
                             <div class="col-sm-9">
                                 <select name="district" id="district" class="form-control">

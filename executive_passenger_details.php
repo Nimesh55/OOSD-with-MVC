@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
 if (!isset($_SESSION['user_Id'])) {
@@ -12,11 +12,11 @@ $passengers = $execObj->getPassengerAll($_SESSION['service_no']);
 $pendingPassengers = array();
 $appprovedPassengers = array();
 
-foreach ($passengers as $passenger){
-    if($passenger->getState()==1){
-        array_push($pendingPassengers,$passenger);
-    }elseif ($passenger->getState()==2){
-        array_push($appprovedPassengers,$passenger);
+foreach ($passengers as $passenger) {
+    if ($passenger->getState() == 1) {
+        array_push($pendingPassengers, $passenger);
+    } elseif ($passenger->getState() == 2) {
+        array_push($appprovedPassengers, $passenger);
     }
 }
 
@@ -39,7 +39,7 @@ foreach ($passengers as $passenger){
 </head>
 
 <body>
-<div class="navbar navbar-inverse">
+    <div class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
@@ -71,91 +71,90 @@ foreach ($passengers as $passenger){
             </div>
         </div>
     </div>
-
-
-    <?php
-    if(empty($passengers))
-        echo "No matches found";
-    ?>
-
     <div class="container mt-3">
 
         <div class="wrapper">
             <div class="row addpass">
+
                 <form action="executive_passenger_details.php" method="GET">
                     <div class="row">
-                            <div class="col-sm-4"></div>
-                            <div class="input-group col-sm-4">
-                                <input name="search" type="text" class="form-control" placeholder="Search with staff ID" id="txtSearch" />
-                                <div class="input-group-btn">
-                                    <button class="btn btn-primary" type="submit">
-                                        <span class="glyphicon glyphicon-search"></span>
-                                    </button>
-                                </div>
+                        <div class="col-sm-4"></div>
+                        <div class="input-group col-sm-4">
+                            <input name="search" type="text" class="form-control" placeholder="Search with staff ID" id="txtSearch" />
+                            <div class="input-group-btn">
+                                <button class="btn btn-primary" type="submit">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
                             </div>
-                            <div class="col-sm-4"></div>
+                        </div>
+                        <div class="col-sm-4"></div>
                     </div>
                 </form>
             </div>
             <br>
 
             <ul class="nav nav-tabs">
-            <li class="active"><a href="#link1" data-toggle="tab">Pending</a></li>
-            <li><a href="#link2" data-toggle="tab">Approved</a></li>
-        </ul>
+                <li class="active"><a href="#link1" data-toggle="tab">Pending</a></li>
+                <li><a href="#link2" data-toggle="tab">Approved</a></li>
+            </ul>
 
             <div class="tab-content">
-            <div id="link1" class="tab-pane fade in active">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Staff ID</th>
-                        <th>Passenger Name</th>
-                        <th>View Details</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    foreach($pendingPassengers as $passenger){
-                        echo '<tr>';
-                            echo '<td>'.$passenger->getStaffId().'</td>';
-                            echo '<td>'.$passenger->getFirstName() .' '.$passenger->getLastName().'</td>';
-                            echo '<td><a class="btn btn-sm btn-primary" href="#" onclick="clickView('.$passenger->getPassengerNo().',\'executive_passenger_details_view_page.php\')" style="float: center"'.'>View</a></td>';
-                        echo '</tr>';
-                    }
-                    ?>
+                <div id="link1" class="tab-pane fade in active">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Staff ID</th>
+                                <th>Passenger Name</th>
+                                <th>View Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                    </tbody>
-                </table>
+                            <?php
+                            foreach ($pendingPassengers as $passenger) {
+                                echo '<tr>';
+                                echo '<td>' . $passenger->getStaffId() . '</td>';
+                                echo '<td>' . $passenger->getFirstName() . ' ' . $passenger->getLastName() . '</td>';
+                                echo '<td><a class="btn btn-sm btn-primary" href="#" onclick="clickView(' . $passenger->getPassengerNo() . ',\'executive_passenger_details_view_page.php\')" style="float: center"' . '>View</a></td>';
+                                echo '</tr>';
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                    <tr><?php if (empty($pendingPassengers) && isset($_GET['search']))
+                                        echo "No matches found";?></tr>
+                </div>
+
+                <div id="link2" class="tab-pane fade">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Staff ID</th>
+                                <th>Passenger Name</th>
+                                <th>View Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($appprovedPassengers as $passenger) {
+                                echo '<tr>';
+                                echo '<td>' . $passenger->getStaffId() . '</td>';
+                                echo '<td>' . $passenger->getFirstName() . ' ' . $passenger->getLastName() . '</td>';
+                                echo '<td><a class="btn btn-sm btn-primary" href="#" onclick="clickView(' . $passenger->getPassengerNo() . ',\'executive_passenger_details_view_page.php\')" style="float: center"' . '>View</a></td>';
+                                echo '</tr>';
+                            }
+                            ?>
+
+                        </tbody>
+                    </table>
+                    <tr><?php if (empty($appprovedPassengers) && isset($_GET['search']))
+                                        echo "No matches found";?></tr>
+                </div>
+
             </div>
-
-            <div id="link2" class="tab-pane fade">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Staff ID</th>
-                        <th>Passenger Name</th>
-                        <th>View Details</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    foreach($appprovedPassengers as $passenger){
-                        echo '<tr>';
-                        echo '<td>'.$passenger->getStaffId().'</td>';
-                        echo '<td>'.$passenger->getFirstName() .' '.$passenger->getLastName().'</td>';
-                        echo '<td><a class="btn btn-sm btn-primary" href="#" onclick="clickView('.$passenger->getPassengerNo().',\'executive_passenger_details_view_page.php\')" style="float: center"'.'>View</a></td>';
-                        echo '</tr>';
-                    }
-                    ?>
-
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
         </div>
 
 
 </body>
+
 </html>

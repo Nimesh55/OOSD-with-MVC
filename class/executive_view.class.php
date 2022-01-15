@@ -80,8 +80,8 @@ class Executive_View extends Executive_Model{
         $bus_no = $this->executivectrl->getBusNo($booking);
         $details=array(
             "booking_no" => $booking->getBookingNo(),
-            "pickup_district" => $booking->getPickupDistrict(),
-            "destination_district"=> $booking->getDestinationDistrict(),
+            "pickup_district" => $this->booking_tracker->getDistrictName($booking->getPickupDistrict()),
+            "destination_district"=> $this->booking_tracker->getDistrictName($booking->getDestinationDistrict()),
             "start_date" => $booking->getStartDate(),
             "end_date" => $booking->getEndDate(),
             "state" => $booking_state,

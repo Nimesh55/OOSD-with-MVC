@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_Id'])) {
 
 $board_manager_view = new Board_Manager_View();
 $details = $board_manager_view->getBookingViewDetails($_GET['booking_no']);
-
+$bookingNo = $_GET['booking_no'];
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +25,7 @@ $details = $board_manager_view->getBookingViewDetails($_GET['booking_no']);
 <!--    <link rel="stylesheet" href="css/executive_pass_details.css">-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/buttons.js"></script>
     <title>Board Manager Allocate Vehicle</title>
 </head>
 
@@ -195,10 +196,10 @@ $details = $board_manager_view->getBookingViewDetails($_GET['booking_no']);
                 <div class="btn-group btn-group-lg">
                     <?php
                     if ($details['booking_state'] == 0) {
-                        echo "<a class=\"btn btn-sm btn-primary ctrlbutton\" href=\"includes/allocate_vehicle.inc.php?action=1&booking_no={$_GET['booking_no']}&pickup={$details['pickup_district_no']}\">Approve</a>";
-                        echo "<a class=\"btn btn-sm btn-danger ctrlbutton\" href=\"includes/allocate_vehicle.inc.php?action=0&booking_no={$_GET['booking_no']}\">Decline</a>";
+                        echo "<a class=\"btn btn-sm btn-primary ctrlbutton\" href=\"#\" onclick = \"clickView('1-".$bookingNo."-".$details['pickup_district_no']."','includes/allocate_vehicle.inc.php')\">Approve</a>";
+                        echo "<a class=\"btn btn-sm btn-danger ctrlbutton\" href=\"#\" onclick = \"clickView('0-".$bookingNo."-x','includes/allocate_vehicle.inc.php')\">Decline</a>";
                     } elseif ($details['booking_state'] == 1 && $details['flag'] == 1) {
-                        echo "<a class=\"btn btn-sm btn-primary ctrlbutton\" href=\"includes/allocate_vehicle.inc.php?action=1&booking_no={$_GET['booking_no']}\">Reallocate Conductor</a>";
+                        echo "<a class=\"btn btn-sm btn-primary ctrlbutton\" href=\"#\" onclick = \"clickView('1-".$bookingNo."-x','includes/allocate_vehicle.inc.php')\">Reallocate Conductor</a>";
                     }
                     ?>
 

@@ -116,7 +116,7 @@ $details = array("name" => $passenger->getFirstName().' '.$passenger->getLastNam
                             <?php
                             if($pass_file==null):
                                 ?>
-                                <p>: No files added </p>
+                                <p>No files added </p>
                             <?php
                             else:
                                 ?>

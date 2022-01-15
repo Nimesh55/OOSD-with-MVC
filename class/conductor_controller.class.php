@@ -50,10 +50,8 @@ class Conductor_Controller extends Conductor_Model
         $error = "None";
         if ($this->checkEmpty($passenger_id) == false)
             $error = "Empty Filed";
-        else if ($this->checkNumbersOnly($passenger_id) == false)
-            $error = "Please Enter a Numbers only";
         else if ($this->checkPassengerAccount($passenger_id) == false)
-            $error = "Please Enter a Passenger Account";
+            $error = "Please Enter a Valid Passenger ID";
         return $error;
     }
 

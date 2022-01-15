@@ -310,3 +310,4 @@ foreach ($bookings as $booking) {
 </body>
 
 </html>
+<?php unset($_SESSION['success']);?>

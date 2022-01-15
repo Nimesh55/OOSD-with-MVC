@@ -41,7 +41,7 @@ class Board_Manager_View extends Board_Manager_Model
             "name" => $this->board_manager->getName(),
             "state" => $pass->getState(),
             "passenger_email" => $passenger->getEmail(),
-            "passenger_name" => $passenger->getFirstName()." ".$passenger->getLastName(),
+            "passenger_name" => $passenger->getFirstName() . " " . $passenger->getLastName(),
             "service_name" => $service->getName(),
             "time_slot" => $pass->getStartDate() . " to " . $pass->getEndDate(),
             "reason" => $pass->getReason()
@@ -100,9 +100,9 @@ class Board_Manager_View extends Board_Manager_Model
             "reason" => $booking->getReason(),
             "pickup_district_no" => $booking->getPickupDistrict(),
             "pickup_district" => $this->getDistrictName($booking->getPickupDistrict()),
-            "pickup_location" => "https://maps.google.com/maps?q=".$booking->getPickupLocation(),
+            "pickup_location" => "https://maps.google.com/maps?q=" . $booking->getPickupLocation(),
             "destination_district" => $this->getDistrictName($booking->getDestinationDistrict()),
-            "destination_location" => "https://maps.google.com/maps?q=".$booking->getDestinationLocation(),
+            "destination_location" => "https://maps.google.com/maps?q=" . $booking->getDestinationLocation(),
             "start_date" => $booking->getStartDate(),
             "end_date" => $booking->getEndDate(),
             "start_time" => $booking->getStartTime(),
@@ -147,30 +147,33 @@ class Board_Manager_View extends Board_Manager_Model
         return $details;
     }
 
-    public function getPassengerName($passenger_no){
+    public function getPassengerName($passenger_no)
+    {
         $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($passenger_no);
-        return $passenger->getFirstName()." ".$passenger->getLastName();
+        return $passenger->getFirstName() . " " . $passenger->getLastName();
     }
 
     public function showError_CreateConductorAccount($error)
     {
         if ($error == "emptyfield") {
-            return "Empty Field. Enter Again!"; 
-        }elseif($error == "passwordmismatch"){
+            return "Empty Field. Enter Again!";
+        } elseif ($error == "passwordmismatch") {
             return "Password Mismatched!";
-        }elseif($error == "user_exist"){
+        } elseif ($error == "user_exist") {
             return "User Account Exist!";
-        }elseif($error == "emailWrong"){
+        } elseif ($error == "emailWrong") {
             return "Invalid Email!";
-        }elseif($error == "InvalidUserId"){
+        } elseif ($error == "InvalidUserId") {
             return "Invalid User ID!";
-        }elseif($error == "invalidtelephone"){
+        } elseif ($error == "invalidtelephone") {
             return "Invalid Telephone Number!";
-        }elseif($error == "emailExist"){
+        } elseif ($error == "emailExist") {
             return "Entered email already exist!";
-        }elseif($error == "none"){
+        } elseif ($error == "enterValidSeatNumber") {
+            return "Entered Valid Seat Number!";
+        } elseif ($error == "none") {
             return "none";
-        }else{
+        } else {
             return "Check inputs and try again";
         }
     }

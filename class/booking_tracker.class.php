@@ -152,6 +152,10 @@ class Booking_Tracker extends Tracker implements Observer
         return EssentialServiceTracker::getInstance()->createService($service_no);
     }
 
+    public function getDistrictName($district_no){
+        return Booking_Controller::getInstance()->getDistrictName($district_no);
+    }
+
     public function update($curDate){
         $change=0;
         $bookingArray = $this->getBookingsArray();

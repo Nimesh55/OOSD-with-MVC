@@ -84,4 +84,7 @@ class Booking_Controller extends Booking_Model{
         return;
     }
 
+    public function getDistrictName($district_no){
+        return $this->getDistrictName_model($district_no);
+    }
 }

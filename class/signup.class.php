@@ -19,7 +19,7 @@ class Signup extends Dbh{
         return $resultCheck;
     }
 
-    protected function addToUser($uid , $password, $firstname, $lastname, $address, $telephone, $email, $company_name, $company_Id, $vehicle_no, $district, $account_type){
+    protected function addToUser($uid , $password, $firstname, $lastname, $address, $telephone, $email, $company_name, $company_Id, $vehicle_no, $district, $account_type, $seats){
         $query_error = false;
         if($account_type==0){
           //Add passenger to the passenger table
@@ -31,9 +31,9 @@ class Signup extends Dbh{
           $stmt1 = null;
         }elseif ($account_type==1) {
             //Add passenger to the passenger table
-            $query1 = "INSERT INTO conductor (first_name, last_name, address, telephone, vehicle_no, district_no, email, state) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+            $query1 = "INSERT INTO conductor (first_name, last_name, address, telephone, vehicle_no, district_no, email, state, seats) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
             $stmt1 = $this->connect()->prepare($query1);
-            if (!$stmt1->execute(array($firstname, $lastname, $address, $telephone, $vehicle_no, $district, $email, 0))) {
+            if (!$stmt1->execute(array($firstname, $lastname, $address, $telephone, $vehicle_no, $district, $email, 0, $seats))) {
                 $query_error = true;
             }
             $stmt1 = null;

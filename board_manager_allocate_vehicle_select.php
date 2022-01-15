@@ -17,9 +17,7 @@ $vehicle_cnt = count($available_vehicles);
 if ($vehicle_cnt == 0) {
     $_SESSION['error'] = "No vehicles available";
 }
-echo "<pre>";
-print_r($available_vehicles);
-echo "</pre>";
+$bookingNo = $_GET['booking_no'];
 ?>
 
 <!DOCTYPE html>
@@ -33,6 +31,7 @@ echo "</pre>";
     <link rel="stylesheet" href="css/board_manager_allocate_vehicle_select.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/buttons.js"></script>
     <title>Select the Vehicle</title>
 </head>
 
@@ -79,15 +78,37 @@ echo "</pre>";
         <div class="list-group">
             <h2>Select a available vehicle</h2>
             <br>
-            <?php
-            $index = 0;
-            while ($index < $vehicle_cnt) :
-            ?>
-                <a class="btn btn-primary" href="includes/allocate_vehicle.inc.php?action=2&booking_no=<?= $_GET['booking_no'] ?>&conductor_no=<?= $available_vehicles[$index]->getConductorNo() ?>"><?= $available_vehicles[$index]->getVehicleNo() ?></a>
-            <?php
-                $index++;
-            endwhile;
-            ?>
+
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Vehicle Number</th>
+                            <th>Available Seats</th>
+                            <th>Allocate</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $row = 0;
+                        foreach ($available_vehicles as $cur) :
+                            $row++;
+                        ?>
+                            <tr>
+
+                                <td><?php echo $row; ?></td>
+                                <td><?php echo $cur->getVehicleNo(); ?></td>
+                                <td><?php echo $cur->getSeatNo(); ?></td>
+                                <td>
+                                    <a href="#" class="btn btn-info" onclick="clickView('2-<?php echo $bookingNo; ?>-<?php echo $cur->getConductorNo() ;?>','includes/allocate_vehicle.inc.php')"> Allocate </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+
+                    </tbody>
+                </table>
+
         </div>
     </div>
 </body>
