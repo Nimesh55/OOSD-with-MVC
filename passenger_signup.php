@@ -110,7 +110,7 @@ if (isset($_GET['src'])) {
 				if (isset($_GET['src']) && $_GET['src'] == 1) {
 					echo "<p><a href=\"executive_passenger_details.php\"> back to passenger list</a></p>";
 				} else {
-					echo "<p>Don't have an Account? <a href=\"login.php\"> Login Now!</a></p>";
+					echo "<p>Do you have an Account? <a href=\"login.php\"> Login Now!</a></p>";
 				}
 				?>
 			</div>

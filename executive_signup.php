@@ -37,7 +37,7 @@
 					<br>
 					<input class="btn btn-primary" type="submit" name="submit" value="SIGNUP">
 				</form>
-				<p>Don't have an Account? <a id="link" href="login.php"> Login Now!</a></p>
+				<p>Do you have an Account? <a id="link" href="login.php"> Login Now!</a></p>
 			</div>
 		</div>
 	</div>
