@@ -45,9 +45,9 @@ class SmsApi
             'deviceId' => $this->deviceId
         ]);
         try {
-             $this->messageClient->sendMessages([
-                 $sendMessageRequest1
-             ]); //uncomment before Demo
+            //  $this->messageClient->sendMessages([
+            //      $sendMessageRequest1
+            //  ]); //uncomment before Demo
             $report = 0;
         } catch (Exception $e) {
             $report = -1;
