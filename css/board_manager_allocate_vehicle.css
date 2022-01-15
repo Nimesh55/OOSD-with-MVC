@@ -16,3 +16,7 @@ body{
     border-radius: 10px;
     
 }
+.tob_bar_alert{
+    padding: 5px !important;
+    margin-bottom: 0px !important;
+}
