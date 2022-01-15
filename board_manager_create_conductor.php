@@ -134,9 +134,9 @@ if(isset($_GET['error'])){
                         </div>
 
                             <div class="form-group">
-                                    <label class="control-label col-sm-3" for="conductor_id">NIC:</label>
+                                    <label class="control-label col-sm-3" for="conductor_id">Conductor ID:</label>
                                 <div class="col-sm-9">
-                                    <input name="ID" type="text" class="form-control" id="conductor_id" placeholder="Enter NIC number">
+                                    <input name="ID" type="text" class="form-control" id="conductor_id" placeholder="Enter Conductor ID number">
                                 </div>
                             </div>
 

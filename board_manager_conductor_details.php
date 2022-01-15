@@ -77,19 +77,13 @@ if ($_GET["show"] == "success") {
 
     <div class="container mt-3" id="contanier-data">
 
-        <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-10">
-                <p><?php
-                    if ($error == 'none') {
-                    } elseif ($error != 'Conductor account found!!')
-                        echo "<div class=\"alert alert-danger\"><strong>" . $error . "</strong></div>";
-                    else
-                        echo "<div class=\"alert alert-success\"><strong>" . $error . "</strong></div>"
-                    ?>
-                </p>
-            </div>
-            <div class="col-lg-1"></div>
+        <div><?php
+            if ($error == 'none') {
+            } elseif ($error != 'Conductor account found!!')
+                echo "<div class=\"alert alert-danger\"><strong>" . $error . "</strong></div>";
+            else
+                echo "<div class=\"alert alert-success\"><strong>" . $error . "</strong></div>"
+            ?>
         </div>
 
         <form action="includes/board_mananger_conductor_details.inc.php" method="POST">
