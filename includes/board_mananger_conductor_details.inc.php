@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
     $error = $ctrl_obj->validateConductorID($conductor_id);
 
     if($error=="None"){
-        header("Location: ../board_manager_conductor_details.php?show=success&conductor_id='{$conductor_id}'");
+        header("Location: ../board_manager_conductor_details.php?show=success&conductor_id={$conductor_id}");
         return;
     }
     else{

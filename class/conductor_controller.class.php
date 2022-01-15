@@ -196,4 +196,12 @@ class Conductor_Controller extends Conductor_Model
             return "Set to a future date";
         }
     }
+
+    public function isConductorValid($conductor_id){
+        $record = $this->isConductorValid_model($conductor_id);
+        if($record == NULL){
+            return false;
+        }
+        return true;
+    }
 }

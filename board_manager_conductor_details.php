@@ -15,7 +15,7 @@ $state_query = 0;
 if ($_GET["show"] == "success") {
 
     $state_query = 1;
-    $data = $board_manager_view->getConductorDetails($_GET["conductor_id"]);
+    $data = $board_manager_view->getConductorDetails($_GET['conductor_id']);
     $error = "Conductor account found!!";
 } else {
     $error = $_GET["show"];

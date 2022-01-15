@@ -113,4 +113,12 @@ class Conductor_Model extends Dbh{ // ## make the methods protected
     protected function getConductorCountTodayFromModel(){
         return $this->getConductorCountOfAvailable() - $this->getConductorNosLeavedToday();
     }
+
+    protected function isConductorValid_model($conductor_id){
+        $sql = "SELECT conductor_no FROM users JOIN conductor ON users.account_no = conductor.conductor_no WHERE users.account_type = 1 AND users.user_id = ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$conductor_id]);
+        $record = $stmt->fetch();
+        return $record;
+    }
 }

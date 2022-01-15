@@ -111,6 +111,10 @@ class Conductor_Tracker extends Tracker{
     public function getConductorCountToday(){
         return $this->conductor_controller->getConductorCountToday();
     }
+
+    public function isValidConductor($conductor_id){
+        return $this->conductor_controller->isConductorValid($conductor_id);
+    }
 }
 
 ?>

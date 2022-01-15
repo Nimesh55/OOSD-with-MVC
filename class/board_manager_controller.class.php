@@ -56,10 +56,12 @@ class Board_Manager_Controller extends Board_Manager_Model
 
     public function checkCondcutorAccount($conductor_id)
     {
-        $pattern = "/1111/i";
-        if (preg_match($pattern, $conductor_id))
-            return true;
-        return false;
+        // $pattern = "/1111/i";
+        // if (preg_match($pattern, $conductor_id))
+        //     return true;
+        // return false;
+        return $this->conductor_tracker->isValidConductor($conductor_id);
+
     }
 
     public function checkNumbersOnly($conductor_id)
@@ -82,10 +84,8 @@ class Board_Manager_Controller extends Board_Manager_Model
         $error = "None";
         if($this->checkEmpty($conductor_id)==false)
             $error = "Empty Filed!!";
-        else if($this->checkNumbersOnly($conductor_id)==false)
-            $error = "Please Enter a Number!!";
         else if($this->checkCondcutorAccount($conductor_id)==false)
-            $error = "Please Enter a Conductor Account!!";
+            $error = "Please Enter a Valid Conductor Account";
         return $error;
     }
 
