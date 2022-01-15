@@ -155,6 +155,13 @@ if(isset($_GET['error'])){
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="email">Default Password:</label>
+                            <div class="col-sm-9">
+                                <input name="defaultPass" type="text" class="form-control" value="abcd" id="defaultPass" readonly>
+                            </div>
+                        </div>
+
 
                         <div class="form-group">
                             <button name='submit' type="submit" class="btn btn-primary btn-lg" style="margin-right:15px;" ;">Creat Account</button>
