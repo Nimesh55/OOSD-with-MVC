@@ -10,7 +10,7 @@
     }
 
     if(isset($_POST['submit'])) {
-        $varification_num = rand(1000, 10000);
+        $varification_num = rand(100000, 999999);
 
         //send verification number via sms and email
         $forget_pwd_controller = new Forget_Password_Controller();

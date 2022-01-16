@@ -51,7 +51,7 @@ echo "</pre>";
                 <br>
                 <div class="btn-group btn-group-lg">
                     <input type="submit" class="btn btn-primary ctrlbutton" name="verify" value="Verify">
-                    <input type="submit" class="btn btn-primary ctrlbutton" name="exit" value="Exit">
+                    <input type="submit" class="btn btn-primary ctrlbutton" name="exit" value="Resend">
                 </div>
                 <input type="text" name="user_id" value="<?php echo $_POST['user_id'] ?>" hidden>
                 <input type="text" name="verification_code" value="<?php echo $_POST['verification_code'] ?>" hidden>
