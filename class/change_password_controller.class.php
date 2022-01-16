@@ -20,7 +20,11 @@ class Change_Password_Controller extends Password_Changer{
 
        if(!$this->checkPasswordStrength($new_password)){
            $_SESSION['error'] = "Enter strong password";
-           header("location: ../change_password.php");
+           if ($forget==0){
+               header("location: ../change_password.php");
+           }else{
+               header("location: ../password_reset.php");
+           }
            exit();
        }
 

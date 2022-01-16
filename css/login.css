@@ -100,5 +100,9 @@ h1{
 
 }
 .wrapper{
-  margin-top:100px !important;
+  margin-top:98px !important;
+}
+.tob_bar_alert{
+  padding: 5px !important;
+  margin-bottom: 0px !important;
 }
