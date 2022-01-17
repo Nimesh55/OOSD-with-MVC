@@ -3,14 +3,14 @@
 require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/class/dbh.class.php";
 class Board_Manager_Model extends Dbh
 {
-    public function getPendingPassesCnt(){
+    protected function getPendingPassesCnt(){
         $stmt = $this->connect()->prepare("SELECT count(*) FROM pass WHERE state=1");
         $stmt->execute();
         $count2 = $stmt->fetchColumn();
         return $count2;
     }
 
-    public function getApprovedPassesCount(){
+    protected function getApprovedPassesCount(){
         $stmt = $this->connect()->prepare("SELECT count(*) FROM pass WHERE state=2");
         $stmt->execute();
         $count1 = $stmt->fetchColumn();
@@ -24,7 +24,7 @@ class Board_Manager_Model extends Dbh
         return $count3;
     }
 
-    public function getDistrictArray(){
+    protected function getDistrictArray(){
         $query = "SELECT * FROM district";
         $stmt = $this->connect()->prepare($query);
         $stmt->execute();
