@@ -11,7 +11,7 @@ if (isset($_POST['request'])){
         $error = "identified";
     }else {
         $passenger_controller->setPassengerCompanyDetails($_POST['service_no'], $_POST['staff_id']);
-//        header("Location:../passenger_register_in_company.php");
+
     }
 }
 if(isset($_POST['remove'])){
@@ -32,7 +32,6 @@ if(isset($_POST['home'])){
     <form id="returndata" action="../passenger_register_in_company.php" method="post">
       <input type="hidden" name="service_no" value="<?php echo $_POST['service_no']; ?>">
       <input type="hidden" name="error" value="<?php echo $error; ?>">
-<!--      <input type="hidden" name="sub" value="finish">-->
 
     </form>
     <script type="text/javascript">

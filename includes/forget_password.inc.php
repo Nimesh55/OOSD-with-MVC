@@ -1,10 +1,6 @@
 <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
 
-    echo "<pre>";
-//    print_r($_SESSION);
-    echo "</pre>";
-
     if (isset($_POST['exit'])){
         header("location:../login.php");
     }
@@ -15,9 +11,7 @@
         //send verification number via sms and email
         $forget_pwd_controller = new Forget_Password_Controller();
         $contact = $forget_pwd_controller->getContactDetailsFromModel($_POST['user_id']);
-//    echo "<pre>";
-//    var_dump($contact);
-//    echo "</pre>";
+
         if (is_string($contact) && (strcmp($contact, 'unchangerble') == 0 || strcmp($contact, 'notfound') == 0)) {
             header("location:../forget_password.php?error=$contact");
         } else {
