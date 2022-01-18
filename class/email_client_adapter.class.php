@@ -8,7 +8,6 @@ class Email_Client_Adapter implements Email_Client_interface {
 
         private function __construct($details)
         {
-            //print_r($details);
             $this->email_api= Email_Api::getInstance($details['email_emailAddress'],$details['email_password'],$details['email_port']);
         }
 
