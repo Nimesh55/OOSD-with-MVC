@@ -1,5 +1,4 @@
 <?php
-require_once "dbh.class.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
 
 class Forget_Password_Controller extends Forget_Password_Model {
