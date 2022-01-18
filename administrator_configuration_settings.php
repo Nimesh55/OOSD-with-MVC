@@ -6,7 +6,7 @@ if(!isset($_SESSION['account_no'])){
     header("Location: login.php");
     return;
 }
-$admin_view = new Administrator_view();
+$admin_view = new Administrator_View();
 $details = $admin_view->getEmailSettingsDetails();
 // print_r($details);
 $email = "";

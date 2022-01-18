@@ -6,7 +6,7 @@
 
     if (isset($_POST['save'])){
 
-        $addministrator_controller = new Administrator_controller();
+        $addministrator_controller = new Administrator_Controller();
 
             $error = $addministrator_controller->editAdministratorConfigSettings(
                 $_POST['email'],

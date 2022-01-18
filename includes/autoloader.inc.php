@@ -6,6 +6,8 @@
     $classNameParts = explode("_",$className);
 
     $folder = "";
+
+//    echo $className." ".end($classNameParts);
     if(strcmp(end($classNameParts),"Model")==0){
       $folder = "/Model";
     }else if(strcmp(end($classNameParts),"View")==0){

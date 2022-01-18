@@ -2,7 +2,7 @@
 
 require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/class/dbh.class.php";
 
-class Administrator_model extends Dbh
+class Administrator_Model extends Dbh
 {
 
   protected function getNumberOfPendingCompanies()

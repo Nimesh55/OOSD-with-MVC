@@ -8,7 +8,7 @@ if(!isset($_SESSION['account_no'])){
 }
 
 
-$view = new Administrator_view();
+$view = new Administrator_View();
 $viewArray = $view->getDetails();
 $numofpendingCompanies = $viewArray["pending"];
 $numofServicesApproved = $viewArray["approved"];

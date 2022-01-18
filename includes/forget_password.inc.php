@@ -20,7 +20,7 @@
 
             $msg = "Safe Transit: Your verification code is {$varification_num}";
 
-            $admin_controller = new Administrator_controller();
+            $admin_controller = new Administrator_Controller();
             $configuration = $admin_controller->getAdministratorConfigSettings();
 
             if (isset($_POST) and strcmp($_POST['medium'], "sms") == 0) {

@@ -1,7 +1,7 @@
 <?php
 // model in MVC
 
-class Login extends Dbh{
+class Login_Model extends Dbh{
     protected function getUser($uid, $password){
         $query = "SELECT password FROM users WHERE user_Id=?";
         $stmt = $this->connect()->prepare($query);

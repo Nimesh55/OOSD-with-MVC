@@ -1,7 +1,7 @@
 <?php
 // model in MVC
 
-class Signup extends Dbh{
+class Signup_Model extends Dbh{
     protected function checkUser($uid){
 
         $query = "SELECT * FROM users WHERE user_id = ?";

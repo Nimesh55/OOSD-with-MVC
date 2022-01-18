@@ -1,6 +1,6 @@
 <?php
 // Controller in MVC
-class Login_Controller extends Login
+class Login_Controller extends Login_Model
 {
     private $uid;
     private $password;

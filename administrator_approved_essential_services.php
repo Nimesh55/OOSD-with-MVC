@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_Id'])) {
     return;
 }
 
-$view = new Administrator_view(); // view class
+$view = new Administrator_View(); // view class
 //Service class object
 $rows = $view->getApprovedRows(); // getpending rows
 
