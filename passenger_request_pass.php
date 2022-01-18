@@ -86,7 +86,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passenger Profile Edit</title>
+    <title>Request Pass</title>
 
     <link rel="stylesheet" href="css/passenger_profile_edit.css">
     <link rel="stylesheet" href="css/upload.css">
@@ -157,11 +157,11 @@
                 <form class="form-horizontal" role="form" action="includes/passenger_request_pass.inc.php" method="post" enctype="multipart/form-data">
 
                     <?php
-                    if (isset($_GET['error']) && strcmp($_GET['error'],"success")!=0) {
+                    if (isset($_POST['error']) && strcmp($_POST['error'],"success")!=0) {
 
-                        echo "<div class=\"alert alert-danger\"><strong>".$_GET['error']."</strong></div>";
+                        echo "<div class=\"alert alert-danger\"><strong>".$_POST['error']."</strong></div>";
                     }
-                    if(isset($_GET['error']) && strcmp($_GET['error'],"success")==0){
+                    if(isset($_POST['error']) && strcmp($_POST['error'],"success")==0){
                         echo "<div class=\"alert alert-success\"><strong>"."Successfully Requested!!!"."</strong></div>";
                     }
                     ?>
