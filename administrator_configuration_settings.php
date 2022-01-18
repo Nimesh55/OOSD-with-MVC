@@ -8,16 +8,15 @@ if(!isset($_SESSION['account_no'])){
 }
 $admin_view = new Administrator_view();
 $details = $admin_view->getEmailSettingsDetails();
-// print_r($details);
+
 $email = "";
 $password = "";
 $port = "";
-//$edit='no';
+
 $sms_api = "";
 $device_id = "";
 
 if(!empty($details)) {
-//    print_r($details);
     $email = $details['email_emailAddress'];
     $password = $details['email_password'];
     $port = $details['email_port'];
@@ -33,7 +32,6 @@ if(isset($_POST['error'])){
     $device_id = $_POST['sms_DeviceId'];
 }
 
-//echo $edit;
 ?>
 
 <!DOCTYPE html>

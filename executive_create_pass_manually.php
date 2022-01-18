@@ -29,9 +29,6 @@ if(isset($_GET['error'])) {
     }
 }
 
-//print_r($_GET);
-//exit();
-
 
 ?>
 <!DOCTYPE html>

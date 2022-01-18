@@ -19,9 +19,6 @@ if ($_GET["error"] != 'none') {
     $error = $_GET["error"];
     $state_query = 1;
 }
-// echo '<pre>';
-// print_r($bookingDetails);
-// echo '</pre>';
 
 ?>
 

@@ -74,7 +74,6 @@ if(isset($_GET['error'])){
                 </div>
 
                 <div class="btn-group btn-group-lg">
-<!--                    <input type="submit" class="btn btn-primary ctrlbutton" name="cpwd" value="Change Password">-->
                     <input type="submit" class="btn btn-primary ctrlbutton" name="enter" value="Enter">
                     <input type="submit" class="btn btn-primary ctrlbutton" name="back" value="Back">
                 </div>
