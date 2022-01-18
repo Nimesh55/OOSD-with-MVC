@@ -1,6 +1,6 @@
 <?php
 // model in MVC
-
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/class/Model/dbh.class.php";
 class Login_Model extends Dbh{
     protected function getUser($uid, $password){
         $query = "SELECT password FROM users WHERE user_Id=?";

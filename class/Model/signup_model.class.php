@@ -1,6 +1,6 @@
 <?php
 // model in MVC
-
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/class/Model/dbh.class.php";
 class Signup_Model extends Dbh{
     protected function checkUser($uid){
 
