@@ -22,7 +22,4 @@ class Board_Manager extends Transport_Board_User {
         $this->name = $name;
     }
 
-
-
-
 }

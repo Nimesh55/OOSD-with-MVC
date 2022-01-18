@@ -24,7 +24,6 @@ class Service_Model extends Dbh
         return $record;
     }
 
-    //This method can be in tracker class
     public function addService($details)
     {
         $sql = "INSERT INTO service (id, name, state) VALUES (:id, :name, :stat)";

@@ -66,7 +66,6 @@ class Pass_Tracker extends Tracker implements Observer
     //Approve an Essential Service
     public function upgradePassState($pass_no)
     {
-        //$state = Pass_Controller::getInstance()->getPassState($pass_no);
         $passObj = $this->getPass($pass_no);
         $state = $passObj->getState();
         if ($state == 0)

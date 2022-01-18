@@ -63,8 +63,6 @@ if (isset($_GET['error'])) {
 			</div>
 		</div>
 
-		<!-- <div class="row"> -->
-
 		<div class="row">
 			<div class="col-sm-12">
 				<?php
@@ -153,9 +151,6 @@ if (isset($_GET['error'])) {
 			</div>
 		</div>
 
-
-
-		<!-- </div> -->
 	</div>
 </body>
 

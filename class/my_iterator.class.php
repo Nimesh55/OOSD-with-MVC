@@ -3,7 +3,7 @@
 require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
 class My_Iterator implements Iterator {
 
-    private $arr = array();
+    private $arr;
 
     public function __construct($array) {
         $this->arr = $array;

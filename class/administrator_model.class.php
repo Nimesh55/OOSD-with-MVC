@@ -53,7 +53,6 @@ class Administrator_model extends Dbh
   }
 
   protected function editNotificationConfigSettings($email,$password,$port, $smsapikey, $device_id){
-//      echo "Edit action";
       $sql = "UPDATE notification_config_data SET email_emailAddress = :email, email_password = :password, email_port = :port, sms_Apikey = :smsapikey, sms_DeviceId = :device_id  WHERE row_id = 1";
       $stmt = $this->connect()->prepare($sql);
       $stmt->execute(array(

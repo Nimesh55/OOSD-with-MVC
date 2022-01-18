@@ -31,9 +31,6 @@ class Forget_Password_Model extends Dbh
         }
         return -1;
 
-//        echo "<pre>";
-//        print_r($results);
-//        echo "</pre>";
     }
 
     protected function getuserdetails($user_id)
@@ -43,9 +40,6 @@ class Forget_Password_Model extends Dbh
         $record = $stmt->execute([htmlentities($user_id)]);
         $results = $stmt->fetch($record);
         return $results;
-//        echo "<pre>";
-//        print_r($results);
-//        echo "</pre>";
     }
 
     protected function getSMS()
