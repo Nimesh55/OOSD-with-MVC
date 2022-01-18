@@ -17,7 +17,7 @@ $pass = $execObj->getPassDetailsViewDetails($pass_no); // ## Get Pass Object
 $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($pass['passenger_no']);
 $pass_file = File_Controller::getInstance()->getFileDetails($pass['file_no']);
 $details = array("name" => $passenger->getFirstName().' '.$passenger->getLastName(), 'route' => $pass['route'], 'time_slot' => $pass['time_slot'], 'reason' => $pass['reason'], 'status' => $pass['status']);
-///echo $details['status'];
+
 ?>
 
 <!DOCTYPE html>
@@ -70,7 +70,7 @@ $details = array("name" => $passenger->getFirstName().' '.$passenger->getLastNam
     </div>
 
     <form action="executive_pass_details_view_page.php" method="GET">
-<!--        <input type="hidden" name="pass_no" value="--><?//= $pass_no ?><!--">-->
+
         <!-- Details of A single pass -->
 
         <div class="container">

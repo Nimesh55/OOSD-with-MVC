@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">-->
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
@@ -25,7 +25,6 @@
     <div class="fluid-container">
         <?php
         if (isset($_GET['error']) && strcmp($_GET['error'],"none")==0) {
-//            echo "<div class=\"alert alert-success\"><strong>"."Password Reset Successfully"."</strong></div>";
             echo '<div class="alert alert-success fade in tob_bar_alert">';
 			echo '<a href="#" class="close" data-dismiss="alert">&times;</a>';
 			echo '<strong>Password Reseted Successfully!</strong>';

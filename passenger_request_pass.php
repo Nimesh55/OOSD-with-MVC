@@ -31,23 +31,11 @@
             $button = 'remove';
         }
     }
-//    if(isset($_GET['reason'])) {
-//
-//    }
-    $pass_tracker = Pass_Tracker::getInstance();
-//    $pass = $pass_tracker->getPass_by_passenger_id($_SESSION['user_Id']);
-//    echo "<pre>";
-//    print_r($pass['passenger_name']);
-//    print_r($_SESSION['user_Id']);
-//    echo "</pre>";
 
+    $pass_tracker = Pass_Tracker::getInstance();
 
     $result = $pass_tracker->searchForActivePass($passengerview->getPassengerNo());
 
-//    echo "<pre>";
-//    print_r($result);
-////    print_r($_SESSION['user_Id']);
-//    echo "</pre>";
 
     if (!empty($result)){
         $pass_state = $result['state'];
@@ -182,8 +170,6 @@
                     <div class="form-group">
                         <label for="bus_route" class="col-sm-3 control-label">Pass State:</label>
                         <div class="col-sm-9">
-<!--                            have to set css-->
-<!--                            <input id="Accepted" disabled name="bus_route" type="text" class="form-control" id="" value="--><?php //echo $pass_state_str;?><!--">-->
                             <?php echo $html; ?>
 
 
@@ -227,7 +213,6 @@
                         <label for="file" class="col-sm-3 control-label">Attachments:</label>
                         <div class="col-sm-9">
                             <?php if(strcmp($button,'submit')==0): ?>
-<!--                                <input type="file" id="file" name="file"/>-->
 
                                 <div class="input-group">
                                     <input type="text" class="form-control" readonly>
