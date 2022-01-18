@@ -16,9 +16,11 @@ if (!isset($_SESSION['user_Id'])) {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-                <link rel="stylesheet" href="css/change_password.css">
+        <link rel="stylesheet" href="css/change_password.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
         <title>Change Password</title>
     </head>
 
@@ -42,23 +44,44 @@ if (!isset($_SESSION['user_Id'])) {
                         <div class="form-group">
                             <label class="control-label col-sm-3" for="current">Current Password:</label>
                             <div class="col-sm-9">
-                                <input type="password" name="current_password" class="form-control" id="current"
-                                       placeholder="Enter Current Password ">
+                                <div class="input-group">
+                                    <input type="password" name="current_password" class="form-control pwd" id="current"
+                                           placeholder="Enter Current Password ">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default reveal" type="button"><i
+                                                    class="glyphicon glyphicon-eye-open"></i></button>
+                                    </span>
+                                </div>
                             </div>
+
                         </div>
+
+
                         <div class=" form-group">
                             <label class="control-label col-sm-3" for="new">New Password:</label>
                             <div class="col-sm-9">
-                                <input type="password" name="new_password" class="form-control" id="new"
+                                <div class="input-group">
+                                    <input type="password" name="new_password" class="form-control new_pwd" id="new"
                                        placeholder="Enter New Password">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default reveal_2" type="button"><i
+                                                    class="glyphicon glyphicon-eye-open"></i></button>
+                                    </span>
+                                </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-sm-3" for="retype_new">ReEnter New Password:</label>
                             <div class="col-sm-9">
-                                <input type="password" name="retype_password" class="form-control" id="retype_new"
+                                <div class="input-group">
+                                <input type="password" name="retype_password" class="form-control retype_pwd" id="retype_new"
                                        placeholder="ReEnter New Password">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default reveal_3" type="button"><i
+                                                    class="glyphicon glyphicon-eye-open"></i></button>
+                                    </span>
+                                </div>
                             </div>
                         </div>
 
@@ -77,6 +100,8 @@ if (!isset($_SESSION['user_Id'])) {
         </div>
 
     </div>
+
+    <script src="js/change_pwd.js"></script>
     </body>
 
     </html>
