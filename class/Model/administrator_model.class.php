@@ -1,6 +1,6 @@
 <?php
 
-require_once "dbh.class.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/class/dbh.class.php";
 
 class Administrator_model extends Dbh
 {
