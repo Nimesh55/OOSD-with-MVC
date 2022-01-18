@@ -5,24 +5,24 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc
 class Board_Manager_Controller extends Board_Manager_Model
 {
 
-    private $pass_tracker;
-    private $booking_tracker;
-    private $conductor_tracker;
-    private $passenger_tracker;
+//    private $pass_tracker;
+//    private $booking_tracker;
+//    private $conductor_tracker;
+//    private $passenger_tracker;
 
     public function __construct()
     {
-        $this->pass_tracker = Pass_Tracker::getInstance();
-        $this->booking_tracker = Booking_Tracker::getInstance();
-        $this->conductor_tracker = Conductor_Tracker::getInstance();
-        $this->passenger_tracker = Passenger_Tracker::getInstance();
+//        $this->pass_tracker = Pass_Tracker::getInstance();
+//        $this->booking_tracker = Booking_Tracker::getInstance();
+//        $this->conductor_tracker = Conductor_Tracker::getInstance();
+//        $this->passenger_tracker = Passenger_Tracker::getInstance();
     }
 
     public function approvePass($pass_no)
     {
         $_SESSION['success'] = "Pass approved successfully";
-        $pass = $this->pass_tracker->upgradePassState($pass_no);
-        $passenger = $this->passenger_tracker->getPassengerByPassengerNo($pass->getPassengerNo());
+        $pass = Pass_Tracker::getInstance()->upgradePassState($pass_no);
+        $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($pass->getPassengerNo());
         $param = [1,$passenger->getUserId(),$pass->getPassNo(),$pass->getBusRoute(), $pass->getStartDate(), $pass->getEndDate()];
         // Final Approval Notification
         Notification_handler::setupNotification($passenger->getEmail(),$passenger->getTelephone(),$param);
@@ -32,8 +32,8 @@ class Board_Manager_Controller extends Board_Manager_Model
     public function declinePass($pass_no)
     {
         $_SESSION['success'] = "Pass declined successfully";
-        $pass = $this->pass_tracker->declinePass($pass_no);
-        $passenger = $this->passenger_tracker->getPassengerByPassengerNo($pass->getPassengerNo());
+        $pass = Pass_Tracker::getInstance()->declinePass($pass_no);
+        $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($pass->getPassengerNo());
         $param = [2,$pass->getPassNo()];
         // Final Decline Approval Notification
         Notification_handler::setupNotification($passenger->getEmail(),$passenger->getTelephone(),$param);
@@ -42,11 +42,11 @@ class Board_Manager_Controller extends Board_Manager_Model
 
     public function removePass($pass_no)
     {
-        $this->pass_tracker->declinePass($pass_no);
+        Pass_Tracker::getInstance()->declinePass($pass_no);
         $_SESSION['success'] = "Pass removed successfully";
 
-        $pass = $this->pass_tracker->declinePass($pass_no);
-        $passenger = $this->passenger_tracker->getPassengerByPassengerNo($pass->getPassengerNo());
+        $pass = Pass_Tracker::getInstance()->declinePass($pass_no);
+        $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($pass->getPassengerNo());
         $param = [2,$pass->getPassNo()];
         // Final Decline Approval Notification
         Notification_handler::setupNotification($passenger->getEmail(),$passenger->getTelephone(),$param);
@@ -60,7 +60,7 @@ class Board_Manager_Controller extends Board_Manager_Model
         // if (preg_match($pattern, $conductor_id))
         //     return true;
         // return false;
-        return $this->conductor_tracker->isValidConductor($conductor_id);
+        return Conductor_Tracker::getInstance()->isValidConductor($conductor_id);
 
     }
 
@@ -99,14 +99,15 @@ class Board_Manager_Controller extends Board_Manager_Model
     }
 
     public function getBookingDateRange($booking_no){
-        $booking = $this->booking_tracker->getBooking($booking_no);
+        $booking = Booking_Tracker::getInstance()->getBooking($booking_no);
         $date_range = array("start_date" => $booking->getStartDate(), "end_date" => $booking->getEndDate());
         return $date_range;
     }
 
     public function allocateConductorForBooking($booking_no, $conductor_no){
-        $bookings_for_conductor = $this->booking_tracker->getBookingsForConductor_FromGivenDate($conductor_no);
-        $selected_booking = $this->booking_tracker->getBooking($booking_no);
+        $booking_tracker = Booking_Tracker::getInstance();
+        $bookings_for_conductor = $booking_tracker->getBookingsForConductor_FromGivenDate($conductor_no);
+        $selected_booking = $booking_tracker->getBooking($booking_no);
         $available = true;
         foreach ($bookings_for_conductor as $booking) {
             if ((strtotime($booking->getStartDate()) >= strtotime($selected_booking->getStartDate()) && strtotime($booking->getStartDate()) <= strtotime($selected_booking->getStartDate())) ||
@@ -116,10 +117,10 @@ class Board_Manager_Controller extends Board_Manager_Model
         }
         if($available){
             $this->allocateConductorForBookingFromModel($booking_no,$conductor_no);
-            
-            $booking = Booking_Tracker::getInstance()->getBooking($booking_no);
-            $executive = Booking_Tracker::getInstance()->getExecutiveFromBookingNumber($booking_no);
-            $service = Booking_Tracker::getInstance()->getServiceFromBookingNumber($booking_no);
+            $booking_tracker = Booking_Tracker::getInstance();
+            $booking = $booking_tracker->getBooking($booking_no);
+            $executive = $booking_tracker->getExecutiveFromBookingNumber($booking_no);
+            $service = $booking_tracker->getServiceFromBookingNumber($booking_no);
             $param = [8,$service->getName(), $booking->getBookingNo(), $this->getBookedVehicleNo($booking),"#seats placeholder#", $booking->getPickupLocation(), $booking->getDestinationLocation()];
             // Allocated Booking Notification
             Notification_handler::setupNotification($executive->getEmail(),$executive->getTelephone(),$param);
@@ -135,7 +136,7 @@ class Board_Manager_Controller extends Board_Manager_Model
     public function getBookedVehicleNo($booking){
         $vehicle_no ="-";
         if($booking->getState()==1){
-            $conductor_obj = $this->conductor_tracker->getConductorbyNumber($booking->getBookedConductorNo());
+            $conductor_obj = Conductor_Tracker::getInstance()->getConductorbyNumber($booking->getBookedConductorNo());
             $vehicle_no = $conductor_obj->getVehicleNo();
         }
         return $vehicle_no;
@@ -143,11 +144,12 @@ class Board_Manager_Controller extends Board_Manager_Model
 
     public function remove_Conductor($conductor_id)
     {
-        $conductor = $this->conductor_tracker->getConductor($conductor_id);
-        $bookings = $this->booking_tracker->getBookingsForConductor_FromGivenDate($conductor->getConductorNo());
+        $conductor_tracker = Conductor_Tracker::getInstance();
+        $conductor = $conductor_tracker->getConductor($conductor_id);
+        $bookings = Booking_Tracker::getInstance()->getBookingsForConductor_FromGivenDate($conductor->getConductorNo());
         foreach ($bookings as $booking){
-            $this->conductor_tracker->cancel_Booking($booking->getBookingNo());
+            $conductor_tracker->cancel_Booking($booking->getBookingNo());
         }
-        $this->conductor_tracker->removeConductor($conductor_id);
+        $conductor_tracker->removeConductor($conductor_id);
     }
 }
