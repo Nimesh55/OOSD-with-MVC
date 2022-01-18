@@ -56,9 +56,14 @@ class Booking_Tracker extends Tracker implements Observer
         $bookings_arr = array();
         $bookings = Booking_Controller::getInstance()->getBookingsArray();
 
-        foreach ($bookings as $booking){
-            array_push($bookings_arr, $this->getBooking($booking['booking_no']));
+        $my_iterator = new My_Iterator($bookings);
+        for(;$my_iterator->valid();$my_iterator->next()){
+            array_push($bookings_arr,$this->getBooking($my_iterator->current()['booking_no']));
         }
+
+//        foreach ($bookings as $booking){
+//            array_push($bookings_arr, $this->getBooking($booking['booking_no']));
+//        }
         return $bookings_arr;
     }
 
@@ -67,9 +72,15 @@ class Booking_Tracker extends Tracker implements Observer
         $bookings_arr = array();
         $bookings = Booking_Controller::getInstance()->getBookingsArrayForService($service_no);
 
-        foreach ($bookings as $booking){
-            array_push($bookings_arr, $this->getBooking($booking['booking_no']));
+        $my_iterator = new My_Iterator($bookings);
+        for(;$my_iterator->valid();$my_iterator->next()){
+            array_push($bookings_arr,$this->getBooking($my_iterator->current()['booking_no']));
         }
+
+//        foreach ($bookings as $booking){
+//            array_push($bookings_arr, $this->getBooking($booking['booking_no']));
+//        }
+
         return $bookings_arr;
     }
 
@@ -77,9 +88,15 @@ class Booking_Tracker extends Tracker implements Observer
         $bookings_arr = array();
         $bookings = Booking_Controller::getInstance()->getBookingsForDistrict($district_no);
 
-        foreach ($bookings as $booking){
-            array_push($bookings_arr, $this->getBooking($booking['booking_no']));
+        $my_iterator = new My_Iterator($bookings);
+        for(;$my_iterator->valid();$my_iterator->next()){
+            array_push($bookings_arr,$this->getBooking($my_iterator->current()['booking_no']));
         }
+
+//        foreach ($bookings as $booking){
+//            array_push($bookings_arr, $this->getBooking($booking['booking_no']));
+//        }
+
         return $bookings_arr;
     }
 
@@ -102,9 +119,15 @@ class Booking_Tracker extends Tracker implements Observer
         $bookings_arr = array();
         $bookings = Booking_Controller::getInstance()->getBookingsForSelectedConductor($conductor_no);
 
-        foreach ($bookings as $booking){
-            array_push($bookings_arr, $this->getBooking($booking['booking_no']));
+        $my_iterator = new My_Iterator($bookings);
+        for(;$my_iterator->valid();$my_iterator->next()){
+            array_push($bookings_arr,$this->getBooking($my_iterator->current()['booking_no']));
         }
+
+//        foreach ($bookings as $booking){
+//            array_push($bookings_arr, $this->getBooking($booking['booking_no']));
+//        }
+
         return $bookings_arr;
     }
 
@@ -112,9 +135,15 @@ class Booking_Tracker extends Tracker implements Observer
         $bookings_arr = array();
         $bookings = Booking_Controller::getInstance()->getBookingsForSelectedConductor_FromGivenDate($conductor_no);
 
-        foreach ($bookings as $booking){
-            array_push($bookings_arr, $this->getBooking($booking['booking_no']));
+        $my_iterator = new My_Iterator($bookings);
+        for(;$my_iterator->valid();$my_iterator->next()){
+            array_push($bookings_arr,$this->getBooking($my_iterator->current()['booking_no']));
         }
+
+//        foreach ($bookings as $booking){
+//            array_push($bookings_arr, $this->getBooking($booking['booking_no']));
+//        }
+
         return $bookings_arr;
     }
 
@@ -159,13 +188,24 @@ class Booking_Tracker extends Tracker implements Observer
     public function update($curDate){
         $change=0;
         $bookingArray = $this->getBookingsArray();
-        foreach ($bookingArray as $booking) {
+
+        $my_iterator = new My_Iterator($bookingArray);
+        for(;$my_iterator->valid();$my_iterator->next()){
+            $booking = $my_iterator->current();
             $bookingEnd = $booking->getEndDate();
             if ($curDate > $bookingEnd && $booking->getState()!=2) {
                 $this->setbookingStateExpired($booking->getBookingNo());
                 $change++;
             }
         }
+
+//        foreach ($bookingArray as $booking) {
+//            $bookingEnd = $booking->getEndDate();
+//            if ($curDate > $bookingEnd && $booking->getState()!=2) {
+//                $this->setbookingStateExpired($booking->getBookingNo());
+//                $change++;
+//            }
+//        }
         return $change;
     }
 }
