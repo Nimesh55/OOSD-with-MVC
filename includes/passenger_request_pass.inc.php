@@ -25,7 +25,7 @@
             // Pass Pending Notification##
             Notification_handler::setupNotification($passenger->getEmail(), $passenger->getTelephone(), $param);
         }
-//        header("Location: ../passenger_request_pass.php?{$url_extention}");
+
     }
 if (isset($_POST['remove'])){
 
@@ -53,7 +53,6 @@ if(isset($_POST['home'])){
     <input type="hidden" name="end_date" value="<?php echo $details['end_date']; ?>">
     <input type="hidden" name="bus_route" value="<?php echo $details['bus_route']; ?>">
     <input type="hidden" name="error" value="<?php echo $errors; ?>">
-<!--    <input type="hidden" name="error_str" value="--><?php //echo $errors_str; ?><!--">-->
     <input type="hidden" name="sub" value="finish">
 
 </form>

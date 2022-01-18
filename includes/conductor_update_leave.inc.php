@@ -22,6 +22,6 @@ if (isset($_POST['submit'])) {
         header("Location: ../conductor_update_leave.php?error=$error");
         return;
     }
-    //echo $_SESSION['account_no'];
+
     $conductor_ctrl_obj->updateLeave($_SESSION['account_no'], $leave_date, "booked");
 }
