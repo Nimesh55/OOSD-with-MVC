@@ -1,6 +1,7 @@
 <?php
 
-class Password_Changer extends Dbh{
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/class/Model/dbh.class.php";
+class Password_Changer_Model extends Dbh{
 
     protected function getPassword(){
         $stmt = $this->connect()->prepare("SELECT * FROM users WHERE user_id = ?");

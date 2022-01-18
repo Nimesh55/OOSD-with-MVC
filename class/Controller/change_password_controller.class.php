@@ -1,8 +1,7 @@
 <?php
 
 session_start();
-
-class Change_Password_Controller extends Password_Changer{
+class Change_Password_Controller extends Password_Changer_Model{
 
     public function updatePassword($current_password, $new_password, $password_repeat,$forget=0){
 
