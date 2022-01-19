@@ -75,7 +75,7 @@ if ($_GET["error"] != 'none') {
                 <div class="col-sm-2 p-2"></div>
                 <div class="col-sm-8 p-4">
                     <?php if ($state_query == 1) {
-                       echo "<div class=\"alert alert-danger\"><strong>".$error."</strong></div>";
+                        echo "<div class=\"alert alert-danger\"><strong>" . $error . "</strong></div>";
                     } ?>
                 </div>
                 <div class="col-sm-2 p-3"></div>
@@ -88,11 +88,11 @@ if ($_GET["error"] != 'none') {
                 <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>Booking No</p>
                 </div>
-                <div class="col-sm-1 p-2">:</div>
+                <div class="col-sm-2 p-2">:</div>
                 <div class="col-sm-4 p-4 bg-dark text-white">
                     <p><?= $bookingDetails['booking_no'] ?> </p>
                 </div>
-                <div class="col-sm-2 p-3"></div>
+                <div class="col-sm-1 p-3"></div>
             </div>
 
             <div class="row">
@@ -100,11 +100,11 @@ if ($_GET["error"] != 'none') {
                 <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>Service Name</p>
                 </div>
-                <div class="col-sm-1 p-2">:</div>
+                <div class="col-sm-2 p-2">:</div>
                 <div class="col-sm-4 p-4 bg-dark text-white">
                     <p><?= $bookingDetails['service_name']  ?></p>
                 </div>
-                <div class="col-sm-2 p-3"></div>
+                <div class="col-sm-1 p-3"></div>
             </div>
 
             <div class="row">
@@ -112,11 +112,11 @@ if ($_GET["error"] != 'none') {
                 <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>Start Date and Time</p>
                 </div>
-                <div class="col-sm-1 p-2">:</div>
+                <div class="col-sm-2 p-2">:</div>
                 <div class="col-sm-4 p-4 bg-dark text-white">
                     <p><?= $bookingDetails['start_date'] . " From " . $bookingDetails['start_time']   ?> </p>
                 </div>
-                <div class="col-sm-2 p-3"></div>
+                <div class="col-sm-1 p-3"></div>
             </div>
 
             <div class="row">
@@ -124,11 +124,11 @@ if ($_GET["error"] != 'none') {
                 <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>End Date and Time</p>
                 </div>
-                <div class="col-sm-1 p-2">:</div>
+                <div class="col-sm-2 p-2">:</div>
                 <div class="col-sm-4 p-4 bg-dark text-white">
                     <p><?= $bookingDetails['end_date'] . " From " . $bookingDetails['end_time'] ?> </p>
                 </div>
-                <div class="col-sm-2 p-3"></div>
+                <div class="col-sm-1 p-3"></div>
             </div>
 
             <div class="row">
@@ -136,11 +136,11 @@ if ($_GET["error"] != 'none') {
                 <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>Pickup District</p>
                 </div>
-                <div class="col-sm-1 p-2">:</div>
+                <div class="col-sm-2 p-2">:</div>
                 <div class="col-sm-4 p-4 bg-dark text-white">
                     <p><?= $bookingDetails['pickup_district'] ?> </p>
                 </div>
-                <div class="col-sm-2 p-3"></div>
+                <div class="col-sm-1 p-3"></div>
             </div>
 
             <div class="row">
@@ -148,11 +148,11 @@ if ($_GET["error"] != 'none') {
                 <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>Pickup Location</p>
                 </div>
-                <div class="col-sm-1 p-2">:</div>
+                <div class="col-sm-2 p-2">:</div>
                 <div class="col-sm-4 p-4 bg-dark text-white link">
                     <p><a href="<?= $bookingDetails['pickup_location'] ?>" target="_blank">View pickup</a> </p>
                 </div>
-                <div class="col-sm-2 p-3"></div>
+                <div class="col-sm-1 p-3"></div>
             </div>
 
             <div class="row">
@@ -160,22 +160,22 @@ if ($_GET["error"] != 'none') {
                 <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>Destination District</p>
                 </div>
-                <div class="col-sm-1 p-2">:</div>
+                <div class="col-sm-2 p-2">:</div>
                 <div class="col-sm-4 p-4 bg-dark text-white">
                     <p><?= $bookingDetails['destination_district'] ?> </p>
                 </div>
-                <div class="col-sm-2 p-3"></div>
+                <div class="col-sm-1 p-3"></div>
             </div>
             <div class="row">
                 <div class="col-sm-2 p-2"></div>
                 <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>Destination Location</p>
                 </div>
-                <div class="col-sm-1 p-2">:</div>
+                <div class="col-sm-2 p-2">:</div>
                 <div class="col-sm-4 p-4 bg-dark text-white link">
                     <p><a href="<?= $bookingDetails['destination_location'] ?>" target="_blank">View destination</a> </p>
                 </div>
-                <div class="col-sm-2 p-3"></div>
+                <div class="col-sm-1 p-3"></div>
             </div>
 
             <div class="row">
@@ -183,7 +183,7 @@ if ($_GET["error"] != 'none') {
                 <div class="col-sm-3 p-3 bg-dark text-white">
                     <p>Passenger Count</p>
                 </div>
-                <div class="col-sm-1 p-2">:</div>
+                <div class="col-sm-2 p-2">:</div>
                 <div class="col-sm-4 p-4 bg-dark text-white">
                     <p><?= $bookingDetails['passenger_count'] ?> </p>
                 </div>
@@ -193,17 +193,14 @@ if ($_GET["error"] != 'none') {
             <br>
             <br>
 
-            <div class="row">
-                <div class="col-sm-6 p-2"></div>
-
-                <?php if ($bookingDetails['flag'] == 0) : ?>
-                    <div class="col-sm-4 p-3">
-                        <a class="btn btn-primary" href="includes/condcutor_cancel_booking_totally.inc.php?booking_no=<?php echo $bookingNo ?>">Cancel Booking</a>
-
-                    </div>
-                <?php endif; ?>
-                <div class="col-sm-2 p-3"></div>
+            <?php if ($bookingDetails['flag'] == 0) : ?>
+            <div class="ctrlbtn">
+                <a class="btn btn-primary" href="includes/condcutor_cancel_booking_totally.inc.php?booking_no=<?php echo $bookingNo ?>">Cancel Booking</a>
             </div>
+
+            <?php endif; ?>
+
+
 
         </div>
 

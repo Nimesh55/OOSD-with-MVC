@@ -36,3 +36,11 @@ body{
     background-color: transparent;
     text-decoration: underline;
   }
+
+  .ctrlbtn{
+      text-align: center;
+  }
+
+  .col-sm-2{
+      text-align: center !important;
+  }
