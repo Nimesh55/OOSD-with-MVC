@@ -62,6 +62,11 @@ $bookingRecords = $conductorview->showBookings($_SESSION['account_no']);
     </div>
 
     <div class="container mt-3" id="contanier-data">
+        <?php if (empty($bookingRecords)) : ?>
+            <div class="alert alert-danger">
+                <strong>No Records Found</strong>
+            </div>
+        <?php endif ?>
         <table class="table table-dark">
             <thead>
                 <tr>
@@ -72,17 +77,17 @@ $bookingRecords = $conductorview->showBookings($_SESSION['account_no']);
             </thead>
             <tbody>
                 <?php
-                    $i = 1;
-                    while ($i <= count($bookingRecords)) {
-                        echo "<tr>";
-                        $bookingNo = $bookingRecords[$i-1]->getBookingNo();
-                        echo "<th scope=\"row\">$i</th>";
-                        echo "<td>"."Booking No. " . $bookingNo . "&nbsp;&nbsp;&nbsp;"."</td>";
-                        echo "<td><a class=\"btn btn-sm btn-primary\" id=\"\" href=\"conductor_cancel_booking_view.php?booking_no={$bookingNo}&error=none\">View</a></td>";
-                        echo "</tr>";
+                $i = 1;
+                while ($i <= count($bookingRecords)) {
+                    echo "<tr>";
+                    $bookingNo = $bookingRecords[$i - 1]->getBookingNo();
+                    echo "<th scope=\"row\">$i</th>";
+                    echo "<td>" . "Booking No. " . $bookingNo . "&nbsp;&nbsp;&nbsp;" . "</td>";
+                    echo "<td><a class=\"btn btn-sm btn-primary\" id=\"\" href=\"conductor_cancel_booking_view.php?booking_no={$bookingNo}&error=none\">View</a></td>";
+                    echo "</tr>";
 
-                        $i++;
-                    }
+                    $i++;
+                }
                 ?>
             </tbody>
         </table>
