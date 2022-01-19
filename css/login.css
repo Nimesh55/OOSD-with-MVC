@@ -94,7 +94,7 @@ img {
 h1{
   padding: 1%;
   color: aliceblue;
-  font-size:80px;
+  font-size:75px;
   text-shadow: 2px 2px 2px rgb(12, 11, 11);
   background-color: #03060D;
   border: 3px solid aliceblue !important;
@@ -103,7 +103,7 @@ h1{
 
 }
 .wrapper{
-  margin-top:98px !important;
+  margin-top:90px !important;
 }
 .tob_bar_alert{
   padding: 5px !important;

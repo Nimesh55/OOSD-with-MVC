@@ -30,7 +30,7 @@ foreach ($passengers as $passenger) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/executive_pass_details.css">
+    <link rel="stylesheet" href="css/executive_passenger_details.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -74,7 +74,10 @@ foreach ($passengers as $passenger) {
     <div class="container mt-3">
 
         <div class="wrapper">
-            <div class="row addpass">
+            <div class="addpassenger">
+                <a href="#" class="btn btn-info" onclick="clickView('<? echo $_SESSION['service_no']?>','passenger_signup.php?src=1')">+Create Passenger Acoount</a>
+            </div>
+            <div class="row">
 
                 <form action="executive_passenger_details.php" method="GET">
                     <div class="row">
@@ -85,9 +88,6 @@ foreach ($passengers as $passenger) {
                                 <button class="btn btn-primary" type="submit">
                                     <span class="glyphicon glyphicon-search"></span>
                                 </button>
-                            </div>
-                            <div class="">
-                                <a href="#" onclick="clickView('<? echo $_SESSION['service_no']?>','passenger_signup.php?src=1')">Create Passenger Acoount</a>
                             </div>
                         </div>
                         <div class="col-sm-4"></div>
