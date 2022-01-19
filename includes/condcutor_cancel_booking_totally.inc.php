@@ -2,15 +2,18 @@
 
 session_start();
 
+require_once "../class/Model/dbh.class.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
+
 if (isset($_GET['booking_no'])) {
     
     $booking_no = $_GET['booking_no'];
     
-    // Instanciate Conductor Controller in MVC
-    require_once "../class/dbh.class.php";
-    require_once "../class/conductor.class.php";
-    require_once "../class/conductor_controller.class.php";
-    require_once "../class/conductor_model.class.php";
+    // // Instanciate Conductor Controller in MVC
+    // require_once "../class/dbh.class.php";
+    // require_once "../class/conductor.class.php";
+    // require_once "../class/conductor_controller.class.php";
+    // require_once "../class/conductor_model.class.php";
 
     $conductor_ctrl = new Conductor_Controller();
     $bookingObj = $conductor_ctrl->cancelBooking($booking_no);
