@@ -1,5 +1,5 @@
 <?php
-require_once "../class/dbh.class.php";
+require_once "../class/model/dbh.class.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
