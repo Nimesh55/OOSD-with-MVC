@@ -36,7 +36,7 @@
 
 
     <div class="row wrapper">
-        <div class="col-sm-6 head-text">
+        <div class="col-sm-6 head-text heading">
             <h1>SAFE TRANSIT</h1>
         </div>
         <div class="col-sm-1"></div>
