@@ -59,7 +59,7 @@
                 </div>
                 <br>
                 <div class="btn-group btn-group-lg">
-                    <input type="submit" class="btn btn-primary btn-lg ctrlbutton" value="Remove" name="remove">
+                    <input type="submit" class="btn btn-primary btn-lg ctrlbutton" value="Remove" name="remove" onclick="return confirm('Are you sure?');">
                     <input type="submit" class="btn btn-primary btn-lg ctrlbutton" value="Back to Home" name="home">
                 </div>
 

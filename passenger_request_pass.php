@@ -244,7 +244,7 @@
                             echo "<input type=\"submit\" class=\"btn btn-primary btn-lg ctrlbutton\" name=\"submit\" value=\"Submit\">";
                         }else{
 
-                            echo "<input type=\"submit\" class=\"btn btn-primary btn-lg ctrlbutton\" name=\"remove\" value=\"Remove\">";
+                            echo "<input type=\"submit\" class=\"btn btn-primary btn-lg ctrlbutton\" name=\"remove\" value=\"Remove\" onclick=\"return confirm('Are you sure?');\">";
                         }
                         ?>
                     <input type="submit" class="btn btn-primary btn-lg ctrlbutton" value="Back to Home" name="home">
