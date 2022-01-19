@@ -42,7 +42,7 @@ if(isset($_POST['error'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/passenger_home.css">
+    <link rel="stylesheet" href="css/administrator_configue.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Administrator Email Settings</title>
@@ -160,7 +160,8 @@ if(isset($_POST['error'])){
 
                             <br>
                             <div class="btn-group btn-group-lg">
-                                <input type="submit" class="btn btn-primary ctrlbutton" name="save" value="Set">
+                                <input type="submit" class="btn btn-primary ctrlbutton" name="save" value="Set"
+                                onclick="return confirm('Are you sure?');">
                                 <a href="administrator_home.php" class="btn btn-primary ctrlbutton">Back</a>
                             </div>
 
@@ -171,36 +172,7 @@ if(isset($_POST['error'])){
                 </div>
             </div>
 
-<script>
-
-    $(".reveal").on('click',function() {
-        var $pwd = $(".pwd");
-        if ($pwd.attr('type') === 'password') {
-            $pwd.attr('type', 'text');
-        } else {
-            $pwd.attr('type', 'password');
-        }
-    });
-
-    $(".apiKey").on('click',function() {
-        var $pwd = $(".input1");
-        if ($pwd.attr('type') === 'password') {
-            $pwd.attr('type', 'text');
-        } else {
-            $pwd.attr('type', 'password');
-        }
-    });
-
-    $(".deviceId").on('click',function() {
-        var $pwd = $(".input2");
-        if ($pwd.attr('type') === 'password') {
-            $pwd.attr('type', 'text');
-        } else {
-            $pwd.attr('type', 'password');
-        }
-    });
-
-</script>
+<script src="js/administrator_js.js"></script>
 
 </body>
 

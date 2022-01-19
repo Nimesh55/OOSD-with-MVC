@@ -1,0 +1,44 @@
+.wrapper{
+    /*background: #e6e6e6;*/
+    /*color: #000000;*/
+    padding: 5%;
+    border-radius: 15px;
+    text-align: center;
+    word-break: break-word;
+    background-color: rgb(44, 44, 37);
+    color: aliceblue;
+    margin-top:75px;
+    border-style: ridge;
+    border: 2px solid whitesmoke;
+    /*opacity: 0.95;*/
+}
+#heading{
+    padding:15px 0;
+    font-family: 'Roboto', sans-serif;
+    color: aliceblue;
+}
+.field{
+    text-align: left;
+}
+body{
+    background: url("../img/PassBlue.jpg") no-repeat center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    background-color: #560059;
+}
+h1{
+    color: antiquewhite;
+}
+
+.data{
+    text-align: left;
+}
+.semicolen{
+    text-align: center;
+}
+.ctrlbutton{
+    width: 185px;
+}
