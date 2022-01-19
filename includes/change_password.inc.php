@@ -19,8 +19,7 @@ else if (isset($_POST["reset"])) {
     $password_repeat = $_POST["retype_password"];
 
     $change_password_controller->updatePassword($current_password,$new_password, $password_repeat,1);
-//    print_r($_POST);
-//    print_r($_SESSION);
+
 }else if (isset($_POST["cancel"])) {
     $change_password_controller->returnPage();
 }

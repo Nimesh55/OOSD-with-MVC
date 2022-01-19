@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
-if(!isset($_SESSION['user_Id'])){
+if (!isset($_SESSION['user_Id'])) {
     header("Location: login.php");
     return;
 }
@@ -16,7 +16,7 @@ if(!isset($_SESSION['user_Id'])){
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/login.css">
+        <link rel="stylesheet" href="css/change_password.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <title>Change Password</title>
@@ -24,46 +24,65 @@ if(!isset($_SESSION['user_Id'])){
 
     <body>
     <div class="container mt-3">
-        <div style="background-color: #a3a3a3;width: 800px;padding:20px 0;margin: 130px auto; border-radius: 15px;">
-            <form method="POST" class="form-horizontal" action="includes/change_password.inc.php ?>" style="width: 700px; margin: 25px auto;">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10 wrapper">
+                <form method="POST" class="form-horizontal" action="includes/change_password.inc.php ?>">
 
-                <?php
-                if(isset($_SESSION["error"])){
-                    $error = $_SESSION["error"];
-                    echo "<div class=\"alert alert-danger\"><strong>".$error."</strong></div>";
+                    <?php
+                    if (isset($_SESSION["error"])) {
+                        $error = $_SESSION["error"];
+                        echo "<div class=\"alert alert-danger\"><strong>" . $error . "</strong></div>";
 
-                }
-                ?>
+                    }
+                    ?>
 
-<!--                <div class="form-group">-->
-<!--                    <label class="control-label col-sm-2" for="current">Current Password:</label>-->
-<!--                    <div class="col-sm-10">-->
-                        <input type="password" name="current_password" value="-1"  hidden>
-<!--                    </div>-->
-<!--                </div>-->
-                <div class=" form-group">
-                    <label class="control-label col-sm-2" for="new">New Password:</label>
-                    <div class="col-sm-10">
-                        <input type="password" name="new_password" class="form-control" id="new" placeholder="Enter New Password">
+                    <!--                <div class="form-group">-->
+                    <!--                    <label class="control-label col-sm-3" for="current">Current Password:</label>-->
+                    <!--                    <div class="col-sm-10">-->
+                    <input type="password" name="current_password" value="-1" hidden>
+                    <!--                    </div>-->
+                    <!--                </div>-->
+                    <div class=" form-group">
+                        <label class="control-label col-sm-3" for="new">New Password:</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <input type="password" name="new_password" class="form-control new_pwd" id="new"
+                                       placeholder="Enter New Password">
+                                <span class="input-group-btn">
+                                        <button class="btn btn-default reveal_2" type="button"><i
+                                                    class="glyphicon glyphicon-eye-open"></i></button>
+                                    </span>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="retype_new">ReEnter New Password:</label>
-                    <div class="col-sm-10">
-                        <input type="password" name="retype_password"  class="form-control" id="retype_new" placeholder="ReEnter New Password">
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="retype_new">ReEnter New Password:</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <input type="password" name="retype_password" class="form-control retype_pwd" id="retype_new"
+                                       placeholder="ReEnter New Password">
+                                <span class="input-group-btn">
+                                        <button class="btn btn-default reveal_3" type="button"><i
+                                                    class="glyphicon glyphicon-eye-open"></i></button>
+                                    </span>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10" style="margin-left:200px;">
-                        <input name='reset' value="Reset Password" type="submit" class="btn btn-default" style="margin-right:15px;">
-                        <input name='cancel' value="Cancel" type="submit" class="btn btn-default" style="margin-right:15px;">
+                    <div class="btn-group btn-group-lg">
+                        <input name='reset' value="Reset Password" type="submit" class="btn btn-primary ctrlbutton">
+                        <input name='cancel' value="Cancel" type="submit" class="btn btn-primary ctrlbutton">
                     </div>
-                </div>
-            </form>
+
+                </form>
+            </div>
+            <div class="col-sm-1"></div>
         </div>
+
     </div>
+    <script src="js/change_pwd.js"></script>
     </body>
 
     </html>

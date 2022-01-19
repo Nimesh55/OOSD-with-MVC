@@ -41,11 +41,19 @@ class EssentialServiceTracker extends Tracker
     public function declineService($service_no)
     {
         $bookings = Booking_Tracker::getInstance()->getBookingsArrayForService($service_no);
-        foreach ($bookings as $booking) {
-            if ($booking->getState() < 2) {
-                Booking_Tracker::getInstance()->setbookingStateExpired($booking->getBookingNo());
+
+        $my_iterator = new My_Iterator($bookings);
+        for(;$my_iterator->valid();$my_iterator->next()){
+            if ($my_iterator->current()->getState() < 2) {
+                Booking_Tracker::getInstance()->setbookingStateExpired($my_iterator->current()->getBookingNo());
             }
         }
+
+//        foreach ($bookings as $booking) {
+//            if ($booking->getState() < 2) {
+//                Booking_Tracker::getInstance()->setbookingStateExpired($booking->getBookingNo());
+//            }
+//        }
 
         $service = $this->createService($service_no);
         Service_Model::getInstance()->setStateNonEssential($service->getServiceNo()); // Changed to Service_no from Service_Id
@@ -72,10 +80,18 @@ class EssentialServiceTracker extends Tracker
         if ($state == 0) {
             //Remove Passengers
             $passengerArray = Passenger_Tracker::getInstance()->getPassengersInService($service_no);
-            foreach ($passengerArray as $passenger) {
-                Passenger_Tracker::getInstance()->setPassengerState(0, $passenger->getPassengerNo());
-                Passenger_Tracker::getInstance()->setPassengerServiceNo(0, $passenger);
+
+            $my_iterator = new My_Iterator($passengerArray);
+            for(;$my_iterator->valid();$my_iterator->next()){
+                Passenger_Tracker::getInstance()->setPassengerState(0, $my_iterator->current()->getPassengerNo());
+                Passenger_Tracker::getInstance()->setPassengerServiceNo(0, $my_iterator->current());
             }
+
+//            foreach ($passengerArray as $passenger) {
+//                Passenger_Tracker::getInstance()->setPassengerState(0, $passenger->getPassengerNo());
+//                Passenger_Tracker::getInstance()->setPassengerServiceNo(0, $passenger);
+//            }
+
             $bookingArray = Booking_Tracker::getInstance()->getBookingsArrayForService($service_no);
             Booking_Tracker::getInstance()->cancelBookingBulk($bookingArray); // test this
         }

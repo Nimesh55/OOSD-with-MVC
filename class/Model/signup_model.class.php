@@ -1,7 +1,7 @@
 <?php
 // model in MVC
-
-class Signup extends Dbh{
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/class/Model/dbh.class.php";
+class Signup_Model extends Dbh{
     protected function checkUser($uid){
 
         $query = "SELECT * FROM users WHERE user_id = ?";

@@ -66,7 +66,6 @@ class Pass_Tracker extends Tracker implements Observer
     //Approve an Essential Service
     public function upgradePassState($pass_no)
     {
-        //$state = Pass_Controller::getInstance()->getPassState($pass_no);
         $passObj = $this->getPass($pass_no);
         $state = $passObj->getState();
         if ($state == 0)
@@ -95,9 +94,14 @@ class Pass_Tracker extends Tracker implements Observer
         $passes_arr = array();
         $passes = Pass_Controller::getInstance()->getPendingPassesSearchArray();
 
-        foreach ($passes as $pass) {
-            array_push($passes_arr, $this->getPass($pass['pass_no']));
+        $my_iterator = new My_Iterator($passes);
+        for(;$my_iterator->valid();$my_iterator->next()){
+            array_push($passes_arr,$this->getPass($my_iterator->current()['pass_no']));
         }
+
+//        foreach ($passes as $pass) {
+//            array_push($passes_arr, $this->getPass($pass['pass_no']));
+//        }
         return $passes_arr;
     }
 
@@ -107,9 +111,14 @@ class Pass_Tracker extends Tracker implements Observer
         $passes_arr = array();
         $passes = Pass_Controller::getInstance()->getApprovedPassesSearchArray();
 
-        foreach ($passes as $pass) {
-            array_push($passes_arr, $this->getPass($pass['pass_no']));
+        $my_iterator = new My_Iterator($passes);
+        for(;$my_iterator->valid();$my_iterator->next()){
+            array_push($passes_arr,$this->getPass($my_iterator->current()['pass_no']));
         }
+
+//        foreach ($passes as $pass) {
+//            array_push($passes_arr, $this->getPass($pass['pass_no']));
+//        }
         return $passes_arr;
     }
 
@@ -118,9 +127,15 @@ class Pass_Tracker extends Tracker implements Observer
         $passes_arr = array();
         $passes = Pass_Controller::getInstance()->getPassesArrayForService($service_no);
 
-        foreach ($passes as $pass) {
-            array_push($passes_arr, $this->getPass($pass['pass_no']));
+        $my_iterator = new My_Iterator($passes);
+        for(;$my_iterator->valid();$my_iterator->next()){
+            array_push($passes_arr,$this->getPass($my_iterator->current()['pass_no']));
         }
+
+//        foreach ($passes as $pass) {
+//            array_push($passes_arr, $this->getPass($pass['pass_no']));
+//        }
+
         return $passes_arr;
     }
 
@@ -160,10 +175,17 @@ class Pass_Tracker extends Tracker implements Observer
     {
         $passesArray = Pass_Controller::getInstance()->getAllPasses_array();
         $passesObjArray = array();
-        foreach ($passesArray as $pass) {
-            $passObj = $this->getPass($pass['pass_no']);
-            array_push($passesObjArray, $passObj);
+
+        $my_iterator = new My_Iterator($passesArray);
+        for(;$my_iterator->valid();$my_iterator->next()){
+            array_push($passesObjArray, $this->getPass($my_iterator->current()['pass_no']));
         }
+
+//        foreach ($passesArray as $pass) {
+//            $passObj = $this->getPass($pass['pass_no']);
+//            array_push($passesObjArray, $passObj);
+//        }
+
         return $passesObjArray;
     }
 
@@ -171,7 +193,10 @@ class Pass_Tracker extends Tracker implements Observer
     public function update($curDate){
         $change=0;
         $passesArray = $this->getAllPasses();
-        foreach ($passesArray as $pass) {
+
+        $my_iterator = new My_Iterator($passesArray);
+        for(;$my_iterator->valid();$my_iterator->next()){
+            $pass = $my_iterator->current();
             $passEndDate = $pass->getEndDate();
             if ($curDate > $passEndDate) {
                 $this->setPassStateExpired($pass->getPassNo());
@@ -182,6 +207,18 @@ class Pass_Tracker extends Tracker implements Observer
                 $change++;
             }
         }
+
+//        foreach ($passesArray as $pass) {
+//            $passEndDate = $pass->getEndDate();
+//            if ($curDate > $passEndDate) {
+//                $this->setPassStateExpired($pass->getPassNo());
+//                //Expire Pass Notification
+//                $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($pass->getPassengerNo());
+//                $param = [5, $pass->getPassNo()];
+//                Notification_handler::setupNotification($passenger->getEmail(),$passenger->getTelephone(),$param);
+//                $change++;
+//            }
+//        }
         return $change;
     }
     public function searchForActivePass($passenger_no){

@@ -31,23 +31,11 @@
             $button = 'remove';
         }
     }
-//    if(isset($_GET['reason'])) {
-//
-//    }
-    $pass_tracker = Pass_Tracker::getInstance();
-//    $pass = $pass_tracker->getPass_by_passenger_id($_SESSION['user_Id']);
-//    echo "<pre>";
-//    print_r($pass['passenger_name']);
-//    print_r($_SESSION['user_Id']);
-//    echo "</pre>";
 
+    $pass_tracker = Pass_Tracker::getInstance();
 
     $result = $pass_tracker->searchForActivePass($passengerview->getPassengerNo());
 
-//    echo "<pre>";
-//    print_r($result);
-////    print_r($_SESSION['user_Id']);
-//    echo "</pre>";
 
     if (!empty($result)){
         $pass_state = $result['state'];
@@ -98,7 +86,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passenger Profile Edit</title>
+    <title>Request Pass</title>
 
     <link rel="stylesheet" href="css/passenger_profile_edit.css">
     <link rel="stylesheet" href="css/upload.css">
@@ -169,11 +157,11 @@
                 <form class="form-horizontal" role="form" action="includes/passenger_request_pass.inc.php" method="post" enctype="multipart/form-data">
 
                     <?php
-                    if (isset($_GET['error']) && strcmp($_GET['error'],"success")!=0) {
+                    if (isset($_POST['error']) && strcmp($_POST['error'],"success")!=0) {
 
-                        echo "<div class=\"alert alert-danger\"><strong>".$_GET['error']."</strong></div>";
+                        echo "<div class=\"alert alert-danger\"><strong>".$_POST['error']."</strong></div>";
                     }
-                    if(isset($_GET['error']) && strcmp($_GET['error'],"success")==0){
+                    if(isset($_POST['error']) && strcmp($_POST['error'],"success")==0){
                         echo "<div class=\"alert alert-success\"><strong>"."Successfully Requested!!!"."</strong></div>";
                     }
                     ?>
@@ -182,8 +170,6 @@
                     <div class="form-group">
                         <label for="bus_route" class="col-sm-3 control-label">Pass State:</label>
                         <div class="col-sm-9">
-<!--                            have to set css-->
-<!--                            <input id="Accepted" disabled name="bus_route" type="text" class="form-control" id="" value="--><?php //echo $pass_state_str;?><!--">-->
                             <?php echo $html; ?>
 
 
@@ -227,7 +213,6 @@
                         <label for="file" class="col-sm-3 control-label">Attachments:</label>
                         <div class="col-sm-9">
                             <?php if(strcmp($button,'submit')==0): ?>
-<!--                                <input type="file" id="file" name="file"/>-->
 
                                 <div class="input-group">
                                     <input type="text" class="form-control" readonly>
@@ -259,7 +244,7 @@
                             echo "<input type=\"submit\" class=\"btn btn-primary btn-lg ctrlbutton\" name=\"submit\" value=\"Submit\">";
                         }else{
 
-                            echo "<input type=\"submit\" class=\"btn btn-primary btn-lg ctrlbutton\" name=\"remove\" value=\"Remove\">";
+                            echo "<input type=\"submit\" class=\"btn btn-primary btn-lg ctrlbutton\" name=\"remove\" value=\"Remove\" onclick=\"return confirm('Are you sure?');\">";
                         }
                         ?>
                     <input type="submit" class="btn btn-primary btn-lg ctrlbutton" value="Back to Home" name="home">

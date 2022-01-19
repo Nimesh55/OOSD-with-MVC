@@ -53,13 +53,11 @@ class Signup_Controller extends Signup{
             }
         }
         if ($this->emptyField() == false) {
-            // error msg here
             header("location: ../".$this->page_name."_signup.php?error=emptyfield&src=".$src);
             exit();
         }
 
         if ($this->password_match() == false) {
-            // error msg here
             header("location: ../".$this->page_name."_signup.php?error=passwordmismatch&src=".$src);
             exit();
         }
@@ -70,13 +68,11 @@ class Signup_Controller extends Signup{
         }
 
         if ($this->user_exist()) {
-            // error msg here
             header("location: ../".$this->page_name."_signup.php?error=user_exist&src=".$src);
             exit();
         }
 
         if ($this->email!=NULL && !$this->isValidEmail()) {
-            // error msg here
             header("location: ../".$this->page_name."_signup.php?error=emailWrong&src=".$src);
             exit();
         }
@@ -87,13 +83,11 @@ class Signup_Controller extends Signup{
         }
 
         if ($this->isUserValidInput() == false) {
-            // error msg here
             header("location: ../".$this->page_name."_signup.php?error=invalidusername&src=".$src);
             exit();
         }
 
        if ($this->isTelephoneValidInput() == false) {
-           // error msg here
            header("location: ../".$this->page_name."_signup.php?error=enterstrongpassword&src=".$src);
            exit();
        }
@@ -221,7 +215,6 @@ class Signup_Controller extends Signup{
                $result = false;
            }
        }
-    //    return $result?"":'*Please Enter Valid NIC ';
     return $result;
 
    }

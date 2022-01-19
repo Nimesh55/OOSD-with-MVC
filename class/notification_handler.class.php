@@ -9,7 +9,7 @@ class Notification_handler
     private static function set_config()
     {
         Timer::setTimeZone();
-        self::$admin_controller = new Administrator_controller();
+        self::$admin_controller = new Administrator_Controller();
         $details = self::$admin_controller->getAdministratorConfigSettings();
         self::$smsAdapter = new Sms_adapter();
         self::$emailAdapter = Email_Client_Adapter::getInstance($details);

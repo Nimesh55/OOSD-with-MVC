@@ -110,7 +110,6 @@ $bookingNo = $_GET['booking_no'];
                 </div>
             </div>
 
-            <!-- nxj -->
             <div class="row">
                 <div class="col-sm-5 field">
                     <p>Destination District</p>

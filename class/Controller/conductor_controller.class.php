@@ -96,7 +96,6 @@ class Conductor_Controller extends Conductor_Model
         return $this->getConductorLeavesArrayFromModel($conductor_no);
     }
 
-    //achira
     public function getConductorBookings($conductor_no)
     {
         return Booking_Tracker::getInstance()->getBookingsForConductor($conductor_no);
@@ -121,7 +120,6 @@ class Conductor_Controller extends Conductor_Model
     public function cancelBooking($bookingNo)
     {
         Conductor_Tracker::getInstance()->cancel_Booking($bookingNo);
-        return;
     }
 
     public function getBookings_ForConductor_FromGivenDate($conductor_no)
@@ -192,7 +190,6 @@ class Conductor_Controller extends Conductor_Model
         }elseif(($currDate) > date($endDate)){
             return "Expired";
         }else{
-            //echo $startDate;
             return "Set to a future date";
         }
     }

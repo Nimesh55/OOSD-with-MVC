@@ -1,12 +1,12 @@
 
 <?php
   require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
-  class Administrator_view extends Administrator_model{
+  class Administrator_View extends Administrator_Model{
     private $adminobj;
     private $adminctrl;
 
     public function __construct(){
-        $this->adminctrl = new Administrator_controller;
+        $this->adminctrl = new Administrator_Controller;
         $this->adminobj = $this->adminctrl->setUpDetails();
     }
     public function getDetails()

@@ -56,9 +56,6 @@ foreach ($bookings as $booking) {
 
 <body>
 
-    <?php if(isset($_SESSION['success'])): ?>
-        <div class="alert alert-success tob_bar_alert"><strong><?= $_SESSION['success'] ?></strong></div>
-    <?php endif; ?>
     <div class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="row">
@@ -94,7 +91,9 @@ foreach ($bookings as $booking) {
     </div>
     </div>
 
-
+    <?php if(isset($_SESSION['success'])): ?>
+        <div class="alert alert-success tob_bar_alert"><strong><?= $_SESSION['success'] ?></strong></div>
+    <?php endif; ?>
 
     <div class="container">
         <form action="board_manager_allocate_vehicle.php" method="GET">

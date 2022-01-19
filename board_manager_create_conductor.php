@@ -83,7 +83,6 @@ if(isset($_GET['error'])){
                         }
                     ?>
                     <div class="form-group">
-        <!--                <input type="text" class="form-control">-->
                         <label class="control-label col-sm-3" for="first_name">First Name:</label>
                         <div class="col-sm-9">
                             <input name="Firstname" type="text" class="form-control" id="first_name" placeholder="Enter First Name" ">
@@ -100,7 +99,6 @@ if(isset($_GET['error'])){
                         <div class="form-group">
                             <label class="control-label col-sm-3" for="address">Address:</label>
                             <div class="col-sm-9">
-        <!--                        <input name="Address" type="text" class="form-control" id="address">-->
                                 <textarea name="Address" class="form-control" name="address" rows="3" id="address" placeholder="Enter Addres"></textarea>
                             </div>
                         </div>

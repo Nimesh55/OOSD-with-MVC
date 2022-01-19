@@ -2,11 +2,25 @@
 
   function autoloader($className)
   {
-    // chdir($_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/OOSD-with-MVC");
-    $path=$_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/class";
+
+    $classNameParts = explode("_",$className);
+
+    $folder = "";
+
+//    echo $className." ".end($classNameParts);
+    if(strcmp(end($classNameParts),"Model")==0){
+      $folder = "/Model";
+    }else if(strcmp(end($classNameParts),"View")==0){
+      $folder = "/View";
+    }else if(strcmp(end($classNameParts),"Controller")==0){
+      $folder = "/Controller";
+    }else{
+      $folder="";
+    }
+
+    $path=$_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/class{$folder}";
     $extension = ".class.php";
     $fullPath = $path."/".strtolower($className).$extension;
-    // echo "$fullPath";
 
     if (file_exists($fullPath)) {
       require_once($fullPath);

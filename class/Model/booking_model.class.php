@@ -1,6 +1,6 @@
 <?php
 
-require_once "dbh.class.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/class/Model/dbh.class.php";
 class Booking_Model extends Dbh
 {
     private static  $instance;

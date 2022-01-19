@@ -3,14 +3,10 @@
     require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
 
     $error = '';
-//echo "<pre>";
-//print_r($_POST);
-//echo "</pre>";
 
     if (isset($_POST['save'])){
 
-
-        $addministrator_controller = new Administrator_controller();
+        $addministrator_controller = new Administrator_Controller();
 
             $error = $addministrator_controller->editAdministratorConfigSettings(
                 $_POST['email'],
@@ -20,17 +16,11 @@
                 $_POST['device_id']
             );
 
-
-
-
     }
     if (isset($_POST['back'])){
         header("Location: ../administrator_home.php");
         return;
     }
-
-
-
 
 ?>
 <!DOCTYPE html>

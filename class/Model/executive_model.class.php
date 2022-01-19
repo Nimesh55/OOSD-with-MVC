@@ -1,5 +1,5 @@
 <?php
-require_once "dbh.class.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/class/Model/dbh.class.php";
 class Executive_Model extends Dbh
 {
     protected function getRecord($user_id)
@@ -140,7 +140,6 @@ class Executive_Model extends Dbh
         $stmt->execute([$file_no, $service_no]);
     }
     protected function checkPassword($user_id,$password){
-//        print_r($_SESSION);
         $query = "SELECT password FROM users WHERE user_Id=?";
         $stmt = $this->connect()->prepare($query);
         $stmt->execute([$user_id]);

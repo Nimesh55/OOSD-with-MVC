@@ -37,6 +37,10 @@
             <?php
             if (isset($_GET['error']) && strcmp($_GET['error'],"failed")==0) {
                 echo "<div class=\"alert alert-danger\"><strong>"."Verification Failed"."</strong></div>";
+            }else if (isset($_GET['error']) && strcmp($_GET['error'],"notfound")==0) {
+                echo "<div class=\"alert alert-danger\"><strong>"."Account Not Found"."</strong></div>";
+            }else if (isset($_GET['error']) && strcmp($_GET['error'],"unchangerble")==0) {
+                echo "<div class=\"alert alert-danger\"><strong>"."This is Password Unchangerble account"."</strong></div>";
             }
             ?>
             <form class="form-horizontal" role="form" action="includes/forget_password.inc.php" method="post">

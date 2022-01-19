@@ -15,10 +15,6 @@ $service_file = File_Controller::getInstance()->getFileDetails($exec_view->getSe
 
 $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
 
-//echo "<pre>";
-//print_r($contactdetails);
-//echo "</pre>";
-
 ?>
 
 <!DOCTYPE html>

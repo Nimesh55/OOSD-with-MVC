@@ -61,7 +61,6 @@ class Passenger_Controller extends Passenger_Model
     }
     public function unSetPassengerCompanyDetails()
     {
-        //parent::unSetCompanyDetails(); 
         $this->unSetCompanyDetails();
 
         //Removes related Passes

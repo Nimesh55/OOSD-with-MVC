@@ -59,9 +59,16 @@ class Passenger_Tracker extends Tracker
     {
         $passengers_in_service = array();
         $passengers_in_company_details = $this->passenger_ctrl->getAllPassengersInService($service_no);
-        foreach ($passengers_in_company_details as $passenger_details) {
-            array_push($passengers_in_service, $this->getPassengerByPassengerNo($passenger_details['passenger_no']));
+
+        $my_iterator = new My_Iterator($passengers_in_company_details);
+        for(;$my_iterator->valid();$my_iterator->next()){
+            array_push($passengers_in_service, $this->getPassengerByPassengerNo($my_iterator->current()['passenger_no']));
         }
+
+//        foreach ($passengers_in_company_details as $passenger_details) {
+//            array_push($passengers_in_service, $this->getPassengerByPassengerNo($passenger_details['passenger_no']));
+//        }
+
         return $passengers_in_service;
     }
 

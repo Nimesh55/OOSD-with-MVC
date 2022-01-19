@@ -1,6 +1,6 @@
 <?php
 
-require_once "dbh.class.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/class/Model/dbh.class.php";
 class Service_Model extends Dbh
 {
     private static  $instance;
@@ -24,7 +24,6 @@ class Service_Model extends Dbh
         return $record;
     }
 
-    //This method can be in tracker class
     public function addService($details)
     {
         $sql = "INSERT INTO service (id, name, state) VALUES (:id, :name, :stat)";

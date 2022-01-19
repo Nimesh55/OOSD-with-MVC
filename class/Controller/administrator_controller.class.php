@@ -1,6 +1,6 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
-  class Administrator_controller extends Administrator_model
+  class Administrator_Controller extends Administrator_Model
   {
     private $transportBoardAdministrator;
 

@@ -1,7 +1,7 @@
 <?php 
 
 require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
-require_once "dbh.class.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/class/Model/dbh.class.php";
 
 class Conductor_Model extends Dbh{ // ## make the methods protected
     private $record;

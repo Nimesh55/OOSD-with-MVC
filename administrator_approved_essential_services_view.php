@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_Id'])) {
 
 if (isset($_POST['view'])) {
     $id =$_POST['view'];
-    $view = new Administrator_view();
+    $view = new Administrator_View();
     $rows = $view->fetchDetails($id);
     $service_no = $rows['service_no'];
     $service_id = $rows['id'];

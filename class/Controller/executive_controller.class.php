@@ -143,6 +143,8 @@ class Executive_Controller extends Executive_Model
             $_SESSION["error"] = 'Invalid passenger count. Enter valid passenger count and try again';
         }elseif ($details['passenger_count']<0 || $details['passenger_count']>30){
             $_SESSION["error"] = 'Passenger count must be in between 0 and 30. Enter valid passenger count and try again';
+        }elseif (!is_numeric($details['start_time']) or !is_numeric($details['end_time'])) {
+            $_SESSION["error"] = 'Enter a valid number in passenger count';
         }
 
         if(isset($_SESSION["error"]))
@@ -164,15 +166,12 @@ class Executive_Controller extends Executive_Model
 
     public function setEssentialServiceState($state, $service_no)
     {
-        //print_r($_FILES);
-        //exit();
         if(isset($_FILES["file"]) && $_FILES['file']['name']!=null){
             $last_no = File_Controller::getInstance()->uploadFile();
             EssentialServiceTracker::getInstance()->setFileNo($last_no,$service_no);
         }else{
             EssentialServiceTracker::getInstance()->setFileNo(null,$service_no);
         }
-        //echo "s=".$state." & ser no=".$service_no;
         EssentialServiceTracker::getInstance()->setState($state, $service_no);
     }
 
@@ -201,7 +200,6 @@ class Executive_Controller extends Executive_Model
     }
 
     public function checkExecutivePassword($user_id,$password){
-//        $this->checkPassword($password);
         return $this->checkPassword($user_id,$password);
     }
 }
