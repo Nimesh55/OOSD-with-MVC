@@ -130,7 +130,6 @@ class Executive_Controller extends Executive_Model
     }
 
     public function validateRequestBooking($details){
-
         if(empty($details['reason'])||empty($details['start_date'])||empty($details['end_date'])||empty($details['start_time'])||
             empty($details['end_time'])||empty($details['pickup_district'])||empty($details['destination_district'])||
             empty($details['destination_location'])||empty($details['passenger_count'])){
@@ -139,12 +138,10 @@ class Executive_Controller extends Executive_Model
             $_SESSION["error"] = 'Invalid dates. Check your dates again and try again';
         }elseif (strtotime($details['start_time'])>strtotime($details['end_time'])){
             $_SESSION["error"] = 'Invalid times. Check your times again and try again';
-        }elseif (is_numeric( $details['passenger_count'] ) && floor( $details['passenger_count'] ) != $details['passenger_count']){
+        }elseif (!is_numeric($details['passenger_count'])){
             $_SESSION["error"] = 'Invalid passenger count. Enter valid passenger count and try again';
         }elseif ($details['passenger_count']<0 || $details['passenger_count']>30){
             $_SESSION["error"] = 'Passenger count must be in between 0 and 30. Enter valid passenger count and try again';
-        }elseif (!is_numeric($details['start_time']) or !is_numeric($details['end_time'])) {
-            $_SESSION["error"] = 'Enter a valid number in passenger count';
         }
 
         if(isset($_SESSION["error"]))
