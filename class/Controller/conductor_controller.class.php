@@ -60,7 +60,7 @@ class Conductor_Controller extends Conductor_Model
 
         if (empty($pass_details_array)) {
             $error = "Pass Doesn't Exist!!";
-            header("Location: conductor_verify_passenger.php?show='{$error}'");
+            header("Location: conductor_verify_passenger.php?show=$error");
             return;
         }
     }
