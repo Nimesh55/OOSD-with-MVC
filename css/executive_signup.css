@@ -30,15 +30,19 @@ body {
     text-align: center;
 }
 
-.btn{
-    font-weight: bold;
-    margin-top: 3%;
-    width: 20%;
-    border-radius: 2%;
-    color: aliceblue;
-    padding: 1.1%;
-    background:#2961aa;
+.button{
+    text-align: center;
 }
+
+/*.btn{*/
+/*    font-weight: bold;*/
+/*    margin-top: 3%;*/
+/*    width: 20%;*/
+/*    border-radius: 2%;*/
+/*    color: aliceblue;*/
+/*    padding: 1.1%;*/
+/*    background:#2961aa;*/
+/*}*/
 
 .btn:hover, .btn:active {
     background:#08274e;

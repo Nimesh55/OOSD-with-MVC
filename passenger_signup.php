@@ -52,6 +52,8 @@ if (isset($_GET['error'])) {
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 </head>
 
 <body>
@@ -118,25 +120,31 @@ if (isset($_GET['error'])) {
         <div class="row">
             <div class="col-sm-6">
                 <div class="input-group">
-                    <input class="text form-control" type="password" name="password" placeholder="Password">
+                    <input class="text form-control new_pwd" type="password" name="password" placeholder="Password">
                     <span class="input-group-btn">
-                                        <button class="form-control btn btn-default reveal" type="button"><i
+                                        <button class="btn btn-default reveal_2" type="button"><i
                                                     class="glyphicon glyphicon-eye-open"></i></button>
                                     </span>
                 </div>
             </div>
             <div class="col-sm-6">
-                <input class="text w3lpass form-control" type="password" name="passwordrepeat"
-                       placeholder="Confirm Password">
+                <div class="input-group">
+                    <input class="text w3lpass form-control retype_pwd" type="password" name="passwordrepeat"
+                           placeholder="Confirm Password">
+                    <span class="input-group-btn">
+                                        <button class="btn btn-default reveal_3" type="button"><i
+                                                    class="glyphicon glyphicon-eye-open"></i></button>
+                                    </span>
+                </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4">
-                <input class="btn btn-primary btn-block" type="submit" name="submit" value="SIGNUP">
-            </div>
-            <div class="col-sm-4"></div>
+        <br>
+        <div class="button">
+
+            <input class="btn btn-primary submit_button" type="submit" name="submit" value="SIGNUP">
+
+
         </div>
         <?php if (isset($_GET['src']) && $_GET['src'] == 1) : ?>
             <? $service_no = $_SESSION['service_no']; ?>
@@ -159,6 +167,7 @@ if (isset($_GET['error'])) {
     </div>
 
 </div>
+<script src="js/change_pwd.js"></script>
 </body>
 
 </html>
