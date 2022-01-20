@@ -16,12 +16,15 @@ a{
     font-weight: bold;
     font-size: 100%;
     text-decoration:  none!important;
+
 }
 
 a:hover{
     text-decoration: none !important;
-    color: royalblue;
+    font-size: 110%;
+    color: #e14166 !important;
     opacity: 1;
+
 }
 .photo{
     background-color: aliceblue;
@@ -31,11 +34,14 @@ a:hover{
     text-align: center;
     border-radius: 15px;
     margin-top: 10%;
+    opacity: 0.6;
 }
-
+.photo:hover{
+    opacity: 1;
+}
 .selection{
     display: inline-block;
-    background-color: #d5d56e;
+    /*background-color: #d5d56e;*/
     margin-right: 10px;
     opacity: 0.6;
     border-radius: 15px;
