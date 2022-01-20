@@ -100,8 +100,8 @@ h1{
   animation-duration: 4s;
 }
 @keyframes example {
-  from {font-size: 0;color: black;}
-  to {font-size: 75px;color: aliceblue;}
+  from {opacity: 0;color: black;}
+  to {opacity: 0.94;color: aliceblue;}
 }
 .heading{
   padding: 1%;
