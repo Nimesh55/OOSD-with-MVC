@@ -9,7 +9,7 @@ body{
     background-color: rgb(44, 44, 37);
     padding: 3%; 
     
-    margin-top: 5%;
+    margin-top: 1%;
     border-style: ridge;
     border: 2px solid whitesmoke;
     border-radius: 10px;
@@ -44,3 +44,12 @@ body{
   .col-sm-2{
       text-align: center !important;
   }
+
+.heading{
+    padding:15px 0;
+    color:aliceblue;
+    /*text-align: center;*/
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 0 0 3px #000000, 0 0 3px rgb(44, 44, 37);
+    /*color: white;*/
+}
