@@ -6,15 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Select account type</title>
     <link rel="stylesheet" href="css/account_type.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-<div class="main-win">
-    <form method="post">
-        <h1 class="title">Select Account type for Sign Up</h1>
-        <div class="main-buttons">
-            <!--            <input type="button" value="Executive" onclick="location.href='executive_signup.php'" class="button01">-->
-            <!--            <input type="button" value="Passenger" onclick="location.href='passenger_signup.php'" class="button02">-->
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6 wrapper">
+
+            <h1 class="title">Select Account type for Sign Up</h1>
+
             <div class="selection">
                 <a href="executive_signup.php">
                     <figure>
@@ -32,13 +37,17 @@
                     </figure>
                 </a>
             </div>
+
             <br>
             <br>
             If you have an account <a href="login.php">Login here</a>
         </div>
+        <div class="col-sm-3"></div>
+    </div>
 
-    </form>
 </div>
+</div>
+
 
 </body>
 </html>

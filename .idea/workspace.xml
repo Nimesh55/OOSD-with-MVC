@@ -5,8 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/account_type.php" beforeDir="false" afterPath="$PROJECT_DIR$/account_type.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/account_type.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/account_type.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/passenger_home.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/passenger_home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/passenger_register_in_company.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/passenger_register_in_company.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/emailLog.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/emailLog.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/smsLog.Log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/smsLog.Log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/passenger_home.php" beforeDir="false" afterPath="$PROJECT_DIR$/passenger_home.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,7 +122,8 @@
       <workItem from="1642606964658" duration="5562000" />
       <workItem from="1642614969668" duration="7997000" />
       <workItem from="1642674757441" duration="12507000" />
-      <workItem from="1642695553754" duration="2694000" />
+      <workItem from="1642695553754" duration="3430000" />
+      <workItem from="1642700972834" duration="1450000" />
     </task>
     <servers />
   </component>
