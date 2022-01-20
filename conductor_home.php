@@ -27,6 +27,10 @@ $_SESSION["username"] = $username;
     <link rel="stylesheet" href="css/passenger_home.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
     <title>Conductor Home</title>
 </head>
 
@@ -68,7 +72,11 @@ $_SESSION["username"] = $username;
     </div>
 
     <div class="container">
-        <h1 id="heading"> <?= $username; ?> </h1>
+        
+        <div class="heading">
+            <h1> <?= $username; ?> </h1>
+        </div>
+        
         <div class="row">
             <div class="col-lg-3"></div>
             <div class="col-lg-6 wrapper">
