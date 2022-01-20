@@ -5,9 +5,6 @@ $error = '';
 $passenger_controller = new Passenger_Controller();
 if (isset($_POST['request'])){
     if (empty($_POST['staff_id'])){
-        echo "<pre>";
-        print_r($_POST);
-        echo "</pre>";
         $error = "identified";
     }else {
         $passenger_controller->setPassengerCompanyDetails($_POST['service_no'], $_POST['staff_id']);
