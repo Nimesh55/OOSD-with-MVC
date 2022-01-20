@@ -14,9 +14,11 @@ class Board_Manager_View extends Board_Manager_Model
     {
         $details = array(
             "name" => $this->board_manager->getName(),
-            "pending_passes_cnt" => $this->getPendingPassesCnt(),
-            "approved_passes_cnt" => $this->getApprovedPassesCount(),
-            "total_conductor_cnt" => $this->getConductorCount(),
+            "pending_passes_cnt" => $this->getPendingPassesCountFromModel(),
+            "approved_passes_cnt" => $this->getApprovedPassesCountFromModel(),
+            "pending_bookings_cnt" => $this->getPendingBookingsCountFromModel(),
+            "active_bookings_cnt" => $this->getActiveBookingsCountFromModel(),
+            "total_conductor_cnt" => Conductor_Tracker::getInstance()->getConductorCount(),
             "available_conductor_cnt_today" => Conductor_Tracker::getInstance()->getConductorCountToday()
         );
         return $details;

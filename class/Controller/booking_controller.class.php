@@ -81,10 +81,13 @@ class Booking_Controller extends Booking_Model{
     public function cancelBooking($booking_no)
     {
         $this->updateFlag_Booking_Cancel($booking_no);
-        return;
     }
 
     public function getDistrictName($district_no){
         return $this->getDistrictName_model($district_no);
+    }
+
+    public function allocateConductorForBooking($booking_no, $conductor_no){
+        $this->allocateConductorForBookingFromModel($booking_no, $conductor_no);
     }
 }

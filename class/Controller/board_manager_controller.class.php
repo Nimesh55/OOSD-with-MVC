@@ -116,8 +116,8 @@ class Board_Manager_Controller extends Board_Manager_Model
             }
         }
         if($available){
-            $this->allocateConductorForBookingFromModel($booking_no,$conductor_no);
             $booking_tracker = Booking_Tracker::getInstance();
+            $booking_tracker->allocateConductorForBooking($booking_no,$conductor_no);
             $booking = $booking_tracker->getBooking($booking_no);
             $executive = $booking_tracker->getExecutiveFromBookingNumber($booking_no);
             $service = $booking_tracker->getServiceFromBookingNumber($booking_no);
