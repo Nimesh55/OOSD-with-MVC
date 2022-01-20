@@ -10,7 +10,7 @@ body{
     background-color: rgb(44, 44, 37);
     padding: 5%; 
     
-    margin-top: 8%;
+    margin-top: 3%;
     border-style: ridge;
     border: 2px solid whitesmoke;
     border-radius: 10px;
@@ -23,10 +23,18 @@ body{
 
 .row{
     color: aliceblue;
-    word-spacing: 2x;
+    word-spacing: 2px;
 }
 
 .alert{
     padding: 1%;
     text-align: center;
 }
+
+.heading{
+    padding:15px 0;
+    color:aliceblue;
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 0 0 3px #000000, 0 0 3px rgb(44, 44, 37);
+}
+

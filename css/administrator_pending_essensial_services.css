@@ -12,9 +12,11 @@
     border: 2px solid whitesmoke;
     /*opacity: 0.95;*/
 }
-#heading{
+.heading{
     padding:15px 0;
+    color:aliceblue;
     font-family: 'Roboto', sans-serif;
+    text-shadow: 0 0 3px #000000, 0 0 3px rgb(44, 44, 37);
 }
 .field{
     text-align: left;
@@ -28,9 +30,7 @@ body{
 
     background-color: #560059;
 }
-h1{
-    color: antiquewhite;
-}
+
 
 .data{
     text-align: left;

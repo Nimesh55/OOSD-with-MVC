@@ -24,6 +24,9 @@ $rows = $view->getApprovedRows(); // getpending rows
     <link rel="stylesheet" href="css/administrator_pending_essensial_services.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
     <title>Administrator Approved Essential Services</title>
 </head>
 
@@ -62,7 +65,9 @@ $rows = $view->getApprovedRows(); // getpending rows
 
     <!-- List Viw with two buttons -->
     <div class="container">
-        <h1 id="heading">Approved Essential Services</h1>
+        <div class="heading">
+            <h1>Approved Essential Services</h1>
+        </div>
         <div class="wrapper">
         <table class="table">
             <thead>
