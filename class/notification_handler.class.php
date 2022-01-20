@@ -113,8 +113,9 @@ class Notification_handler
 
 
             case 8: {
-                    $msg = "A vehicle is allocated to your Service: " . $param[1] . "\nBooking Id: " . $param[2] . "\nVechicle No: " . $param[3] . "\nNumber of seats: " . $param[4] . "\nPickUp Point: " . $param[5] . "\nDestination: " . $param[6];
+                    $msg = "A vehicle is allocated to your Service: " . $param[1] . "\nBooking Id: " . $param[2] . "\nVechicle No: " . $param[3] . "\nConductor's Name: " . $param[7] . "\nConductor's Telephone Number: " . $param[8] . "\nNumber of seats: " . $param[4] . "\nPickUp Point: " . $param[5] . "\nDestination: " . $param[6] ."\nNumber of Passengers: " . $param[9]  ;
                     $emailSubject = "Booking Confirmed";
+                    break;
                 }
 
 
