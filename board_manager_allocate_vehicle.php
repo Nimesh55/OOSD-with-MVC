@@ -25,15 +25,13 @@ $declined_bookings = array();
 $cancelled_bookings = array();
 
 foreach ($bookings as $booking) {
-    if ($booking->getState()==0 && $booking->getflag() == 0) {
+    if ($booking->getState() == 0 && $booking->getflag() == 0) {
         array_push($pending_bookings, $booking);
-    }
-    elseif ($booking->getState()==1) {
+    } elseif ($booking->getState() == 1) {
         array_push($approved_bookings, $booking);
-    }
-    elseif ($booking->getState()==0 && $booking->getflag() == 1) {
+    } elseif ($booking->getState() == 0 && $booking->getflag() == 1) {
         array_push($cancelled_bookings, $booking);
-    }else{
+    } else {
         array_push($declined_bookings, $booking);
     }
 }
@@ -94,7 +92,7 @@ foreach ($bookings as $booking) {
     </div>
     </div>
 
-    <?php if(isset($_SESSION['success'])): ?>
+    <?php if (isset($_SESSION['success'])) : ?>
         <div class="alert alert-success tob_bar_alert"><strong><?= $_SESSION['success'] ?></strong></div>
     <?php endif; ?>
 
@@ -145,7 +143,11 @@ foreach ($bookings as $booking) {
                         <li class="active"><a href="#pending" data-toggle="tab">Pending</a></li>
                         <li><a href="#approved" data-toggle="tab">Approved</a></li>
                         <li><a href="#expired" data-toggle="tab">Expired/Declined</a></li>
-                        <li><a href="#declined" data-toggle="tab">Cancelled Bookings</a></li>
+                        <?php if (count($cancelled_bookings) > 0) : ?>
+                            <li><a href="#declined" data-toggle="tab" class="redDot"><span class="glyphicon glyphicon-exclamation-sign redDot"></span> Cancelled Bookings</a></li>
+                        <?php else : ?>
+                            <li><a href="#declined" data-toggle="tab">Cancelled Bookings</a></li>
+                        <?php endif; ?>
                     </ul>
 
 
@@ -157,33 +159,33 @@ foreach ($bookings as $booking) {
 
                                     <table class="table">
                                         <thead>
-                                        <tr>
-                                            <th scope="col">Booking No.</th>
-                                            <th scope="col">Service Name</th>
-                                            <th scope="col">Passenger Count</th>
-                                            <th scope="col">View Details</th>
+                                            <tr>
+                                                <th scope="col">Booking No.</th>
+                                                <th scope="col">Service Name</th>
+                                                <th scope="col">Passenger Count</th>
+                                                <th scope="col">View Details</th>
 
 
-                                        </tr>
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                        <?php
-                                        $row = 0;
-                                        foreach ($pending_bookings as $booking) :
-                                            $service = EssentialServiceTracker::getInstance()->getServiceName($booking->getServiceNo());
-                                            $passenger_cnt = $booking->getPassengerCount();
-                                            $row++;
+                                            <?php
+                                            $row = 0;
+                                            foreach ($pending_bookings as $booking) :
+                                                $service = EssentialServiceTracker::getInstance()->getServiceName($booking->getServiceNo());
+                                                $passenger_cnt = $booking->getPassengerCount();
+                                                $row++;
                                             ?>
-                                            <tr>
+                                                <tr>
 
-                                                <th scope="row"><?= $row ?></th>
-                                                <td><?= $service ?></td>
-                                                <td><?= $passenger_cnt ?></td>
-                                                <td>
-                                                    <a class="btn btn-primary" href="board_manager_allocate_vehicle_view.php?booking_no=<?= $booking->getBookingNo() ?>">View</a>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
+                                                    <th scope="row"><?= $row ?></th>
+                                                    <td><?= $service ?></td>
+                                                    <td><?= $passenger_cnt ?></td>
+                                                    <td>
+                                                        <a class="btn btn-primary" href="board_manager_allocate_vehicle_view.php?booking_no=<?= $booking->getBookingNo() ?>">View</a>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
 
                                         </tbody>
                                     </table>
@@ -199,33 +201,33 @@ foreach ($bookings as $booking) {
                                 <ul class="list-group action-list-group">
                                     <table class="table">
                                         <thead>
-                                        <tr>
-                                            <th scope="col">Booking Number</th>
-                                            <th scope="col">Service Name</th>
-                                            <th scope="col">Passenger Count</th>
-                                            <th scope="col">View Details</th>
+                                            <tr>
+                                                <th scope="col">Booking Number</th>
+                                                <th scope="col">Service Name</th>
+                                                <th scope="col">Passenger Count</th>
+                                                <th scope="col">View Details</th>
 
 
-                                        </tr>
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                        <?php
-                                        $row = 0;
-                                        foreach ($approved_bookings as $booking) :
-                                            $service = EssentialServiceTracker::getInstance()->getServiceName($booking->getServiceNo());
-                                            $passenger_cnt = $booking->getPassengerCount();
-                                            $row++;
+                                            <?php
+                                            $row = 0;
+                                            foreach ($approved_bookings as $booking) :
+                                                $service = EssentialServiceTracker::getInstance()->getServiceName($booking->getServiceNo());
+                                                $passenger_cnt = $booking->getPassengerCount();
+                                                $row++;
                                             ?>
-                                            <tr>
+                                                <tr>
 
-                                                <th scope="row"><?= $row ?></th>
-                                                <td><?= $service ?></td>
-                                                <td><?= $passenger_cnt ?></td>
-                                                <td>
-                                                    <a class="btn btn-primary" href="board_manager_allocate_vehicle_view.php?booking_no=<?= $booking->getBookingNo() ?>">View</a>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
+                                                    <th scope="row"><?= $row ?></th>
+                                                    <td><?= $service ?></td>
+                                                    <td><?= $passenger_cnt ?></td>
+                                                    <td>
+                                                        <a class="btn btn-primary" href="board_manager_allocate_vehicle_view.php?booking_no=<?= $booking->getBookingNo() ?>">View</a>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
 
                                         </tbody>
                                     </table>
@@ -240,33 +242,33 @@ foreach ($bookings as $booking) {
                                 <ul class="list-group action-list-group">
                                     <table class="table">
                                         <thead>
-                                        <tr>
-                                            <th scope="col">Booking Number</th>
-                                            <th scope="col">Service Name</th>
-                                            <th scope="col">Passenger Count</th>
-                                            <th scope="col">View Details</th>
+                                            <tr>
+                                                <th scope="col">Booking Number</th>
+                                                <th scope="col">Service Name</th>
+                                                <th scope="col">Passenger Count</th>
+                                                <th scope="col">View Details</th>
 
 
-                                        </tr>
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                        <?php
-                                        $row = 0;
-                                        foreach ($declined_bookings as $booking) :
-                                            $service = EssentialServiceTracker::getInstance()->getServiceName($booking->getServiceNo());
-                                            $passenger_cnt = $booking->getPassengerCount();
-                                            $row++;
+                                            <?php
+                                            $row = 0;
+                                            foreach ($declined_bookings as $booking) :
+                                                $service = EssentialServiceTracker::getInstance()->getServiceName($booking->getServiceNo());
+                                                $passenger_cnt = $booking->getPassengerCount();
+                                                $row++;
                                             ?>
-                                            <tr>
+                                                <tr>
 
-                                                <th scope="row"><?= $row ?></th>
-                                                <td><?= $service ?></td>
-                                                <td><?= $passenger_cnt ?></td>
-                                                <td>
-                                                    <a class="btn btn-primary" href="board_manager_allocate_vehicle_view.php?booking_no=<?= $booking->getBookingNo() ?>">View</a>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
+                                                    <th scope="row"><?= $row ?></th>
+                                                    <td><?= $service ?></td>
+                                                    <td><?= $passenger_cnt ?></td>
+                                                    <td>
+                                                        <a class="btn btn-primary" href="board_manager_allocate_vehicle_view.php?booking_no=<?= $booking->getBookingNo() ?>">View</a>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
 
                                         </tbody>
                                     </table>
@@ -281,33 +283,33 @@ foreach ($bookings as $booking) {
                                 <ul class="list-group action-list-group">
                                     <table class="table">
                                         <thead>
-                                        <tr>
-                                            <th scope="col">Booking Number</th>
-                                            <th scope="col">Service Name</th>
-                                            <th scope="col">Passenger Count</th>
-                                            <th scope="col">View Details</th>
+                                            <tr>
+                                                <th scope="col">Booking Number</th>
+                                                <th scope="col">Service Name</th>
+                                                <th scope="col">Passenger Count</th>
+                                                <th scope="col">View Details</th>
 
 
-                                        </tr>
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                        <?php
-                                        $row = 0;
-                                        foreach ($cancelled_bookings as $booking) :
-                                            $service = EssentialServiceTracker::getInstance()->getServiceName($booking->getServiceNo());
-                                            $passenger_cnt = $booking->getPassengerCount();
-                                            $row++;
+                                            <?php
+                                            $row = 0;
+                                            foreach ($cancelled_bookings as $booking) :
+                                                $service = EssentialServiceTracker::getInstance()->getServiceName($booking->getServiceNo());
+                                                $passenger_cnt = $booking->getPassengerCount();
+                                                $row++;
                                             ?>
-                                            <tr>
+                                                <tr>
 
-                                                <th scope="row"><?= $row ?></th>
-                                                <td><?= $service ?></td>
-                                                <td><?= $passenger_cnt ?></td>
-                                                <td>
-                                                    <a class="btn btn-primary" href="board_manager_allocate_vehicle_view.php?booking_no=<?= $booking->getBookingNo() ?>">View</a>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
+                                                    <th scope="row"><?= $row ?></th>
+                                                    <td><?= $service ?></td>
+                                                    <td><?= $passenger_cnt ?></td>
+                                                    <td>
+                                                        <a class="btn btn-primary" href="board_manager_allocate_vehicle_view.php?booking_no=<?= $booking->getBookingNo() ?>">View</a>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
 
                                         </tbody>
                                     </table>
@@ -327,4 +329,4 @@ foreach ($bookings as $booking) {
 </body>
 
 </html>
-<?php unset($_SESSION['success']);?>
+<?php unset($_SESSION['success']); ?>

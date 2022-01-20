@@ -30,3 +30,7 @@ body{
     font-family: 'Roboto', sans-serif;
     text-shadow: 0 0 3px #000000, 0 0 3px rgb(44, 44, 37);
 }
+
+.redDot{
+    color: rgb(206, 52, 52);
+}
