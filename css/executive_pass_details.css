@@ -43,7 +43,8 @@ body{
     text-align: right;
 }
 .addnewpass{
-    width: 15%;
+    width: 25%;
+    overflow: hidden;
 }
 table,tr,th,td{
     text-align: left;

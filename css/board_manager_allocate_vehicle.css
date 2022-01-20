@@ -6,9 +6,9 @@ body{
 
 
 .wrapper{
-    width: 50%;
+    /*width: 50%;*/
     background-color: rgb(39, 39, 32);
-    padding: 3%; 
+    padding: 5%;
     color: aliceblue;
     margin-top: 3%;
     border-style: ridge;
