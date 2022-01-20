@@ -12,16 +12,11 @@
     border: 2px solid whitesmoke;
     /*opacity: 0.95;*/
 }
-#heading{
+.heading{
     padding:15px 0;
+    color:aliceblue;
     font-family: 'Roboto', sans-serif;
-    color: aliceblue;
-    /*background-color: #03060D;*/
-    /*text-align: center;*/
-}
-.heading_container{
-    background-color: #080808;
-    margin: -20px 15px 0 0;
+    text-shadow: 0 0 3px #000000, 0 0 3px rgb(44, 44, 37);
 }
 .field{
     text-align: left;
@@ -34,9 +29,6 @@ body{
     background-size: cover;
 
     background-color: #560059;
-}
-h1{
-    color: antiquewhite;
 }
 
 .data{

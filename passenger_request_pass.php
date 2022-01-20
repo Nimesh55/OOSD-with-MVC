@@ -98,8 +98,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="js/upload.js"></script>
-
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
@@ -147,10 +145,11 @@
         </div>
     </div>
 
-    <div class="container heading">
-        <h1>Request Pass</h1>
-    </div>
+
     <div class="container">
+        <div class="heading">
+            <h1>Request Pass</h1>
+        </div>
         <div class="row">
             <div class="col-lg-3 cyan"></div>
             <div class="col-lg-6 pink wrapper">

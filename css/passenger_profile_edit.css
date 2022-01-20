@@ -11,10 +11,9 @@
 }
 .heading{
   padding:15px 0;
-  /*text-align: center;*/
+  color:aliceblue;
   font-family: 'Roboto', sans-serif;
-  color: aliceblue;
-  /*color:black;*/
+  text-shadow: 0 0 3px #000000, 0 0 3px rgb(44, 44, 37);
 }
 body{
   /*background: #081645 url(../img/login2.jpg);*/
