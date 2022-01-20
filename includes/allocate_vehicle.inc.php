@@ -20,5 +20,4 @@ if ($action == 0) {
     $board_manager_ctrl = new Board_Manager_Controller();
     $board_manager_ctrl->allocateConductorForBooking($bookingNo, $param_2);
 
-    header("Location: ../board_manager_allocate_vehicle.php");
 }
