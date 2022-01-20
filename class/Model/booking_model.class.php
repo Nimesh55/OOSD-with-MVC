@@ -123,7 +123,7 @@ class Booking_Model extends Dbh
     {
         if ($type == 'booked') {
             $query = "SELECT booking_no FROM conductor JOIN booking ON conductor.conductor_no=booking.booked_conductor_no 
-                WHERE booking.start_date<='{$date}' AND booking.end_date>='{$date}' AND conductor.conductor_no=$conductor_no";
+                WHERE booking.start_date<='{$date}' AND booking.end_date>='{$date}' AND conductor.conductor_no=$conductor_no AND booking.flag=0";
             $stmt = $this->connect()->prepare($query);
             $stmt->execute();
             $booking_details = $stmt->fetchAll(PDO::FETCH_ASSOC);
