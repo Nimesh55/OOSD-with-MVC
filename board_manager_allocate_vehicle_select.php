@@ -66,51 +66,62 @@ $bookingNo = $_GET['booking_no'];
         </div>
     </div>
 
-    <div class="container mt-3" id="contanier-data">
-        <!--Show error in $_SESSION['error'] here-->
-        <?php
-        if (isset($_SESSION['error'])) {
-            echo $_SESSION['error'];
-        }
-        ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <div class="wrapper" >
+                    <!--Show error in $_SESSION['error'] here-->
+                    <?php
+                    if (isset($_SESSION['error'])) {
+                        echo $_SESSION['error'];
+                    }
+                    ?>
 
 
-        <div class="list-group">
-            <h2>Select a available vehicle</h2>
-            <br>
+                    <div class="list-group">
+                        <div class="heading">
+                            <h2>Select a available vehicle</h2>
+                        </div>
+                        <br>
 
 
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Vehicle Number</th>
-                            <th>Available Seats</th>
-                            <th>Allocate</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $row = 0;
-                        foreach ($available_vehicles as $cur) :
-                            $row++;
-                        ?>
+                        <table class="table">
+                            <thead>
                             <tr>
+                                <th>No.</th>
+                                <th>Vehicle Number</th>
+                                <th>Available Seats</th>
+                                <th>Allocate</th>
 
-                                <td><?php echo $row; ?></td>
-                                <td><?php echo $cur->getVehicleNo(); ?></td>
-                                <td><?php echo $cur->getSeatNo(); ?></td>
-                                <td>
-                                    <a href="#" class="btn btn-info" onclick="clickView('2-<?php echo $bookingNo; ?>-<?php echo $cur->getConductorNo() ;?>','includes/allocate_vehicle.inc.php')"> Allocate </a>
-                                </td>
                             </tr>
-                        <?php endforeach; ?>
+                            </thead>
+                            <tbody>
+                            <?php $row = 0;
+                            foreach ($available_vehicles as $cur) :
+                                $row++;
+                                ?>
+                                <tr>
 
-                    </tbody>
-                </table>
+                                    <td><?php echo $row; ?></td>
+                                    <td><?php echo $cur->getVehicleNo(); ?></td>
+                                    <td><?php echo $cur->getSeatNo(); ?></td>
+                                    <td>
+                                        <a href="#" class="btn btn-info" onclick="clickView('2-<?php echo $bookingNo; ?>-<?php echo $cur->getConductorNo() ;?>','includes/allocate_vehicle.inc.php')"> Allocate </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
 
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3"></div>
         </div>
     </div>
+
 </body>
 
 </html>

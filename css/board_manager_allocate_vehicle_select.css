@@ -5,16 +5,19 @@ body{
     color: aliceblue;
 }
 
-.container{
+.wrapper{
     padding: 2%;
-    width: 50%;
+    /*width: 50%;*/
     background-color: black;
     border-radius: 15px;
-    text-align: center;
+    text-align: left;
     border-style: ridge;
     border: 2px solid whitesmoke;
 }
 
 .btn-primary{
     width: 50%;
+}
+.heading{
+    text-align: center;
 }

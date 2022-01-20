@@ -16,3 +16,5 @@ logs/
 class/dbh.class.php
 class/dbh.class.php
 *.xml
+class/Model/dbh.class.php
+.idea/workspace.xml
