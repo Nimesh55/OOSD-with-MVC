@@ -35,6 +35,10 @@ foreach ($passengers as $passenger) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/buttons.js"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
     <title>Executive Passenger Details</title>
 </head>
 
@@ -72,7 +76,9 @@ foreach ($passengers as $passenger) {
         </div>
     </div>
     <div class="container mt-3">
-
+        <div class="heading">
+            <h1>Passenger Details</h1>
+        </div>
         <div class="wrapper">
             <div class="addpassenger">
                 <a href="#" class="btn btn-info" onclick="clickView('<? echo $_SESSION['service_no']?>','passenger_signup.php?src=1')">+Create Passenger Acoount</a>

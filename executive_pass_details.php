@@ -37,6 +37,10 @@ foreach ($passDetailsArray as $cur) { // Seperated the Passes in to 3 array for 
     <link rel="stylesheet" href="css/executive_pass_details.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
     <title>Executive Pass Details</title>
 </head>
 
@@ -78,6 +82,11 @@ foreach ($passDetailsArray as $cur) { // Seperated the Passes in to 3 array for 
 
 
     <div class="container">
+
+        <div class="heading">
+            <h1>Pass Details</h1>
+        </div>
+
         <div class="wrapper">
             <div class="row addpass">
             <a href="executive_create_pass_manually.php" class="btn btn-info addnewpass" name="add_pass" > +Add pass </a>

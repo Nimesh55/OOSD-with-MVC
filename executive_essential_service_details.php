@@ -31,6 +31,10 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/buttons.js"></script>
     <script src="js/upload.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
     <title>Executive Essential Service Details</title>
 </head>
 
@@ -76,10 +80,14 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
         </div>
     </div>
     <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" action="includes/executive_essential_service_details.inc.php">
-    <div class="container">
-        <h1> <?= $_SESSION['service_name']; ?> </h1>
+        <div class="container">
 
-        <div class="row">
+            <div class="heading">
+                <h1> Essential Service Details </h1>
+            </div>
+            
+
+            <div class="row">
                 <div class="col-lg-2"></div>
                 <div class="col-lg-8 wrapper">
 
@@ -89,7 +97,7 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
                         </div>
                         <div class="col-sm-2 semicolen p-3">:</div>
                         <div class="col-sm-5 p-3 data">
-                            <p><?= $details['service_name']?> </p>
+                            <p><?= $details['service_name'] ?> </p>
                         </div>
                     </div>
 
@@ -99,7 +107,7 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
                         </div>
                         <div class="col-sm-2 semicolen p-3">:</div>
                         <div class="col-sm-5 p-3 data">
-                            <p><?= $state_str?> </p>
+                            <p><?= $state_str ?> </p>
                         </div>
                     </div>
 
@@ -109,7 +117,7 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
                         </div>
                         <div class="col-sm-2 semicolen p-3">:</div>
                         <div class="col-sm-5 p-3 data">
-                            <p><?= $contactdetails->getAddress();?> </p>
+                            <p><?= $contactdetails->getAddress(); ?> </p>
                         </div>
                     </div>
 
@@ -119,7 +127,7 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
                         </div>
                         <div class="col-sm-2 semicolen p-3">:</div>
                         <div class="col-sm-5 p-3 data">
-                            <p><?= $contactdetails->getTelephone();?> </p>
+                            <p><?= $contactdetails->getTelephone(); ?> </p>
                         </div>
                     </div>
 
@@ -130,26 +138,26 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
                         <div class="col-sm-2 semicolen p-3">:</div>
                         <div class="col-sm-5 p-3 data">
                             <div class="input-group">
-                            <?php if ($state_str == "Non-Essential") : ?>
-<!--                                <input type="file" class="form-control" id="file" name="file"/>-->
+                                <?php if ($state_str == "Non-Essential") : ?>
+                                    <!--                                <input type="file" class="form-control" id="file" name="file"/>-->
 
-                                <div class="input-group">
-                                    <input type="text" class="form-control" readonly>
-                                    <label class="input-group-btn">
-                                <span class="btn btn-primary">
-                                    Browse File <input type="file" id="file" name="file" style="display: none;">
-                                </span>
-                                    </label>
-                                </div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" readonly>
+                                        <label class="input-group-btn">
+                                            <span class="btn btn-primary">
+                                                Browse File <input type="file" id="file" name="file" style="display: none;">
+                                            </span>
+                                        </label>
+                                    </div>
 
-                            <?php elseif (($state_str == "Essential" || $state_str == "Pending") and $service_file==null) : ?>
-                                <input name="view" type="text" class="form-control" id="view" readonly value="No file added">
-                            <?php elseif(($state_str == "Essential" || $state_str == "Pending") and $service_file!=null) : ?>
-                                <input name="view" type="text" class="form-control" id="view" readonly value="<?= $service_file['name'] ?>">
-                            <div class="input-group-btn">
-                                <a class="btn btn-primary" href="includes/download.inc.php?name=<?php echo $service_file['name'];?>&fname=<?php echo $service_file['fname'] ?>">Download</a>
-                            </div>
-                            <?php endif; ?>
+                                <?php elseif (($state_str == "Essential" || $state_str == "Pending") and $service_file == null) : ?>
+                                    <input name="view" type="text" class="form-control" id="view" readonly value="No file added">
+                                <?php elseif (($state_str == "Essential" || $state_str == "Pending") and $service_file != null) : ?>
+                                    <input name="view" type="text" class="form-control" id="view" readonly value="<?= $service_file['name'] ?>">
+                                    <div class="input-group-btn">
+                                        <a class="btn btn-primary" href="includes/download.inc.php?name=<?php echo $service_file['name']; ?>&fname=<?php echo $service_file['fname'] ?>">Download</a>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -160,7 +168,7 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
 
                             <form action="includes/executive_essential_service_details.inc.php" method="POST">
                                 <input type="hidden" name="variablePass1" value="1-<?php echo $_SESSION['service_no'] ?>">
-                                <button class="btn btn-info btn-lg" type="submit" name="submit" value="Request" onclick="clickView('1-<?php echo $_SESSION['service_no'] ?>','includes/executive_essential_service_details.inc.php')" >Request</button>
+                                <button class="btn btn-info btn-lg" type="submit" name="submit" value="Request" onclick="clickView('1-<?php echo $_SESSION['service_no'] ?>','includes/executive_essential_service_details.inc.php')">Request</button>
                             </form>
 
                         <?php endif; ?>
@@ -177,7 +185,7 @@ $state_str = $exec_view->getEssentialServiceDetails($_SESSION['service_no']);
             </div>
         </div>
 
-    </div>
+        </div>
     </form>
 
 

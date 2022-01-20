@@ -7,14 +7,18 @@
     word-break: break-word;
     background-color: rgb(44, 44, 37);
     color: aliceblue;
-    margin-top:75px;
+    margin-top:25px;
     border-style: ridge;
     border: 2px solid whitesmoke;
     /*opacity: 0.95;*/
 }
-#heading{
+.heading{
     padding:15px 0;
+    color:aliceblue;
+    /*text-align: center;*/
     font-family: 'Roboto', sans-serif;
+    text-shadow: 0 0 3px #000000, 0 0 3px rgb(44, 44, 37);
+    /*color: white;*/
 }
 .field{
     text-align: left;
@@ -28,10 +32,6 @@ body{
 
     background-color: #560059;
 }
-h1{
-    color: antiquewhite;
-}
-
 .data{
     text-align: left;
 }
