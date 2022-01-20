@@ -1,6 +1,6 @@
 <?php
 // Controller in MVC
-class Signup_Controller extends Signup{
+class Signup_Controller extends Signup_Model {
     private $firstname ;
     private $lastname ;
     private $uid;

@@ -41,7 +41,7 @@ class Change_Password_Controller extends Password_Changer_Model{
                 exit();
             }
             if($forget==1){
-                header("location: ../login.php?error=none");
+                header("location: ../login.php?error=success");
                 exit();
             }
 

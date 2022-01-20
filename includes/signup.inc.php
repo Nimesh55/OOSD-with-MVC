@@ -10,9 +10,10 @@ if(isset($_POST['submit'])){
     $telephone = htmlentities($_POST["Telephone"]);
 
     // Instanciate Signup Controller in MVC
-    include "../class/dbh.class.php";
-    include "../class/signup.class.php";
-    include "../class/signup_controller.class.php";
+    require_once "../class/Model/dbh.class.php";
+    require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
+//    include "../class/signup.class.php";
+//    include "../class/signup_controller.class.php";
 
     //By throwing relevant values, make relevant signup class according to account type
     if($_GET['account_type']==0){

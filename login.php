@@ -24,7 +24,7 @@
 <body>
 <div class="fluid-container">
     <?php
-    if (isset($_GET['error']) && strcmp($_GET['error'], "none") == 0) {
+    if (isset($_GET['error']) && strcmp($_GET['error'], "success") == 0) {
         echo '<div class="alert alert-success fade in tob_bar_alert">';
         echo '<a href="#" class="close" data-dismiss="alert">&times;</a>';
         echo '<strong>Password Reseted Successfully!</strong>';
