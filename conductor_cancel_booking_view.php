@@ -83,7 +83,7 @@ if ($_GET["error"] != 'none') {
                 <div class="col-sm-2 p-2"></div>
                 <div class="col-sm-8 p-4">
                     <?php if ($state_query == 1) {
-                        echo "<div class=\"alert alert-danger\"><strong>" . $error . "</strong></div>";
+                        echo "<div class=\"alert alert-success\"><strong>" . $error . "</strong></div>";
                     } ?>
                 </div>
                 <div class="col-sm-2 p-3"></div>

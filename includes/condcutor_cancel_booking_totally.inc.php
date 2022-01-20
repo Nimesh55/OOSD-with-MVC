@@ -19,7 +19,7 @@ if (isset($_GET['booking_no'])) {
     $bookingObj = $conductor_ctrl->cancelBooking($booking_no);
 
     $error = "Booking Removed Succesfully!!";
-    header("Location: ../conductor_cancel_booking_view.php?booking_no='{$booking_no}'&error='{$error}'");
+    header("Location: ../conductor_cancel_booking_view.php?booking_no='{$booking_no}'&error=$error");
     return;
 }
 
