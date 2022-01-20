@@ -76,7 +76,9 @@ $bookingNo = $_GET['booking_no'];
 
 
         <div class="list-group">
-            <h2>Select a available vehicle</h2>
+            <div class="heading">
+                <h2>Select a available vehicle</h2>
+            </div>
             <br>
 
 
