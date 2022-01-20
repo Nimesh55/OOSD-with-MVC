@@ -7,29 +7,6 @@ body {
     text-align: center;
   }
 
-/*.main-win form{*/
-/*    background-color: rgb(44, 44, 37);*/
-/*    !*width: 40%;*!*/
-/*    display: inline-block;*/
-/*    margin-top: 8%;*/
-/*    padding: 3%;*/
-/*    border: 3px solid aliceblue !important;*/
-/*    border-radius: 1.5% !important;*/
-/*    opacity: 0.97;*/
-/*}*/
-
-/*.button01, .button02{*/
-/*    height: 180px;*/
-/*    width: 180px;*/
-/*    background-color: #2961aa;*/
-/*    margin: 20px;*/
-/*    color: white;*/
-/*    font-size: medium;*/
-/*    border-color: rgb(13, 13, 71);*/
-/*    border-radius: 3%;*/
-
-/*}*/
-
 .button01:hover, .button02:hover{
     background-color: rgb(0, 0, 156);
 }
@@ -37,6 +14,7 @@ body {
 a{
     color: rgb(100, 131, 226);
     font-weight: bold;
+    font-size: 100%;
     text-decoration:  none!important;
 }
 
@@ -51,7 +29,9 @@ a:hover{
     height: 100px;
     text-align: center;
     border-radius: 15px;
+    margin-top: 10%;
 }
+
 .selection{
     display: inline-block;
     margin-right: 10px;
@@ -63,9 +43,9 @@ a:hover{
     border-radius: 15px;
     text-align: center;
     word-break: break-word;
-    background-color: rgb(44, 44, 37);
+    background-color: rgb(0, 0, 0);
     color: aliceblue;
-    margin-top:75px;
+    margin-top:15%;
     border-style: ridge;
     border: 2px solid whitesmoke;
     /*opacity: 0.95;*/
