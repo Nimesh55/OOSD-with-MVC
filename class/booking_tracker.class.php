@@ -162,7 +162,7 @@ class Booking_Tracker extends Tracker implements Observer
     public function cancelBookingBulk($bookingArray)
     {
         foreach($bookingArray as $booking){
-            Booking_Controller::getInstance()->cancelBooking($booking->getBookingNo());
+            Booking_Controller::getInstance()->cancelBooking_byBookingNo($booking->getBookingNo());
         }
     }
 

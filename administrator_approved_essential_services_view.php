@@ -141,14 +141,6 @@ if (isset($_POST['view'])) {
                 <br>
                 <!-- accept and decline buttons -->
 
-
-
-
-
-
-
-
-
             </div>
         </div>
 

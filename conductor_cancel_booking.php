@@ -8,6 +8,10 @@ if (!isset($_SESSION['account_no'])) {
 }
 
 $conductorview = new Conductor_View($_SESSION['user_Id']);
+if ($conductorview->getConductorState()==1) {
+    header("Location: includes/logout.inc.php");
+}
+
 $username = $_SESSION["username"];
 
 $bookingRecords = $conductorview->showBookings($_SESSION['account_no']);

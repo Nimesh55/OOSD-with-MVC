@@ -49,14 +49,15 @@ class EssentialServiceTracker extends Tracker
             }
         }
 
-//        foreach ($bookings as $booking) {
-//            if ($booking->getState() < 2) {
-//                Booking_Tracker::getInstance()->setbookingStateExpired($booking->getBookingNo());
-//            }
-//        }
+    //    foreach ($bookings as $booking) {
+    //        if ($booking->getState() < 2) {
+    //            Booking_Tracker::getInstance()->setbookingStateExpired($booking->getBookingNo());
+    //        }
+    //    }
 
         $service = $this->createService($service_no);
-        Service_Model::getInstance()->setStateNonEssential($service->getServiceNo()); // Changed to Service_no from Service_Id
+        $this->setState(0, $service->getServiceNo());
+        // Service_Model::getInstance()->setStateNonEssential($service->getServiceNo()); // Changed to Service_no from Service_Id
 
         $param = [7, $service->getName(), $service->getId()];
         $executiveObj = $this->getExecutiveByServiceNo($service_no);
@@ -87,10 +88,10 @@ class EssentialServiceTracker extends Tracker
                 Passenger_Tracker::getInstance()->setPassengerServiceNo(0, $my_iterator->current());
             }
 
-//            foreach ($passengerArray as $passenger) {
-//                Passenger_Tracker::getInstance()->setPassengerState(0, $passenger->getPassengerNo());
-//                Passenger_Tracker::getInstance()->setPassengerServiceNo(0, $passenger);
-//            }
+        //    foreach ($passengerArray as $passenger) {
+        //        Passenger_Tracker::getInstance()->setPassengerState(0, $passenger->getPassengerNo());
+        //        Passenger_Tracker::getInstance()->setPassengerServiceNo(0, $passenger);
+        //    }
 
             $bookingArray = Booking_Tracker::getInstance()->getBookingsArrayForService($service_no);
             Booking_Tracker::getInstance()->cancelBookingBulk($bookingArray); // test this

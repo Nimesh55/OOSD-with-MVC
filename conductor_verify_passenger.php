@@ -8,6 +8,9 @@ if (!isset($_SESSION['user_Id'])) {
 }
 
 $conductorview = new Conductor_View($_SESSION['user_Id']);
+if ($conductorview->getConductorState()==1) {
+    header("Location: includes/logout.inc.php");
+}
 
 
 $state_query = 0;

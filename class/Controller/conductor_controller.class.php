@@ -182,7 +182,7 @@ class Conductor_Controller extends Conductor_Model
 
     public function checkActiveDate($startDate, $endDate)
     {
-        
+        Timer::setTimeZone();
         $currDate = $this->getCurrentDate();
         
         if ($currDate >= date($startDate) && $currDate<=date($endDate)) {

@@ -25,15 +25,15 @@ $declined_bookings = array();
 $cancelled_bookings = array();
 
 foreach ($bookings as $booking) {
-    if ($booking->getState() == 0) {
+    if ($booking->getState()==0 && $booking->getflag() == 0) {
         array_push($pending_bookings, $booking);
-    } elseif ($booking->getState() == 1) {
-        if ($booking->getflag() == 0) {
-            array_push($approved_bookings, $booking);
-        } else {
-            array_push($cancelled_bookings, $booking);
-        }
-    } else {
+    }
+    elseif ($booking->getState()==1) {
+        array_push($approved_bookings, $booking);
+    }
+    elseif ($booking->getState()==0 && $booking->getflag() == 1) {
+        array_push($cancelled_bookings, $booking);
+    }else{
         array_push($declined_bookings, $booking);
     }
 }

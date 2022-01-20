@@ -90,4 +90,8 @@ class Booking_Controller extends Booking_Model{
     public function allocateConductorForBooking($booking_no, $conductor_no){
         $this->allocateConductorForBookingFromModel($booking_no, $conductor_no);
     }
+
+    public function cancelBooking_byBookingNo($booking_no){
+        $this->removeBooking($booking_no);
+    }
 }

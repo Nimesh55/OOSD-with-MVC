@@ -74,7 +74,7 @@ if(isset($_GET['error'])) {
                 ?>
 
                 <div class="form-group">
-                    <label for="passenger_no" class="col-sm-3 control-label">Staff ID:</label>
+                    <label for="passenger_no" class="col-sm-3 control-label">NIC:</label>
                     <div class="col-sm-9">
                         <select name="passenger_no" id="passenger_no" class="form-control">
 

@@ -180,5 +180,11 @@ class Booking_Model extends Dbh
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
     }
+
+    protected function removeBooking($booking_no){
+        $query2 = "UPDATE booking SET state=4 where booking_no=$booking_no";
+        $stmt2 = $this->connect()->prepare($query2);
+        $stmt2->execute();
+    }
 }
 ?>

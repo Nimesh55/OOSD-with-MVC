@@ -1,14 +1,12 @@
 <?php 
-
+require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/includes/autoloader.inc.php";
 session_start();
 
 if ($_GET["conductor_id"]) {
     
     $conductor_id = $_GET["conductor_id"];
 
-    require_once "../class/dbh.class.php";
-    require_once "../class/board_manager.class.php";
-    require_once "../class/board_manager_controller.class.php";
+    require_once "../class/Model/dbh.class.php";
 
     $ctrl_obj = new Board_Manager_Controller();
 

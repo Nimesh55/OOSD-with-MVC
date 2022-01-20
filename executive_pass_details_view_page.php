@@ -15,7 +15,7 @@ if (!isset($_POST['pass_no']) and !isset($_SESSION['pass_no'])) {
 if(isset($_SESSION['link']))
     unset($_SESSION['link']);
 
-if(isset($_SESSION['pass_no'])){
+if(!isset($_POST['pass_no'])){
     $_POST['pass_no'] = $_SESSION['pass_no'];
     unset($_SESSION['pass_no']);
 }

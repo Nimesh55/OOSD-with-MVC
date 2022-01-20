@@ -86,6 +86,9 @@ class Conductor_View extends Conductor_Model
       return $this->conductor_controller->getGrantedLeaveDetails($conductor_no);
   }
 
+  public function getConductorState(){
+      return $this->conductor->getState();
+  }
 
 
 }
