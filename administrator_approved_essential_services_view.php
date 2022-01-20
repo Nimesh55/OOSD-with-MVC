@@ -30,6 +30,9 @@ if (isset($_POST['view'])) {
     <link rel="stylesheet" href="css/administrator_approved_essential_services_view.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
     <title>Administrator Approved Essential Services</title>
 </head>
 
@@ -63,6 +66,11 @@ if (isset($_POST['view'])) {
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="heading">
+            <h1><?php echo $service_name; ?></h1>
         </div>
     </div>
     <form action="administrator_approved_essential_services_view.php" method="POST">
@@ -115,6 +123,15 @@ if (isset($_POST['view'])) {
                             </div>
                         </div>
 
+                        <?php $_SESSION['decline'] = $service_no ?>
+                        <br><br>
+                        <div class="buttons">
+                            <div class="btn-group btn-group-lg">
+                                <a href="includes/serviceFunction_Decline.inc.php?x=r" class="btn btn-primary ctrlbutton"> Remove </a>
+                                <a href="administrator_approved_essential_services.php" class="btn btn-primary ctrlbutton"> Exit </a>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="col-sm-3"></div>
                 </div>
@@ -125,13 +142,7 @@ if (isset($_POST['view'])) {
                 <!-- accept and decline buttons -->
 
 
-                <?php $_SESSION['decline'] = $service_no ?>
-            <div class="buttons">
-            <div class="btn-group btn-group-lg">
-                <a href="includes/serviceFunction_Decline.inc.php?x=r" class="btn btn-primary ctrlbutton"> Remove </a>
-                <a href="administrator_approved_essential_services.php" class="btn btn-primary ctrlbutton"> Exit </a>
-            </div>
-            </div>
+
 
 
 

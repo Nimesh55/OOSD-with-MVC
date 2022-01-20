@@ -4,7 +4,7 @@ body{
     background-size: cover;
 }
 
-.container{
+.wrapper{
     width: 50%;
     background-color: rgb(44, 44, 37);
     padding: 3%;
@@ -27,5 +27,11 @@ body{
 
 .col-sm-2{
     text-align: center;
+}
+.heading{
+    padding:15px 0;
+    color:aliceblue;
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 0 0 3px #000000, 0 0 3px rgb(44, 44, 37);
 }
 
