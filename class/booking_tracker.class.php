@@ -208,6 +208,10 @@ class Booking_Tracker extends Tracker implements Observer
 //        }
         return $change;
     }
+
+    public function allocateConductorForBooking($booking_no, $conductor_no){
+        Booking_Controller::getInstance()->allocateConductorForBooking($booking_no, $conductor_no);
+    }
 }
 
 

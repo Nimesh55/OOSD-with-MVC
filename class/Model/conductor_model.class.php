@@ -121,4 +121,11 @@ class Conductor_Model extends Dbh{ // ## make the methods protected
         $record = $stmt->fetch();
         return $record;
     }
+
+    protected function getConductorCountFromModel(){
+        $stmt = $this->connect()->prepare("SELECT count(*) FROM conductor");
+        $stmt->execute();
+        $count3 = $stmt->fetchColumn();
+        return $count3;
+    }
 }

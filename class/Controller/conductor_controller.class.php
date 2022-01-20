@@ -201,4 +201,8 @@ class Conductor_Controller extends Conductor_Model
         }
         return true;
     }
+
+    public function getConductorCount(){
+        return $this->getConductorCountFromModel();
+    }
 }

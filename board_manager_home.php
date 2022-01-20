@@ -95,6 +95,26 @@ $details = $board_manager_view->getHomeDetails();
 
                     <div class="row">
                         <div class="col-sm-6 p-3 field">
+                            <p>Number of Pending Bookings</p>
+                        </div>
+                        <div class="col-sm-1 p-3">:</div>
+                        <div class="col-sm-5 p-3">
+                            <p><?= $details['pending_bookings_cnt'] ?></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6 p-3 field">
+                            <p>Number of Active Bookings</p>
+                        </div>
+                        <div class="col-sm-1 p-3">:</div>
+                        <div class="col-sm-5 p-3">
+                            <p><?= $details['active_bookings_cnt'] ?></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6 p-3 field">
                             <p>Number of Conductors</p>
                         </div>
                         <div class="col-sm-1 p-3">:</div>

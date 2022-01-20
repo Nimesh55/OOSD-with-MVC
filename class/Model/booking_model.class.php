@@ -174,5 +174,11 @@ class Booking_Model extends Dbh
         $result = $stmt->fetch();
         return $result['name'];
     }
+
+    protected function allocateConductorForBookingFromModel($booking_no, $conductor_no){
+        $sql = "UPDATE booking SET booked_conductor_no={$conductor_no}, state=1, flag=0 where booking_no={$booking_no}";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+    }
 }
 ?>

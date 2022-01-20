@@ -3,26 +3,6 @@
 require_once $_SERVER['DOCUMENT_ROOT']."/OOSD-with-MVC/class/Model/dbh.class.php";
 class Board_Manager_Model extends Dbh
 {
-    protected function getPendingPassesCnt(){
-        $stmt = $this->connect()->prepare("SELECT count(*) FROM pass WHERE state=1");
-        $stmt->execute();
-        $count2 = $stmt->fetchColumn();
-        return $count2;
-    }
-
-    protected function getApprovedPassesCount(){
-        $stmt = $this->connect()->prepare("SELECT count(*) FROM pass WHERE state=2");
-        $stmt->execute();
-        $count1 = $stmt->fetchColumn();
-        return $count1;
-    }
-
-    protected function getConductorCount(){
-        $stmt = $this->connect()->prepare("SELECT count(*) FROM conductor");
-        $stmt->execute();
-        $count3 = $stmt->fetchColumn();
-        return $count3;
-    }
 
     protected function getDistrictArray(){
         $query = "SELECT * FROM district";
@@ -41,11 +21,32 @@ class Board_Manager_Model extends Dbh
         return $district_name;
     }
 
-    protected function allocateConductorForBookingFromModel($booking_no, $conductor_no){
-        $sql = "UPDATE booking SET booked_conductor_no={$conductor_no}, state=1, flag=0 where booking_no={$booking_no}";
-        $stmt = $this->connect()->prepare($sql);
+    protected function getPendingBookingsCountFromModel(){
+        $stmt = $this->connect()->prepare("SELECT count(*) FROM booking WHERE state=0");
         $stmt->execute();
+        $count2 = $stmt->fetchColumn();
+        return $count2;
     }
 
+    protected function getActiveBookingsCountFromModel(){
+        $stmt = $this->connect()->prepare("SELECT count(*) FROM booking WHERE state=1");
+        $stmt->execute();
+        $count1 = $stmt->fetchColumn();
+        return $count1;
+    }
+
+    protected function getPendingPassesCountFromModel(){
+        $stmt = $this->connect()->prepare("SELECT count(*) FROM pass WHERE state=1");
+        $stmt->execute();
+        $count2 = $stmt->fetchColumn();
+        return $count2;
+    }
+
+    protected function getApprovedPassesCountFromModel(){
+        $stmt = $this->connect()->prepare("SELECT count(*) FROM pass WHERE state=2");
+        $stmt->execute();
+        $count1 = $stmt->fetchColumn();
+        return $count1;
+    }
 
 }
