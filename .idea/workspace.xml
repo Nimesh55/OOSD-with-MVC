@@ -3,14 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="47bd8e1a-391d-4ea9-bbbf-0a0d2636fcd5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class/Controller/change_password_controller.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Controller/change_password_controller.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class/Controller/signup_controller.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Controller/signup_controller.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/autoloader.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/autoloader.inc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/signup.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/signup.inc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/passenger_signup.php" beforeDir="false" afterPath="$PROJECT_DIR$/passenger_signup.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/verify_user.php" beforeDir="false" afterPath="$PROJECT_DIR$/verify_user.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account_type.php" beforeDir="false" afterPath="$PROJECT_DIR$/account_type.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/account_type.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/account_type.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/passenger_home.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/passenger_home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/passenger_register_in_company.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/passenger_register_in_company.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger_home.php" beforeDir="false" afterPath="$PROJECT_DIR$/passenger_home.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +121,8 @@
       <workItem from="1642530111320" duration="9456000" />
       <workItem from="1642606964658" duration="5562000" />
       <workItem from="1642614969668" duration="7997000" />
-      <workItem from="1642674757441" duration="4679000" />
+      <workItem from="1642674757441" duration="12507000" />
+      <workItem from="1642695553754" duration="2694000" />
     </task>
     <servers />
   </component>

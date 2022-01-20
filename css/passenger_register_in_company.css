@@ -34,3 +34,23 @@ body{
 .ctrlbutton{
     width: 185px;
 }
+#heading{
+    font-size: 150%;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    margin-left: 15px !important;
+    /*background-color: #03060D;*/
+    /*text-align: center;*/
+}
+.heading_container{
+    font-size: 250%;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    padding:10px;
+    background-color: aliceblue;
+    margin: -20px 0 0 0;
+    /*margin-top: 0px !important;*/
+    height: 50%;
+}
+
+

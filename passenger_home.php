@@ -79,13 +79,13 @@
 
 
 
-
+<div class="fluid-container heading_container">
+    <h1 id="heading"> <?= $username; ?> </h1>
+</div>
 <div class="container">
-
     <div class="row">
         <div class="col-lg-3"></div>
         <div class="col-lg-6 wrapper">
-            <h1 id="heading"> <?= $username; ?> </h1>
             <div class="row">
                 <div class="col-sm-4 field">
                     <p>First Name</p>

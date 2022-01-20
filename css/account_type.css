@@ -8,7 +8,7 @@ body {
   }
 
 .main-win form{
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(44, 44, 37);
     width: 40%;
     display: inline-block;
     margin-top: 8%;
@@ -43,3 +43,25 @@ a{
 a:hover{
     color: royalblue;
 }
+.photo{
+    background-color: aliceblue;
+    border: 1px aliceblue solid;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    border-radius: 15px;
+}
+.red{
+    background-color: red;
+    width: 100px;
+    height: 100px;
+}
+.blue{
+    background-color: blue;
+    width: 100px;
+    height: 100px;
+}
+.selection{
+    display: inline-block;
+}
+
