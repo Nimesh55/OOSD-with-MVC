@@ -34,7 +34,11 @@ $leaves = $conductorview->getGrantedLeave($_SESSION['account_no']);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <title>Conductor || Update Leave</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+
+    <title>Conductor Update Leave</title>
 </head>
 
 <body>
@@ -71,18 +75,23 @@ $leaves = $conductorview->getGrantedLeave($_SESSION['account_no']);
     </div>
 
     <div class="container mt-3">
+
+        <div class="heading">
+            <h1> Update Leave </h1>
+        </div>
+        
         <div class="row">
-            
-            
+
+
             <div class="col-lg-5 wrapper">
                 <h3>Request New Leave</h3>
                 <br>
                 <div class="row">
                     <?php if ($state_query == 1) {
-                        if($error == "Leave Granted!!")
+                        if ($error == "Leave Granted!!")
                             echo "<p class=\"alert alert-success\" id='error'>$error</p>";
                         else
-                        echo "<p class=\"alert alert-danger\" id='error'>$error</p>";
+                            echo "<p class=\"alert alert-danger\" id='error'>$error</p>";
                     } ?>
                 </div>
                 <br>
@@ -113,15 +122,15 @@ $leaves = $conductorview->getGrantedLeave($_SESSION['account_no']);
                     </thead>
                     <tbody>
 
-                    <?php
-                        foreach($leaves as $leave){
+                        <?php
+                        foreach ($leaves as $leave) {
                             echo "<tr>";
                             echo "<td>{$leave['leave_no']}</td>";
                             echo "<td>{$leave['date']}</td>";
                             echo "</tr>";
                         }
 
-                    ?>
+                        ?>
                     </tbody>
                 </table>
             </div>

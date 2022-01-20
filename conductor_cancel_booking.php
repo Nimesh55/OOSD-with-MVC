@@ -25,7 +25,11 @@ $bookingRecords = $conductorview->showBookings($_SESSION['account_no']);
     <link rel="stylesheet" href="css/conductor_cancel_booking.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>Conductor || Cancel Booking</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <title>Conductor Cancel Booking</title>
 </head>
 
 <body>
@@ -58,6 +62,12 @@ $bookingRecords = $conductorview->showBookings($_SESSION['account_no']);
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="heading">
+            <h1> Booking Details </h1>
         </div>
     </div>
 

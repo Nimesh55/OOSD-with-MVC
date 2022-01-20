@@ -14,7 +14,7 @@ body{
     word-break: break-word;
     background-color: rgb(44, 44, 37);
     color: aliceblue;
-    margin-top:75px;
+    margin-top:40px;
     border-style: ridge;
     border: 2px solid whitesmoke;
     /*opacity: 0.95;*/
@@ -30,24 +30,11 @@ th{
     padding: 1%;
 }
 
-/*#contanier-data {*/
-/*    width: 50%;*/
-/*    background-color: rgb(44, 44, 37);*/
-/*    padding: 3%; */
-/*    */
-/*    margin-top: 8%;*/
-/*    border-style: ridge;*/
-/*    border: 2px solid whitesmoke;*/
-/*    border-radius: 10px;*/
-/*    opacity: 0.95;*/
-/*    */
-/*}*/
-
-/*.row{*/
-/*    color: aliceblue;*/
-/*    word-spacing: 2px;*/
-/*}*/
-
-/*.container{*/
-/*    */
-/*}*/
+.heading{
+    padding:15px 0;
+    color:aliceblue;
+    /*text-align: center;*/
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 0 0 3px #000000, 0 0 3px rgb(44, 44, 37);
+    /*color: white;*/
+}

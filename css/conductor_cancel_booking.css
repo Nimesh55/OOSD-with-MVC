@@ -9,7 +9,7 @@ body{
     background-color: rgb(39, 39, 32);
     padding: 3%; 
     color: aliceblue;
-    margin-top: 8%;
+    margin-top: 3%;
     border-style: ridge;
     border: 2px solid whitesmoke;
     border-radius: 10px;
@@ -26,4 +26,13 @@ body{
     width: 80%;
     margin-left: 8%;
     padding: 5px;
+}
+
+.heading{
+    padding:15px 0;
+    color:aliceblue;
+    /*text-align: center;*/
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 0 0 3px #000000, 0 0 3px rgb(44, 44, 37);
+    /*color: white;*/
 }

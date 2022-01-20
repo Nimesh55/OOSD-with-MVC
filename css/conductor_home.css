@@ -21,3 +21,12 @@ body{
     color: aliceblue;
     word-spacing: 2x;
 }
+
+.heading{
+    padding:15px 0;
+    color:aliceblue;
+    /*text-align: center;*/
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 0 0 3px #000000, 0 0 3px rgb(44, 44, 37);
+    /*color: white;*/
+}
