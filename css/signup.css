@@ -54,15 +54,18 @@ a:hover, a:active{
   font-weight: bold;
 }
 
-.btn{
-    margin-top: 3%;
-    border-radius: 2%;
-    color: aliceblue;
-    padding: 1.1%;
-    background:#2961aa;
-    padding: 3.5%;
-    font-weight: bold;
+.submit_button{
+    /*margin-top: 3%;*/
+    /*border-radius: 2%;*/
+    /*color: aliceblue;*/
+    /*padding: 1.1%;*/
+    /*background:#2961aa;*/
+    /*padding: 3.5%;*/
+    /*font-weight: bold;*/
     
+}
+.button{
+  text-align: center;
 }
 .btn:hover{
   background-color:#0e376d;
