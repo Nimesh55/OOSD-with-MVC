@@ -49,6 +49,9 @@
                                        value="<?= $passenger_file['name'] ?>">
                                 <div class="input-group-btn">
                                     <a class="btn btn-primary" href="includes/download.inc.php?name=<?php echo $passenger_file['name']; ?>&fname=<?php echo $passenger_file['fname'] ?>">Download</a>
+                                    <?php
+                                        $_SESSION['link']="../passenger_register_in_company.php";
+                                    ?>
                                 </div>
                             </div>
                         <?php

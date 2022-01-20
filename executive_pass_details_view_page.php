@@ -7,10 +7,19 @@ if (!isset($_SESSION['user_Id'])) {
     header("Location: login.php");
     return;
 }
-if (!isset($_POST['pass_no'])) {
+if (!isset($_POST['pass_no']) and !isset($_SESSION['pass_no'])) {
     header("Location: executive_home.php");
     return;
 }
+
+if(isset($_SESSION['link']))
+    unset($_SESSION['link']);
+
+if(isset($_SESSION['pass_no'])){
+    $_POST['pass_no'] = $_SESSION['pass_no'];
+    unset($_SESSION['pass_no']);
+}
+
 $pass_no = $_POST['pass_no'];
 $execObj = new Executive_View();
 $pass = $execObj->getPassDetailsViewDetails($pass_no); // ## Get Pass Object 
@@ -123,6 +132,8 @@ $details = array("name" => $passenger->getFirstName().' '.$passenger->getLastNam
                                 <a class="btn btn-primary" href="includes/download.inc.php?name=<?php echo $pass_file['name'];?>&fname=<?php echo $pass_file['fname'] ?>">Download</a>
                             <?php
                             endif;
+                            $_SESSION['link']="../executive_pass_details_view_page.php";
+                            $_SESSION['pass_no'] = $_POST['pass_no'];
                             ?>
                         </div>
                     </div>

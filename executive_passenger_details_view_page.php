@@ -6,10 +6,18 @@ if (!isset($_SESSION['user_Id'])) {
     header("Location: login.php");
     return;
 }
-if (!isset($_POST['variablePass1'])) {
+if (!isset($_POST['variablePass1']) and !isset($_SESSION['variablePass1'])) {
     header("Location: executive_passenger_details.php");
     return;
 }
+
+if(isset($_SESSION['link']))
+    unset($_SESSION['link']);
+
+if(isset($_SESSION['variablePass1']))
+    $_POST['variablePass1'] = $_SESSION['variablePass1'];
+    unset($_SESSION['variablePass1']);
+
 $passenger_no = $_POST['variablePass1'];
 $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($passenger_no);
 $passenger_file = File_Controller::getInstance()->getFileDetails($passenger->getFileNo());
@@ -144,7 +152,10 @@ $row = array('state' => $passenger->getState(), 'first_name' => $passenger->getF
                                 <a class="btn btn-primary btn-sm" href="includes/download.inc.php?name=<?php echo $passenger_file['name'];?>&fname=<?php echo $passenger_file['fname'] ?>">Download</a>
                             <?php
                             endif;
+                                $_SESSION['link']="../executive_passenger_details_view_page.php";
+                                $_SESSION['variablePass1'] = $_POST['variablePass1'];
                             ?>
+
 
 
                         </div>
@@ -163,7 +174,7 @@ $row = array('state' => $passenger->getState(), 'first_name' => $passenger->getF
                     }
                     ?>
 
-                    <input class="btn btn-default ctrlbutton" type="submit" value="Exit" name="exit">
+                        <a class="btn btn-default ctrlbutton" type="submit" value="Exit" name="exit" href="executive_passenger_details.php">Exit</a>
                     </div>
 
 

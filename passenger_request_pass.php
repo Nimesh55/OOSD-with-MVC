@@ -32,6 +32,9 @@
         }
     }
 
+    if(isset($_SESSION['link']))
+        unset($_SESSION['link']);
+
     $pass_tracker = Pass_Tracker::getInstance();
 
     $result = $pass_tracker->searchForActivePass($passengerview->getPassengerNo());
@@ -230,6 +233,9 @@
                                 <input name="view" type="text" class="form-control" id="view" readonly value="<?= $pass_file['name'] ?>">
                                 <div class="input-group-btn">
                                 <a class="btn btn-primary" href="includes/download.inc.php?name=<?php echo $pass_file['name'];?>&fname=<?php echo $pass_file['fname'] ?>">Download</a>
+                                <?php
+                                    $_SESSION['link']="../passenger_request_pass.php";
+                                ?>
                                 </div>
                             </div>
                             <?php endif; ?>
