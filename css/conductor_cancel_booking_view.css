@@ -7,7 +7,7 @@ body{
 #contanier-data {
     width: 50%;
     background-color: rgb(44, 44, 37);
-    padding: 3%; 
+    padding: 1.5%; 
     
     margin-top: 1%;
     border-style: ridge;
@@ -21,8 +21,9 @@ body{
     word-spacing: 2x;
 }
 
-#error{
-    text-align: center;
+.alert{
+    text-align: center !important;
+    padding: 1% !important;
 }
 
 .link:link {
