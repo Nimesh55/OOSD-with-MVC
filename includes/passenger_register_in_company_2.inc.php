@@ -9,6 +9,10 @@
 
                     echo "<div class=\"alert alert-danger\"><strong>" . '*Enter the correct Staff Id!!!' . "</strong></div>";
                 }
+                elseif (isset($_POST['error']) && strcmp($_POST['error'], "noService") == 0) {
+
+                    echo "<div class=\"alert alert-danger\"><strong>" . '*Select a Service!!!' . "</strong></div>";
+                }
                 ?>
                 <div class="form-group">
                     <label for="company" class="col-sm-3 control-label">Company:</label>
