@@ -121,7 +121,8 @@ class Board_Manager_Controller extends Board_Manager_Model
             $booking = $booking_tracker->getBooking($booking_no);
             $executive = $booking_tracker->getExecutiveFromBookingNumber($booking_no);
             $service = $booking_tracker->getServiceFromBookingNumber($booking_no);
-            $param = [8,$service->getName(), $booking->getBookingNo(), $this->getBookedVehicleNo($booking),"#seats placeholder#", $booking->getPickupLocation(), $booking->getDestinationLocation()];
+            $conductor = Conductor_Tracker::getInstance()->getConductorbyNumber($conductor_no);
+            $param = [8,$service->getName(), $booking->getBookingNo(), $this->getBookedVehicleNo($booking), $conductor->getSeatNo(), $booking->getPickupLocation(), $booking->getDestinationLocation(), $conductor->getFirstName()." ".$conductor->getLastName(), $conductor->getTelephone(), $booking->getPassengerCount()];
             // Allocated Booking Notification
             Notification_handler::setupNotification($executive->getEmail(),$executive->getTelephone(),$param);
 
