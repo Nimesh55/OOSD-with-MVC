@@ -21,6 +21,7 @@ a{
 a:hover{
     text-decoration: none !important;
     color: royalblue;
+    opacity: 1;
 }
 .photo{
     background-color: aliceblue;
@@ -34,8 +35,16 @@ a:hover{
 
 .selection{
     display: inline-block;
+    background-color: #d5d56e;
     margin-right: 10px;
+    opacity: 0.6;
+    border-radius: 15px;
+
 }
+.selection:hover{
+    opacity: 1;
+}
+
 .wrapper{
     /*background: #e6e6e6;*/
     /*color: #000000;*/
