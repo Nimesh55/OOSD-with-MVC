@@ -24,6 +24,9 @@ $details = $board_manager_view->getHomeDetails();
     <link rel="stylesheet" href="css/passenger_home.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
     <title>Board Manager Home</title>
 </head>
 
@@ -62,12 +65,17 @@ $details = $board_manager_view->getHomeDetails();
         </div>
     </div>
 
-    <div class="container mt-3">
 
 
 
         <div class="container">
-            <h1 id="heading"> <?= $details['name']  ?> </h1>
+            <div class="heading">
+                <h1> <?= $details['name']  ?> </h1>
+            </div>
+        </div>
+
+        <div class="container">
+
 
             <div class="row">
                 <div class="col-lg-3"></div>
@@ -137,7 +145,7 @@ $details = $board_manager_view->getHomeDetails();
 
             </div>
         </div>
-    </div>
+
 
 </body>
 

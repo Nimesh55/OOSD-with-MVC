@@ -4,7 +4,7 @@ body{
     background-size: cover;
 }
 
-.container{
+.wrapper{
     width: 50%;
     background-color: rgb(44, 44, 37);
     
@@ -17,8 +17,10 @@ body{
     
 }
 
-#heading{
-    margin-left: 5%;
-    color: rgb(223, 228, 161);
+
+.heading{
+    padding:15px 0;
+    color:aliceblue;
     font-family: 'Roboto', sans-serif;
+    text-shadow: 0 0 3px #000000, 0 0 3px rgb(44, 44, 37);
 }

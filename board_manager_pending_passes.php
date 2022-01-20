@@ -27,6 +27,9 @@ $pendingPasses = $details['pendingPassesArray'];
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src = "js/buttons.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
     <title>Board Manager Pending Passes</title>
 </head>
 
@@ -69,8 +72,15 @@ $pendingPasses = $details['pendingPassesArray'];
     <?php if (isset($_SESSION['success'])) : ?>
         <div class="alert alert-success tob_bar_alert"><strong><?= $_SESSION['success'] ?></strong></div>
     <?php endif; ?>
+
+    <div class="container">
+        <div class="heading">
+            <h1>Pending Passes</h1>
+        </div>
+    </div>
     
     <div class="container mt-3" id="contanier-data">
+
 
         <?php
         if (empty($pendingPasses) and isset($_GET['search'])) {

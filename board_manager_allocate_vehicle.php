@@ -51,6 +51,9 @@ foreach ($bookings as $booking) {
     <link rel="stylesheet" href="css/board_manager_allocate_vehicle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
     <title>Board Manager Allocate Vehicle</title>
 </head>
 
@@ -96,6 +99,12 @@ foreach ($bookings as $booking) {
     <?php endif; ?>
 
     <div class="container">
+        <div class="heading">
+            <h1>Allocate Vehicle</h1>
+        </div>
+    </div>
+
+    <div class="container wrapper">
         <form action="board_manager_allocate_vehicle.php" method="GET">
             <div class="row">
                 <div class="input-group">
