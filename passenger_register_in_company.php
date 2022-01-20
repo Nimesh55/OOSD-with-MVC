@@ -21,6 +21,9 @@
     $service_model = Service_Model::getInstance();
     $services=$service_model->getServiceNames();
 
+    if(isset($_SESSION['link']))
+        unset($_SESSION['link']);
+
     if($pass_state == '0'){
         $state = 0;
     }elseif($pass_state == '1'){

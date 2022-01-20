@@ -30,7 +30,9 @@ class File_Controller extends File_Model{
 
     public function downloadFile($file, $name, $mime_type='')
     {
-        if(!is_readable($file)) die('File not found!');
+        if(!is_readable($file)){
+            header("Location:".$_SESSION['link']);
+        }
         $size = filesize($file);
         $name = rawurldecode($name);
         $known_mime_types=array(
