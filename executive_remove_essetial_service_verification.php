@@ -48,7 +48,7 @@ if(isset($_GET['error'])){
 <body>
 
 <div class="container heading">
-    <h1>Authontication</h1>
+    <h1>Authentication</h1>
 </div>
 <div class="container">
     <div class="row">

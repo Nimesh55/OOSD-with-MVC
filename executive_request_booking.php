@@ -105,7 +105,6 @@ $details = $execObj->getRequestBookingDetails();
                         <?php
                             echo '<div class="col-sm-8">';
                             echo '<select name="end_dist" id="district" class="form-control">';
-//                            $districts = ["x","y"];
                             $districts = $details['districts'];
                             echo "<option>Select Destination</option>";
                             foreach ($districts as $district) {

@@ -1,0 +1,154 @@
+
+:focus {
+	outline: 0
+}
+ 
+.clearfix:after {
+	content: "";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden
+}
+
+ 
+ 
+.contentlist {
+	padding: 0 10px
+}
+
+.btn-hover:hover {
+	background: rgba(0,0,0,.6);
+}
+
+.font16 {
+	font-size: 16px
+}
+
+.font20 {
+	font-size: 20px
+}
+
+.font32 {
+	font-size: 32px
+}
+ 
+.mtop20 {
+	margin-top: 20px
+}
+ 
+ 
+.fl {
+	float: left
+}
+
+.fr {
+	float: right
+}
+
+ 
+
+.list-one-ul-s3 {
+	overflow: hidden;
+	margin-left: -10px;
+	margin-right: -10px;
+	display: block
+}
+
+.list-one-ul-s3 li {
+	display: block;
+	float: left;
+	margin: 8px 5px 8px 5px;
+ 	border: 1px solid #eee;
+	box-sizing: content-box;
+	overflow: hidden;
+	position: relative
+}
+
+.list-one-ul-s3 li img {
+	width: 100%;
+	height: 100%
+}
+
+.list-one-link {
+	display: none;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: rgba(0,0,0,.2);
+	z-index: 3
+}
+
+.list-one-btns {
+	display: none;
+	position: absolute;
+	left: 28%;
+	top: 16%;
+	margin-top: -30px;
+	z-index: 9;
+	width: 100%;
+	height: 60px;
+	color: #fff;
+	text-align: center
+}
+
+.list-one-btns-2 {
+	display: none;
+	position: absolute;
+	top: 100%;
+	margin-top: -30px;
+	z-index: 9;
+	width: 100%;
+	height: 60px;
+	color: #fff;
+	text-align: center;
+}
+
+.list-one-link4 {
+	display: block;
+	height: 40px;
+	line-height: 40px;
+	width: 100%;
+ 	text-align: left;
+	margin: 0 auto;
+	color: #fff;
+	background-color: rgba(0,0,0,.4);
+	opacity:0.8;
+	float:left;
+}
+
+
+.list-one-link3 {
+	display: block;
+	height: 40px;
+	line-height: 40px;
+	max-width: 40px;
+	text-align: right;
+	margin: 0 auto;
+	border-radius: 20px;
+	color: #fff;
+	background-color: rgba(256,256,256,1);
+}
+
+.list-one-link2 {
+	display: block;
+	color: #eee;
+	height: 30px;
+	text-decoration: underline;
+	margin-top: 5px
+}
+
+.list-one-link2:hover {
+	color: #fff
+}
+
+.list-one-ul-s3 li:hover {
+	transform: translate3d(0,-2px,0)
+}
+
+.list-one-ul-s3 li:hover .list-one-btns-2,.list-one-ul-s3 li:hover .list-one-btns,.list-one-ul-s3 li:hover .list-one-link {
+	display: block
+}
+ 
