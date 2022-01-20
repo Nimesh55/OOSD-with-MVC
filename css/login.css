@@ -97,7 +97,7 @@ h1{
   text-shadow: 2px 2px 2px rgb(12, 11, 11);
   text-align: center;
   animation-name: example;
-  animation-duration: 4s;
+  animation-duration: 2s;
 }
 @keyframes example {
   from {opacity: 0;color: black;}
@@ -118,7 +118,7 @@ h1{
 .wrapper{
   margin-top:90px !important;
   animation-name: example2;
-  animation-duration: 4s;
+  animation-duration: 2s;
 }
 @keyframes example2 {
   from {opacity: 0;}
