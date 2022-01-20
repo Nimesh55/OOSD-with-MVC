@@ -52,7 +52,7 @@
                             <input class="form-control insert pwd" type="password" name="password"
                                    placeholder="Password" required="">
                             <span class="input-group-btn">
-                                        <button class="btn btn-default reveal" type="button"><i
+                                        <button class="form-control btn btn-default reveal" type="button"><i
                                                     class="glyphicon glyphicon-eye-open"></i></button>
                                     </span>
                         </div>
