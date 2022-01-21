@@ -120,8 +120,8 @@ class Notification_handler
 
 
             case 9: {
-                    $msg = "Your booking Has been Cancled. \nBooking Details,\nBooking Id: " . $param[1] . "\nVehicle Number: " . $param[2];
-                    $emailSubject = "Booking Canclled";
+                    $msg = "Your booking Has been cancelled. \nBooking Details,\nBooking Id: " . $param[1] . "\nVehicle Number: " . $param[2];
+                    $emailSubject = "Booking Cancelled";
                     break;
                 }
 

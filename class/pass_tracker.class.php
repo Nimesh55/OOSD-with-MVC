@@ -99,9 +99,6 @@ class Pass_Tracker extends Tracker implements Observer
             array_push($passes_arr,$this->getPass($my_iterator->current()['pass_no']));
         }
 
-//        foreach ($passes as $pass) {
-//            array_push($passes_arr, $this->getPass($pass['pass_no']));
-//        }
         return $passes_arr;
     }
 
@@ -116,9 +113,6 @@ class Pass_Tracker extends Tracker implements Observer
             array_push($passes_arr,$this->getPass($my_iterator->current()['pass_no']));
         }
 
-//        foreach ($passes as $pass) {
-//            array_push($passes_arr, $this->getPass($pass['pass_no']));
-//        }
         return $passes_arr;
     }
 
@@ -132,9 +126,7 @@ class Pass_Tracker extends Tracker implements Observer
             array_push($passes_arr,$this->getPass($my_iterator->current()['pass_no']));
         }
 
-//        foreach ($passes as $pass) {
-//            array_push($passes_arr, $this->getPass($pass['pass_no']));
-//        }
+
 
         return $passes_arr;
     }
@@ -181,10 +173,7 @@ class Pass_Tracker extends Tracker implements Observer
             array_push($passesObjArray, $this->getPass($my_iterator->current()['pass_no']));
         }
 
-//        foreach ($passesArray as $pass) {
-//            $passObj = $this->getPass($pass['pass_no']);
-//            array_push($passesObjArray, $passObj);
-//        }
+
 
         return $passesObjArray;
     }
@@ -208,17 +197,6 @@ class Pass_Tracker extends Tracker implements Observer
             }
         }
 
-//        foreach ($passesArray as $pass) {
-//            $passEndDate = $pass->getEndDate();
-//            if ($curDate > $passEndDate) {
-//                $this->setPassStateExpired($pass->getPassNo());
-//                //Expire Pass Notification
-//                $passenger = Passenger_Tracker::getInstance()->getPassengerByPassengerNo($pass->getPassengerNo());
-//                $param = [5, $pass->getPassNo()];
-//                Notification_handler::setupNotification($passenger->getEmail(),$passenger->getTelephone(),$param);
-//                $change++;
-//            }
-//        }
         return $change;
     }
     public function searchForActivePass($passenger_no){
