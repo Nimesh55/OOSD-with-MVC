@@ -79,9 +79,6 @@ $details = $execObj->getRequestBookingDetails();
                         <?php
                             echo '<div class="col-sm-8">';
                             echo '<select name="start_dist" id="start_dist" class="form-control">';
-//                            $stmt = $pdo->query("SELECT * FROM district ");
-
-                            $districts = ["x","y"];
                             $districts = $details['districts'];
                             echo "<option>Select Pickup</option>";
                             foreach ($districts as $district) {

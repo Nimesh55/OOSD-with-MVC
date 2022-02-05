@@ -66,4 +66,19 @@ class Timer implements Observable
         file_put_contents('logs/timerLog.log', $log, FILE_APPEND);
     }
 
+    public function my_date_diff($s_date, $e_date, $allowedDiff)
+    {
+        $datetime1 = date_create($s_date);
+        $datetime2 = date_create($e_date);
+        $interval = date_diff($datetime1, $datetime2);
+        if ($interval->format('%a') > $allowedDiff) {
+            return true;
+        }
+        return false;
+    }
+
+    public function get_current_date(){
+        return date('Y-m-d');
+    }
+
 }
