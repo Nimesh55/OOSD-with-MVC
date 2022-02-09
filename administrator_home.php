@@ -104,7 +104,7 @@ $completedBookings = $viewArray["completedBooking"];
 
                 <div class="row">
                     <div class="col-sm-6 p-3 field">
-                        <p>Number of Aprrroved Companies</p>
+                        <p>Number of Approved Companies</p>
                     </div>
                     <div class="col-sm-1 p-3">:</div>
                     <div class="col-sm-5 p-3">
@@ -122,12 +122,12 @@ $completedBookings = $viewArray["completedBooking"];
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-sm-6  field">
-                        <canvas id="myChart1" style="width:100%;max-width:600px;color:aliceblue;"></canvas>
+                <div class="row" style="background-color:white;border-radius:10px;text-align:center;">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-10"><canvas id="myChart1" style="width:100%;max-width:600px;color:aliceblue;"></canvas>
+                        <canvas id="myChart2" style="width:100%;max-width:600px;color:aliceblue;"></canvas>
                     </div>
-                    <div class="col-sm-6 "><canvas id="myChart2" style="width:100%;max-width:600px;color:aliceblue;"></canvas></div>
-
+                    <div class="col-sm-1"></div>
                 </div>
             </div>
             <div class="col-lg-1"></div>
@@ -137,14 +137,14 @@ $completedBookings = $viewArray["completedBooking"];
     </div>
 
     <script>
-        var xValues = ["Pending", "Accepted","Confirmed", "Declined", "Expired"];
+        var xValues = ["Pending", "Accepted", "Confirmed", "Declined", "Expired"];
         var yValues = [<?php echo $pendingPasses ?>, <?php echo $acceptedPass ?>, <?php echo $confirmedPass ?>, <?php echo $declinedPass ?>, <?php echo $expiredPass ?>];
         var barColors = [
             "#e1e990",
             "#00aba9",
             "#2b5797",
             "#e8c3b9",
-            "#1e7145"
+            "#909090"
         ];
 
         new Chart("myChart1", {
@@ -169,10 +169,10 @@ $completedBookings = $viewArray["completedBooking"];
         var xValues = ["Pending", "Approved", "Declined", "Expired", "Completed"];
         var yValues = [<?php echo $pendingBookings ?>, <?php echo $approvedBookings ?>, <?php echo $declinedBookings ?>, <?php echo $expiredBookings ?>, <?php echo $completedBookings ?>];
         var barColors = [
-            "#b91d47",
+            "#e1e990",
             "#00aba9",
-            "#2b5797",
-            "#e8c3b9",
+            "#FF0000",
+            "#909090",
             "#1e7145"
         ];
 
@@ -193,6 +193,7 @@ $completedBookings = $viewArray["completedBooking"];
             }
         });
     </script>
+
 </body>
 
 </html>
