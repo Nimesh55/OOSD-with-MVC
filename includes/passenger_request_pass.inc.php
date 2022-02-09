@@ -11,7 +11,9 @@
             'start_date' => $_POST['from_date'],
             'end_date' => $_POST['to_date'],
             'bus_route' => $_POST['bus_route'],
-            'reason' => $_POST['reason']
+            'reason' => $_POST['reason'],
+            'state' => 0,
+            'file_no' => 0
         );
         $errors = $passenger_request_pass_controller->validate($details);
         $url_extention = "reason={$details['reason']}&";
