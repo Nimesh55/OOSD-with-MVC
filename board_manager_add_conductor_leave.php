@@ -42,6 +42,36 @@ $leaves = $conductorview->getGrantedLeave($_SESSION['conductor_no']);
 
 <body>
 
+<div class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="navbar-header">
+                    <button class="navbar-toggle" data-target="#mobile_menu" data-toggle="collapse"><span
+                                class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </button>
+                    <strong class="navbar-brand">Safe Transit</strong>
+                </div>
+
+                <div class="navbar-collapse collapse" id="mobile_menu">
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                                        class="glyphicon glyphicon-user"></span> Board Manager <span
+                                        class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="change_password.php">Change Password</a></li>
+                                <li><a href="includes/logout.inc.php">Log out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
     <div class="container mt-3">
 
         <div class="heading">
