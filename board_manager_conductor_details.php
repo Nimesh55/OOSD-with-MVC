@@ -8,6 +8,10 @@ if (!isset($_SESSION['user_Id'])) {
     return;
 }
 
+if (!isset($_SESSION['conductor_id'])){
+    unset($_SESSION['conductor_id']);
+}
+
 $board_manager_view = new Board_Manager_View();
 $details = $board_manager_view->getHomeDetails();
 
@@ -234,6 +238,7 @@ if ($_GET["show"] == "success") {
                     <?php
 
                     if ($state_query == 1) {
+                        echo "<a class=\"btn btn-sm btn-primary\" href=\"includes/conductor_update_leave.inc.php?conductor_id={$_GET["conductor_id"]}\">Add Leave</a>";
                         echo "<a class=\"btn btn-sm btn-primary\" href=\"includes/board_manager_remove_conductor.inc.php?conductor_id={$_GET["conductor_id"]}\">Remove</a>";
                     }
 

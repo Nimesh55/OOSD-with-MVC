@@ -13,7 +13,7 @@ class Passenger_Request_Pass_Controller
             $this->error = "*Enter the start date!!!";
         } elseif (empty($details['end_date'])) {
             $this->error = "*Enter the end date!!!";
-        } elseif (strtotime($details['start_date']) < strtotime(date("Y-m-d")) or strtotime($details['end_date']) < strtotime($details['start_date'])) {
+        } elseif (strtotime($details['start_date']) < strtotime(Timer::getInstance()->get_current_date()) or strtotime($details['end_date']) < strtotime($details['start_date'])) {
             $this->error = "*Dates are invalid. Check your dates and try again!!!";
         } elseif (Timer::getInstance()->my_date_diff($details['start_date'], $details['end_date'], 30)) {
             $this->error = "Maximum of 30 days is Allowed";

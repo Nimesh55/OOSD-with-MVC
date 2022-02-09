@@ -90,5 +90,9 @@ class Conductor_View extends Conductor_Model
       return $this->conductor->getState();
   }
 
+  public function getConductorNo($conductor_id){
+      return Conductor_Tracker::getInstance()->getConductor($conductor_id)->getConductorNo();
+  }
+
 
 }

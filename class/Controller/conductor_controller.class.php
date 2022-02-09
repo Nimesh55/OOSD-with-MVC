@@ -91,6 +91,27 @@ class Conductor_Controller extends Conductor_Model
         }
     }
 
+    public function updateLeaveManual($conductor_no, $date, $type)
+    {
+        $isBooked = Conductor_Tracker::getInstance()->checkBooking($conductor_no, $date, $type);
+        $isLeaveExist = $this->checkLeaveExist_FromModel($conductor_no, $date);
+
+        if (!empty($isLeaveExist)) {
+            $error = "Leave Already Created with that Date!!";
+            header("Location: ../board_manager_add_conductor_leave.php?error=$error");
+            return;
+        } elseif ($isBooked == true && empty($isLeaveExist)) {
+            $error = "Booking has been made. Try another date!!";
+            header("Location: ../board_manager_add_conductor_leave.php?error=$error");
+            return;
+        } elseif ($isBooked == false && empty($isLeaveExist)) {
+            $this->updateLeaveFromModel($conductor_no, $date);
+            $error = "Leave Granted!!";
+            header("Location: ../board_manager_add_conductor_leave.php?error=$error");
+            return;
+        }
+    }
+
     public function getConductorLeavesArray($conductor_no)
     {
         return $this->getConductorLeavesArrayFromModel($conductor_no);
