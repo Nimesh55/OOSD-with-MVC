@@ -66,14 +66,20 @@ $leaves = $conductorview->getGrantedLeave($_SESSION['conductor_no']);
                 <form class="form-horizontal" action="includes/conductor_update_leave.inc.php" method="POST" role="form">
                     <div class="form-group">
                         <label for="leave_date" class="col-sm-3 control-label">Leave Date:</label>
-                        <div class="col-sm-6">
+                        <div class="col-sm-8">
                             <input name="leave_date" type="date" class="form-control" id="leave_date" value="">
 
 
                         </div>
-                        <div class="col-sm-3">
-                            <button class="btn btn-primary" type="submit" name="submit_manual">Submit</button>
-                            <button class="btn btn-primary" type="submit" name="cancel">Cancel</button>
+                        <div class="col-sm-1"></div>
+                    </div>
+                    <div class="row button-group">
+                        <div class="col-sm-6"></div>
+                        <div class="col-sm-6">
+                            <div class="btn btn-group">
+                                <button class="btn btn-primary" type="submit" name="submit_manual">Submit</button>
+                                <button class="btn btn-primary" type="submit" name="cancel">Cancel</button>
+                            </div>
                         </div>
                     </div>
                 </form>

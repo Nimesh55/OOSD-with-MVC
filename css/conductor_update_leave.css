@@ -38,3 +38,6 @@ th{
     text-shadow: 0 0 3px #000000, 0 0 3px rgb(44, 44, 37);
     /*color: white;*/
 }
+.button-group{
+    padding: 15px;
+}

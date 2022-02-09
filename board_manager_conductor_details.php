@@ -232,20 +232,25 @@ if ($_GET["show"] == "success") {
                 <div class="col-sm-1 p-3 bg-dark text-white"></div>
             </div>
 
+            <br>
             <div class="row">
-                <div class="col-sm-9 p-3 bg-dark text-white"></div>
-                <div class="col-sm-2 p-3">
+                <div class="col-sm-7 p-3 bg-dark text-white"></div>
+                <div class="col-sm-5 p-3">
+
+
+
                     <?php
 
                     if ($state_query == 1) {
+                        echo "<div class=\"btn btn-group\">";
                         echo "<a class=\"btn btn-sm btn-primary\" href=\"includes/conductor_update_leave.inc.php?conductor_id={$_GET["conductor_id"]}\">Add Leave</a>";
                         echo "<a class=\"btn btn-sm btn-primary\" href=\"includes/board_manager_remove_conductor.inc.php?conductor_id={$_GET["conductor_id"]}\">Remove</a>";
+                        echo "</div>";
                     }
 
                     ?>
                     
                 </div>
-                <div class="col-sm-1 p-3 bg-dark text-white"></div>
             </div>
         </div>
     </div>
