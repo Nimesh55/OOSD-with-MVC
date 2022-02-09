@@ -1,0 +1,43 @@
+.wrapper{
+    /*background: #e6e6e6;*/
+    /*color: #000000;*/
+    padding: 3%;
+    border-radius: 15px;
+    text-align: center;
+    word-break: break-word;
+    background-color: rgb(44, 44, 37);
+    color: aliceblue;
+    margin-top:30px;
+    border-style: ridge;
+    border: 2px solid whitesmoke;
+    /*opacity: 0.95;*/
+}
+.heading{
+    padding:15px 0;
+    color:aliceblue;
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 0 0 3px #000000, 0 0 3px rgb(44, 44, 37);
+}
+.field{
+    text-align: left;
+}
+body{
+    background: url("../img/loginFinal.jpg") no-repeat center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    background-color: #560059;
+}
+
+.data{
+    text-align: left;
+}
+.semicolen{
+    text-align: center;
+}
+
+label{
+    color: aliceblue;
+}
