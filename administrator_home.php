@@ -142,8 +142,8 @@ $completedBookings = $viewArray["completedBooking"];
         var barColors = [
             "#e1e990",
             "#00aba9",
-            "#2b5797",
-            "#e8c3b9",
+            "#1e7145",
+            "#C70039",
             "#909090"
         ];
 
@@ -171,7 +171,7 @@ $completedBookings = $viewArray["completedBooking"];
         var barColors = [
             "#e1e990",
             "#00aba9",
-            "#FF0000",
+            "#C70039",
             "#909090",
             "#1e7145"
         ];
