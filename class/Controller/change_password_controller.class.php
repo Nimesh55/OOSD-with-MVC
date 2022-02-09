@@ -3,7 +3,7 @@
 session_start();
 class Change_Password_Controller extends Password_Changer_Model{
 
-    public function updatePassword($current_password, $new_password, $password_repeat,$forget=0){
+    public function updatePassword($current_password, $new_password, $password_repeat, $forget=0){
 
         if($forget==0 && (empty($current_password) || empty($new_password) || empty($password_repeat))){
             $_SESSION['error'] = "Fill all fields and try again";
@@ -12,7 +12,7 @@ class Change_Password_Controller extends Password_Changer_Model{
         }
 
         if (strcmp($new_password, $password_repeat) != 0) {
-            $_SESSION['error'] = "New password and reentered password don't match. Try again.";
+            $_SESSION['error'] = "New password and re-entered password don't match. Try again.";
             header("location: ../change_password.php");
             exit();
         }
@@ -64,8 +64,7 @@ class Change_Password_Controller extends Password_Changer_Model{
         $number = preg_match('@[0-9]@', $password);
         $uppercase = preg_match('@[A-Z]@', $password);
         $lowercase = preg_match('@[a-z]@', $password);
-        $specialChars = preg_match('@[^\w]@', $password);
-
+        $specialChars = preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $password);    
         if(strlen($password) >= 8 && $number && $uppercase && $lowercase && $specialChars) {
             return true;
         } else {

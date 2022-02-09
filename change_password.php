@@ -79,7 +79,7 @@ if (!isset($_SESSION['user_Id'])) {
                             <label class="control-label col-sm-3" for="retype_new">ReEnter New Password:</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
-                                    <input type="password" name="retype_password" class="form-control retype_pwd" id="retype_new" placeholder="ReEnter New Password">
+                                    <input type="password" name="retype_password" class="form-control retype_pwd" id="retype_new" placeholder="Re-Enter New Password">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default reveal_3" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
                                     </span>

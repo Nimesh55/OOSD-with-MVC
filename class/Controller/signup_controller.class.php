@@ -92,8 +92,10 @@ class Signup_Controller extends Signup_Model {
            exit();
        }
 
-        if($this->isValidPassword($this->password)){
-            header("Location: ");
+        if(!$this->isValidPassword($this->password)){
+
+            header("location: ../".$this->page_name."_signup.php?error=enterstrongpassword&src=".$src);
+            exit();
         }
 
         if ($this->account_type==1) {
@@ -190,7 +192,13 @@ class Signup_Controller extends Signup_Model {
         $number = preg_match('@[0-9]@', $password);
         $uppercase = preg_match('@[A-Z]@', $password);
         $lowercase = preg_match('@[a-z]@', $password);
-        $specialChars = preg_match('@[^\w]@', $password);
+        $specialChars = preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $password);
+
+            echo $number;
+            echo $uppercase;
+            echo $lowercase;
+            echo $specialChars;
+            
 
         if(strlen($password) >= 8 && $number && $uppercase && $lowercase && $specialChars) {
             return true;
