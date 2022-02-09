@@ -20,11 +20,11 @@ $acceptedPass = $viewArray["acceptedPass"];
 $confirmedPass = $viewArray["confirmed"];
 $expiredPass = $viewArray["expiredPass"];
 
-// $numofIssuedBookings = $viewArray["issued"];
-// $pendingBookings = $viewArray["pendingPass"];
-// $declinedBookings = $viewArray["declinedPass"];
-// $acceptedBookings = $viewArray["acceptedPass"];
-// $expiredBookings = $viewArray[""];
+$pendingBookings = $viewArray["pendingBooking"];
+$declinedBookings = $viewArray["declinedBooking"];
+$approvedBookings = $viewArray["approvedBooking"];
+$expiredBookings = $viewArray["expiredBooking"];
+$completedBookings = $viewArray["completedBooking"];
 ?>
 
 <!DOCTYPE html>
@@ -129,11 +129,6 @@ $expiredPass = $viewArray["expiredPass"];
                     <div class="col-sm-6 "><canvas id="myChart2" style="width:100%;max-width:600px;color:aliceblue;"></canvas></div>
 
                 </div>
-                <div class="row">
-                    <div class="col-sm-6 ">
-                        <canvas id="myChart3" style="width:100%;max-width:600px;color:aliceblue;"></canvas>
-                    </div>
-                </div>
             </div>
             <div class="col-lg-1"></div>
 
@@ -171,8 +166,8 @@ $expiredPass = $viewArray["expiredPass"];
     </script>
 
     <script>
-        var xValues = ["Pending", "Approved", "Declined"];
-        var yValues = [<?php echo $numofpendingCompanies ?>, <?php echo $numofServicesApproved ?>, <?php echo $numofIssuedPasses ?>];
+        var xValues = ["Pending", "Approved", "Declined", "Expired", "Completed"];
+        var yValues = [<?php echo $pendingBookings ?>, <?php echo $approvedBookings ?>, <?php echo $declinedBookings ?>, <?php echo $expiredBookings ?>, <?php echo $completedBookings ?>];
         var barColors = [
             "#b91d47",
             "#00aba9",
@@ -198,36 +193,6 @@ $expiredPass = $viewArray["expiredPass"];
             }
         });
     </script>
-
-    <script>
-        var xValues = ["Pending", "Approved", "Declined"];
-        var yValues = [<?php echo 0 ?>, <?php echo $numofServicesApproved ?>, <?php echo $numofIssuedPasses ?>];
-        var barColors = [
-            "#b91d47",
-            "#00aba9",
-            "#2b5797",
-            "#e8c3b9",
-            "#1e7145"
-        ];
-
-        new Chart("myChart3", {
-            type: "doughnut",
-            data: {
-                labels: xValues,
-                datasets: [{
-                    backgroundColor: barColors,
-                    data: yValues
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: "Passengers"
-                }
-            }
-        });
-    </script>
-
 </body>
 
 </html>

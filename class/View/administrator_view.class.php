@@ -33,6 +33,26 @@ class Administrator_View extends Administrator_Model
       }
     }
 
+    $bookings = Booking_Tracker::getInstance()->getBookingsArray();
+    $pendingBookings = array();
+    $declinedBookings = array();
+    $approvedBookings = array();
+    $completedBookings = array();
+    $expiredBookings = array();
+    foreach ($bookings as $booking) {
+      if ($booking->getState() == 0) {
+        array_push($pendingBookings, $booking);
+      } elseif ($booking->getState() == 1) {
+        array_push($approvedBookings, $booking);
+      } elseif ($booking->getState() == 2) {
+        array_push($expiredBookings, $booking);
+      } elseif ($booking->getState() == 3) {
+        array_push($declinedBookings, $booking);
+      } elseif ($booking->getState() == 4) {
+        array_push($completedBookings, $booking);
+      }
+    }
+
     $details = array(
       "uid" => $this->adminobj->getUid(),
       "pending" => $this->adminobj->getnumPendingCompany(),
@@ -43,9 +63,11 @@ class Administrator_View extends Administrator_Model
       "acceptedPass" => count($acceptedPass),
       "confirmed" => count($confirmedPass),
       "expiredPass" => count($expiredPass),
-      "pendingBooking" => 100,
-      "approvedBooking" => 100,
-      "declinedBooking" => 100
+      "pendingBooking" => count($pendingBookings),
+      "approvedBooking" => count($approvedBookings),
+      "expiredBooking" => count($expiredBookings),
+      "declinedBooking" => count($declinedBookings),
+      "completedBooking" => count($completedBookings)
     );
 
     return $details;
