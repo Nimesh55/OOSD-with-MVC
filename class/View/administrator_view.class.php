@@ -13,6 +13,7 @@ class Administrator_View extends Administrator_Model
   }
   public function getDetails()
   {
+    // Overall Pass Data
     $passes = Pass_Tracker::getInstance()->getAllPasses();
     $pendingPasses = array();
     $declinedPass = array();
@@ -32,7 +33,7 @@ class Administrator_View extends Administrator_Model
         array_push($declinedPass, $pass);
       }
     }
-
+    // Overall Booking Data
     $bookings = Booking_Tracker::getInstance()->getBookingsArray();
     $pendingBookings = array();
     $declinedBookings = array();
