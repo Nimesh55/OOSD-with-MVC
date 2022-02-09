@@ -58,6 +58,11 @@
                         </div>
                     </div>
                     <p><a href="forget_password.php">Forget your Password?</a></p>
+                    <?if(isset($_GET['error'])){
+                        if($_GET['error']=="NoSuchUser"||$_GET['error']=="wrongPwd"){
+                            echo '<p class ="loginerror">Invalid Username or Password</p>';
+                        }
+                    }?>
                     <div class="form-group">
                         <button class="btn btn-primary btn-block" type="submit" name="submit">Log In</button>
                     </div>

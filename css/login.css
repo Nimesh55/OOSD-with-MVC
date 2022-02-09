@@ -137,3 +137,7 @@ h1{
     outline:none;
     color: whitesmoke;
 }*/
+
+.loginerror{
+  color: rgba(255, 0, 0, 0.582);
+}
