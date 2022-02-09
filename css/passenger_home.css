@@ -37,3 +37,7 @@ body{
 .semicolen{
     text-align: center;
 }
+
+label{
+    color: aliceblue;
+}
