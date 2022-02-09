@@ -88,7 +88,7 @@ class Signup_Controller extends Signup_Model {
         }
 
        if ($this->isTelephoneValidInput() == false) {
-           header("location: ../".$this->page_name."_signup.php?error=enterstrongpassword&src=".$src);
+           header("location: ../".$this->page_name."_signup.php?error=invalidTelephone&src=".$src);
            exit();
        }
 

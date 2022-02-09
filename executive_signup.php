@@ -19,7 +19,9 @@ if (isset($_GET['error'])) {
     else if ($error == "enterstrongpassword")
         $error_str = 'Please Enter a Strong Password!';
     else if ($error == "none")
-        $error_str = 'Accound successfully created!';
+        $error_str = 'Account successfully created!';
+    else if ($error == 'invalidTelephone')
+    $error_str = 'Invalid Telephone Number';
 }
 
 ?>

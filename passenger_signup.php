@@ -26,6 +26,8 @@ if (isset($_GET['error'])) {
         $error_str = 'Please Enter a Strong Password!';
     else if ($error == "none")
         $error_str = 'Accound successfully created!';
+    else if ($error == 'invalidTelephone')
+        $error_str = 'Invalid Telephone Number';
 }
 
 ?>
@@ -35,9 +37,9 @@ if (isset($_GET['error'])) {
 <head>
     <title>Passenger SignUp Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script type="application/x-javascript">
-        addEventListener("load", function () {
+        addEventListener("load", function() {
             setTimeout(hideURLbar, 0);
         }, false);
 
@@ -46,8 +48,8 @@ if (isset($_GET['error'])) {
         }
     </script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="css/signup.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="css/custom.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/signup.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/custom.css" rel="stylesheet" type="text/css" media="all" />
     <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -57,117 +59,114 @@ if (isset($_GET['error'])) {
 </head>
 
 <body>
-<div class="container">
+    <div class="container">
 
-    <div class="row">
-        <div class="col-sm-12">
-            <h1>Passenger SignUp Form</h1>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-12">
-            <?php
-            if (isset($_GET["error"])) {
-                if ($_GET["error"] == 'none')
-                    echo "<p class=\"success\">$error_str</p>";
-                else
-                    echo "<p class=\"error\">$error_str</p>";
-            }
-            ?>
-        </div>
-    </div>
-
-    <form action="includes/signup.inc.php?account_type=0&src=<?php echo $src ?>" method="post">
         <div class="row">
-            <div class="col-sm-6">
-                <input class="text form-control" type="text" name="Firstname" placeholder="First name">
-            </div>
-            <div class="col-sm-6">
-                <input class="text form-control" type="text" name="Lastname" placeholder="Last name">
+            <div class="col-sm-12">
+                <h1>Passenger SignUp Form</h1>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-sm-6">
-                <input class="text form-control" type="text" name="ID" placeholder="NIC">
-            </div>
-            <div class="col-sm-6">
-                <input class="text form-control" type="text" name="Telephone" placeholder="Telephone number">
+            <div class="col-sm-12">
+                <?php
+                if (isset($_GET["error"])) {
+                    if ($_GET["error"] == 'none')
+                        echo "<p class=\"success\">$error_str</p>";
+                    else
+                        echo "<p class=\"error\">$error_str</p>";
+                }
+                ?>
             </div>
         </div>
 
-        <?php if (isset($_GET['src']) && $_GET['src'] == 1) : ?>
+        <form action="includes/signup.inc.php?account_type=0&src=<?php echo $src ?>" method="post">
+            <div class="row">
+                <div class="col-sm-6">
+                    <input class="text form-control" type="text" name="Firstname" placeholder="First name">
+                </div>
+                <div class="col-sm-6">
+                    <input class="text form-control" type="text" name="Lastname" placeholder="Last name">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <input class="text form-control" type="text" name="ID" placeholder="NIC">
+                </div>
+                <div class="col-sm-6">
+                    <input class="text form-control" type="text" name="Telephone" placeholder="Telephone number">
+                </div>
+            </div>
+
+            <?php if (isset($_GET['src']) && $_GET['src'] == 1) : ?>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <input class="text form-control" type="text" name="staffId" placeholder="Staff Id">
+                    </div>
+                </div>
+            <?php endif; ?>
+
             <div class="row">
                 <div class="col-sm-12">
-                    <input class="text form-control" type="text" name="staffId" placeholder="Staff Id">
+                    <input class="text form-control" type="text" name="Address" placeholder="Address">
                 </div>
             </div>
-        <?php endif; ?>
 
-        <div class="row">
+            <div class="row">
+                <div class="col-sm-12">
+                    <input class="text email form-control" type="text" name="email" placeholder="Email">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <input class="text form-control new_pwd" type="password" name="password" placeholder="Password">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default reveal_2" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <input class="text w3lpass form-control retype_pwd" type="password" name="passwordrepeat" placeholder="Confirm Password">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default reveal_3" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <div class="button">
+
+                <input class="btn btn-primary submit_button" type="submit" name="submit" value="SIGNUP">
+
+
+            </div>
+            <?php if (isset($_GET['src']) && $_GET['src'] == 1) : ?>
+                <? $service_no = $_SESSION['service_no']; ?>
+                <input type="hidden" name="variable2" value="<? echo $service_no ?>">
+            <?php endif; ?>
+        </form>
+
+        <div class="row end">
+
             <div class="col-sm-12">
-                <input class="text form-control" type="text" name="Address" placeholder="Address">
+                <?php
+                // Depending on where this form is loaded the relavant parts are loaded accordingly
+                if (isset($_GET['src']) && $_GET['src'] == 1) {
+                    echo "<p><a href=\"executive_passenger_details.php\"> back to passenger list</a></p>";
+                } else {
+                    echo "<p>Do you have an Account? <a href=\"login.php\"> Login Now!</a></p>";
+                }
+                ?>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-sm-12">
-                <input class="text email form-control" type="text" name="email" placeholder="Email">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="input-group">
-                    <input class="text form-control new_pwd" type="password" name="password" placeholder="Password">
-                    <span class="input-group-btn">
-                                        <button class="btn btn-default reveal_2" type="button"><i
-                                                    class="glyphicon glyphicon-eye-open"></i></button>
-                                    </span>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="input-group">
-                    <input class="text w3lpass form-control retype_pwd" type="password" name="passwordrepeat"
-                           placeholder="Confirm Password">
-                    <span class="input-group-btn">
-                                        <button class="btn btn-default reveal_3" type="button"><i
-                                                    class="glyphicon glyphicon-eye-open"></i></button>
-                                    </span>
-                </div>
-            </div>
-        </div>
-
-        <br>
-        <div class="button">
-
-            <input class="btn btn-primary submit_button" type="submit" name="submit" value="SIGNUP">
-
-
-        </div>
-        <?php if (isset($_GET['src']) && $_GET['src'] == 1) : ?>
-            <? $service_no = $_SESSION['service_no']; ?>
-            <input type="hidden" name="variable2" value="<? echo $service_no ?>">
-        <?php endif; ?>
-    </form>
-
-    <div class="row end">
-
-        <div class="col-sm-12">
-            <?php
-            // Depending on where this form is loaded the relavant parts are loaded accordingly
-            if (isset($_GET['src']) && $_GET['src'] == 1) {
-                echo "<p><a href=\"executive_passenger_details.php\"> back to passenger list</a></p>";
-            } else {
-                echo "<p>Do you have an Account? <a href=\"login.php\"> Login Now!</a></p>";
-            }
-            ?>
-        </div>
     </div>
-
-</div>
-<script src="js/change_pwd.js"></script>
+    <script src="js/change_pwd.js"></script>
 </body>
 
 </html>
