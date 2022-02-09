@@ -137,14 +137,12 @@ $completedBookings = $viewArray["completedBooking"];
     </div>
 
     <script>
-        var xValues = ["Pending", "Accepted", "Confirmed", "Declined", "Expired"];
-        var yValues = [<?php echo $pendingPasses ?>, <?php echo $acceptedPass ?>, <?php echo $confirmedPass ?>, <?php echo $declinedPass ?>, <?php echo $expiredPass ?>];
+        var xValues = ["Pending", "Accepted", "Confirmed"];
+        var yValues = [<?php echo $pendingPasses ?>, <?php echo $acceptedPass ?>, <?php echo $confirmedPass ?>];
         var barColors = [
             "#e1e990",
             "#00aba9",
-            "#1e7145",
-            "#C70039",
-            "#909090"
+            "#1e7145"
         ];
 
         new Chart("myChart1", {
@@ -159,20 +157,18 @@ $completedBookings = $viewArray["completedBooking"];
             options: {
                 title: {
                     display: true,
-                    text: "Passes"
+                    text: "Active Passes"
                 }
             }
         });
     </script>
 
     <script>
-        var xValues = ["Pending", "Approved", "Declined", "Expired", "Completed"];
-        var yValues = [<?php echo $pendingBookings ?>, <?php echo $approvedBookings ?>, <?php echo $declinedBookings ?>, <?php echo $expiredBookings ?>, <?php echo $completedBookings ?>];
+        var xValues = ["Pending", "Approved", "Completed"];
+        var yValues = [<?php echo $pendingBookings ?>, <?php echo $approvedBookings ?>, <?php echo $completedBookings ?>];
         var barColors = [
             "#e1e990",
             "#00aba9",
-            "#C70039",
-            "#909090",
             "#1e7145"
         ];
 
