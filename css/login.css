@@ -139,5 +139,5 @@ h1{
 }*/
 
 .loginerror{
-  color: rgba(255, 0, 0, 0.582);
+  color: rgba(255, 0, 0, 0.582) !important;
 }
