@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
         return;
     }elseif(Timer::getInstance()->my_date_diff($currDate, $leave_date, 30)){
         $error = "Maximum of 30 days is Allowed";
-        header("Location: ../board_manager_add_conductor_leave.php?error=$error");
+        header("Location: ../conductor_update_leave.php?error=$error");
         return;
     }
 
