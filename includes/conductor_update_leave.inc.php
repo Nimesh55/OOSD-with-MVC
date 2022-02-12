@@ -17,12 +17,12 @@ if (isset($_POST['submit'])) {
         $error = "Empty Field. Please Select a date!!";
         header("Location: ../conductor_update_leave.php?error=$error");
         return;
-    }elseif($leave_date<$currDate){
-        $error = "Date has already passed!!";
+    }elseif($leave_date<=$currDate){
+        $error = "Invalid Date";
         header("Location: ../conductor_update_leave.php?error=$error");
         return;
-    }elseif(Timer::getInstance()->my_date_diff($currDate, $leave_date, 30)){
-        $error = "Maximum of 30 days is Allowed";
+    }elseif(Timer::getInstance()->my_date_diff($currDate, $leave_date, 150)){
+        $error = "Leaves within 150 days is Allowed";
         header("Location: ../conductor_update_leave.php?error=$error");
         return;
     }
@@ -47,8 +47,8 @@ elseif (isset($_POST['submit_manual'])) {
         $error = "Date has already passed!!";
         header("Location: ../board_manager_add_conductor_leave.php?error=$error");
         return;
-    }elseif(Timer::getInstance()->my_date_diff($currDate, $leave_date, 30)){
-        $error = "Maximum of 30 days is Allowed";
+    }elseif(Timer::getInstance()->my_date_diff($currDate, $leave_date, 150)){
+        $error = "Leaves within 150 days is Allowed";
         header("Location: ../board_manager_add_conductor_leave.php?error=$error");
         return;
     }

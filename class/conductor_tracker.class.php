@@ -40,7 +40,6 @@ class Conductor_Tracker extends Tracker{
     public function getAvailableConductors($district_no, $start_date, $end_date){
         $conductor_arr = $this->conductor_controller->getConductorsArrayByDistrict($district_no);
         $final_conductors = array();
-
         foreach ($conductor_arr as $conductor_data) {
             $conductor = $this->getConductorbyNumber($conductor_data['conductor_no']);
             $leaves = $this->conductor_controller->getConductorLeavesArray($conductor->getConductorNo());

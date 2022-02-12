@@ -164,7 +164,7 @@ if(isset($_GET['error'])){
                         <div class="form-group">
                             <label class="control-label col-sm-3" for="email">Default Password:</label>
                             <div class="col-sm-9">
-                                <input name="defaultPass" type="text" class="form-control" value="abcd" id="defaultPass" readonly>
+                                <input name="defaultPass" type="text" class="form-control" value="abcd1234_C" id="defaultPass" readonly>
                             </div>
                         </div>
 

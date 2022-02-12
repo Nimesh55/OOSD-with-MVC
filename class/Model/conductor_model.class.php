@@ -27,7 +27,7 @@ class Conductor_Model extends Dbh{ // ## make the methods protected
     }
 
     protected function getConductorsArrayByDistrictFromModel($district_no){
-        $sql = "SELECT * from conductor WHERE district_no=?";
+        $sql = "SELECT * from conductor WHERE district_no=? and state = 0";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$district_no]);
         $record = $stmt->fetchAll();
@@ -101,8 +101,8 @@ class Conductor_Model extends Dbh{ // ## make the methods protected
     }
 
     private function getConductorNosLeavedToday(){
-        $stmt = $this->connect()->prepare("SELECT conductor_no from conductor_leave WHERE date=?");
-        $stmt->execute([date("Y-m-d")]);
+        $stmt = $this->connect()->prepare("SELECT count(*) from conductor_leave JOIN conductor ON conductor.conductor_no = conductor_leave.conductor_no WHERE conductor_leave.date=? and conductor.state = 0");
+        $stmt->execute([Timer::getInstance()->get_current_date()]);
         $conductor_nos_leaved_today = $stmt->fetchColumn();
         if($conductor_nos_leaved_today==null){
             $conductor_nos_leaved_today = 0;
@@ -123,7 +123,7 @@ class Conductor_Model extends Dbh{ // ## make the methods protected
     }
 
     protected function getConductorCountFromModel(){
-        $stmt = $this->connect()->prepare("SELECT count(*) FROM conductor");
+        $stmt = $this->connect()->prepare("SELECT count(*) FROM conductor where state = 0");
         $stmt->execute();
         $count3 = $stmt->fetchColumn();
         return $count3;

@@ -85,7 +85,8 @@ class Executive_View extends Executive_Model{
             "start_date" => $booking->getStartDate(),
             "end_date" => $booking->getEndDate(),
             "state" => $booking_state,
-            "bus_no" => $bus_no,
+            "bus_no" => $bus_no[0],
+            "telephone" => $bus_no[1],
             "status"=> $status);
         return $details;
     }

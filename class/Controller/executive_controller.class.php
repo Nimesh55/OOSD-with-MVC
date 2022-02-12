@@ -123,13 +123,19 @@ class Executive_Controller extends Executive_Model
 
     public function getBusNo($booking)
     {
-        $bus_no = "";
+        $data = ["-","-"];
         if ($booking->getState() > 0) {
             $conductor = Conductor_Tracker::getInstance()->getConductorByNumber($booking->getBookedConductorNo());
-            if ($conductor != null)
+            if ($conductor != null){
                 $bus_no = $conductor->getVehicleNo();
+                $contact = $conductor->getTelephone();
+                $data = array();
+                array_push($data, $bus_no);
+                array_push($data, $contact);
+            }
+                
         }
-        return $bus_no;
+        return $data;
     }
 
     public function requestBooking($details)

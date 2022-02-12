@@ -30,7 +30,7 @@ if(isset($_POST['submit'])){
         $vehicle_no = htmlentities($_POST["vehicle_no"]);
         $district = htmlentities($_POST["district"]);
         $seats = htmlentities($_POST["seats"]);
-        $signupctrlobj = new Signup_Controller($firstname, $lastname, $uid, $address, $email, $telephone, "abcd", "abcd", NULL,NULL, $vehicle_no, $district,1,$seats);
+        $signupctrlobj = new Signup_Controller($firstname, $lastname, $uid, $address, $email, $telephone, "abcd1234_C", "abcd1234_C", NULL,NULL, $vehicle_no, $district,1,$seats);
     }else {
         $password = htmlentities($_POST["password"]);
         $password_repeat = htmlentities($_POST["passwordrepeat"]);

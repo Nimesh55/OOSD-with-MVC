@@ -109,6 +109,12 @@ $detailsArray = $viewobj->getBookingViewDetails($_GET['booking_no']);
                             echo '<div class="col-sm-5">'.$detailsArray['bus_no'].'</div>';
                             echo '</div>';
 
+                            echo '<div class="row">';
+                            echo '<div class="col-sm-5"><p>Conductor Telephone No</p></div>';
+                            echo '<div class="col-sm-2"><p>:</p></div>';
+                            echo '<div class="col-sm-5">'.$detailsArray['telephone'].'</div>';
+                            echo '</div>';
+
                         }
 
                         ?>
